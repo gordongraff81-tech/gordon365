@@ -1,4 +1,3 @@
-import { unstable_setRequestLocale } from "next-intl/server";
 import AmbientBg from "@/components/ui/AmbientBg";
 import Nav from "@/components/ui/Nav";
 import Hero from "@/components/sections/Hero";
@@ -21,7 +20,6 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  unstable_setRequestLocale(locale);
 
   return (
     <>
