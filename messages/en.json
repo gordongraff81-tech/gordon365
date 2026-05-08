@@ -1,0 +1,421 @@
+{
+  "meta": {
+    "title": "Gordon365 — Secure & Optimize Microsoft 365 for the AI Era",
+    "description": "Strategic Microsoft 365 consulting for European SMEs. Security hardening, Copilot readiness, licensing optimization, and Modern Workplace transformation.",
+    "ogTitle": "Gordon365 — Microsoft 365 Security & Copilot Readiness",
+    "ogDescription": "Identify security gaps, governance risks and Copilot readiness issues before they impact your business."
+  },
+  "nav": {
+    "services": "Services",
+    "checker": "Security Check",
+    "results": "Results",
+    "about": "About",
+    "contact": "Contact",
+    "cta": "Book Strategy Call",
+    "langLabel": "Language"
+  },
+  "hero": {
+    "eyebrow": "Microsoft 365 Security & Optimization Platform",
+    "h1a": "Secure and optimize your",
+    "h1b": "Microsoft 365",
+    "h1c": "for the AI era",
+    "sub": "Identify security gaps, governance risks and Copilot readiness issues before they impact your business — with enterprise-grade advisory from a senior M365 specialist.",
+    "cta1": "Start Free Security Check",
+    "cta2": "Book Advisory Call",
+    "trustLabel": "Trusted by",
+    "metrics": {
+      "environments": "Environments secured",
+      "savings": "Client savings unlocked",
+      "retention": "Client retention rate",
+      "years": "Years M365 specialization"
+    },
+    "dashboard": {
+      "title": "M365 Security Posture",
+      "score": "Secure Score",
+      "critical": "Critical",
+      "warnings": "Warnings",
+      "passing": "Passing",
+      "legacyAuth": "Legacy Auth Active",
+      "mfaCoverage": "MFA Coverage: 74%",
+      "conditionalAccess": "Conditional Access",
+      "runCheck": "Run your free check",
+      "startNow": "Start now"
+    }
+  },
+  "checker": {
+    "sectionLabel": "Interactive Tool",
+    "h2": "Microsoft 365 Security Posture Check",
+    "sub": "Answer 5 questions to receive an instant assessment of your M365 security posture, identified risks, and prioritised recommendations.",
+    "title": "M365 Security Assessment",
+    "badge": "Free · 2 min",
+    "desc": "5 questions · Instant results · No registration required",
+    "question": "Question {current} of {total}",
+    "next": "Continue",
+    "back": "Back",
+    "viewResults": "View Results",
+    "answers": {
+      "yes": "Yes — fully implemented",
+      "partial": "Partially — some coverage",
+      "no": "No — not in place",
+      "unknown": "Not sure"
+    },
+    "questions": [
+      {
+        "text": "Is Multi-Factor Authentication (MFA) enforced for all users?",
+        "sub": "MFA is the single most effective control against credential-based attacks. It should be mandatory — not optional — for every account including service accounts and administrators.",
+        "answers": {
+          "yes": { "title": "Yes — enforced for all users", "hint": "Including admins and service accounts" },
+          "partial": { "title": "Partially — some users only", "hint": "Not consistently enforced across all accounts" },
+          "no": { "title": "No — not enabled", "hint": "Users sign in with password only" },
+          "unknown": { "title": "Not sure", "hint": "I'd need to check the tenant to confirm" }
+        }
+      },
+      {
+        "text": "Are Conditional Access policies configured in your tenant?",
+        "sub": "Conditional Access lets you enforce granular access controls based on user, device, location and sign-in risk — it's the foundation of a Zero Trust identity model in Microsoft 365.",
+        "answers": {
+          "yes": { "title": "Yes — actively configured", "hint": "Multiple policies in Enabled or Report-only state" },
+          "partial": { "title": "Basic policies only", "hint": "MFA for admins only, or default Security Defaults" },
+          "no": { "title": "Not configured", "hint": "No Conditional Access policies in place" },
+          "unknown": { "title": "Not sure", "hint": "I'd need to check Entra ID to confirm" }
+        }
+      },
+      {
+        "text": "Is legacy authentication blocked in your environment?",
+        "sub": "Legacy authentication protocols (Basic Auth, IMAP, POP3) bypass MFA entirely and are exploited in the majority of password spray and credential stuffing attacks against M365 tenants.",
+        "answers": {
+          "yes": { "title": "Yes — fully blocked", "hint": "Legacy auth blocked via Conditional Access or Auth Policy" },
+          "partial": { "title": "Partially restricted", "hint": "Some protocols blocked, others still active" },
+          "no": { "title": "No — still permitted", "hint": "Legacy protocols are unrestricted" },
+          "unknown": { "title": "Not sure", "hint": "I'd need to check the sign-in logs to confirm" }
+        }
+      },
+      {
+        "text": "Is external sharing in SharePoint and OneDrive restricted?",
+        "sub": "Unrestricted external sharing is one of the most common sources of unintentional data exposure in M365. Default tenant settings are often too permissive for most business risk profiles.",
+        "answers": {
+          "yes": { "title": "Yes — restricted to known domains", "hint": "Sharing limited to authenticated external users or specific domains" },
+          "partial": { "title": "Limited sharing permitted", "hint": "External sharing allowed with authentication required" },
+          "no": { "title": "Open — anyone with a link", "hint": "Files can be shared publicly without authentication" },
+          "unknown": { "title": "Not sure", "hint": "I'd need to check SharePoint Admin Center" }
+        }
+      },
+      {
+        "text": "Are Microsoft Purview Sensitivity Labels deployed and actively used?",
+        "sub": "Sensitivity labels classify and protect documents and emails based on their confidentiality level — a hard prerequisite for safe Copilot deployment and GDPR/DSGVO data governance obligations.",
+        "answers": {
+          "yes": { "title": "Yes — deployed and actively used", "hint": "Labels configured in Purview and applied to files and emails" },
+          "partial": { "title": "Created but not widely adopted", "hint": "Labels exist but usage is low or inconsistent" },
+          "no": { "title": "Not configured", "hint": "No sensitivity labels in place" },
+          "unknown": { "title": "Not sure", "hint": "I'd need to check Microsoft Purview" }
+        }
+      }
+    ],
+    "results": {
+      "scoreLabel": "Security Score",
+      "findingsTitle": "Identified risks & recommendations",
+      "postures": {
+        "strong": "Strong Posture",
+        "attention": "Needs Attention",
+        "critical": "High Risk"
+      },
+      "headlines": {
+        "strong": "Your M365 environment is well-configured",
+        "attention": "Your M365 environment has identifiable risk areas",
+        "critical": "Your M365 environment has critical security gaps"
+      },
+      "descs": {
+        "strong": "Your responses indicate a solid security foundation. The recommendations below will help you move from good to excellent — and prepare for safe Copilot deployment.",
+        "attention": "Several configuration gaps are creating exploitable risk. Prioritise the critical and warning items below — most can be addressed within 2–4 weeks without significant disruption.",
+        "critical": "Your environment has multiple critical exposures that require immediate attention. These gaps are actively targeted by threat actors and should be remediated as a priority."
+      },
+      "ctaTitle": "Get Your Full Security Report",
+      "ctaDesc": "Receive a detailed 12-page PDF report with step-by-step remediation guidance, Microsoft policy templates, and a prioritised implementation roadmap tailored to your specific findings.",
+      "downloadReport": "Download Full Report (€29)",
+      "bookCall": "Book Free Advisory Call",
+      "restart": "Run check again"
+    }
+  },
+  "services": {
+    "label": "Consulting Offers",
+    "h2": "Precise interventions.\nMeasurable outcomes.",
+    "sub": "Three engagement models. Fixed pricing. Senior delivery from day one — no juniors, no surprises.",
+    "items": [
+      {
+        "tag": "Fixed Fee · 4–6 Weeks",
+        "name": "M365 Health Check",
+        "desc": "A forensic audit of your Microsoft 365 environment. We find the waste, map the risks, and give you a prioritised roadmap with real numbers behind every recommendation.",
+        "outcomes": [
+          "License audit with specific reduction scenarios",
+          "Secure Score gap analysis and remediation priorities",
+          "Teams & SharePoint governance review",
+          "Written executive report with ROI projections",
+          "Leadership briefing session"
+        ],
+        "price": "€1,500 – 3,000",
+        "period": "Fixed fee · 10–250 users",
+        "cta": "Enquire"
+      },
+      {
+        "tag": "Most Requested",
+        "featured": true,
+        "name": "Copilot Readiness Sprint",
+        "desc": "Prepare your business for AI adoption properly. Secure your data, establish governance, identify real use cases, and ensure M365 is ready before you scale Copilot licences.",
+        "outcomes": [
+          "Data classification and permission hygiene",
+          "Sensitivity labels and DLP policy setup",
+          "Copilot use case mapping by department",
+          "Governance framework documentation",
+          "Adoption strategy and pilot rollout plan"
+        ],
+        "price": "€3,000 – 7,500",
+        "period": "Fixed fee · 6–10 weeks",
+        "cta": "Enquire"
+      },
+      {
+        "tag": "Ongoing · Monthly",
+        "name": "Strategic Advisory Retainer",
+        "desc": "Senior-level M365 expertise on call — without the overhead of a full-time hire. Ongoing governance, security reviews, and strategic guidance as your business evolves.",
+        "outcomes": [
+          "Dedicated availability for IT team and leadership",
+          "Monthly environment health and licensing review",
+          "Proactive compliance and security monitoring",
+          "New feature evaluation and adoption planning",
+          "Priority response for security incidents"
+        ],
+        "price": "€3,500+ /month",
+        "period": "Minimum 3-month engagement",
+        "cta": "Apply"
+      }
+    ]
+  },
+  "capabilities": {
+    "label": "Platform Capabilities",
+    "h2": "Four disciplines.\nOne expert.",
+    "sub": "Deep specialization across the four pillars of a production-grade Microsoft 365 environment.",
+    "items": [
+      {
+        "icon": "shield",
+        "title": "Security Hardening",
+        "desc": "Raise your Secure Score, close identity gaps, and align with CIS and CISA benchmarks — fast.",
+        "features": ["MFA & Conditional Access", "Entra ID configuration", "Identity Protection policies", "Legacy auth removal"]
+      },
+      {
+        "icon": "scale",
+        "title": "Governance & Compliance",
+        "desc": "Structure Teams, SharePoint, and data so it's auditable, compliant, and DSGVO-ready.",
+        "features": ["Teams & SharePoint governance", "Retention & DLP policies", "Sensitivity & classification labels", "Compliance Manager review"]
+      },
+      {
+        "icon": "cpu",
+        "title": "Optimization & Cost",
+        "desc": "Find licensing waste, right-size your subscriptions, and eliminate duplicate tooling costs.",
+        "features": ["License audit & rightsizing", "Tool consolidation analysis", "Usage analytics review", "Renewal negotiation support"]
+      },
+      {
+        "icon": "sparkles",
+        "title": "Copilot Readiness",
+        "desc": "Build the data foundation, governance model, and adoption strategy that makes AI investment pay off.",
+        "features": ["Permission & data hygiene", "Sensitivity label deployment", "Use case identification", "Pilot design & rollout"]
+      }
+    ]
+  },
+  "results": {
+    "label": "Case Studies",
+    "h2": "Outcomes that move\nthe business forward",
+    "sub": "Specific, measurable results from real engagements across manufacturing, financial services, professional services, and logistics.",
+    "items": [
+      {
+        "industry": "Manufacturing · 180 Users",
+        "headline": "Licensing audit reduced annual Microsoft spend by 24%",
+        "desc": "A mid-sized manufacturer was overpaying on E3 licences across their entire workforce. Analysis revealed 40+ inactive accounts, duplicate Visio licences, and three unlicensed Power Automate users. Rebalancing to a mixed E1/E3 model reduced annual spend by over €42,000.",
+        "kpis": [
+          { "value": "−24%", "label": "Annual M365 Spend", "positive": true },
+          { "value": "€42K", "label": "Saved Year One", "positive": true },
+          { "value": "6 wks", "label": "Delivery Time", "positive": false }
+        ]
+      },
+      {
+        "industry": "Financial Services · 90 Users",
+        "headline": "Secure Score raised from 38 to 74 in 30 days",
+        "desc": "Following a cyber insurance renewal review, a financial services firm needed demonstrable security improvement. Targeted hardening addressed MFA gaps, legacy authentication, PIM, and SharePoint external sharing defaults. Secure Score jumped 36 points within the first month.",
+        "kpis": [
+          { "value": "+36 pts", "label": "Secure Score", "positive": true },
+          { "value": "100%", "label": "MFA Coverage", "positive": true },
+          { "value": "30 days", "label": "Timeline", "positive": false }
+        ]
+      },
+      {
+        "industry": "Professional Services · 150 Users",
+        "headline": "150-user firm fully Copilot-ready in 8 weeks",
+        "desc": "A consulting firm purchased Copilot licences but had no data governance or sensitivity labels in place. The readiness sprint established a classification framework, remediated 2,400 overpermissioned SharePoint sites, trained 12 pilot users, and delivered a 6-month adoption roadmap.",
+        "kpis": [
+          { "value": "2,400", "label": "Sites Remediated", "positive": true },
+          { "value": "8 wks", "label": "To Copilot Ready", "positive": true },
+          { "value": "12", "label": "Pilot Users", "positive": false }
+        ]
+      },
+      {
+        "industry": "Logistics · 320 Users · 5 Locations",
+        "headline": "Unified collaboration across Teams, SharePoint & Intune",
+        "desc": "A logistics company operating across five locations had uncontrolled Teams sprawl, no SharePoint structure, and unmanaged devices. A Modern Workplace transformation standardised device management via Intune and migrated 28 file shares to a structured architecture.",
+        "kpis": [
+          { "value": "320", "label": "Devices Managed", "positive": true },
+          { "value": "28", "label": "Shares Migrated", "positive": true },
+          { "value": "5 sites", "label": "Locations Unified", "positive": false }
+        ]
+      }
+    ]
+  },
+  "insights": {
+    "label": "Insights & Guides",
+    "h2": "M365 knowledge base",
+    "viewAll": "View all guides",
+    "readGuide": "Read guide",
+    "items": [
+      {
+        "tag": "Security",
+        "title": "The 10 M365 security controls every SME should implement first",
+        "excerpt": "A practical, prioritised checklist of identity and access controls that deliver the highest security impact in the shortest time.",
+        "readTime": "8 min read",
+        "gradient": "from-red/15 to-accent/10"
+      },
+      {
+        "tag": "Copilot",
+        "title": "Why your Copilot deployment will fail without data governance",
+        "excerpt": "Most companies are buying Copilot licences before their data foundations are ready. Here's what to fix first — and why it matters for AI ROI.",
+        "readTime": "12 min read",
+        "gradient": "from-accent/15 to-accent-2/10"
+      },
+      {
+        "tag": "Licensing",
+        "title": "How to audit your Microsoft 365 licensing and find the waste",
+        "excerpt": "A step-by-step guide to identifying unused licences, over-assigned SKUs, and duplicate tooling costs in your M365 tenant.",
+        "readTime": "10 min read",
+        "gradient": "from-green/12 to-accent/10"
+      }
+    ]
+  },
+  "why": {
+    "label": "Why Gordon365",
+    "h2": "The difference between\na consultant and a partner",
+    "sub": "Larger consultancies send juniors. Vendors recommend more licences. Gordon365 provides senior expertise with zero conflicts of interest.",
+    "points": [
+      {
+        "title": "You always work directly with Gordon",
+        "desc": "No account managers, no junior hand-offs. The expertise you buy is the expertise that shows up — every call, every deliverable, every decision."
+      },
+      {
+        "title": "Engineering depth meets commercial thinking",
+        "desc": "Every recommendation is technically precise and commercially grounded. ROI projections come from real audit data — not estimates or averages."
+      },
+      {
+        "title": "Fixed pricing. No scope surprises.",
+        "desc": "Projects are fully scoped and priced before work begins. If scope changes, it's agreed in writing before the cost changes. No exceptions."
+      },
+      {
+        "title": "Every engagement ends with your team stronger",
+        "desc": "Documentation, runbooks, and handovers designed to keep your internal team independent — not dependent on ongoing consultancy."
+      }
+    ],
+    "founder": {
+      "name": "Gordon Graff",
+      "role": "Founder · M365 & Modern Workplace Consultant",
+      "quote": "\"I don't optimize M365 environments for the sake of it. I do it because the business outcomes are consistently significant — and most companies are leaving real money and security on the table.\"",
+      "stats": [
+        { "value": "10+", "label": "Years M365" },
+        { "value": "150+", "label": "Environments" },
+        { "value": "D/A/CH", "label": "Region" },
+        { "value": "MS", "label": "Certified" }
+      ],
+      "certs": [
+        "Microsoft 365 Certified: Enterprise Administrator Expert",
+        "Microsoft Security, Compliance & Identity Fundamentals",
+        "Microsoft Certified: Modern Desktop Administrator Associate"
+      ]
+    }
+  },
+  "testimonials": {
+    "label": "Client Perspectives",
+    "h2": "What clients say",
+    "items": [
+      {
+        "quote": "Gordon identified €38,000 in annual licensing waste within two weeks. The health check paid for itself twelve times over before we even started the remediation work.",
+        "name": "Managing Director",
+        "role": "Manufacturing company · 200 employees",
+        "initials": "MK"
+      },
+      {
+        "quote": "We'd been told our M365 security was 'fine' for years. Gordon's audit found 14 high-priority exposure points. We fixed them all in six weeks. Our cyber insurer was visibly impressed at renewal.",
+        "name": "IT Director",
+        "role": "Financial services firm · 90 users",
+        "initials": "SB"
+      },
+      {
+        "quote": "We bought Copilot licences and then panicked. Gordon ran our readiness sprint, fixed our data governance, and we launched a successful pilot within eight weeks. The ROI is already visible.",
+        "name": "Operations Director",
+        "role": "Professional services · 150 users",
+        "initials": "TH"
+      }
+    ]
+  },
+  "cta": {
+    "h2": "Ready to find out what you're leaving on the table?",
+    "sub": "Most companies discover significant savings, security gaps, or AI readiness blockers within the first 30-minute strategy call. No pitch deck. Just a direct conversation.",
+    "btn1": "Run Free Security Check",
+    "btn2": "Book Strategy Call"
+  },
+  "contact": {
+    "label": "Book a Strategy Call",
+    "h2": "30 minutes.\nReal answers.",
+    "sub": "No pitch decks. No discovery questionnaires. A direct conversation about your M365 environment, your biggest challenges, and whether there's a fit.",
+    "features": [
+      "Free, no-obligation 30-minute call",
+      "Direct with Gordon — no sales team",
+      "Structured to deliver value regardless of outcome",
+      "Response within one business day",
+      "GDPR / DSGVO compliant data handling"
+    ],
+    "form": {
+      "title": "Request a Strategy Call",
+      "name": "Your Name",
+      "namePlaceholder": "Max Mustermann",
+      "company": "Company",
+      "companyPlaceholder": "Mustermann GmbH",
+      "email": "Work Email",
+      "emailPlaceholder": "max@mustermann.de",
+      "size": "Company Size",
+      "sizePlaceholder": "Select range",
+      "sizeOptions": ["10 – 50 users", "50 – 150 users", "150 – 500 users", "500+ users"],
+      "budget": "Budget Range",
+      "budgetPlaceholder": "Select range",
+      "budgetOptions": [
+        "€1,500 – 3,000 (Health Check)",
+        "€3,000 – 7,500 (Copilot Sprint)",
+        "€3,500+/month (Retainer)",
+        "Not sure yet"
+      ],
+      "challenge": "Main Challenge",
+      "challengePlaceholder": "Briefly describe your main M365 challenge or goal…",
+      "submit": "Request Strategy Call",
+      "submitting": "Sending…",
+      "submitted": "Sent ✓",
+      "privacy": "Data handled in accordance with GDPR / DSGVO. No third-party sharing. Ever.",
+      "success": "Request sent — Gordon will be in touch within one business day.",
+      "error": "Something went wrong. Please email hello@gordon365.com directly."
+    }
+  },
+  "footer": {
+    "desc": "Microsoft 365 security, optimization and Copilot readiness consulting for European SMEs and mid-market businesses.",
+    "services": "Services",
+    "serviceLinks": ["M365 Health Check", "Copilot Readiness", "Strategic Retainer", "Free Security Check"],
+    "company": "Company",
+    "companyLinks": ["About Gordon", "Case Studies", "Insights", "hello@gordon365.com"],
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Monthly M365 security and optimization insights. No spam.",
+    "newsletterPlaceholder": "your@email.com",
+    "subscribe": "Subscribe",
+    "copyright": "© 2025 Gordon365 · gordon365.com",
+    "legal": ["Impressum", "Datenschutz", "AGB"]
+  }
+}

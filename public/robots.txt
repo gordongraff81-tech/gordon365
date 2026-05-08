@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gordon365.com/sitemap.xml
