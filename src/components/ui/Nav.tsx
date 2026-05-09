@@ -31,7 +31,7 @@ export default function Nav() {
             <path d="M7.5 10.5L9.5 12.5L13 8.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
-        <span>Gordon<span style={{ color:"#18D5FF" }}>365</span></span>
+        <img src="/logo.png" alt="Gordon365" style={{ height: "36px", width: "auto" }} />
       </a>
       <div style={{ display:"flex", alignItems:"center", gap:"2rem" }}>
         {navLinks.map((link) => (
