@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import AmbientBg from "@/components/ui/AmbientBg";
 import Nav from "@/components/ui/Nav";
 import Hero from "@/components/sections/Hero";

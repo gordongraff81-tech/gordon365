@@ -1,4 +1,5 @@
 export const runtime = 'edge';
+export const dynamic = 'force-dynamic';
 
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
@@ -85,9 +86,7 @@ export async function generateMetadata({
   };
 }
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+// generateStaticParams wurde entfernt, da es sich mit der Edge-Runtime auf Cloudflare beißt.
 
 export default async function RootLayout({
   children,
