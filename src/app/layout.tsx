@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+// Erforderlich für das Deployment auf Cloudflare Pages, 
+// da dieses Layout alle anderen Routen umschließt.
+export const runtime = 'edge';
+
 export const metadata: Metadata = {
   title: "Gordon365",
 };
@@ -10,5 +14,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <html lang="en">
+      <body>
+        {children}
+      </body>
+    </html>
+  );
 }
