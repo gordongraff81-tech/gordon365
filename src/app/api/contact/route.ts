@@ -1,6 +1,10 @@
 export const runtime = 'edge';
 import { type NextRequest, NextResponse } from "next/server";
+export const runtime = 'edge';
+export const runtime = 'edge';
 import { z } from "zod";
+export const runtime = 'edge';
+export const runtime = 'edge';
 
 // Erforderlich für das Deployment auf Cloudflare Pages
 export const runtime = "edge";

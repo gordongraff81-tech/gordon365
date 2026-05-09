@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+export const runtime = 'edge';
+export const runtime = 'edge';
 import "./globals.css";
+export const runtime = 'edge';
+export const runtime = 'edge';
 
 // Erforderlich für das Deployment auf Cloudflare Pages, 
 // da dieses Layout alle anderen Routen umschließt.
