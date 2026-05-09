@@ -1,13 +1,7 @@
 export const runtime = 'edge';
-import { type NextRequest, NextResponse } from "next/server";
-export const runtime = 'edge';
-export const runtime = 'edge';
-import { z } from "zod";
-export const runtime = 'edge';
-export const runtime = 'edge';
 
-// Erforderlich für das Deployment auf Cloudflare Pages
-export const runtime = "edge";
+import { type NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
 const ContactSchema = z.object({
   name:      z.string().min(2).max(100),
@@ -23,8 +17,6 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const data = ContactSchema.parse(body);
 
-    // ── Zoho Mail integration (via SMTP API or OAuth) ──────────────────────────
-    // Replace ZOHO_TOKEN and ACCOUNT_ID with your Cloudflare secret env vars.
     const zohoToken = process.env.ZOHO_TOKEN;
     const zohoAccountId = process.env.ZOHO_ACCOUNT_ID;
     const notifyEmail = process.env.NOTIFY_EMAIL ?? "gordon@gordon365.com";
@@ -87,7 +79,6 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Always return success to client (even in dev without Zoho configured)
     return NextResponse.json({ success: true }, { status: 200 });
 
   } catch (err) {
@@ -102,7 +93,6 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// Reject non-POST
 export async function GET() {
   return NextResponse.json({ error: "Method not allowed" }, { status: 405 });
 }

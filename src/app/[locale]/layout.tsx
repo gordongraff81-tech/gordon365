@@ -1,21 +1,12 @@
 export const runtime = 'edge';
-import type { Metadata } from "next";
-export const runtime = 'edge';
-import { NextIntlClientProvider } from "next-intl";
-export const runtime = 'edge';
-import { getMessages, getTranslations } from "next-intl/server";
-export const runtime = 'edge';
-import { notFound } from "next/navigation";
-export const runtime = 'edge';
-import { routing } from "@/i18n/routing";
-export const runtime = 'edge';
-import { Toaster } from "sonner";
-export const runtime = 'edge';
-import "@/app/globals.css";
-export const runtime = 'edge';
 
-// Erforderlich für das Deployment auf Cloudflare Pages
-export const runtime = "edge";
+import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getTranslations } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
+import { Toaster } from "sonner";
+import "@/app/globals.css";
 
 export async function generateMetadata({
   params,
