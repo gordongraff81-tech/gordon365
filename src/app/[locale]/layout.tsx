@@ -6,6 +6,9 @@ import { routing } from "@/i18n/routing";
 import { Toaster } from "sonner";
 import "@/app/globals.css";
 
+// Erforderlich für das Deployment auf Cloudflare Pages
+export const runtime = "edge";
+
 export async function generateMetadata({
   params,
 }: {

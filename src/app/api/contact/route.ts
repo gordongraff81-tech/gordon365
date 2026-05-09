@@ -1,6 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+// Erforderlich für das Deployment auf Cloudflare Pages
+export const runtime = "edge";
+
 const ContactSchema = z.object({
   name:      z.string().min(2).max(100),
   company:   z.string().min(1).max(100),
