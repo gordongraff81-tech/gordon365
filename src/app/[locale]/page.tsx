@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from "next-intl/server";
+// 1. Der Import von unstable_setRequestLocale wurde entfernt
 
 // Neue V2-Komponenten
 import NavV2 from "@/components/ui/NavV2";
@@ -25,7 +25,9 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  unstable_setRequestLocale(locale);
+  
+  // 2. Der Aufruf von unstable_setRequestLocale(locale) wurde entfernt.
+  // Next.js 15 + next-intl regeln das jetzt automatisch über die Server-Konfiguration.
 
   return (
     <>
@@ -38,20 +40,18 @@ export default async function HomePage({
 
         <StatsBar />
 
-        {/*
-          SecurityScrollytelling ersetzt SecurityChecker:
+        {/* 
+          SecurityScrollytelling ersetzt SecurityChecker: 
           Apple-style "Explosionszeichnung" mit sticky positioning.
-          Die section hat height: 350vh als scroll-Track.
         */}
         <SecurityScrollytelling />
 
-        {/*
-          BentoServicesGrid ersetzt Services:
-          Apple Bento-Grid mit Glasmorphismus, Border-Gradients, Stats-Reihe.
+        {/* 
+          BentoServicesGrid ersetzt Services: 
+          Apple Bento-Grid mit Glasmorphismus.
         */}
         <BentoServicesGrid />
 
-        {/* Alle weiteren Sektionen bleiben unverändert */}
         <Capabilities />
         <Results />
         <Insights />
