@@ -1,11 +1,14 @@
-export const runtime = 'edge';
+import { unstable_setRequestLocale } from "next-intl/server";
 
+// Neue V2-Komponenten
+import NavV2 from "@/components/ui/NavV2";
+import HeroV2 from "@/components/sections/HeroV2";
+import SecurityScrollytelling from "@/components/sections/SecurityScrollytelling";
+import BentoServicesGrid from "@/components/sections/BentoServicesGrid";
+
+// Bestehende Komponenten (unverändert)
 import AmbientBg from "@/components/ui/AmbientBg";
-import Nav from "@/components/ui/Nav";
-import Hero from "@/components/sections/Hero";
 import StatsBar from "@/components/sections/StatsBar";
-import SecurityChecker from "@/components/sections/SecurityChecker";
-import Services from "@/components/sections/Services";
 import Capabilities from "@/components/sections/Capabilities";
 import Results from "@/components/sections/Results";
 import Insights from "@/components/sections/Insights";
@@ -22,16 +25,33 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  unstable_setRequestLocale(locale);
 
   return (
     <>
       <AmbientBg />
-      <Nav />
+      {/* NavV2 ersetzt Nav — ultra-flat, adaptive backdrop-blur */}
+      <NavV2 />
       <main>
-        <Hero />
+        {/* HeroV2 — Scroll-getriggerter Zoom + Cloud-Orb */}
+        <HeroV2 />
+
         <StatsBar />
-        <SecurityChecker />
-        <Services />
+
+        {/*
+          SecurityScrollytelling ersetzt SecurityChecker:
+          Apple-style "Explosionszeichnung" mit sticky positioning.
+          Die section hat height: 350vh als scroll-Track.
+        */}
+        <SecurityScrollytelling />
+
+        {/*
+          BentoServicesGrid ersetzt Services:
+          Apple Bento-Grid mit Glasmorphismus, Border-Gradients, Stats-Reihe.
+        */}
+        <BentoServicesGrid />
+
+        {/* Alle weiteren Sektionen bleiben unverändert */}
         <Capabilities />
         <Results />
         <Insights />
