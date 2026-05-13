@@ -70,12 +70,10 @@ export default function NavV2({ locale }: NavProps) {
         }}
       >
         <Link href={`/${locale}`} className="flex items-center gap-3 group" aria-label="gordon365 Home">
-          <div className="relative w-8 h-8">
+          <div className="relative h-9 w-[140px]">
             <Image src="/logo.png" alt="gordon365 Logo" fill className="object-contain" priority />
           </div>
-          <span className="text-lg font-bold tracking-tight text-slate-900">
-            gordon<span className="text-blue-600">365</span>
-          </span>
+		  
         </Link>
 
         <div className="hidden lg:flex items-center gap-6">
