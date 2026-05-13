@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
+// 1. Import der optimierten Image-Komponente
+import Image from "next/image";
 
 export default function Nav() {
   const t = useTranslations("nav");
@@ -31,8 +33,19 @@ export default function Nav() {
             <path d="M7.5 10.5L9.5 12.5L13 8.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
-        <img src="/logo.png" alt="Gordon365" style={{ height: "36px", width: "auto" }} />
+        
+        {/* 2. Ersetzung von <img> durch <Image /> */}
+        <div style={{ position: "relative", height: "36px", width: "140px" }}> 
+          <Image 
+            src="/logo.png" 
+            alt="Gordon365" 
+            fill // Füllt den Container aus
+            style={{ objectFit: "contain" }} // Behält das Seitenverhältnis bei
+            priority // Lädt das Logo sofort (wichtig für LCP)
+          />
+        </div>
       </a>
+
       <div style={{ display:"flex", alignItems:"center", gap:"2rem" }}>
         {navLinks.map((link) => (
           <a key={link.href} href={link.href} style={{ fontSize:"0.875rem", fontWeight:500, color:"#94A3B8", textDecoration:"none" }}>{link.label}</a>

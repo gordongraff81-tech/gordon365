@@ -53,8 +53,9 @@ export default async function AGBPage({
           <p>
             Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle
             Verträge, die zwischen Gordon Graff, Nordbahnstr. 25, 13409 Berlin
-            (nachfolgend „Auftragnehmer") und seinen Auftraggebern (nachfolgend
-            „Auftraggeber") über IT-Beratung, Microsoft 365 Consulting,
+           (nachfolgend &quot;Auftragnehmer&quot;) und seinen Auftraggebern 
+  (nachfolgend &quot;Auftraggeber&quot;) über IT-Beratung, 
+  Microsoft 365 Consulting,
             Modern-Workplace-Engineering und verwandte Dienstleistungen
             geschlossen werden.
           </p>

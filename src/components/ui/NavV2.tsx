@@ -1,29 +1,32 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useTranslations, useLocale } from "next-intl";
+import { useState, useEffect, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image"; 
 import { cn } from "@/lib/utils";
 
-export default function NavV2() {
-  const t          = useTranslations("nav");
-  const locale     = useLocale();
-  const router     = useRouter();
-  const pathname   = usePathname();
-  const [scrollY, setScrollY]         = useState(0);
-  const [mobileOpen, setMobileOpen]   = useState(false);
+interface NavProps {
+  locale: string;
+}
+
+export default function NavV2({ locale }: NavProps) {
+  const t = useTranslations("nav");
+  const router = useRouter();
+  const pathname = usePathname();
+  const [scrollY, setScrollY] = useState(0);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
-  const navSections = [
+  const navSections = useMemo(() => [
     { id: "services", label: t("services") },
     { id: "security-checker", label: t("checker") },
     { id: "results", label: t("results") },
     { id: "about", label: t("about") },
     { id: "contact", label: t("contact") }
-  ];
+  ], [t]);
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -32,12 +35,13 @@ export default function NavV2() {
   }, []);
 
   useEffect(() => {
-    const sections = navSections.map(s => s.id);
-    const observers = sections.map((id) => {
-      const el = document.getElementById(id);
+    const observers = navSections.map((section) => {
+      const el = document.getElementById(section.id);
       if (!el) return null;
       const obs = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        ([entry]) => { 
+          if (entry.isIntersecting) setActiveSection(section.id); 
+        },
         { rootMargin: "-40% 0px -55% 0px" }
       );
       obs.observe(el);
@@ -65,9 +69,9 @@ export default function NavV2() {
           borderBottom: scrolled ? "1px solid rgba(0,0,0,0.08)" : "none",
         }}
       >
-        <Link href={`/${locale}`} className="flex items-center gap-3 group">
+        <Link href={`/${locale}`} className="flex items-center gap-3 group" aria-label="gordon365 Home">
           <div className="relative w-8 h-8">
-            <Image src="/logo.png" alt="gordon365" fill className="object-contain" priority />
+            <Image src="/logo.png" alt="gordon365 Logo" fill className="object-contain" priority />
           </div>
           <span className="text-lg font-bold tracking-tight text-slate-900">
             gordon<span className="text-blue-600">365</span>
@@ -79,6 +83,7 @@ export default function NavV2() {
             <a
               key={section.id}
               href={`#${section.id}`}
+              aria-current={activeSection === section.id ? "page" : undefined}
               className={cn(
                 "text-[13px] font-medium transition-colors hover:text-blue-600",
                 activeSection === section.id ? "text-blue-600" : "text-slate-600"
@@ -93,6 +98,7 @@ export default function NavV2() {
               <button
                 key={l}
                 onClick={() => switchLang(l)}
+                aria-label={`Sprache zu ${l === 'de' ? 'Deutsch' : 'Englisch'} wechseln`}
                 className={cn(
                   "px-3 py-1 text-[10px] font-bold uppercase rounded-full transition-all",
                   locale === l ? "bg-white text-blue-600 shadow-sm" : "text-slate-400 hover:text-slate-600"
@@ -104,8 +110,13 @@ export default function NavV2() {
           </div>
         </div>
 
-        <button className="lg:hidden p-2 text-slate-900" onClick={() => setMobileOpen(!mobileOpen)}>
-          <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+        <button 
+          className="lg:hidden p-2 text-slate-900" 
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Menü öffnen/schließen"
+          aria-expanded={mobileOpen}
+        >
+          <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <path d={mobileOpen ? "M18 6L6 18M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
           </svg>
         </button>
@@ -134,8 +145,12 @@ export default function NavV2() {
             ))}
             <div className="flex gap-6 mt-2">
               {["de", "en"].map((l) => (
-                <button key={l} onClick={() => { switchLang(l); setMobileOpen(false); }}
-                  className={cn("text-sm font-bold uppercase", locale === l ? "text-blue-600" : "text-slate-400")}>
+                <button 
+                  key={l} 
+                  onClick={() => { switchLang(l); setMobileOpen(false); }}
+                  aria-label={`Sprache zu ${l === 'de' ? 'Deutsch' : 'Englisch'} wechseln`}
+                  className={cn("text-sm font-bold uppercase", locale === l ? "text-blue-600" : "text-slate-400")}
+                >
                   {l === "de" ? "Deutsch" : "English"}
                 </button>
               ))}

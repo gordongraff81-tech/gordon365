@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useTranslations, useLocale } from "next-intl";
-import { useRef } from "react";
+import { useLocale } from "next-intl";
 
 const FAQ_EN = [
   {
@@ -70,7 +69,7 @@ export default function FAQ() {
   const heading = locale === "de" ? "Was Sie wahrscheinlich\nwissen möchten" : "What you're probably\nwondering";
 
   return (
-    <section ref={ref} className="relative z-10 bg-bg-0 py-28 px-6">
+    <section ref={ref} id="faq" className="relative z-10 bg-bg-0 py-28 px-6">
       <div className="max-w-[1100px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

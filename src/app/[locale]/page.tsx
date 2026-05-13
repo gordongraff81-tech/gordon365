@@ -1,13 +1,8 @@
-// 1. Der Import von unstable_setRequestLocale wurde entfernt
-
-// Neue V2-Komponenten
 import NavV2 from "@/components/ui/NavV2";
 import HeroV2 from "@/components/sections/HeroV2";
 import SecurityScrollytelling from "@/components/sections/SecurityScrollytelling";
 import SecurityChecker from "@/components/sections/SecurityChecker";
 import BentoServicesGrid from "@/components/sections/BentoServicesGrid";
-
-// Bestehende Komponenten (unverändert)
 import AmbientBg from "@/components/ui/AmbientBg";
 import StatsBar from "@/components/sections/StatsBar";
 import Capabilities from "@/components/sections/Capabilities";
@@ -26,36 +21,17 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  
-  // 2. Der Aufruf von unstable_setRequestLocale(locale) wurde entfernt.
-  // Next.js 15 + next-intl regeln das jetzt automatisch über die Server-Konfiguration.
 
   return (
     <>
       <AmbientBg />
-      {/* NavV2 ersetzt Nav — ultra-flat, adaptive backdrop-blur */}
-      <NavV2 />
+      <NavV2 locale={locale} />
       <main>
-        {/* HeroV2 — Scroll-getriggerter Zoom + Cloud-Orb */}
         <HeroV2 />
-
         <StatsBar />
-
-        {/* 
-          SecurityScrollytelling ersetzt SecurityChecker: 
-          Apple-style "Explosionszeichnung" mit sticky positioning.
-        */}
         <SecurityScrollytelling />
-
-        {/* SecurityChecker — interaktives 5-Fragen Tool mit Score + Findings */}
         <SecurityChecker />
-
-        {/* 
-          BentoServicesGrid ersetzt Services: 
-          Apple Bento-Grid mit Glasmorphismus.
-        */}
         <BentoServicesGrid />
-
         <Capabilities />
         <Results />
         <Insights />
@@ -63,9 +39,9 @@ export default async function HomePage({
         <Testimonials />
         <FAQ />
         <CtaBand />
-        <Contact />
+        <Contact locale={locale} />
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }
