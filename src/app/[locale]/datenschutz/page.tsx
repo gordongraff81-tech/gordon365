@@ -15,7 +15,7 @@ export default async function DatenschutzPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-Danach das gleiche für ImpressumPage zeigen.
+
 
   return (
     <div className="min-h-screen bg-bg-0 text-text-1">
