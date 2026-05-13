@@ -547,7 +547,7 @@
       "submitted": "Sent ✓",
       "privacy": "Data handled in accordance with GDPR / DSGVO. No third-party sharing. Ever.",
       "success": "Request sent — Gordon will be in touch within one business day.",
-      "error": "Something went wrong. Please email hello@gordon365.com directly.",
+      "error": "Something went wrong. Please email info@gordon365.com directly.",
       "sendAnother": "← Send another request"
     }
   },
@@ -565,7 +565,7 @@
       "About Gordon",
       "Case Studies",
       "Insights",
-      "hello@gordon365.com"
+      "info@gordon365.com"
     ],
     "newsletter": "Newsletter",
     "newsletterDesc": "Monthly M365 security and optimization insights. No spam.",

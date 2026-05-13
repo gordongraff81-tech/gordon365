@@ -547,7 +547,7 @@
       "submitted": "Gesendet ✓",
       "privacy": "Daten werden gemäß DSGVO verarbeitet. Keine Weitergabe an Dritte. Niemals.",
       "success": "Anfrage gesendet — Gordon meldet sich innerhalb eines Werktages.",
-      "error": "Etwas ist schiefgelaufen. Bitte schreiben Sie direkt an hello@gordon365.com.",
+      "error": "Etwas ist schiefgelaufen. Bitte schreiben Sie direkt an info@gordon365.com.",
       "sendAnother": "← Weitere Anfrage senden"
     }
   },
@@ -565,7 +565,7 @@
       "Über Gordon",
       "Fallstudien",
       "Einblicke",
-      "hello@gordon365.com"
+      "info@gordon365.com"
     ],
     "newsletter": "Newsletter",
     "newsletterDesc": "Monatliche M365-Sicherheits- und Optimierungseinblicke. Kein Spam.",
