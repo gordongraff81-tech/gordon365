@@ -9,12 +9,13 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function DatenschutzPage({
+export default async function DatenschutzPage({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const locale = params.locale ?? "de";
+  const { locale } = await params;
+Danach das gleiche für ImpressumPage zeigen.
 
   return (
     <div className="min-h-screen bg-bg-0 text-text-1">

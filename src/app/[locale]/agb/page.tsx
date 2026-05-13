@@ -9,12 +9,12 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function AGBPage({
+export default async function AGBPage({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const locale = params.locale ?? "de";
+  const { locale } = await params;
 
   return (
     <div className="min-h-screen bg-bg-0 text-text-1">

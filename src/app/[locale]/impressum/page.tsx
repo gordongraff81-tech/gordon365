@@ -9,12 +9,12 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function ImpressumPage({
+export default async function ImpressumPage({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const locale = params.locale ?? "de";
+  const { locale } = await params;
 
   return (
     <div className="min-h-screen bg-bg-0 text-text-1">
