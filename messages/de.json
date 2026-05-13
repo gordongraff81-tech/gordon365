@@ -64,50 +64,110 @@
         "text": "Ist die Multi-Faktor-Authentifizierung (MFA) für alle Benutzer erzwungen?",
         "sub": "MFA ist die effektivste Einzelmaßnahme gegen anmeldeinformationsbasierte Angriffe. Sie sollte für jedes Konto verpflichtend sein — einschließlich Dienstkonten und Administratoren.",
         "answers": {
-          "yes": { "title": "Ja — für alle Benutzer erzwungen", "hint": "Einschließlich Admins und Dienstkonten" },
-          "partial": { "title": "Teilweise — nur für einige Benutzer", "hint": "Nicht einheitlich für alle Konten durchgesetzt" },
-          "no": { "title": "Nein — nicht aktiviert", "hint": "Benutzer melden sich nur mit Passwort an" },
-          "unknown": { "title": "Nicht sicher", "hint": "Ich müsste den Mandanten erst überprüfen" }
+          "yes": {
+            "title": "Ja — für alle Benutzer erzwungen",
+            "hint": "Einschließlich Admins und Dienstkonten"
+          },
+          "partial": {
+            "title": "Teilweise — nur für einige Benutzer",
+            "hint": "Nicht einheitlich für alle Konten durchgesetzt"
+          },
+          "no": {
+            "title": "Nein — nicht aktiviert",
+            "hint": "Benutzer melden sich nur mit Passwort an"
+          },
+          "unknown": {
+            "title": "Nicht sicher",
+            "hint": "Ich müsste den Mandanten erst überprüfen"
+          }
         }
       },
       {
         "text": "Sind Conditional Access-Richtlinien in Ihrem Mandanten konfiguriert?",
         "sub": "Conditional Access ermöglicht granulare Zugriffskontrollen basierend auf Benutzer, Gerät, Standort und Anmelderisiko — die Grundlage eines Zero-Trust-Identitätsmodells in Microsoft 365.",
         "answers": {
-          "yes": { "title": "Ja — aktiv konfiguriert", "hint": "Mehrere Richtlinien im aktivierten oder Nur-Bericht-Modus" },
-          "partial": { "title": "Nur Grundrichtlinien", "hint": "MFA nur für Admins oder Standard-Sicherheitsstandards" },
-          "no": { "title": "Nicht konfiguriert", "hint": "Keine Conditional Access-Richtlinien vorhanden" },
-          "unknown": { "title": "Nicht sicher", "hint": "Ich müsste Entra ID überprüfen" }
+          "yes": {
+            "title": "Ja — aktiv konfiguriert",
+            "hint": "Mehrere Richtlinien im aktivierten oder Nur-Bericht-Modus"
+          },
+          "partial": {
+            "title": "Nur Grundrichtlinien",
+            "hint": "MFA nur für Admins oder Standard-Sicherheitsstandards"
+          },
+          "no": {
+            "title": "Nicht konfiguriert",
+            "hint": "Keine Conditional Access-Richtlinien vorhanden"
+          },
+          "unknown": {
+            "title": "Nicht sicher",
+            "hint": "Ich müsste Entra ID überprüfen"
+          }
         }
       },
       {
         "text": "Ist die Legacy-Authentifizierung in Ihrer Umgebung blockiert?",
         "sub": "Legacy-Authentifizierungsprotokolle (Basic Auth, IMAP, POP3) umgehen MFA vollständig und werden bei der Mehrheit der Passwort-Spray- und Credential-Stuffing-Angriffe auf M365-Mandanten ausgenutzt.",
         "answers": {
-          "yes": { "title": "Ja — vollständig blockiert", "hint": "Legacy-Auth über Conditional Access oder Auth-Richtlinie blockiert" },
-          "partial": { "title": "Teilweise eingeschränkt", "hint": "Einige Protokolle blockiert, andere noch aktiv" },
-          "no": { "title": "Nein — weiterhin erlaubt", "hint": "Legacy-Protokolle sind nicht eingeschränkt" },
-          "unknown": { "title": "Nicht sicher", "hint": "Ich müsste die Anmeldeprotokolle überprüfen" }
+          "yes": {
+            "title": "Ja — vollständig blockiert",
+            "hint": "Legacy-Auth über Conditional Access oder Auth-Richtlinie blockiert"
+          },
+          "partial": {
+            "title": "Teilweise eingeschränkt",
+            "hint": "Einige Protokolle blockiert, andere noch aktiv"
+          },
+          "no": {
+            "title": "Nein — weiterhin erlaubt",
+            "hint": "Legacy-Protokolle sind nicht eingeschränkt"
+          },
+          "unknown": {
+            "title": "Nicht sicher",
+            "hint": "Ich müsste die Anmeldeprotokolle überprüfen"
+          }
         }
       },
       {
         "text": "Ist die externe Freigabe in SharePoint und OneDrive eingeschränkt?",
         "sub": "Uneingeschränkte externe Freigabe ist eine der häufigsten Quellen für unbeabsichtigte Datenlecks in M365. Standard-Mandanteneinstellungen sind für die meisten Geschäftsrisikoprofile zu permissiv.",
         "answers": {
-          "yes": { "title": "Ja — auf bekannte Domänen beschränkt", "hint": "Freigabe auf authentifizierte externe Benutzer oder bestimmte Domänen begrenzt" },
-          "partial": { "title": "Eingeschränkte Freigabe erlaubt", "hint": "Externe Freigabe mit erforderlicher Authentifizierung" },
-          "no": { "title": "Offen — jeder mit einem Link", "hint": "Dateien können ohne Authentifizierung öffentlich geteilt werden" },
-          "unknown": { "title": "Nicht sicher", "hint": "Ich müsste das SharePoint Admin Center überprüfen" }
+          "yes": {
+            "title": "Ja — auf bekannte Domänen beschränkt",
+            "hint": "Freigabe auf authentifizierte externe Benutzer oder bestimmte Domänen begrenzt"
+          },
+          "partial": {
+            "title": "Eingeschränkte Freigabe erlaubt",
+            "hint": "Externe Freigabe mit erforderlicher Authentifizierung"
+          },
+          "no": {
+            "title": "Offen — jeder mit einem Link",
+            "hint": "Dateien können ohne Authentifizierung öffentlich geteilt werden"
+          },
+          "unknown": {
+            "title": "Nicht sicher",
+            "hint": "Ich müsste das SharePoint Admin Center überprüfen"
+          }
         }
       },
       {
         "text": "Sind Microsoft Purview Vertraulichkeitsbezeichnungen eingesetzt und aktiv in Verwendung?",
         "sub": "Vertraulichkeitsbezeichnungen klassifizieren und schützen Dokumente und E-Mails — eine zwingende Voraussetzung für sicheres Copilot-Deployment und die Erfüllung von DSGVO-Datenanforderungen.",
         "answers": {
-          "yes": { "title": "Ja — eingesetzt und aktiv genutzt", "hint": "Bezeichnungen in Purview konfiguriert und auf Dateien angewendet" },
-          "partial": { "title": "Erstellt, aber kaum genutzt", "hint": "Bezeichnungen existieren, Nutzung ist niedrig oder inkonsistent" },
-          "no": { "title": "Nicht konfiguriert", "hint": "Keine Vertraulichkeitsbezeichnungen vorhanden" },
-          "unknown": { "title": "Nicht sicher", "hint": "Ich müsste Microsoft Purview überprüfen" }
+          "yes": {
+            "title": "Ja — eingesetzt und aktiv genutzt",
+            "hint": "Bezeichnungen in Purview konfiguriert und auf Dateien angewendet"
+          },
+          "partial": {
+            "title": "Erstellt, aber kaum genutzt",
+            "hint": "Bezeichnungen existieren, Nutzung ist niedrig oder inkonsistent"
+          },
+          "no": {
+            "title": "Nicht konfiguriert",
+            "hint": "Keine Vertraulichkeitsbezeichnungen vorhanden"
+          },
+          "unknown": {
+            "title": "Nicht sicher",
+            "hint": "Ich müsste Microsoft Purview überprüfen"
+          }
         }
       }
     ],
@@ -198,25 +258,45 @@
         "icon": "shield",
         "title": "Sicherheitshärtung",
         "desc": "Secure Score erhöhen, Identitätslücken schließen und an CIS- und CISA-Benchmarks ausrichten — schnell.",
-        "features": ["MFA & Conditional Access", "Entra ID Konfiguration", "Identitätsschutzrichtlinien", "Legacy-Auth Deaktivierung"]
+        "features": [
+          "MFA & Conditional Access",
+          "Entra ID Konfiguration",
+          "Identitätsschutzrichtlinien",
+          "Legacy-Auth Deaktivierung"
+        ]
       },
       {
         "icon": "scale",
         "title": "Governance & Compliance",
         "desc": "Teams, SharePoint und Daten so strukturieren, dass sie auditierbar, rechtskonform und DSGVO-ready sind.",
-        "features": ["Teams & SharePoint Governance", "Aufbewahrungs- & DLP-Richtlinien", "Vertraulichkeits- & Klassifizierungsbezeichnungen", "Compliance Manager Überprüfung"]
+        "features": [
+          "Teams & SharePoint Governance",
+          "Aufbewahrungs- & DLP-Richtlinien",
+          "Vertraulichkeits- & Klassifizierungsbezeichnungen",
+          "Compliance Manager Überprüfung"
+        ]
       },
       {
         "icon": "cpu",
         "title": "Optimierung & Kosten",
         "desc": "Lizenzverschwendung finden, Abonnements richtig dimensionieren und doppelte Toolkosten eliminieren.",
-        "features": ["Lizenz-Audit & Rightsizing", "Tool-Konsolidierungsanalyse", "Nutzungsanalyse-Überprüfung", "Verlängerungsverhandlungsunterstützung"]
+        "features": [
+          "Lizenz-Audit & Rightsizing",
+          "Tool-Konsolidierungsanalyse",
+          "Nutzungsanalyse-Überprüfung",
+          "Verlängerungsverhandlungsunterstützung"
+        ]
       },
       {
         "icon": "sparkles",
         "title": "Copilot-Bereitschaft",
         "desc": "Das Datenfundament, Governance-Modell und die Adoptionsstrategie aufbauen, die KI-Investitionen rentabel machen.",
-        "features": ["Berechtigungs- & Datenbereinigung", "Vertraulichkeitsbezeichnungen Einführung", "Use Case Identifikation", "Pilotdesign & Rollout"]
+        "features": [
+          "Berechtigungs- & Datenbereinigung",
+          "Vertraulichkeitsbezeichnungen Einführung",
+          "Use Case Identifikation",
+          "Pilotdesign & Rollout"
+        ]
       }
     ]
   },
@@ -230,9 +310,21 @@
         "headline": "Lizenz-Audit reduzierte jährliche Microsoft-Ausgaben um 24%",
         "desc": "Ein mittelständischer Hersteller zahlte zu viel für E3-Lizenzen im gesamten Unternehmen. Die Analyse identifizierte über 40 inaktive Konten, doppelte Visio-Lizenzen und drei unlizenzierte Power Automate-Nutzer. Durch Umstieg auf ein gemischtes E1/E3-Modell wurden über €42.000 pro Jahr eingespart.",
         "kpis": [
-          { "value": "−24%", "label": "Jährl. M365-Ausgaben", "positive": true },
-          { "value": "€42K", "label": "Ersparnis Jahr 1", "positive": true },
-          { "value": "6 Wo.", "label": "Lieferzeit", "positive": false }
+          {
+            "value": "−24%",
+            "label": "Jährl. M365-Ausgaben",
+            "positive": true
+          },
+          {
+            "value": "€42K",
+            "label": "Ersparnis Jahr 1",
+            "positive": true
+          },
+          {
+            "value": "6 Wo.",
+            "label": "Lieferzeit",
+            "positive": false
+          }
         ]
       },
       {
@@ -240,19 +332,43 @@
         "headline": "Secure Score in 30 Tagen von 38 auf 74 gesteigert",
         "desc": "Im Rahmen einer Cyber-Versicherungsverlängerung benötigte ein Finanzdienstleister nachweisbare Sicherheitsverbesserungen. Gezielte Härtung adressierte MFA-Lücken, Legacy-Authentifizierung, PIM und SharePoint-Freigabestandards. Der Secure Score stieg innerhalb des ersten Monats um 36 Punkte.",
         "kpis": [
-          { "value": "+36 Pkt.", "label": "Secure Score", "positive": true },
-          { "value": "100%", "label": "MFA-Abdeckung", "positive": true },
-          { "value": "30 Tage", "label": "Zeitrahmen", "positive": false }
+          {
+            "value": "+36 Pkt.",
+            "label": "Secure Score",
+            "positive": true
+          },
+          {
+            "value": "100%",
+            "label": "MFA-Abdeckung",
+            "positive": true
+          },
+          {
+            "value": "30 Tage",
+            "label": "Zeitrahmen",
+            "positive": false
+          }
         ]
       },
       {
-        "industry": "Professional Services · 150 Benutzer",
+        "industry": "Unternehmensberatung · 150 Benutzer",
         "headline": "150-Benutzer-Firma in 8 Wochen vollständig Copilot-bereit",
         "desc": "Eine Unternehmensberatung kaufte Copilot-Lizenzen, hatte aber weder Data Governance noch Vertraulichkeitsbezeichnungen. Der Readiness Sprint etablierte ein Klassifizierungsframework, bereinigte 2.400 überprivilegierte SharePoint-Sites und lieferte eine 6-Monats-Adoptionsroadmap.",
         "kpis": [
-          { "value": "2.400", "label": "Bereinigte Sites", "positive": true },
-          { "value": "8 Wo.", "label": "Bis Copilot-bereit", "positive": true },
-          { "value": "12", "label": "Pilotnutzer", "positive": false }
+          {
+            "value": "2.400",
+            "label": "Bereinigte Sites",
+            "positive": true
+          },
+          {
+            "value": "8 Wo.",
+            "label": "Bis Copilot-bereit",
+            "positive": true
+          },
+          {
+            "value": "12",
+            "label": "Pilotnutzer",
+            "positive": false
+          }
         ]
       },
       {
@@ -260,9 +376,21 @@
         "headline": "Einheitliche Zusammenarbeit über Teams, SharePoint & Intune",
         "desc": "Ein Logistikunternehmen an fünf Standorten hatte unkontrollierten Teams-Wildwuchs, keine SharePoint-Struktur und unverwaltete Geräte. Eine Modern Workplace Transformation standardisierte das Gerätemanagement via Intune und migrierte 28 Dateifreigaben.",
         "kpis": [
-          { "value": "320", "label": "Verwaltete Geräte", "positive": true },
-          { "value": "28", "label": "Migrierte Freigaben", "positive": true },
-          { "value": "5 Orte", "label": "Vereinte Standorte", "positive": false }
+          {
+            "value": "320",
+            "label": "Verwaltete Geräte",
+            "positive": true
+          },
+          {
+            "value": "28",
+            "label": "Migrierte Freigaben",
+            "positive": true
+          },
+          {
+            "value": "5 Orte",
+            "label": "Vereinte Standorte",
+            "positive": false
+          }
         ]
       }
     ]
@@ -323,10 +451,22 @@
       "role": "Gründer · M365 & Modern Workplace Berater",
       "quote": "„Ich optimiere M365-Umgebungen nicht um ihrer selbst willen. Ich tue es, weil die Geschäftsergebnisse durchweg signifikant sind — und die meisten Unternehmen echtes Geld und Sicherheit auf dem Tisch lassen.",
       "stats": [
-        { "value": "10+", "label": "Jahre M365" },
-        { "value": "150+", "label": "Umgebungen" },
-        { "value": "D/A/CH", "label": "Region" },
-        { "value": "MS", "label": "Zertifiziert" }
+        {
+          "value": "10+",
+          "label": "Jahre M365"
+        },
+        {
+          "value": "150+",
+          "label": "Umgebungen"
+        },
+        {
+          "value": "D/A/CH",
+          "label": "Region"
+        },
+        {
+          "value": "MS",
+          "label": "Zertifiziert"
+        }
       ],
       "certs": [
         "Microsoft 365 Certified: Enterprise Administrator Expert",
@@ -354,7 +494,7 @@
       {
         "quote": "Wir kauften Copilot-Lizenzen und gerieten dann in Panik. Gordon führte unseren Readiness Sprint durch, bereinigte unsere Data Governance und wir starteten in acht Wochen einen erfolgreichen Piloten. Der ROI ist bereits sichtbar.",
         "name": "Betriebsleiterin",
-        "role": "Professional Services · 150 Benutzer",
+        "role": "Unternehmensberatung · 150 Benutzer",
         "initials": "TH"
       }
     ]
@@ -386,7 +526,12 @@
       "emailPlaceholder": "max@mustermann.de",
       "size": "Unternehmensgröße",
       "sizePlaceholder": "Bitte wählen",
-      "sizeOptions": ["10 – 50 Benutzer", "50 – 150 Benutzer", "150 – 500 Benutzer", "500+ Benutzer"],
+      "sizeOptions": [
+        "10 – 50 Benutzer",
+        "50 – 150 Benutzer",
+        "150 – 500 Benutzer",
+        "500+ Benutzer"
+      ],
       "budget": "Budgetrahmen",
       "budgetPlaceholder": "Bitte wählen",
       "budgetOptions": [
@@ -402,20 +547,35 @@
       "submitted": "Gesendet ✓",
       "privacy": "Daten werden gemäß DSGVO verarbeitet. Keine Weitergabe an Dritte. Niemals.",
       "success": "Anfrage gesendet — Gordon meldet sich innerhalb eines Werktages.",
-      "error": "Etwas ist schiefgelaufen. Bitte schreiben Sie direkt an hello@gordon365.com."
+      "error": "Etwas ist schiefgelaufen. Bitte schreiben Sie direkt an hello@gordon365.com.",
+      "sendAnother": "← Weitere Anfrage senden"
     }
   },
   "footer": {
     "desc": "Microsoft 365 Sicherheit, Optimierung und Copilot-Bereitschafts-Beratung für europäische KMU und mittelständische Unternehmen.",
     "services": "Leistungen",
-    "serviceLinks": ["M365 Health Check", "Copilot Readiness", "Strategisches Retainer", "Kostenloser Sicherheitscheck"],
+    "serviceLinks": [
+      "M365 Health Check",
+      "Copilot Readiness",
+      "Strategisches Retainer",
+      "Kostenloser Sicherheitscheck"
+    ],
     "company": "Unternehmen",
-    "companyLinks": ["Über Gordon", "Fallstudien", "Einblicke", "hello@gordon365.com"],
+    "companyLinks": [
+      "Über Gordon",
+      "Fallstudien",
+      "Einblicke",
+      "hello@gordon365.com"
+    ],
     "newsletter": "Newsletter",
     "newsletterDesc": "Monatliche M365-Sicherheits- und Optimierungseinblicke. Kein Spam.",
     "newsletterPlaceholder": "ihre@email.de",
     "subscribe": "Abonnieren",
     "copyright": "© 2025 Gordon365 · gordon365.com",
-    "legal": ["Impressum", "Datenschutz", "AGB"]
+    "legal": [
+      "Impressum",
+      "Datenschutz",
+      "AGB"
+    ]
   }
 }

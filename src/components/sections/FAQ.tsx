@@ -79,7 +79,7 @@ export default function FAQ() {
           className="text-center mb-14"
         >
           <div className="section-label mb-4 justify-center">{label}</div>
-          <h2 className="display-md text-white whitespace-pre-line">{heading}</h2>
+          <h2 className="display-md text-text-1 whitespace-pre-line">{heading}</h2>
         </motion.div>
 
         <div className="max-w-[720px] mx-auto">
@@ -96,7 +96,7 @@ export default function FAQ() {
                 className="w-full flex items-center justify-between py-5 text-left group"
                 aria-expanded={open === i}
               >
-                <span className="font-display font-bold text-[1rem] tracking-[-0.01em] text-white group-hover:text-accent-2 transition-colors pr-6">
+                <span className="font-display font-bold text-[1rem] tracking-[-0.01em] text-text-1 group-hover:text-accent-2 transition-colors pr-6">
                   {item.q}
                 </span>
                 <span

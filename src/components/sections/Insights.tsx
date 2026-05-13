@@ -35,7 +35,7 @@ export default function Insights() {
         >
           <div>
             <div className="section-label mb-4">{t("label")}</div>
-            <h2 className="display-md text-white">{t("h2")}</h2>
+            <h2 className="display-md text-text-1">{t("h2")}</h2>
           </div>
           <a href="#" className="btn-outline text-sm py-2.5 px-4">
             {t("viewAll")}
@@ -65,7 +65,7 @@ export default function Insights() {
                 <span className="text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-accent-2 block mb-2">
                   {item.tag}
                 </span>
-                <h3 className="font-display font-bold text-[1rem] tracking-[-0.02em] text-white leading-snug mb-2.5 line-clamp-2">
+                <h3 className="font-display font-bold text-[1rem] tracking-[-0.02em] text-text-1 leading-snug mb-2.5 line-clamp-2">
                   {item.title}
                 </h3>
                 <p className="text-[0.8125rem] text-text-2 leading-relaxed mb-4 line-clamp-3">
@@ -73,7 +73,7 @@ export default function Insights() {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-[0.75rem] text-text-3">{item.readTime}</span>
-                  <button className="text-[0.75rem] font-bold text-accent-2 hover:text-white transition-colors flex items-center gap-1">
+                  <button className="text-[0.75rem] font-bold text-accent-2 hover:text-text-1 transition-colors flex items-center gap-1">
                     {t("readGuide")}
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M5 12h14M12 5l7 7-7 7" />

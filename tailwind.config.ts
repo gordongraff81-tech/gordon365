@@ -9,44 +9,44 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
-      // ── Brand-Palette ──────────────────────────────────────────────────────
+      // ── Brand-Palette — Apple Light Theme ─────────────────────────────────
       colors: {
         bg: {
-          0: "#060816",   // tiefstes Schwarz (Hintergrund)
-          1: "#0B1120",   // Panel-Basis
-          2: "#0F1A2E",
-          3: "#14203A",
-          4: "#1a2a4a",
+          0: "#FFFFFF",   // reines Weiß (Page-Basis)
+          1: "#F5F5F7",   // Apple-Hellgrau (Sections, Panels)
+          2: "#E8E8ED",   // Section-Trenner, leichte Cards
+          3: "#D1D1D6",   // Subtle borders, Divider
+          4: "#AEAEB2",   // Disabled, decorative details
         },
         accent: {
-          DEFAULT: "#2563FF",
-          hover:   "#1d4fd8",
-          glow:    "rgba(37,99,255,0.25)",
-          2:       "#18D5FF",   // Cyan-Akzent
+          DEFAULT: "#0071E3",   // Apple Blue
+          hover:   "#0077ED",
+          glow:    "rgba(0,113,227,0.15)",
+          2:       "#34AADC",   // Apple Light Blue / Cyan
         },
-        gold:  "#C8A96B",
-        green: "#10D97C",
-        red:   "#FF4D6A",
-        amber: "#F59E0B",
+        gold:  "#BF8F3C",
+        green: "#28CD41",   // Apple Green
+        red:   "#FF3B30",   // Apple Red
+        amber: "#FF9500",   // Apple Orange
         text: {
-          1: "#F0F4FF",   // Fast-Weiß
-          2: "#94A3B8",   // Sekundär
-          3: "#64748B",   // Tertiär / Placeholder
+          1: "#1D1D1F",   // Apple Near-Black (Primär)
+          2: "#6E6E73",   // Apple Sekundär
+          3: "#AEAEB2",   // Apple Tertiär / Placeholder
         },
         border: {
-          DEFAULT: "rgba(255,255,255,0.07)",
-          strong:  "rgba(255,255,255,0.12)",
-          accent:  "rgba(37,99,255,0.3)",
+          DEFAULT: "rgba(0,0,0,0.08)",
+          strong:  "rgba(0,0,0,0.14)",
+          accent:  "rgba(0,113,227,0.25)",
         },
         card: {
-          DEFAULT: "rgba(255,255,255,0.03)",
-          hover:   "rgba(255,255,255,0.06)",
+          DEFAULT: "#FFFFFF",
+          hover:   "#F5F5F7",
         },
       },
 
       // ── Typografie ─────────────────────────────────────────────────────────
       fontFamily: {
-        display: ["var(--font-syne)", "system-ui", "sans-serif"],
+        display: ["var(--font-plus-jakarta)", "system-ui", "sans-serif"],
         body:    ["var(--font-dm-sans)", "system-ui", "sans-serif"],
         mono:    ["var(--font-mono)", "monospace"],
       },
@@ -71,17 +71,16 @@ const config: Config = {
         "5xl": "2.5rem",
       },
 
-      // ── Schatten ───────────────────────────────────────────────────────────
+      // ── Schatten — Apple Light Style ──────────────────────────────────────
       boxShadow: {
-        card:             "0 1px 0 rgba(255,255,255,0.05) inset, 0 20px 40px rgba(0,0,0,0.35)",
-        "card-hover":     "0 1px 0 rgba(255,255,255,0.08) inset, 0 32px 64px rgba(0,0,0,0.45)",
-        glow:             "0 0 60px rgba(37,99,255,0.2)",
-        "glow-sm":        "0 0 24px rgba(37,99,255,0.35)",
-        "glow-accent2":   "0 0 40px rgba(24,213,255,0.15)",
-        "glow-gold":      "0 0 30px rgba(200,169,107,0.2)",
-        // Neu: ultra-subtile Innenreflexion (Apple-style Glasmorphismus)
-        "glass":          "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.2), 0 20px 50px rgba(0,0,0,0.4)",
-        "glass-hover":    "inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.2), 0 32px 70px rgba(0,0,0,0.5)",
+        card:             "0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05)",
+        "card-hover":     "0 2px 8px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.08)",
+        glow:             "0 0 40px rgba(0,113,227,0.12)",
+        "glow-sm":        "0 0 16px rgba(0,113,227,0.2)",
+        "glow-accent2":   "0 0 30px rgba(52,170,220,0.12)",
+        "glow-gold":      "0 0 20px rgba(191,143,60,0.15)",
+        "glass":          "0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9)",
+        "glass-hover":    "0 2px 8px rgba(0,0,0,0.08), 0 16px 40px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,1)",
       },
 
       // ── Animationen ────────────────────────────────────────────────────────
@@ -113,11 +112,11 @@ const config: Config = {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":  "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        // Subtiles Grid (Apple-style)
-        "grid-lines": "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-        "shimmer-gradient": "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%)",
-        // Glasmorphismus-Reflex
-        "glass-reflex": "linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.01) 40%, transparent 60%)",
+        // Subtiles Grid (Apple-style, sichtbar auf hellem Hintergrund)
+        "grid-lines": "linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)",
+        "shimmer-gradient": "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.03) 50%, transparent 100%)",
+        // Heller Glasmorphismus-Reflex
+        "glass-reflex": "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 40%, transparent 60%)",
       },
       backgroundSize: {
         "grid":    "48px 48px",

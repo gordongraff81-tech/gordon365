@@ -39,7 +39,7 @@ export default function Capabilities() {
           className="text-center mb-14"
         >
           <div className="section-label mb-4 justify-center">{t("label")}</div>
-          <h2 className="display-md text-white mb-4 whitespace-pre-line">{t("h2")}</h2>
+          <h2 className="display-md text-text-1 mb-4 whitespace-pre-line">{t("h2")}</h2>
           <p className="text-[1.0625rem] leading-relaxed text-text-2 max-w-[500px] mx-auto">
             {t("sub")}
           </p>
@@ -57,7 +57,7 @@ export default function Capabilities() {
               <div className={`w-12 h-12 rounded-xl ${ICON_BG[item.icon]} flex items-center justify-center text-2xl mb-5`}>
                 {ICON_EMOJIS[item.icon]}
               </div>
-              <h3 className="font-display font-bold text-[1.0625rem] tracking-[-0.02em] text-white mb-2.5">
+              <h3 className="font-display font-bold text-[1.0625rem] tracking-[-0.02em] text-text-1 mb-2.5">
                 {item.title}
               </h3>
               <p className="text-[0.875rem] text-text-2 leading-relaxed mb-4">{item.desc}</p>

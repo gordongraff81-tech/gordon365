@@ -26,7 +26,7 @@ export default function Results() {
           className="mb-14"
         >
           <div className="section-label mb-4">{t("label")}</div>
-          <h2 className="display-md text-white mb-4 whitespace-pre-line">{t("h2")}</h2>
+          <h2 className="display-md text-text-1 mb-4 whitespace-pre-line">{t("h2")}</h2>
           <p className="text-[1.0625rem] leading-relaxed text-text-2 max-w-[540px]">{t("sub")}</p>
         </motion.div>
 
@@ -45,7 +45,7 @@ export default function Results() {
                 {item.industry}
               </div>
 
-              <h3 className="font-display font-bold text-[1.125rem] tracking-[-0.02em] text-white leading-snug mb-3">
+              <h3 className="font-display font-bold text-[1.125rem] tracking-[-0.02em] text-text-1 leading-snug mb-3">
                 {item.headline}
               </h3>
               <p className="text-[0.875rem] text-text-2 leading-relaxed mb-6">{item.desc}</p>

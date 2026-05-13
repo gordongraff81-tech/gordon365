@@ -16,14 +16,14 @@ const LAYERS = [
     tag: "LAYER 01",
     label: "Entra ID",
     subtitle: "Identität & Zugriff",
-    color: "#2563FF",
-    glow: "rgba(37,99,255,0.35)",
+    color: "#0071E3",
+    glow: "rgba(0,113,227,0.2)",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" width="32" height="32">
-        <circle cx="24" cy="18" r="9" stroke="#2563FF" strokeWidth="2.5" />
-        <path d="M6 42C6 33.163 14.059 26 24 26s18 7.163 18 16" stroke="#2563FF" strokeWidth="2.5" strokeLinecap="round" />
-        <circle cx="38" cy="14" r="6" fill="rgba(37,99,255,0.2)" stroke="#18D5FF" strokeWidth="1.5" />
-        <path d="M35.5 14.5L37.5 16.5L41 12.5" stroke="#18D5FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="24" cy="18" r="9" stroke="#0071E3" strokeWidth="2.5" />
+        <path d="M6 42C6 33.163 14.059 26 24 26s18 7.163 18 16" stroke="#0071E3" strokeWidth="2.5" strokeLinecap="round" />
+        <circle cx="38" cy="14" r="6" fill="rgba(0,113,227,0.12)" stroke="#34AADC" strokeWidth="1.5" />
+        <path d="M35.5 14.5L37.5 16.5L41 12.5" stroke="#34AADC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     features: [
@@ -33,7 +33,7 @@ const LAYERS = [
       "Risikobasierte Anmeldeprüfung",
     ],
     status: "Gesichert",
-    statusColor: "#10D97C",
+    statusColor: "#28CD41",
     startX: -340,
     startY: -80,
     startRotate: -12,
@@ -43,13 +43,13 @@ const LAYERS = [
     tag: "LAYER 02",
     label: "Intune",
     subtitle: "Endpoint Management",
-    color: "#18D5FF",
-    glow: "rgba(24,213,255,0.3)",
+    color: "#34AADC",
+    glow: "rgba(52,170,220,0.18)",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" width="32" height="32">
-        <rect x="6" y="10" width="36" height="24" rx="3" stroke="#18D5FF" strokeWidth="2.5" />
-        <path d="M16 34v4M32 34v4M12 38h24" stroke="#18D5FF" strokeWidth="2.5" strokeLinecap="round" />
-        <path d="M14 22l5 5 10-10" stroke="#18D5FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="6" y="10" width="36" height="24" rx="3" stroke="#34AADC" strokeWidth="2.5" />
+        <path d="M16 34v4M32 34v4M12 38h24" stroke="#34AADC" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M14 22l5 5 10-10" stroke="#34AADC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     features: [
@@ -59,7 +59,7 @@ const LAYERS = [
       "BitLocker Encryption erzwungen",
     ],
     status: "Konform",
-    statusColor: "#18D5FF",
+    statusColor: "#34AADC",
     startX: 320,
     startY: -40,
     startRotate: 10,
@@ -69,12 +69,12 @@ const LAYERS = [
     tag: "LAYER 03",
     label: "Defender for M365",
     subtitle: "Threat Protection",
-    color: "#C8A96B",
-    glow: "rgba(200,169,107,0.3)",
+    color: "#BF8F3C",
+    glow: "rgba(191,143,60,0.18)",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" width="32" height="32">
-        <path d="M24 4L7 11v13c0 10.5 7.3 20.3 17 23 9.7-2.7 17-12.5 17-23V11L24 4Z" stroke="#C8A96B" strokeWidth="2.5" strokeLinejoin="round" />
-        <path d="M17 24.5l5.5 5.5 9-11" stroke="#C8A96B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M24 4L7 11v13c0 10.5 7.3 20.3 17 23 9.7-2.7 17-12.5 17-23V11L24 4Z" stroke="#BF8F3C" strokeWidth="2.5" strokeLinejoin="round" />
+        <path d="M17 24.5l5.5 5.5 9-11" stroke="#BF8F3C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     features: [
@@ -84,7 +84,7 @@ const LAYERS = [
       "Threat & Vulnerability Management",
     ],
     status: "Plan 2 aktiv",
-    statusColor: "#C8A96B",
+    statusColor: "#BF8F3C",
     startX: 0,
     startY: 180,
     startRotate: 5,
@@ -123,9 +123,9 @@ function LayerPanel({
       <div
         className="relative w-full max-w-[480px] rounded-[2rem] border overflow-hidden"
         style={{
-          background: "rgba(11,17,32,0.90)",
-          borderColor: `${layer.color}33`,
-          boxShadow: `0 0 60px ${layer.glow}, 0 24px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)`,
+          background: "#FFFFFF",
+          borderColor: `${layer.color}28`,
+          boxShadow: `0 0 40px ${layer.glow}, 0 8px 32px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,1)`,
           backdropFilter: "blur(24px)",
         }}
       >
@@ -145,8 +145,8 @@ function LayerPanel({
               {layer.icon}
             </div>
             <div>
-              <div className="font-extrabold text-[1.625rem] text-white tracking-[-0.04em] leading-none mb-1">{layer.label}</div>
-              <div className="text-[0.875rem] text-gray-400 font-medium">{layer.subtitle}</div>
+              <div className="font-extrabold text-[1.625rem] text-text-1 tracking-[-0.04em] leading-none mb-1">{layer.label}</div>
+              <div className="text-[0.875rem] text-text-2 font-medium">{layer.subtitle}</div>
             </div>
           </div>
           <ul className="grid grid-cols-1 gap-2.5">
@@ -155,7 +155,7 @@ function LayerPanel({
                 <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: `${layer.color}18` }}>
                   <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke={layer.color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </span>
-                <span className="text-[0.875rem] text-gray-300 leading-snug">{f}</span>
+                <span className="text-[0.875rem] text-text-2 leading-snug">{f}</span>
               </li>
             ))}
           </ul>
@@ -176,18 +176,18 @@ function CenterOrb({ progress }: { progress: any }) {
         className="absolute inset-[-30px] rounded-full"
         style={{
           opacity: glowOpacity,
-          background: "radial-gradient(circle, rgba(37,99,255,0.25) 0%, rgba(24,213,255,0.1) 50%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(0,113,227,0.12) 0%, rgba(52,170,220,0.06) 50%, transparent 70%)",
           filter: "blur(20px)",
         }}
       />
-      <div className="absolute inset-0 rounded-full border border-blue-500/20 animate-[spin_20s_linear_infinite]">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(24,213,255,0.8)] -translate-y-[3px]" />
+      <div className="absolute inset-0 rounded-full border border-accent/20 animate-[spin_20s_linear_infinite]">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,113,227,0.5)] -translate-y-[3px]" />
       </div>
-      <div className="relative w-[130px] h-[130px] rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-400/20 border border-white/10 flex items-center justify-center" style={{ boxShadow: "0 0 40px rgba(37,99,255,0.3), inset 0 1px 0 rgba(255,255,255,0.1)" }}>
+      <div className="relative w-[130px] h-[130px] rounded-full bg-gradient-to-br from-accent/20 to-accent-2/15 border border-border flex items-center justify-center" style={{ boxShadow: "0 0 30px rgba(0,113,227,0.12), 0 4px 16px rgba(0,0,0,0.06)" }}>
         <svg viewBox="0 0 60 60" fill="none" width="52" height="52">
-          <path d="M30 5L8 15V28C8 41 18.5 52.5 30 55C41.5 52.5 52 41 52 28V15L30 5Z" fill="rgba(37,99,255,0.2)" stroke="url(#shield-grad-orb)" strokeWidth="2" />
-          <path d="M21 30L27 36L40 22" stroke="#18D5FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-          <defs><linearGradient id="shield-grad-orb" x1="8" y1="5" x2="52" y2="55"><stop stopColor="#18D5FF" /><stop offset="1" stopColor="#2563FF" /></linearGradient></defs>
+          <path d="M30 5L8 15V28C8 41 18.5 52.5 30 55C41.5 52.5 52 41 52 28V15L30 5Z" fill="rgba(0,113,227,0.12)" stroke="url(#shield-grad-orb)" strokeWidth="2" />
+          <path d="M21 30L27 36L40 22" stroke="#34AADC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <defs><linearGradient id="shield-grad-orb" x1="8" y1="5" x2="52" y2="55"><stop stopColor="#34AADC" /><stop offset="1" stopColor="#0071E3" /></linearGradient></defs>
         </svg>
       </div>
     </motion.div>
@@ -228,15 +228,15 @@ export default function SecurityScrollytelling() {
   const progressBarWidth = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div id="security-checker" ref={sectionRef} style={{ height: "350vh" }} className="relative">
-      <div className="sticky top-0 h-screen overflow-hidden bg-gray-950">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(37,99,255,0.06) 0%, transparent 70%)" }} />
+    <div id="security-layers" ref={sectionRef} style={{ height: "350vh" }} className="relative">
+      <div className="sticky top-0 h-screen overflow-hidden bg-bg-0">
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,113,227,0.04) 0%, transparent 70%)" }} />
         
         <div className="absolute top-0 left-0 right-0 pt-10 pb-8 px-8 text-center z-20" ref={headerRef}>
           <motion.div initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
-            <div className="text-blue-500 text-xs font-bold uppercase tracking-widest mb-4">M365 Security Posture Check</div>
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-3">Drei Layer.<br /><span className="text-blue-400">Eine sichere Umgebung.</span></h2>
-            <p className="text-gray-400 max-w-[500px] mx-auto text-sm leading-relaxed">Entra ID, Intune und Defender wirken als integrierter Schutzschild.</p>
+            <div className="text-accent text-xs font-bold uppercase tracking-widest mb-4">M365 Security Posture Check</div>
+            <h2 className="text-3xl md:text-5xl font-black text-text-1 mb-3">Drei Layer.<br /><span className="text-accent">Eine sichere Umgebung.</span></h2>
+            <p className="text-text-2 max-w-[500px] mx-auto text-sm leading-relaxed">Entra ID, Intune und Defender wirken als integrierter Schutzschild.</p>
           </motion.div>
           <div className="flex justify-center mt-5"><LayerIndicators progress={smoothProgress} /></div>
         </div>
@@ -249,8 +249,8 @@ export default function SecurityScrollytelling() {
           ))}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-800 z-30">
-          <motion.div style={{ width: progressBarWidth, background: "linear-gradient(90deg, #2563FF, #18D5FF)", boxShadow: "0 0 8px rgba(24,213,255,0.5)" }} className="h-full" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-border z-30">
+          <motion.div style={{ width: progressBarWidth, background: "linear-gradient(90deg, #0071E3, #34AADC)", boxShadow: "0 0 8px rgba(52,170,220,0.4)" }} className="h-full" />
         </div>
       </div>
     </div>

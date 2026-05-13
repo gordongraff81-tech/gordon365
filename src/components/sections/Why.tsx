@@ -39,7 +39,7 @@ export default function Why() {
               transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
             >
               <div className="section-label mb-4">{t("label")}</div>
-              <h2 className="display-md text-white mb-4 whitespace-pre-line">{t("h2")}</h2>
+              <h2 className="display-md text-text-1 mb-4 whitespace-pre-line">{t("h2")}</h2>
               <p className="text-[1.0625rem] leading-relaxed text-text-2 max-w-[500px]">{t("sub")}</p>
             </motion.div>
 
@@ -56,7 +56,7 @@ export default function Why() {
                     {WHY_ICONS[i]}
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-base tracking-[-0.01em] text-white mb-1.5">
+                    <h3 className="font-display font-bold text-base tracking-[-0.01em] text-text-1 mb-1.5">
                       {p.title}
                     </h3>
                     <p className="text-[0.875rem] text-text-2 leading-relaxed">{p.desc}</p>
@@ -78,11 +78,11 @@ export default function Why() {
               <div className="p-6 bg-gradient-to-br from-accent/10 to-accent-2/5 border-b border-border">
                 <div className="flex items-center gap-3 mb-5">
                   {/* Avatar placeholder */}
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#1a3a6b] to-[#2a5298] flex items-center justify-center text-white font-display font-extrabold text-2xl flex-shrink-0 shadow-glow-sm">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-accent to-accent-hover flex items-center justify-center text-white font-display font-extrabold text-2xl flex-shrink-0 shadow-glow-sm">
                     G
                   </div>
                   <div>
-                    <div className="font-display font-extrabold text-base text-white tracking-[-0.02em]">
+                    <div className="font-display font-extrabold text-base text-text-1 tracking-[-0.02em]">
                       {founder.name}
                     </div>
                     <div className="text-[0.8125rem] text-text-2 mt-0.5">{founder.role}</div>
@@ -97,7 +97,7 @@ export default function Why() {
               <div className="grid grid-cols-2 divide-x divide-y divide-border">
                 {founder.stats.map((s) => (
                   <div key={s.label} className="p-4 text-center bg-bg-1">
-                    <div className="font-display font-extrabold text-[1.5rem] tracking-[-0.03em] text-white leading-none">
+                    <div className="font-display font-extrabold text-[1.5rem] tracking-[-0.03em] text-text-1 leading-none">
                       {s.value}
                     </div>
                     <div className="text-[0.6875rem] text-text-3 font-semibold uppercase tracking-[0.06em] mt-1">

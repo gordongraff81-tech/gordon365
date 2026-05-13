@@ -169,7 +169,7 @@ function BentoCard({
         {/* Heading */}
         <h3
           className={cn(
-            "font-display font-extrabold text-white tracking-[-0.04em] leading-snug mb-3",
+            "font-display font-extrabold text-text-1 tracking-[-0.04em] leading-snug mb-3",
             isTall || isFeatured ? "text-[1.5rem]" : "text-[1.25rem]"
           )}
         >
@@ -205,7 +205,7 @@ function BentoCard({
           </div>
           <a
             href="#contact"
-            className="inline-flex items-center gap-1.5 text-[0.8125rem] font-bold transition-colors hover:text-white"
+            className="inline-flex items-center gap-1.5 text-[0.8125rem] font-bold transition-colors hover:text-text-1"
             style={{ color: isFeatured ? service.accent : "#94A3B8" }}
           >
             {service.cta}
@@ -276,7 +276,7 @@ export default function BentoServicesGrid() {
           className="text-center mb-14"
         >
           <div className="section-label justify-center mb-4">Beratungsangebote</div>
-          <h2 className="display-md text-white mb-4">
+          <h2 className="display-md text-text-1 mb-4">
             Gezielte Maßnahmen.<br />
             <span className="text-gradient">Messbare Ergebnisse.</span>
           </h2>

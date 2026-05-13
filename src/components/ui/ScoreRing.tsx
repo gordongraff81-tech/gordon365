@@ -59,7 +59,7 @@ export default function ScoreRing({
           cy={cy}
           r={r}
           fill="none"
-          stroke="rgba(255,255,255,0.08)"
+          stroke="rgba(0,0,0,0.08)"
           strokeWidth={strokeWidth}
         />
         {/* Fill */}

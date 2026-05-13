@@ -26,7 +26,7 @@ export default function Testimonials() {
           className="text-center mb-14"
         >
           <div className="section-label mb-4 justify-center">{t("label")}</div>
-          <h2 className="display-md text-white">{t("h2")}</h2>
+          <h2 className="display-md text-text-1">{t("h2")}</h2>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-5">
@@ -52,7 +52,7 @@ export default function Testimonials() {
                   {item.initials}
                 </div>
                 <div>
-                  <div className="font-display font-bold text-[0.875rem] text-white">{item.name}</div>
+                  <div className="font-display font-bold text-[0.875rem] text-text-1">{item.name}</div>
                   <div className="text-[0.75rem] text-text-3 mt-0.5">{item.role}</div>
                 </div>
               </div>

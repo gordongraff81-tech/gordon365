@@ -26,7 +26,7 @@ export default function CtaBand() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
         >
-          <h2 className="display-sm text-white mb-4">{t("h2")}</h2>
+          <h2 className="display-sm text-text-1 mb-4">{t("h2")}</h2>
           <p className="text-[1.0625rem] text-text-2 leading-relaxed mb-9">{t("sub")}</p>
           <div className="flex flex-wrap justify-center gap-3">
             <button

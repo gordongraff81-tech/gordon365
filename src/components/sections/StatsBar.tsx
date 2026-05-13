@@ -46,7 +46,7 @@ export default function StatsBar() {
       <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
         {stats.map((stat) => (
           <div key={stat.label} className="text-center">
-            <div className="font-display text-[1.875rem] font-extrabold tracking-[-0.03em] text-white leading-none">
+            <div className="font-display text-[1.875rem] font-extrabold tracking-[-0.03em] text-text-1 leading-none">
               {stat.prefix && <span className="text-accent-2">{stat.prefix}</span>}
               {stat.isFloat ? (
                 <span>{stat.value}{stat.suffix}</span>

@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          fromAddress: "noreply@gordon365.com",
+          fromAddress: "info@gordon365.com",
           toAddress: notifyEmail,
           subject: `New Strategy Call Request — ${data.company}`,
           content: [

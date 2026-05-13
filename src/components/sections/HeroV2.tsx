@@ -19,11 +19,11 @@ function CloudOrb() {
         <radialGradient id="orb-core" cx="50%" cy="42%" r="38%">
           <stop offset="0%" stopColor="#18D5FF" stopOpacity="0.9" />
           <stop offset="45%" stopColor="#2563FF" stopOpacity="0.7" />
-          <stop offset="100%" stopColor="#060816" stopOpacity="0" />
+          <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
         </radialGradient>
         {/* Äußerer Ring */}
         <radialGradient id="orb-outer" cx="50%" cy="50%" r="50%">
-          <stop offset="60%" stopColor="#060816" stopOpacity="0" />
+          <stop offset="60%" stopColor="#FFFFFF" stopOpacity="0" />
           <stop offset="85%" stopColor="#2563FF" stopOpacity="0.12" />
           <stop offset="100%" stopColor="#18D5FF" stopOpacity="0.04" />
         </radialGradient>
@@ -110,30 +110,30 @@ function CloudOrb() {
       {/* Schwebende Status-Chips */}
       {/* Chip: Entra ID */}
       <g transform="translate(62, 148)">
-        <rect rx="10" width="110" height="34" fill="rgba(11,17,32,0.85)" stroke="rgba(37,99,255,0.4)" strokeWidth="1" />
-        <circle cx="16" cy="17" r="5" fill="#10D97C" opacity="0.9" />
-        <text x="28" y="13" fill="#94A3B8" fontSize="8" fontFamily="system-ui" fontWeight="600" letterSpacing="0.06em" textAnchor="start">ENTRA ID</text>
-        <text x="28" y="25" fill="#F0F4FF" fontSize="9.5" fontFamily="system-ui" fontWeight="700" textAnchor="start">Gesichert</text>
+        <rect rx="10" width="110" height="34" fill="rgba(255,255,255,0.95)" stroke="rgba(0,113,227,0.2)" strokeWidth="1" />
+        <circle cx="16" cy="17" r="5" fill="#28CD41" opacity="0.9" />
+        <text x="28" y="13" fill="#6E6E73" fontSize="8" fontFamily="system-ui" fontWeight="600" letterSpacing="0.06em" textAnchor="start">ENTRA ID</text>
+        <text x="28" y="25" fill="#1D1D1F" fontSize="9.5" fontFamily="system-ui" fontWeight="700" textAnchor="start">Gesichert</text>
       </g>
       {/* Chip: Intune */}
       <g transform="translate(310, 108)">
-        <rect rx="10" width="108" height="34" fill="rgba(11,17,32,0.85)" stroke="rgba(37,99,255,0.4)" strokeWidth="1" />
-        <circle cx="16" cy="17" r="5" fill="#18D5FF" opacity="0.9" />
-        <text x="28" y="13" fill="#94A3B8" fontSize="8" fontFamily="system-ui" fontWeight="600" letterSpacing="0.06em" textAnchor="start">INTUNE</text>
-        <text x="28" y="25" fill="#F0F4FF" fontSize="9.5" fontFamily="system-ui" fontWeight="700" textAnchor="start">Konform</text>
+        <rect rx="10" width="108" height="34" fill="rgba(255,255,255,0.95)" stroke="rgba(0,113,227,0.2)" strokeWidth="1" />
+        <circle cx="16" cy="17" r="5" fill="#34AADC" opacity="0.9" />
+        <text x="28" y="13" fill="#6E6E73" fontSize="8" fontFamily="system-ui" fontWeight="600" letterSpacing="0.06em" textAnchor="start">INTUNE</text>
+        <text x="28" y="25" fill="#1D1D1F" fontSize="9.5" fontFamily="system-ui" fontWeight="700" textAnchor="start">Konform</text>
       </g>
       {/* Chip: Defender */}
       <g transform="translate(318, 318)">
-        <rect rx="10" width="120" height="34" fill="rgba(11,17,32,0.85)" stroke="rgba(200,169,107,0.35)" strokeWidth="1" />
-        <circle cx="16" cy="17" r="5" fill="#C8A96B" opacity="0.9" />
-        <text x="28" y="13" fill="#94A3B8" fontSize="8" fontFamily="system-ui" fontWeight="600" letterSpacing="0.06em" textAnchor="start">DEFENDER</text>
-        <text x="28" y="25" fill="#F0F4FF" fontSize="9.5" fontFamily="system-ui" fontWeight="700" textAnchor="start">Aktiv · Plan 2</text>
+        <rect rx="10" width="120" height="34" fill="rgba(255,255,255,0.95)" stroke="rgba(191,143,60,0.25)" strokeWidth="1" />
+        <circle cx="16" cy="17" r="5" fill="#BF8F3C" opacity="0.9" />
+        <text x="28" y="13" fill="#6E6E73" fontSize="8" fontFamily="system-ui" fontWeight="600" letterSpacing="0.06em" textAnchor="start">DEFENDER</text>
+        <text x="28" y="25" fill="#1D1D1F" fontSize="9.5" fontFamily="system-ui" fontWeight="700" textAnchor="start">Aktiv · Plan 2</text>
       </g>
       {/* Chip: Secure Score */}
       <g transform="translate(52, 308)">
-        <rect rx="10" width="118" height="34" fill="rgba(11,17,32,0.85)" stroke="rgba(24,213,255,0.3)" strokeWidth="1" />
-        <text x="12" y="14" fill="#94A3B8" fontSize="8" fontFamily="system-ui" fontWeight="600" letterSpacing="0.06em" textAnchor="start">SECURE SCORE</text>
-        <text x="12" y="27" fill="#18D5FF" fontSize="13" fontFamily="system-ui" fontWeight="800" textAnchor="start">87 / 100</text>
+        <rect rx="10" width="118" height="34" fill="rgba(255,255,255,0.95)" stroke="rgba(52,170,220,0.25)" strokeWidth="1" />
+        <text x="12" y="14" fill="#6E6E73" fontSize="8" fontFamily="system-ui" fontWeight="600" letterSpacing="0.06em" textAnchor="start">SECURE SCORE</text>
+        <text x="12" y="27" fill="#0071E3" fontSize="13" fontFamily="system-ui" fontWeight="800" textAnchor="start">87 / 100</text>
       </g>
 
       {/* Animated Scan-Linie */}
@@ -156,7 +156,7 @@ function ScrollGradient({ progress }: { progress: ReturnType<typeof useSpring> }
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+            "linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
           maskImage: "radial-gradient(ellipse 80% 80% at 50% 40%, black 20%, transparent 80%)",
         }}
@@ -165,7 +165,7 @@ function ScrollGradient({ progress }: { progress: ReturnType<typeof useSpring> }
       <div
         className="absolute left-1/4 top-1/4 w-[600px] h-[600px] rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(37,99,255,0.12) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(0,113,227,0.07) 0%, transparent 70%)",
           transform: "translate(-50%, -50%)",
           filter: "blur(40px)",
         }}
@@ -173,7 +173,7 @@ function ScrollGradient({ progress }: { progress: ReturnType<typeof useSpring> }
       <div
         className="absolute right-1/4 top-1/3 w-[400px] h-[400px] rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(24,213,255,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(52,170,220,0.05) 0%, transparent 70%)",
           transform: "translate(50%, -50%)",
           filter: "blur(60px)",
         }}
@@ -237,7 +237,7 @@ export default function HeroV2() {
             {/* H1 */}
             <motion.h1
               {...fadeUp(0.1)}
-              className="font-display font-extrabold leading-[1.03] tracking-[-0.045em] text-white mb-6"
+              className="font-display font-extrabold leading-[1.03] tracking-[-0.045em] text-text-1 mb-6"
               style={{ fontSize: "clamp(2.75rem, 5.5vw, 4.25rem)" }}
             >
               {t("hero.h1a")}{" "}
@@ -303,7 +303,7 @@ export default function HeroV2() {
             <div
               className="absolute inset-0 rounded-full"
               style={{
-                background: "radial-gradient(circle at 50% 50%, rgba(37,99,255,0.18) 0%, transparent 70%)",
+                background: "radial-gradient(circle at 50% 50%, rgba(0,113,227,0.08) 0%, transparent 70%)",
                 filter: "blur(30px)",
               }}
             />

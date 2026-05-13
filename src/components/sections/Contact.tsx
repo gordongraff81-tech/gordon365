@@ -50,7 +50,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" ref={ref} className="relative z-10 bg-bg-0 py-28 px-6">
+    <section id="contact" ref={ref} className="relative z-10 bg-bg-1 py-28 px-6">
       <div className="max-w-[1100px] mx-auto">
         <div className="grid lg:grid-cols-[1fr_500px] gap-16 items-start">
           {/* Left */}
@@ -60,7 +60,7 @@ export default function Contact() {
             transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
           >
             <div className="section-label mb-4">{t("label")}</div>
-            <h2 className="display-md text-white mb-4 whitespace-pre-line">{t("h2")}</h2>
+            <h2 className="display-md text-text-1 mb-4 whitespace-pre-line">{t("h2")}</h2>
             <p className="text-[1.0625rem] leading-relaxed text-text-2 max-w-[440px] mb-8">
               {t("sub")}
             </p>
@@ -81,22 +81,22 @@ export default function Contact() {
             transition={{ duration: 0.65, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
             className="bg-bg-1 border border-border-strong rounded-4xl p-7 shadow-card"
           >
-            <h3 className="font-display font-extrabold text-[1.25rem] tracking-[-0.03em] text-white mb-6">
+            <h3 className="font-display font-extrabold text-[1.25rem] tracking-[-0.03em] text-text-1 mb-6">
               {tf("title")}
             </h3>
 
             {submitted ? (
               <div className="text-center py-8">
                 <div className="w-16 h-16 rounded-full bg-green/10 border border-green/25 flex items-center justify-center text-2xl mx-auto mb-4">✓</div>
-                <h4 className="font-display font-bold text-lg text-white mb-2">
+                <h4 className="font-display font-bold text-lg text-text-1 mb-2">
                   {tf("submitted")}
                 </h4>
                 <p className="text-text-2 text-sm">{tf("success")}</p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-5 text-sm text-accent-2 hover:text-white transition-colors"
+                  className="mt-5 text-sm text-accent hover:text-accent-hover transition-colors"
                 >
-                  ← Send another message
+                  {tf("sendAnother")}
                 </button>
               </div>
             ) : (
@@ -152,7 +152,7 @@ export default function Contact() {
                     <select name="size" className="input-field">
                       <option value="">{tf("sizePlaceholder")}</option>
                       {sizeOptions.map((o) => (
-                        <option key={o} value={o} style={{ background: "#0F1A2E" }}>{o}</option>
+                        <option key={o} value={o} style={{ background: "#FFFFFF" }}>{o}</option>
                       ))}
                     </select>
                   </div>
@@ -163,7 +163,7 @@ export default function Contact() {
                     <select name="budget" className="input-field">
                       <option value="">{tf("budgetPlaceholder")}</option>
                       {budgetOptions.map((o) => (
-                        <option key={o} value={o} style={{ background: "#0F1A2E" }}>{o}</option>
+                        <option key={o} value={o} style={{ background: "#FFFFFF" }}>{o}</option>
                       ))}
                     </select>
                   </div>

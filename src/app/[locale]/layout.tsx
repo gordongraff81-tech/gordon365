@@ -86,9 +86,7 @@ export async function generateMetadata({
   };
 }
 
-// generateStaticParams wurde entfernt, da es sich mit der Edge-Runtime auf Cloudflare beißt.
-
-export default async function RootLayout({
+export default async function LocaleLayout({
   children,
   params,
 }: {
@@ -103,26 +101,21 @@ export default async function RootLayout({
 
   const messages = await getMessages();
 
+  // Die HTML- und Body-Tags wurden entfernt, da diese im übergeordneten 
+  // Root-Layout (src/app/layout.tsx) definiert sein müssen.
   return (
-    <html
-      lang={locale}
-      suppressHydrationWarning
-    >
-      <body className="bg-bg-0 text-text-1 font-body antialiased overflow-x-hidden gordon365-fonts">
-        <NextIntlClientProvider messages={messages}>
-          {children}
-          <Toaster
-            position="bottom-right"
-            toastOptions={{
-              style: {
-                background: "#0B1120",
-                border: "1px solid rgba(255,255,255,0.12)",
-                color: "#F0F4FF",
-              },
-            }}
-          />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages}>
+      {children}
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          style: {
+            background: "#F5F5F7",
+            border: "1px solid rgba(255,255,255,0.12)",
+            color: "#F0F4FF",
+          },
+        }}
+      />
+    </NextIntlClientProvider>
   );
 }

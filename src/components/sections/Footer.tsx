@@ -32,7 +32,7 @@ export default function Footer() {
           <div>
             <Link
               href={`/${locale}`}
-              className="flex items-center gap-2 font-display font-extrabold text-[1.125rem] tracking-[-0.02em] text-white mb-3"
+              className="flex items-center gap-2 font-display font-extrabold text-[1.125rem] tracking-[-0.02em] text-text-1 mb-3"
             >
               <LogoMark />
               Gordon<span className="text-accent-2">365</span>
@@ -50,7 +50,7 @@ export default function Footer() {
                   key={s.label}
                   href={s.href ?? "#"}
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-lg bg-card border border-border flex items-center justify-center text-[0.8125rem] text-text-2 hover:text-white hover:border-border-strong hover:bg-card-hover transition-all"
+                  className="w-9 h-9 rounded-lg bg-card border border-border flex items-center justify-center text-[0.8125rem] text-text-2 hover:text-text-1 hover:border-border-strong hover:bg-card-hover transition-all"
                 >
                   {s.symbol}
                 </a>
@@ -70,7 +70,7 @@ export default function Footer() {
                   <li key={link}>
                     <a
                       href={serviceHrefs[i]}
-                      className="text-[0.875rem] text-text-2 hover:text-white transition-colors"
+                      className="text-[0.875rem] text-text-2 hover:text-text-1 transition-colors"
                     >
                       {link}
                     </a>
@@ -89,7 +89,7 @@ export default function Footer() {
                   <li key={link}>
                     <a
                       href={companyHrefs[i]}
-                      className="text-[0.875rem] text-text-2 hover:text-white transition-colors"
+                      className="text-[0.875rem] text-text-2 hover:text-text-1 transition-colors"
                     >
                       {link}
                     </a>

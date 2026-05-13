@@ -64,50 +64,110 @@
         "text": "Is Multi-Factor Authentication (MFA) enforced for all users?",
         "sub": "MFA is the single most effective control against credential-based attacks. It should be mandatory — not optional — for every account including service accounts and administrators.",
         "answers": {
-          "yes": { "title": "Yes — enforced for all users", "hint": "Including admins and service accounts" },
-          "partial": { "title": "Partially — some users only", "hint": "Not consistently enforced across all accounts" },
-          "no": { "title": "No — not enabled", "hint": "Users sign in with password only" },
-          "unknown": { "title": "Not sure", "hint": "I'd need to check the tenant to confirm" }
+          "yes": {
+            "title": "Yes — enforced for all users",
+            "hint": "Including admins and service accounts"
+          },
+          "partial": {
+            "title": "Partially — some users only",
+            "hint": "Not consistently enforced across all accounts"
+          },
+          "no": {
+            "title": "No — not enabled",
+            "hint": "Users sign in with password only"
+          },
+          "unknown": {
+            "title": "Not sure",
+            "hint": "I'd need to check the tenant to confirm"
+          }
         }
       },
       {
         "text": "Are Conditional Access policies configured in your tenant?",
         "sub": "Conditional Access lets you enforce granular access controls based on user, device, location and sign-in risk — it's the foundation of a Zero Trust identity model in Microsoft 365.",
         "answers": {
-          "yes": { "title": "Yes — actively configured", "hint": "Multiple policies in Enabled or Report-only state" },
-          "partial": { "title": "Basic policies only", "hint": "MFA for admins only, or default Security Defaults" },
-          "no": { "title": "Not configured", "hint": "No Conditional Access policies in place" },
-          "unknown": { "title": "Not sure", "hint": "I'd need to check Entra ID to confirm" }
+          "yes": {
+            "title": "Yes — actively configured",
+            "hint": "Multiple policies in Enabled or Report-only state"
+          },
+          "partial": {
+            "title": "Basic policies only",
+            "hint": "MFA for admins only, or default Security Defaults"
+          },
+          "no": {
+            "title": "Not configured",
+            "hint": "No Conditional Access policies in place"
+          },
+          "unknown": {
+            "title": "Not sure",
+            "hint": "I'd need to check Entra ID to confirm"
+          }
         }
       },
       {
         "text": "Is legacy authentication blocked in your environment?",
         "sub": "Legacy authentication protocols (Basic Auth, IMAP, POP3) bypass MFA entirely and are exploited in the majority of password spray and credential stuffing attacks against M365 tenants.",
         "answers": {
-          "yes": { "title": "Yes — fully blocked", "hint": "Legacy auth blocked via Conditional Access or Auth Policy" },
-          "partial": { "title": "Partially restricted", "hint": "Some protocols blocked, others still active" },
-          "no": { "title": "No — still permitted", "hint": "Legacy protocols are unrestricted" },
-          "unknown": { "title": "Not sure", "hint": "I'd need to check the sign-in logs to confirm" }
+          "yes": {
+            "title": "Yes — fully blocked",
+            "hint": "Legacy auth blocked via Conditional Access or Auth Policy"
+          },
+          "partial": {
+            "title": "Partially restricted",
+            "hint": "Some protocols blocked, others still active"
+          },
+          "no": {
+            "title": "No — still permitted",
+            "hint": "Legacy protocols are unrestricted"
+          },
+          "unknown": {
+            "title": "Not sure",
+            "hint": "I'd need to check the sign-in logs to confirm"
+          }
         }
       },
       {
         "text": "Is external sharing in SharePoint and OneDrive restricted?",
         "sub": "Unrestricted external sharing is one of the most common sources of unintentional data exposure in M365. Default tenant settings are often too permissive for most business risk profiles.",
         "answers": {
-          "yes": { "title": "Yes — restricted to known domains", "hint": "Sharing limited to authenticated external users or specific domains" },
-          "partial": { "title": "Limited sharing permitted", "hint": "External sharing allowed with authentication required" },
-          "no": { "title": "Open — anyone with a link", "hint": "Files can be shared publicly without authentication" },
-          "unknown": { "title": "Not sure", "hint": "I'd need to check SharePoint Admin Center" }
+          "yes": {
+            "title": "Yes — restricted to known domains",
+            "hint": "Sharing limited to authenticated external users or specific domains"
+          },
+          "partial": {
+            "title": "Limited sharing permitted",
+            "hint": "External sharing allowed with authentication required"
+          },
+          "no": {
+            "title": "Open — anyone with a link",
+            "hint": "Files can be shared publicly without authentication"
+          },
+          "unknown": {
+            "title": "Not sure",
+            "hint": "I'd need to check SharePoint Admin Center"
+          }
         }
       },
       {
         "text": "Are Microsoft Purview Sensitivity Labels deployed and actively used?",
         "sub": "Sensitivity labels classify and protect documents and emails based on their confidentiality level — a hard prerequisite for safe Copilot deployment and GDPR/DSGVO data governance obligations.",
         "answers": {
-          "yes": { "title": "Yes — deployed and actively used", "hint": "Labels configured in Purview and applied to files and emails" },
-          "partial": { "title": "Created but not widely adopted", "hint": "Labels exist but usage is low or inconsistent" },
-          "no": { "title": "Not configured", "hint": "No sensitivity labels in place" },
-          "unknown": { "title": "Not sure", "hint": "I'd need to check Microsoft Purview" }
+          "yes": {
+            "title": "Yes — deployed and actively used",
+            "hint": "Labels configured in Purview and applied to files and emails"
+          },
+          "partial": {
+            "title": "Created but not widely adopted",
+            "hint": "Labels exist but usage is low or inconsistent"
+          },
+          "no": {
+            "title": "Not configured",
+            "hint": "No sensitivity labels in place"
+          },
+          "unknown": {
+            "title": "Not sure",
+            "hint": "I'd need to check Microsoft Purview"
+          }
         }
       }
     ],
@@ -198,25 +258,45 @@
         "icon": "shield",
         "title": "Security Hardening",
         "desc": "Raise your Secure Score, close identity gaps, and align with CIS and CISA benchmarks — fast.",
-        "features": ["MFA & Conditional Access", "Entra ID configuration", "Identity Protection policies", "Legacy auth removal"]
+        "features": [
+          "MFA & Conditional Access",
+          "Entra ID configuration",
+          "Identity Protection policies",
+          "Legacy auth removal"
+        ]
       },
       {
         "icon": "scale",
         "title": "Governance & Compliance",
-        "desc": "Structure Teams, SharePoint, and data so it's auditable, compliant, and DSGVO-ready.",
-        "features": ["Teams & SharePoint governance", "Retention & DLP policies", "Sensitivity & classification labels", "Compliance Manager review"]
+        "desc": "Structure Teams, SharePoint, and data so it's auditable, compliant, and GDPR-ready.",
+        "features": [
+          "Teams & SharePoint governance",
+          "Retention & DLP policies",
+          "Sensitivity & classification labels",
+          "Compliance Manager review"
+        ]
       },
       {
         "icon": "cpu",
         "title": "Optimization & Cost",
         "desc": "Find licensing waste, right-size your subscriptions, and eliminate duplicate tooling costs.",
-        "features": ["License audit & rightsizing", "Tool consolidation analysis", "Usage analytics review", "Renewal negotiation support"]
+        "features": [
+          "License audit & rightsizing",
+          "Tool consolidation analysis",
+          "Usage analytics review",
+          "Renewal negotiation support"
+        ]
       },
       {
         "icon": "sparkles",
         "title": "Copilot Readiness",
         "desc": "Build the data foundation, governance model, and adoption strategy that makes AI investment pay off.",
-        "features": ["Permission & data hygiene", "Sensitivity label deployment", "Use case identification", "Pilot design & rollout"]
+        "features": [
+          "Permission & data hygiene",
+          "Sensitivity label deployment",
+          "Use case identification",
+          "Pilot design & rollout"
+        ]
       }
     ]
   },
@@ -230,9 +310,21 @@
         "headline": "Licensing audit reduced annual Microsoft spend by 24%",
         "desc": "A mid-sized manufacturer was overpaying on E3 licences across their entire workforce. Analysis revealed 40+ inactive accounts, duplicate Visio licences, and three unlicensed Power Automate users. Rebalancing to a mixed E1/E3 model reduced annual spend by over €42,000.",
         "kpis": [
-          { "value": "−24%", "label": "Annual M365 Spend", "positive": true },
-          { "value": "€42K", "label": "Saved Year One", "positive": true },
-          { "value": "6 wks", "label": "Delivery Time", "positive": false }
+          {
+            "value": "−24%",
+            "label": "Annual M365 Spend",
+            "positive": true
+          },
+          {
+            "value": "€42K",
+            "label": "Saved Year One",
+            "positive": true
+          },
+          {
+            "value": "6 wks",
+            "label": "Delivery Time",
+            "positive": false
+          }
         ]
       },
       {
@@ -240,9 +332,21 @@
         "headline": "Secure Score raised from 38 to 74 in 30 days",
         "desc": "Following a cyber insurance renewal review, a financial services firm needed demonstrable security improvement. Targeted hardening addressed MFA gaps, legacy authentication, PIM, and SharePoint external sharing defaults. Secure Score jumped 36 points within the first month.",
         "kpis": [
-          { "value": "+36 pts", "label": "Secure Score", "positive": true },
-          { "value": "100%", "label": "MFA Coverage", "positive": true },
-          { "value": "30 days", "label": "Timeline", "positive": false }
+          {
+            "value": "+36 pts",
+            "label": "Secure Score",
+            "positive": true
+          },
+          {
+            "value": "100%",
+            "label": "MFA Coverage",
+            "positive": true
+          },
+          {
+            "value": "30 days",
+            "label": "Timeline",
+            "positive": false
+          }
         ]
       },
       {
@@ -250,9 +354,21 @@
         "headline": "150-user firm fully Copilot-ready in 8 weeks",
         "desc": "A consulting firm purchased Copilot licences but had no data governance or sensitivity labels in place. The readiness sprint established a classification framework, remediated 2,400 overpermissioned SharePoint sites, trained 12 pilot users, and delivered a 6-month adoption roadmap.",
         "kpis": [
-          { "value": "2,400", "label": "Sites Remediated", "positive": true },
-          { "value": "8 wks", "label": "To Copilot Ready", "positive": true },
-          { "value": "12", "label": "Pilot Users", "positive": false }
+          {
+            "value": "2,400",
+            "label": "Sites Remediated",
+            "positive": true
+          },
+          {
+            "value": "8 wks",
+            "label": "To Copilot Ready",
+            "positive": true
+          },
+          {
+            "value": "12",
+            "label": "Pilot Users",
+            "positive": false
+          }
         ]
       },
       {
@@ -260,9 +376,21 @@
         "headline": "Unified collaboration across Teams, SharePoint & Intune",
         "desc": "A logistics company operating across five locations had uncontrolled Teams sprawl, no SharePoint structure, and unmanaged devices. A Modern Workplace transformation standardised device management via Intune and migrated 28 file shares to a structured architecture.",
         "kpis": [
-          { "value": "320", "label": "Devices Managed", "positive": true },
-          { "value": "28", "label": "Shares Migrated", "positive": true },
-          { "value": "5 sites", "label": "Locations Unified", "positive": false }
+          {
+            "value": "320",
+            "label": "Devices Managed",
+            "positive": true
+          },
+          {
+            "value": "28",
+            "label": "Shares Migrated",
+            "positive": true
+          },
+          {
+            "value": "5 sites",
+            "label": "Locations Unified",
+            "positive": false
+          }
         ]
       }
     ]
@@ -323,10 +451,22 @@
       "role": "Founder · M365 & Modern Workplace Consultant",
       "quote": "\"I don't optimize M365 environments for the sake of it. I do it because the business outcomes are consistently significant — and most companies are leaving real money and security on the table.\"",
       "stats": [
-        { "value": "10+", "label": "Years M365" },
-        { "value": "150+", "label": "Environments" },
-        { "value": "D/A/CH", "label": "Region" },
-        { "value": "MS", "label": "Certified" }
+        {
+          "value": "10+",
+          "label": "Years M365"
+        },
+        {
+          "value": "150+",
+          "label": "Environments"
+        },
+        {
+          "value": "D/A/CH",
+          "label": "Region"
+        },
+        {
+          "value": "MS",
+          "label": "Certified"
+        }
       ],
       "certs": [
         "Microsoft 365 Certified: Enterprise Administrator Expert",
@@ -386,7 +526,12 @@
       "emailPlaceholder": "max@mustermann.de",
       "size": "Company Size",
       "sizePlaceholder": "Select range",
-      "sizeOptions": ["10 – 50 users", "50 – 150 users", "150 – 500 users", "500+ users"],
+      "sizeOptions": [
+        "10 – 50 users",
+        "50 – 150 users",
+        "150 – 500 users",
+        "500+ users"
+      ],
       "budget": "Budget Range",
       "budgetPlaceholder": "Select range",
       "budgetOptions": [
@@ -402,20 +547,35 @@
       "submitted": "Sent ✓",
       "privacy": "Data handled in accordance with GDPR / DSGVO. No third-party sharing. Ever.",
       "success": "Request sent — Gordon will be in touch within one business day.",
-      "error": "Something went wrong. Please email hello@gordon365.com directly."
+      "error": "Something went wrong. Please email hello@gordon365.com directly.",
+      "sendAnother": "← Send another request"
     }
   },
   "footer": {
     "desc": "Microsoft 365 security, optimization and Copilot readiness consulting for European SMEs and mid-market businesses.",
     "services": "Services",
-    "serviceLinks": ["M365 Health Check", "Copilot Readiness", "Strategic Retainer", "Free Security Check"],
+    "serviceLinks": [
+      "M365 Health Check",
+      "Copilot Readiness",
+      "Strategic Retainer",
+      "Free Security Check"
+    ],
     "company": "Company",
-    "companyLinks": ["About Gordon", "Case Studies", "Insights", "hello@gordon365.com"],
+    "companyLinks": [
+      "About Gordon",
+      "Case Studies",
+      "Insights",
+      "hello@gordon365.com"
+    ],
     "newsletter": "Newsletter",
     "newsletterDesc": "Monthly M365 security and optimization insights. No spam.",
     "newsletterPlaceholder": "your@email.com",
     "subscribe": "Subscribe",
     "copyright": "© 2025 Gordon365 · gordon365.com",
-    "legal": ["Impressum", "Datenschutz", "AGB"]
+    "legal": [
+      "Legal Notice",
+      "Privacy Policy",
+      "Terms"
+    ]
   }
 }

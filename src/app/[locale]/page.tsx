@@ -4,6 +4,7 @@
 import NavV2 from "@/components/ui/NavV2";
 import HeroV2 from "@/components/sections/HeroV2";
 import SecurityScrollytelling from "@/components/sections/SecurityScrollytelling";
+import SecurityChecker from "@/components/sections/SecurityChecker";
 import BentoServicesGrid from "@/components/sections/BentoServicesGrid";
 
 // Bestehende Komponenten (unverändert)
@@ -45,6 +46,9 @@ export default async function HomePage({
           Apple-style "Explosionszeichnung" mit sticky positioning.
         */}
         <SecurityScrollytelling />
+
+        {/* SecurityChecker — interaktives 5-Fragen Tool mit Score + Findings */}
+        <SecurityChecker />
 
         {/* 
           BentoServicesGrid ersetzt Services: 
