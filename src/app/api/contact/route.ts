@@ -15,67 +15,68 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const data = ContactSchema.parse(body);
 
-    const zohoToken = process.env.ZOHO_TOKEN;
-    const zohoAccountId = process.env.ZOHO_ACCOUNT_ID;
-    const notifyEmail = process.env.NOTIFY_EMAIL ?? "gordon@gordon365.com";
+    // Hier nutzen wir deinen vorhandenen sk_live_... Key
+    const resendApiKey = process.env.ZOHO_TOKEN; 
+    const notifyEmail = process.env.NOTIFY_EMAIL ?? "info@gordon365.com";
 
-    if (zohoToken && zohoAccountId) {
-      // Notification to Gordon
-      await fetch(`https://mail.zoho.eu/api/accounts/${zohoAccountId}/messages`, {
-        method: "POST",
-        headers: {
-          Authorization: `Zoho-oauthtoken ${zohoToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fromAddress: "info@gordon365.com",
-          toAddress: notifyEmail,
-          subject: `New Strategy Call Request — ${data.company}`,
-          content: [
-            `Name: ${data.name}`,
-            `Company: ${data.company}`,
-            `Email: ${data.email}`,
-            `Company size: ${data.size ?? "Not specified"}`,
-            `Budget: ${data.budget ?? "Not specified"}`,
-            `Challenge: ${data.challenge ?? "Not specified"}`,
-            ``,
-            `Reply directly to: ${data.email}`,
-          ].join("\n"),
-          mailFormat: "plaintext",
-        }),
-      });
-
-      // Autoresponder to lead
-      await fetch(`https://mail.zoho.eu/api/accounts/${zohoAccountId}/messages`, {
-        method: "POST",
-        headers: {
-          Authorization: `Zoho-oauthtoken ${zohoToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fromAddress: "gordon@gordon365.com",
-          toAddress: data.email,
-          subject: "Your strategy call request — Gordon365",
-          content: [
-            `Hi ${data.name},`,
-            ``,
-            `Thank you for reaching out to Gordon365.`,
-            ``,
-            `I've received your request and will be in touch within one business day`,
-            `to confirm your strategy call.`,
-            ``,
-            `If you have any urgent questions in the meantime, you can reach me`,
-            `directly at gordon@gordon365.com.`,
-            ``,
-            `Best regards,`,
-            `Gordon Graff`,
-            `Gordon365 — Microsoft 365 Consulting`,
-            `gordon365.com`,
-          ].join("\n"),
-          mailFormat: "plaintext",
-        }),
-      });
+    if (!resendApiKey) {
+      console.error("Resend API Key (ZOHO_TOKEN) is missing");
+      return NextResponse.json({ error: "Configuration error" }, { status: 500 });
     }
+
+    // 1. Notification an dich (info@gordon365.com)
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${resendApiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "Gordon365 <info@gordon365.com>",
+        to: [notifyEmail],
+        subject: `New Strategy Call Request — ${data.company}`,
+        text: [
+          `Name: ${data.name}`,
+          `Company: ${data.company}`,
+          `Email: ${data.email}`,
+          `Company size: ${data.size ?? "Not specified"}`,
+          `Budget: ${data.budget ?? "Not specified"}`,
+          `Challenge: ${data.challenge ?? "Not specified"}`,
+          ``,
+          `Reply directly to: ${data.email}`,
+        ].join("\n"),
+      }),
+    });
+
+    // 2. Autoresponder an den Lead
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${resendApiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "Gordon Graff <info@gordon365.com>",
+        to: [data.email],
+        subject: "Your strategy call request — Gordon365",
+        text: [
+          `Hi ${data.name},`,
+          ``,
+          `Thank you for reaching out to Gordon365.`,
+          ``,
+          `I've received your request and will be in touch within one business day`,
+          `to confirm your strategy call.`,
+          ``,
+          `If you have any urgent questions in the meantime, you can reach me`,
+          `directly at info@gordon365.com.`,
+          ``,
+          `Best regards,`,
+          `Gordon Graff`,
+          `Gordon365 — Microsoft 365 Consulting`,
+          `gordon365.com`,
+        ].join("\n"),
+      }),
+    });
 
     return NextResponse.json({ success: true }, { status: 200 });
 
