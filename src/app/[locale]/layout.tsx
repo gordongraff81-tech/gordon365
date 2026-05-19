@@ -58,11 +58,17 @@ export async function generateMetadata({
       googleBot: { index: true, follow: true, "max-video-preview": -1 },
     },
     icons: {
+      // SVG-Favicon: scharf bei jeder Auflösung, Dark-Mode-fähig
       icon: [
-        { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
-        { url: "/icons/favicon-16.png", sizes: "16x16", type: "image/png" },
+        { url: "/favicon.svg",           type: "image/svg+xml"               },
+        { url: "/icons/favicon-32.png",  sizes: "32x32",   type: "image/png" },
+        { url: "/icons/favicon-192.png", sizes: "192x192", type: "image/png" },
+        { url: "/icons/favicon-512.png", sizes: "512x512", type: "image/png" },
       ],
-      apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
+      apple: [
+        { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      ],
+      shortcut: "/favicon.svg",
     },
     other: {
       "application/ld+json": JSON.stringify({
@@ -101,8 +107,6 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
-  // Die HTML- und Body-Tags wurden entfernt, da diese im übergeordneten 
-  // Root-Layout (src/app/layout.tsx) definiert sein müssen.
   return (
     <NextIntlClientProvider messages={messages}>
       {children}

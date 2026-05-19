@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 130"
+     role="img" aria-label="gordon365">
+  <title>gordon365</title>
+  <defs>
+
+    <!-- ═══════════════════════════════════════════
+    BRAND GRADIENT TOKENS
+    Gemessen aus Original-PNG (1536×1024):
+      Top-face:   #03E4FD  (Cyan hell — Lichtquelle oben-links)
+      Left-face:  #0B46EA  (Blau mittel)
+      Right-face: #020A40  (Dunkelblau, fast schwarz)
+      G-Cutout:   #030812  (nahezu schwarz, subtil blau)
+    ═══════════════════════════════════════════ -->
+
+    <linearGradient id="g-top" gradientUnits="userSpaceOnUse"
+                    x1="15" y1="10" x2="105" y2="62">
+      <stop offset="0%"   stop-color="#08EEFF"/>
+      <stop offset="45%"  stop-color="#03E4FD"/>
+      <stop offset="100%" stop-color="#06D0F8"/>
+    </linearGradient>
+
+    <linearGradient id="g-left" gradientUnits="userSpaceOnUse"
+                    x1="15" y1="36" x2="60" y2="114">
+      <stop offset="0%"   stop-color="#0C5BFA"/>
+      <stop offset="50%"  stop-color="#0B46EA"/>
+      <stop offset="100%" stop-color="#0936D2"/>
+    </linearGradient>
+
+    <linearGradient id="g-right" gradientUnits="userSpaceOnUse"
+                    x1="60" y1="36" x2="105" y2="114">
+      <stop offset="0%"   stop-color="#041880"/>
+      <stop offset="100%" stop-color="#020A40"/>
+    </linearGradient>
+
+    <!-- "365" — horizontal Blau → Cyan -->
+    <linearGradient id="g-365" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#1878FF"/>
+      <stop offset="50%"  stop-color="#0BB5FF"/>
+      <stop offset="100%" stop-color="#05EEFF"/>
+    </linearGradient>
+
+    <!-- Highlight-Kante TL→Top -->
+    <linearGradient id="g-edge" gradientUnits="userSpaceOnUse"
+                    x1="15" y1="36" x2="60" y2="10">
+      <stop offset="0%"   stop-color="rgba(255,255,255,0.55)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.05)"/>
+    </linearGradient>
+
+    <clipPath id="clip-hex">
+      <polygon points="60,10 105,36 105,88 60,114 15,88 15,36"/>
+    </clipPath>
+
+  </defs>
+
+  <!-- ═══════════════════════════════════════════════════
+  MARK — Isometrischer Hexagon-Würfel mit G-Cutout
+  cx=60, cy=62, r=45
+  Top(60,10) · TR(105,36) · BR(105,88) · Bot(60,114) · BL(15,88) · TL(15,36) · Ctr(60,62)
+  ═══════════════════════════════════════════════════ -->
+  <g id="mark" transform="translate(0,5)">
+
+    <polygon id="face-right" points="105,36 105,88 60,114 60,62" fill="url(#g-right)"/>
+    <polygon id="face-left"  points="15,36 60,62 60,114 15,88"   fill="url(#g-left)"/>
+    <polygon id="face-top"   points="60,10 105,36 60,62 15,36"   fill="url(#g-top)"/>
+
+    <g clip-path="url(#clip-hex)">
+      <path id="g-mark"
+        d="M 20,57 L 20,67 L 62,98 L 62,74 L 82,74 L 82,50 L 62,50 L 62,26 Z"
+        fill="#030812" opacity="0.96"/>
+    </g>
+
+    <line x1="60"  y1="10"  x2="60"  y2="62"  stroke="rgba(8,238,255,0.16)" stroke-width="0.7"/>
+    <line x1="15"  y1="36"  x2="60"  y2="62"  stroke="rgba(8,238,255,0.12)" stroke-width="0.7"/>
+    <line x1="105" y1="36"  x2="60"  y2="62"  stroke="rgba(2,10,60,0.5)"    stroke-width="0.7"/>
+    <line x1="15"  y1="36"  x2="60"  y2="10"  stroke="url(#g-edge)"         stroke-width="1.4" stroke-linecap="round"/>
+    <line x1="60"  y1="10"  x2="105" y2="36"  stroke="rgba(255,255,255,0.14)" stroke-width="0.8" stroke-linecap="round"/>
+
+    <polygon points="60,10 105,36 105,88 60,114 15,88 15,36"
+             fill="none" stroke="rgba(8,238,255,0.14)" stroke-width="0.6"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════
+  WORDMARK — gordon365
+  Font: Exo 2 800 (geladen via next/font/google → --font-exo2)
+  Fallback: Rajdhani 800 → Barlow Condensed 800 → sans-serif
+  "gordon": #0D1D38  |  "365": gradient g-365
+  ═══════════════════════════════════════════════════ -->
+  <g id="wordmark" transform="translate(131,0)">
+
+    <text x="0" y="91"
+      font-family="var(--font-exo2),'Exo 2','Rajdhani','Barlow Condensed',sans-serif"
+      font-weight="800" font-size="78" fill="#0D1D38" letter-spacing="-0.8">gordon</text>
+
+    <text x="236" y="91"
+      font-family="var(--font-exo2),'Exo 2','Rajdhani','Barlow Condensed',sans-serif"
+      font-weight="800" font-size="78" fill="url(#g-365)" letter-spacing="-0.8">365</text>
+
+  </g>
+
+</svg>

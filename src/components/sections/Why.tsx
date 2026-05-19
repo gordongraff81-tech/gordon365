@@ -4,15 +4,44 @@ import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 
+// Precision-Stroke-Icons — currentColor, 1.5px, 32×32 viewBox
+// Mapping: Index 0–3 entspricht den vier why.points-Einträgen
 const WHY_ICONS = [
-  // person
-  <svg key="p" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>,
-  // layers
-  <svg key="l" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>,
-  // shield-check
-  <svg key="s" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>,
-  // arrow-right-on-rectangle
-  <svg key="a" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>,
+  // Senior Focus — Zielkreuz (kein generischer Person-Icon mehr)
+  <svg key="senior" width="18" height="18" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="16" cy="16" r="4"/>
+    <line x1="16" y1="4" x2="16" y2="8"/>
+    <line x1="16" y1="24" x2="16" y2="28"/>
+    <line x1="4" y1="16" x2="8" y2="16"/>
+    <line x1="24" y1="16" x2="28" y2="16"/>
+    <line x1="7.5" y1="7.5" x2="10.3" y2="10.3"/>
+    <line x1="21.7" y1="21.7" x2="24.5" y2="24.5"/>
+    <line x1="24.5" y1="7.5" x2="21.7" y2="10.3"/>
+    <line x1="10.3" y1="21.7" x2="7.5" y2="24.5"/>
+    <circle cx="16" cy="16" r="1.5" fill="currentColor" stroke="none"/>
+  </svg>,
+  // M365 Depth — gestaffelte Schichten mit Indent-Ankern
+  <svg key="depth" width="18" height="18" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="5" y="8" width="22" height="4" rx="1.5"/>
+    <rect x="8" y="14" width="16" height="4" rx="1.5"/>
+    <rect x="11" y="20" width="10" height="4" rx="1.5"/>
+    <line x1="5" y1="10" x2="3" y2="10"/>
+    <line x1="8" y1="16" x2="6" y2="16"/>
+    <line x1="11" y1="22" x2="9" y2="22"/>
+  </svg>,
+  // Proven Shield — Shield mit Checkmark und Zertifizierungs-Kappe
+  <svg key="shield" width="18" height="18" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M16 3 L27 7.5 L27 14 C27 20.5 22.3 26.5 16 28 C9.7 26.5 5 20.5 5 14 L5 7.5 Z"/>
+    <path d="M11 15.5 L14.5 19 L21 12"/>
+    <path d="M12 8.5 Q16 6 20 8.5" strokeWidth="1" strokeDasharray="1.5 1.5"/>
+  </svg>,
+  // No Hand-off — Dokument direkt übergeben, kein Gap
+  <svg key="handoff" width="18" height="18" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="5" y="8" width="14" height="17" rx="2"/>
+    <path d="M19 12 L27 12 L27 25 L19 25"/>
+    <line x1="14" y1="16.5" x2="27" y2="16.5"/>
+    <path d="M22 15 L25 12 L22 9" fill="none"/>
+  </svg>,
 ];
 
 export default function Why() {
@@ -77,7 +106,6 @@ export default function Why() {
               {/* Header */}
               <div className="p-6 bg-gradient-to-br from-accent/10 to-accent-2/5 border-b border-border">
                 <div className="flex items-center gap-3 mb-5">
-                  {/* Avatar placeholder */}
                   <div className="w-14 h-14 rounded-full bg-gradient-to-br from-accent to-accent-hover flex items-center justify-center text-white font-display font-extrabold text-2xl flex-shrink-0 shadow-glow-sm">
                     G
                   </div>

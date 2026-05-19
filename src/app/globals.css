@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+/* ── GOOGLE FONTS ──────────────────────────────────────────────────────────
+   Drei Familien in einem einzigen Request:
+   - Plus Jakarta Sans: Display/Headings
+   - DM Sans:           Body-Text
+   - Exo 2:             Logo-Wordmark (700 + 800)
+   display=swap: kein FOIT, sofortiger Fallback bis Font geladen
+───────────────────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Exo+2:wght@700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,7 +14,9 @@
 /* ── DESIGN TOKEN OVERRIDES ── */
 :root {
   --font-plus-jakarta: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-dm-sans: 'DM Sans', system-ui, sans-serif;
+  --font-dm-sans:      'DM Sans', system-ui, sans-serif;
+  /* Wordmark-Font: Exo 2 800 — exakter Match zum Original-Logo */
+  --font-wordmark:     'Exo 2', 'Rajdhani', 'Barlow Condensed', system-ui, sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -31,18 +40,10 @@
   }
 
   /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-  ::-webkit-scrollbar-track {
-    @apply bg-bg-0;
-  }
-  ::-webkit-scrollbar-thumb {
-    @apply bg-bg-3 rounded-full;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-bg-4;
-  }
+  ::-webkit-scrollbar        { width: 4px; }
+  ::-webkit-scrollbar-track  { @apply bg-bg-0; }
+  ::-webkit-scrollbar-thumb  { @apply bg-bg-3 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-bg-4; }
 
   /* Selection */
   ::selection {
@@ -108,14 +109,12 @@
            tracking-[-0.01em] transition-all duration-200 whitespace-nowrap
            hover:shadow-glow-sm hover:-translate-y-0.5 focus-visible:outline-accent;
   }
-
   .btn-outline {
     @apply inline-flex items-center gap-2 text-text-2 hover:text-text-1
            px-5 py-3.5 rounded-[6px] font-semibold text-[0.9375rem] font-body
            border border-border hover:border-border-strong hover:bg-bg-1
            transition-all duration-200 whitespace-nowrap;
   }
-
   .btn-ghost {
     @apply inline-flex items-center gap-1.5 text-text-2 hover:text-text-1
            font-bold text-sm font-body transition-colors duration-200;
@@ -123,12 +122,10 @@
 
   /* ── Cards ── */
   .card-base {
-    @apply bg-card border border-border rounded-3xl
-           shadow-card transition-all duration-300;
+    @apply bg-card border border-border rounded-3xl shadow-card transition-all duration-300;
   }
   .card-hover {
-    @apply hover:bg-card-hover hover:border-border-strong
-           hover:shadow-card-hover hover:-translate-y-1;
+    @apply hover:bg-card-hover hover:border-border-strong hover:shadow-card-hover hover:-translate-y-1;
   }
 
   /* ── Input / Form ── */
@@ -149,27 +146,23 @@
     background-size: auto, 48px 48px;
   }
 
-  /* ── Risk / status badges ── */
+  /* ── Status badges ── */
   .badge-critical {
     @apply bg-red/15 text-red border border-red/30
-           text-[0.625rem] font-bold tracking-[0.05em] uppercase
-           px-2 py-0.5 rounded;
+           text-[0.625rem] font-bold tracking-[0.05em] uppercase px-2 py-0.5 rounded;
   }
   .badge-warning {
     @apply bg-amber/15 text-amber border border-amber/30
-           text-[0.625rem] font-bold tracking-[0.05em] uppercase
-           px-2 py-0.5 rounded;
+           text-[0.625rem] font-bold tracking-[0.05em] uppercase px-2 py-0.5 rounded;
   }
   .badge-ok {
     @apply bg-green/10 text-green border border-green/25
-           text-[0.625rem] font-bold tracking-[0.05em] uppercase
-           px-2 py-0.5 rounded;
+           text-[0.625rem] font-bold tracking-[0.05em] uppercase px-2 py-0.5 rounded;
   }
 }
 
 /* ── UTILITY LAYER ── */
 @layer utilities {
-  /* Ambient background */
   .ambient-bg {
     position: fixed;
     inset: 0;
@@ -178,12 +171,8 @@
     overflow: hidden;
   }
 
-  /* Frosted glass */
-  .glass {
-    @apply bg-white/80 backdrop-blur-2xl;
-  }
+  .glass { @apply bg-white/80 backdrop-blur-2xl; }
 
-  /* Animate on scroll */
   .reveal {
     opacity: 0;
     transform: translateY(24px);
@@ -195,15 +184,11 @@
     transform: translateY(0);
   }
 
-  /* Score ring transition */
   .score-ring-fill {
     transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Animated gradient border */
-  .gradient-border {
-    position: relative;
-  }
+  .gradient-border { position: relative; }
   .gradient-border::before {
     content: "";
     position: absolute;
@@ -217,7 +202,6 @@
     pointer-events: none;
   }
 
-  /* Noise texture overlay */
   .noise::after {
     content: "";
     position: absolute;
@@ -227,7 +211,6 @@
     opacity: 0.04;
   }
 
-  /* Line clamp utilities */
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;

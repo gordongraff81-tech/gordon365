@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 124"
+     role="img" aria-label="gordon365">
+  <title>gordon365</title>
+  <defs>
+    <linearGradient id="gt" gradientUnits="userSpaceOnUse" x1="15" y1="10" x2="105" y2="62">
+      <stop offset="0%"   stop-color="#08EEFF"/>
+      <stop offset="100%" stop-color="#06D0F8"/>
+    </linearGradient>
+    <linearGradient id="gl" gradientUnits="userSpaceOnUse" x1="15" y1="36" x2="60" y2="114">
+      <stop offset="0%"   stop-color="#0C5BFA"/>
+      <stop offset="100%" stop-color="#0936D2"/>
+    </linearGradient>
+    <linearGradient id="gr" gradientUnits="userSpaceOnUse" x1="60" y1="36" x2="105" y2="114">
+      <stop offset="0%"   stop-color="#041880"/>
+      <stop offset="100%" stop-color="#020A40"/>
+    </linearGradient>
+    <clipPath id="ch">
+      <polygon points="60,10 105,36 105,88 60,114 15,88 15,36"/>
+    </clipPath>
+  </defs>
+  <polygon points="105,36 105,88 60,114 60,62" fill="url(#gr)"/>
+  <polygon points="15,36 60,62 60,114 15,88"   fill="url(#gl)"/>
+  <polygon points="60,10 105,36 60,62 15,36"   fill="url(#gt)"/>
+  <g clip-path="url(#ch)">
+    <path d="M 20,57 L 20,67 L 62,98 L 62,74
+             L 82,74 L 82,50 L 62,50 L 62,26 Z"
+          fill="#030812" opacity="0.96"/>
+  </g>
+  <line x1="15" y1="36" x2="60" y2="10" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"/>
+  <polygon points="60,10 105,36 105,88 60,114 15,88 15,36" fill="none" stroke="rgba(8,238,255,0.12)" stroke-width="0.6"/>
+</svg>
