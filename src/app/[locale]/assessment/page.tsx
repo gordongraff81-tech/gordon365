@@ -680,11 +680,9 @@ function ResultsScreen({
 export default function AssessmentPage({
   params,
 }: {
-  params: { locale: string } | Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  // Supports both sync params (Pages Router) and async params (App Router Next 15)
-  const resolvedParams = params as { locale: string };
-  const locale = (resolvedParams?.locale ?? "en") as Lang;
+  const locale = (params.locale ?? "en") as Lang;
   const lang: Lang = locale === "de" ? "de" : "en";
   const questions = QUESTIONS[lang];
 
