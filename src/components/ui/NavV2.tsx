@@ -20,6 +20,9 @@ export default function NavV2({ locale }: NavProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
+  // Erkennt ob wir auf der Assessment-Seite sind
+  const isAssessmentPage = pathname.includes("/assessment");
+
   const navSections = useMemo(() => [
     { id: "services", label: t("services") },
     { id: "security-checker", label: t("checker") },
@@ -28,6 +31,8 @@ export default function NavV2({ locale }: NavProps) {
     { id: "contact", label: t("contact") }
   ], [t]);
 
+  const assessmentLabel = t("assessment");
+
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -35,6 +40,8 @@ export default function NavV2({ locale }: NavProps) {
   }, []);
 
   useEffect(() => {
+    // IntersectionObserver nur auf der Homepage (nicht auf Assessment-Seite)
+    if (isAssessmentPage) return;
     const observers = navSections.map((section) => {
       const el = document.getElementById(section.id);
       if (!el) return null;
@@ -48,7 +55,7 @@ export default function NavV2({ locale }: NavProps) {
       return obs;
     });
     return () => observers.forEach((o) => o?.disconnect());
-  }, [navSections]);
+  }, [navSections, isAssessmentPage]);
 
   const switchLang = (newLocale: string) => {
     const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
@@ -73,14 +80,14 @@ export default function NavV2({ locale }: NavProps) {
           <div className="relative h-9 w-[140px]">
             <Image src="/logo.png" alt="gordon365 Logo" fill className="object-contain" priority />
           </div>
-		  
         </Link>
 
         <div className="hidden lg:flex items-center gap-6">
+          {/* Auf der Homepage: Anchor-Links; auf anderen Seiten: Homepage-Anchor */}
           {navSections.map((section) => (
             <a
               key={section.id}
-              href={`#${section.id}`}
+              href={isAssessmentPage ? `/${locale}#${section.id}` : `#${section.id}`}
               aria-current={activeSection === section.id ? "page" : undefined}
               className={cn(
                 "text-[13px] font-medium transition-colors hover:text-blue-600",
@@ -90,8 +97,21 @@ export default function NavV2({ locale }: NavProps) {
               {section.label}
             </a>
           ))}
+
+          {/* Assessment-Link */}
+          <Link
+            href={`/${locale}/assessment`}
+            className={cn(
+              "text-[13px] font-bold px-3.5 py-1.5 rounded-full transition-all duration-200",
+              isAssessmentPage
+                ? "bg-blue-600 text-white"
+                : "bg-blue-600/10 text-blue-600 hover:bg-blue-600 hover:text-white"
+            )}
+          >
+            {t("assessment")}
+          </Link>
           
-          <div className="flex bg-slate-100 rounded-full p-1 border border-slate-200 ml-4">
+          <div className="flex bg-slate-100 rounded-full p-1 border border-slate-200 ml-2">
             {["de", "en"].map((l) => (
               <button
                 key={l}
@@ -131,7 +151,7 @@ export default function NavV2({ locale }: NavProps) {
             {navSections.map((section) => (
               <a 
                 key={section.id} 
-                href={`#${section.id}`} 
+                href={isAssessmentPage ? `/${locale}#${section.id}` : `#${section.id}`}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
                   "text-lg font-semibold border-b border-slate-50 pb-2 transition-colors",
@@ -141,6 +161,19 @@ export default function NavV2({ locale }: NavProps) {
                 {section.label}
               </a>
             ))}
+
+            {/* Assessment-Link Mobile */}
+            <Link
+              href={`/${locale}/assessment`}
+              onClick={() => setMobileOpen(false)}
+              className={cn(
+                "text-lg font-bold pb-2 border-b border-slate-50 transition-colors",
+                isAssessmentPage ? "text-blue-600" : "text-slate-900"
+              )}
+            >
+              {t("assessment")}
+            </Link>
+
             <div className="flex gap-6 mt-2">
               {["de", "en"].map((l) => (
                 <button 
