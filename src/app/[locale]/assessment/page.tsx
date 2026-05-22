@@ -680,9 +680,9 @@ function ResultsScreen({
 export default function AssessmentPage({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const locale = (params.locale ?? "en") as Lang;
+  const locale = ((params as unknown as { locale: string }).locale ?? "en") as Lang;
   const lang: Lang = locale === "de" ? "de" : "en";
   const questions = QUESTIONS[lang];
 
