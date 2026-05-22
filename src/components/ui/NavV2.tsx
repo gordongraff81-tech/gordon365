@@ -31,7 +31,6 @@ export default function NavV2({ locale }: NavProps) {
     { id: "contact", label: t("contact") }
   ], [t]);
 
-  const assessmentLabel = t("assessment");
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
