@@ -22,6 +22,20 @@ interface Question {
   impact: string;
 }
 
+// ── Domain accent colors — Apple Silicon Palette ───────────────────────────────
+const DOMAIN_ACCENTS: Record<string, { color: string; glow: string; bg: string }> = {
+  identity:   { color: "#6366f1", glow: "rgba(99,102,241,0.25)",  bg: "rgba(99,102,241,0.10)"  },
+  ca:         { color: "#22d3ee", glow: "rgba(34,211,238,0.25)",  bg: "rgba(34,211,238,0.10)"  },
+  exchange:   { color: "#a855f7", glow: "rgba(168,85,247,0.25)",  bg: "rgba(168,85,247,0.10)"  },
+  sharepoint: { color: "#ec4899", glow: "rgba(236,72,153,0.25)",  bg: "rgba(236,72,153,0.10)"  },
+  defender:   { color: "#f87171", glow: "rgba(248,113,113,0.25)", bg: "rgba(248,113,113,0.10)" },
+  purview:    { color: "#34d399", glow: "rgba(52,211,153,0.25)",  bg: "rgba(52,211,153,0.10)"  },
+  dlp:        { color: "#fb923c", glow: "rgba(251,146,60,0.25)",  bg: "rgba(251,146,60,0.10)"  },
+  devices:    { color: "#38bdf8", glow: "rgba(56,189,248,0.25)",  bg: "rgba(56,189,248,0.10)"  },
+  copilot:    { color: "#c084fc", glow: "rgba(192,132,252,0.25)", bg: "rgba(192,132,252,0.10)" },
+  governance: { color: "#fbbf24", glow: "rgba(251,191,36,0.25)",  bg: "rgba(251,191,36,0.10)"  },
+};
+
 // ── Domain Definitions ─────────────────────────────────────────────────────────
 const DOMAINS: Record<Lang, { id: string; name: string; weight: number; bsi: string; icon: string }[]> = {
   de: [
@@ -254,18 +268,18 @@ function calcScore(answers: Record<number, number>, lang: Lang): number {
 function getMaturity(score: number, lang: Lang) {
   const levels = {
     de: [
-      { min: 85, label: "Optimiert",       color: "#28CD41" },
-      { min: 70, label: "Gesteuert",        color: "#0071E3" },
-      { min: 55, label: "In Entwicklung",   color: "#FF9500" },
-      { min: 40, label: "Grundlegend",      color: "#FF6B35" },
-      { min: 0,  label: "Hohes Risiko",     color: "#FF3B30" },
+      { min: 85, label: "Optimiert",       color: "#34d399" },
+      { min: 70, label: "Gesteuert",        color: "#22d3ee" },
+      { min: 55, label: "In Entwicklung",   color: "#fbbf24" },
+      { min: 40, label: "Grundlegend",      color: "#fb923c" },
+      { min: 0,  label: "Hohes Risiko",     color: "#f87171" },
     ],
     en: [
-      { min: 85, label: "Optimized",  color: "#28CD41" },
-      { min: 70, label: "Managed",    color: "#0071E3" },
-      { min: 55, label: "Developing", color: "#FF9500" },
-      { min: 40, label: "Basic",      color: "#FF6B35" },
-      { min: 0,  label: "High Risk",  color: "#FF3B30" },
+      { min: 85, label: "Optimized",  color: "#34d399" },
+      { min: 70, label: "Managed",    color: "#22d3ee" },
+      { min: 55, label: "Developing", color: "#fbbf24" },
+      { min: 40, label: "Basic",      color: "#fb923c" },
+      { min: 0,  label: "High Risk",  color: "#f87171" },
     ],
   };
   return levels[lang].find((l) => score >= l.min) ?? levels[lang][4];
@@ -288,30 +302,50 @@ function DomainSidebar({
   return (
     <aside className="hidden lg:flex flex-col gap-3">
       {/* Score card */}
-      <div className="bg-white border border-border rounded-3xl p-5 shadow-card flex items-center gap-4">
+      <div
+        className="rounded-3xl p-5 flex items-center gap-4"
+        style={{
+          background: "linear-gradient(135deg, rgba(8,8,20,0.98) 0%, rgba(12,8,32,0.98) 100%)",
+          border: "1px solid rgba(99,102,241,0.25)",
+          boxShadow: "0 0 0 1px rgba(99,102,241,0.10), 0 0 40px rgba(99,102,241,0.12), 0 16px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)",
+          backdropFilter: "blur(20px)",
+        }}
+      >
         <ScoreRing score={score} size={72} strokeWidth={6} label="" />
         <div>
-          <div className="text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-0.5">
+          <div className="text-[0.6875rem] font-bold tracking-[0.08em] uppercase mb-0.5" style={{ color: "rgba(100,116,139,0.7)" }}>
             {lang === "de" ? "Live-Score" : "Live Score"}
           </div>
-          <div className="font-display font-extrabold text-[1.625rem] text-text-1 leading-none tracking-tight">
+          <div className="font-display font-extrabold text-[1.625rem] leading-none tracking-tight" style={{ color: "#f1f5f9" }}>
             {score}
-            <span className="text-text-3 text-[1rem] font-semibold"> / 100</span>
+            <span className="text-[1rem] font-semibold" style={{ color: "rgba(100,116,139,0.6)" }}> / 100</span>
           </div>
-          <div className="text-[0.75rem] font-bold mt-1" style={{ color: maturity.color }}>
+          <div
+            className="text-[0.75rem] font-bold mt-1"
+            style={{ color: maturity.color, textShadow: `0 0 10px ${maturity.color}60` }}
+          >
             {maturity.label}
           </div>
         </div>
       </div>
 
       {/* Domain list */}
-      <div className="bg-white border border-border rounded-3xl shadow-card overflow-hidden">
-        <div className="px-4 py-3 border-b border-border bg-bg-1">
-          <span className="text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3">
+      <div
+        className="rounded-3xl overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, rgba(8,8,20,0.98) 0%, rgba(12,8,28,0.98) 100%)",
+          border: "1px solid rgba(255,255,255,0.07)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04)",
+          backdropFilter: "blur(20px)",
+        }}
+      >
+        <div className="px-4 py-3 border-b" style={{ borderColor: "rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.02)" }}>
+          <span className="text-[0.6875rem] font-bold tracking-[0.08em] uppercase" style={{ color: "rgba(100,116,139,0.7)" }}>
             {lang === "de" ? "Sicherheitsdomänen" : "Security Domains"}
           </span>
         </div>
         {domains.map((domain) => {
+          const da = DOMAIN_ACCENTS[domain.id] ?? DOMAIN_ACCENTS["governance"];
           const domainQs = questions.reduce<number[]>((acc, q, i) => {
             if (q.domain === domain.id) acc.push(i);
             return acc;
@@ -327,35 +361,45 @@ function DomainSidebar({
             <button
               key={domain.id}
               onClick={() => domainQs.length > 0 && onJump(domainQs[0])}
-              className={[
-                "w-full flex items-center gap-3 px-4 py-2.5 border-b border-border/50 text-left transition-all duration-150 last:border-b-0",
-                isActive
-                  ? "bg-accent/[0.05] border-l-2 border-l-accent pl-3.5"
-                  : "hover:bg-bg-1",
-              ].join(" ")}
+              className="w-full flex items-center gap-3 px-4 py-2.5 text-left transition-all duration-150 last:border-b-0 relative"
+              style={{
+                borderBottom: "1px solid rgba(255,255,255,0.05)",
+                background: isActive ? da.bg : "transparent",
+                borderLeft: isActive ? `2px solid ${da.color}` : "2px solid transparent",
+                paddingLeft: isActive ? "14px" : "16px",
+              }}
             >
-              <span className="text-base flex-shrink-0">{domain.icon}</span>
-              <div className="flex-1 min-w-0">
-                <div className={[
-                  "text-[0.8125rem] font-semibold leading-snug truncate",
-                  isActive ? "text-accent" : "text-text-1",
-                ].join(" ")}>
+              {/* Active glow */}
+              {isActive && (
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{ background: `radial-gradient(ellipse 80% 60% at 0% 50%, ${da.color}08 0%, transparent 70%)` }}
+                />
+              )}
+              <span className="text-base flex-shrink-0 relative z-10">{domain.icon}</span>
+              <div className="flex-1 min-w-0 relative z-10">
+                <div
+                  className="text-[0.8125rem] font-semibold leading-snug truncate"
+                  style={{ color: isActive ? da.color : "#f1f5f9", textShadow: isActive ? `0 0 10px ${da.color}50` : "none" }}
+                >
                   {domain.name}
                 </div>
-                <div className="text-[0.625rem] text-text-3 font-mono mt-0.5">{domain.bsi}</div>
+                <div className="text-[0.625rem] font-mono mt-0.5" style={{ color: "rgba(100,116,139,0.6)" }}>{domain.bsi}</div>
               </div>
-              <div className="flex-shrink-0 text-right">
+              <div className="flex-shrink-0 text-right relative z-10">
                 {domainScore !== null ? (
-                  <span className={[
-                    "text-[0.6875rem] font-bold px-2 py-0.5 rounded-full",
-                    domainScore >= 70 ? "bg-green/10 text-green"
-                      : domainScore >= 50 ? "bg-accent/10 text-accent"
-                      : "bg-red/10 text-red",
-                  ].join(" ")}>
+                  <span
+                    className="text-[0.6875rem] font-bold px-2 py-0.5 rounded-full"
+                    style={{
+                      background: domainScore >= 70 ? "rgba(52,211,153,0.12)" : domainScore >= 50 ? "rgba(251,191,36,0.12)" : "rgba(248,113,113,0.12)",
+                      color: domainScore >= 70 ? "#34d399" : domainScore >= 50 ? "#fbbf24" : "#f87171",
+                      textShadow: `0 0 8px ${domainScore >= 70 ? "rgba(52,211,153,0.5)" : domainScore >= 50 ? "rgba(251,191,36,0.5)" : "rgba(248,113,113,0.5)"}`,
+                    }}
+                  >
                     {domainScore}
                   </span>
                 ) : (
-                  <span className="text-[0.625rem] font-semibold text-text-3">
+                  <span className="text-[0.625rem] font-semibold" style={{ color: "rgba(100,116,139,0.5)" }}>
                     {answeredCount}/{domainQs.length}
                   </span>
                 )}
@@ -382,47 +426,71 @@ function QuestionCard({
   lang: Lang;
   liveScore: number;
 }) {
-  const sevStyle: Record<string, string> = {
-    critical: "text-red border-red/25 bg-red/[0.04]",
-    high:     "text-amber border-amber/25 bg-amber/[0.04]",
-    medium:   "text-accent border-accent/20 bg-accent/[0.04]",
+  const da = DOMAIN_ACCENTS[question.domain] ?? DOMAIN_ACCENTS["governance"];
+
+  const sevStyle: Record<string, { color: string; bg: string; border: string }> = {
+    critical: { color: "#f87171", bg: "rgba(248,113,113,0.08)", border: "rgba(248,113,113,0.25)" },
+    high:     { color: "#fbbf24", bg: "rgba(251,191,36,0.08)",  border: "rgba(251,191,36,0.25)"  },
+    medium:   { color: da.color,  bg: da.bg,                    border: `${da.color}40`           },
   };
+  const sev = sevStyle[question.severity];
   const sevLabel: Record<Lang, Record<string, string>> = {
     de: { critical: "Kritisch", high: "Hoch", medium: "Mittel" },
     en: { critical: "Critical", high: "High", medium: "Medium" },
   };
 
   return (
-    <div className="bg-white border border-border-strong rounded-3xl shadow-card overflow-hidden">
+    <div
+      className="rounded-3xl overflow-hidden"
+      style={{
+        background: "linear-gradient(135deg, rgba(8,8,20,0.98) 0%, rgba(12,8,30,0.98) 100%)",
+        border: `1px solid ${da.color}28`,
+        boxShadow: `0 0 0 1px ${da.color}12, 0 0 50px ${da.glow}, 0 24px 48px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.05)`,
+        backdropFilter: "blur(24px)",
+      }}
+    >
       {/* Progress bar */}
-      <div className="h-1 bg-bg-2">
+      <div className="h-1" style={{ background: "rgba(255,255,255,0.05)" }}>
         <motion.div
-          className="h-full bg-accent"
+          className="h-full"
+          style={{ background: `linear-gradient(90deg, ${da.color}, ${da.color}bb)`, boxShadow: `0 0 8px ${da.glow}` }}
           animate={{ width: `${((qIndex + 1) / total) * 100}%` }}
           transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
         />
       </div>
 
+      {/* Top border glow line */}
+      <div className="h-px w-full" style={{ background: `linear-gradient(90deg, transparent 0%, ${da.color}60 30%, ${da.color} 50%, ${da.color}60 70%, transparent 100%)` }} />
+
       {/* Header */}
-      <div className="px-7 py-4 border-b border-border bg-bg-1 flex flex-wrap items-center justify-between gap-2">
+      <div
+        className="px-7 py-4 border-b flex flex-wrap items-center justify-between gap-2"
+        style={{ borderColor: "rgba(255,255,255,0.06)", background: `linear-gradient(135deg, ${da.color}08 0%, transparent 60%)` }}
+      >
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3">
+          <span className="text-[0.6875rem] font-bold tracking-[0.08em] uppercase" style={{ color: "rgba(100,116,139,0.7)" }}>
             {lang === "de" ? `Frage ${qIndex + 1} von ${total}` : `Question ${qIndex + 1} of ${total}`}
           </span>
-          <span className="text-text-3 text-xs">·</span>
-          <span className="text-[0.6875rem] font-mono text-text-3">{question.bsi}</span>
+          <span style={{ color: "rgba(100,116,139,0.4)" }}>·</span>
+          <span className="text-[0.6875rem] font-mono" style={{ color: "rgba(100,116,139,0.6)" }}>{question.bsi}</span>
           {question.dsgvo && (
             <>
-              <span className="text-text-3 text-xs">·</span>
-              <span className="text-[0.6875rem] font-mono text-text-3">DSGVO {question.dsgvo}</span>
+              <span style={{ color: "rgba(100,116,139,0.4)" }}>·</span>
+              <span className="text-[0.6875rem] font-mono" style={{ color: "rgba(100,116,139,0.6)" }}>DSGVO {question.dsgvo}</span>
             </>
           )}
         </div>
         <div className="flex items-center gap-2">
-          <span className={`text-[0.6875rem] font-bold tracking-[0.05em] uppercase px-2.5 py-1 rounded-full border ${sevStyle[question.severity]}`}>
+          <span
+            className="text-[0.6875rem] font-bold tracking-[0.05em] uppercase px-2.5 py-1 rounded-full border"
+            style={{ color: sev.color, background: sev.bg, borderColor: sev.border, textShadow: `0 0 8px ${sev.color}60` }}
+          >
             {sevLabel[lang][question.severity]}
           </span>
-          <span className="text-[0.6875rem] font-bold px-2.5 py-1 rounded-full bg-accent/[0.06] border border-accent/20 text-accent font-mono">
+          <span
+            className="text-[0.6875rem] font-bold px-2.5 py-1 rounded-full border font-mono"
+            style={{ color: da.color, background: da.bg, borderColor: `${da.color}40`, textShadow: `0 0 8px ${da.color}60` }}
+          >
             {liveScore} / 100
           </span>
         </div>
@@ -430,7 +498,7 @@ function QuestionCard({
 
       {/* Body */}
       <div className="px-7 py-6">
-        <h3 className="font-display font-bold text-[1.125rem] text-text-1 leading-snug mb-6 tracking-[-0.02em]">
+        <h3 className="font-display font-bold text-[1.125rem] leading-snug mb-6 tracking-[-0.02em]" style={{ color: "#f1f5f9" }}>
           {question.text}
         </h3>
 
@@ -442,27 +510,31 @@ function QuestionCard({
               <button
                 key={i}
                 onClick={() => onAnswer(i)}
-                className={[
-                  "w-full text-left px-4 py-3.5 rounded-xl border transition-all duration-200 flex items-center gap-3",
-                  selected
-                    ? "border-accent bg-accent/[0.04] ring-1 ring-inset ring-accent/25"
-                    : "border-border bg-white hover:border-border-strong hover:bg-bg-1",
-                ].join(" ")}
+                className="w-full text-left px-4 py-3.5 rounded-xl transition-all duration-200 flex items-center gap-3"
+                style={{
+                  background: selected ? da.bg : "rgba(255,255,255,0.025)",
+                  border: `1px solid ${selected ? da.color + "50" : "rgba(255,255,255,0.07)"}`,
+                  boxShadow: selected ? `0 0 16px ${da.glow}, inset 0 1px 0 rgba(255,255,255,0.05)` : "none",
+                }}
               >
-                <div className={[
-                  "w-4 h-4 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all",
-                  selected ? "border-accent bg-accent" : "border-border-strong",
-                ].join(" ")}>
+                <div
+                  className="w-4 h-4 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all"
+                  style={{
+                    borderColor: selected ? da.color : "rgba(255,255,255,0.15)",
+                    background: selected ? da.color : "transparent",
+                  }}
+                >
                   {selected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                 </div>
-                <span className="text-[0.875rem] font-medium text-text-1 flex-1">{opt}</span>
+                <span className="text-[0.875rem] font-medium flex-1" style={{ color: selected ? "#f1f5f9" : "rgba(203,213,225,0.75)" }}>{opt}</span>
                 {selected && (
-                  <span className={[
-                    "text-[0.6875rem] font-bold font-mono flex-shrink-0",
-                    scoreVal >= 80 ? "text-green"
-                      : scoreVal >= 50 ? "text-amber"
-                      : "text-red",
-                  ].join(" ")}>
+                  <span
+                    className="text-[0.6875rem] font-bold font-mono flex-shrink-0"
+                    style={{
+                      color: scoreVal >= 80 ? "#34d399" : scoreVal >= 50 ? "#fbbf24" : "#f87171",
+                      textShadow: `0 0 8px ${scoreVal >= 80 ? "rgba(52,211,153,0.6)" : scoreVal >= 50 ? "rgba(251,191,36,0.6)" : "rgba(248,113,113,0.6)"}`,
+                    }}
+                  >
                     {scoreVal}
                   </span>
                 )}
@@ -471,15 +543,21 @@ function QuestionCard({
           })}
         </div>
 
-        {/* Impact */}
-        <div className="flex items-start gap-3 px-4 py-3.5 rounded-xl bg-accent/[0.04] border border-accent/15">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0071E3" strokeWidth="2" className="flex-shrink-0 mt-0.5">
+        {/* Impact box — tinted with domain accent */}
+        <div
+          className="flex items-start gap-3 px-4 py-3.5 rounded-xl"
+          style={{
+            background: `linear-gradient(135deg, ${da.color}0A 0%, transparent 80%)`,
+            border: `1px solid ${da.color}22`,
+          }}
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={da.color} strokeWidth="2" className="flex-shrink-0 mt-0.5">
             <circle cx="12" cy="12" r="10" />
             <line x1="12" y1="8" x2="12" y2="12" />
             <line x1="12" y1="16" x2="12.01" y2="16" />
           </svg>
-          <span className="text-[0.8125rem] text-text-2 leading-relaxed">
-            <strong className="text-accent font-semibold">
+          <span className="text-[0.8125rem] leading-relaxed" style={{ color: "rgba(148,163,184,0.75)" }}>
+            <strong className="font-semibold" style={{ color: da.color }}>
               {lang === "de" ? "Warum das wichtig ist: " : "Why this matters: "}
             </strong>
             {question.impact}
@@ -488,7 +566,10 @@ function QuestionCard({
       </div>
 
       {/* Navigation */}
-      <div className="px-7 py-4 border-t border-border bg-bg-1 flex items-center gap-2.5">
+      <div
+        className="px-7 py-4 border-t flex items-center gap-2.5"
+        style={{ borderColor: "rgba(255,255,255,0.06)", background: `linear-gradient(135deg, ${da.color}06 0%, transparent 60%)` }}
+      >
         {qIndex > 0 && (
           <button onClick={onBack} className="btn-outline text-[0.875rem] py-2.5 px-4">
             ← {lang === "de" ? "Zurück" : "Back"}
@@ -497,12 +578,20 @@ function QuestionCard({
         <button
           onClick={onNext}
           disabled={answer === undefined}
-          className={[
-            "flex-1 flex items-center justify-center gap-2 py-3.5 rounded-[8px] font-bold text-[0.9375rem] font-body tracking-[-0.01em] transition-all duration-200",
+          className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-[8px] font-bold text-[0.9375rem] font-body tracking-[-0.01em] transition-all duration-200"
+          style={
             answer !== undefined
-              ? "bg-accent hover:bg-accent-hover text-white hover:shadow-glow-sm"
-              : "bg-bg-2 text-text-3 cursor-not-allowed",
-          ].join(" ")}
+              ? {
+                  background: `linear-gradient(135deg, ${da.color} 0%, ${da.color}cc 100%)`,
+                  color: "#fff",
+                  boxShadow: `0 0 24px ${da.glow}, 0 0 48px ${da.color}20`,
+                }
+              : {
+                  background: "rgba(255,255,255,0.04)",
+                  color: "rgba(148,163,184,0.3)",
+                  cursor: "not-allowed",
+                }
+          }
         >
           {qIndex === total - 1
             ? (lang === "de" ? "Ergebnisse anzeigen" : "View Results")
@@ -561,11 +650,14 @@ function ResultsScreen({
     })
     .slice(0, 4);
 
-  const findingColors = {
-    critical: { dot: "#FF3B30", bg: "bg-red/[0.04] border-red/20" },
-    high:     { dot: "#FF9500", bg: "bg-amber/[0.04] border-amber/20" },
-    medium:   { dot: "#0071E3", bg: "bg-accent/[0.04] border-accent/20" },
+  const findingColors: Record<string, { dot: string; bg: string; border: string }> = {
+    critical: { dot: "#f87171", bg: "rgba(248,113,113,0.07)", border: "rgba(248,113,113,0.20)" },
+    high:     { dot: "#fbbf24", bg: "rgba(251,191,36,0.07)",  border: "rgba(251,191,36,0.20)"  },
+    medium:   { dot: "#22d3ee", bg: "rgba(34,211,238,0.07)",  border: "rgba(34,211,238,0.20)"  },
   };
+
+  const postureAccent = posture === "strong" ? "#34d399" : posture === "attention" ? "#fbbf24" : "#f87171";
+  const postureGlow   = posture === "strong" ? "rgba(52,211,153,0.2)" : posture === "attention" ? "rgba(251,191,36,0.2)" : "rgba(248,113,113,0.2)";
 
   return (
     <motion.div
@@ -573,15 +665,30 @@ function ResultsScreen({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
     >
-      <div className="bg-white border border-border-strong rounded-3xl shadow-card overflow-hidden">
-        {/* Score header — dark */}
-        <div className="bg-[#0d1117] px-7 py-6 relative overflow-hidden">
+      <div
+        className="rounded-3xl overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, rgba(8,8,20,0.99) 0%, rgba(12,8,30,0.99) 100%)",
+          border: `1px solid ${postureAccent}25`,
+          boxShadow: `0 0 0 1px ${postureAccent}10, 0 0 60px ${postureGlow}, 0 24px 48px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05)`,
+          backdropFilter: "blur(24px)",
+        }}
+      >
+        {/* Score header */}
+        <div
+          className="px-7 py-6 relative overflow-hidden"
+          style={{ background: `linear-gradient(135deg, ${postureAccent}0C 0%, rgba(99,102,241,0.06) 50%, transparent 100%)` }}
+        >
+          {/* Top glow border */}
+          <div className="absolute top-0 left-0 right-0 h-px" style={{ background: `linear-gradient(90deg, transparent, ${postureAccent}80, transparent)` }} />
+          {/* Corner ambient */}
           <div
-            className="absolute rounded-full opacity-10 pointer-events-none"
+            className="absolute rounded-full pointer-events-none opacity-30"
             style={{
               top: 0, right: 0, width: 220, height: 220,
-              background: "radial-gradient(circle, #0071E3, transparent)",
+              background: `radial-gradient(circle, ${postureAccent}, transparent)`,
               transform: "translate(30%, -30%)",
+              filter: "blur(20px)",
             }}
           />
           <div className="relative z-10 flex items-center gap-6 flex-wrap">
@@ -592,28 +699,29 @@ function ResultsScreen({
                 style={{
                   color: maturity.color,
                   borderColor: maturity.color + "40",
-                  background: maturity.color + "18",
+                  background: maturity.color + "15",
+                  textShadow: `0 0 8px ${maturity.color}60`,
                 }}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-current" />
                 {maturity.label}
               </div>
-              <h3 className="font-display font-bold text-[1.0625rem] text-white mb-1 tracking-[-0.02em]">
+              <h3 className="font-display font-bold text-[1.0625rem] mb-1 tracking-[-0.02em]" style={{ color: "#f1f5f9" }}>
                 {content.head}
               </h3>
-              <p className="text-[0.8125rem] text-white/50 leading-relaxed max-w-[300px]">
+              <p className="text-[0.8125rem] leading-relaxed max-w-[300px]" style={{ color: "rgba(148,163,184,0.65)" }}>
                 {content.sub}
               </p>
             </div>
           </div>
           <div className="relative z-10 flex gap-2 mt-4 flex-wrap">
             {criticals > 0 && (
-              <span className="badge-critical">
+              <span className="text-[0.6875rem] font-bold px-2.5 py-1 rounded-full" style={{ background: "rgba(248,113,113,0.10)", border: "1px solid rgba(248,113,113,0.25)", color: "#f87171", textShadow: "0 0 8px rgba(248,113,113,0.5)" }}>
                 {criticals} {lang === "de" ? "Kritisch" : "Critical"}
               </span>
             )}
             {highs > 0 && (
-              <span className="badge-warning">
+              <span className="text-[0.6875rem] font-bold px-2.5 py-1 rounded-full" style={{ background: "rgba(251,191,36,0.10)", border: "1px solid rgba(251,191,36,0.25)", color: "#fbbf24", textShadow: "0 0 8px rgba(251,191,36,0.5)" }}>
                 {highs} {lang === "de" ? "Hoch" : "High"}
               </span>
             )}
@@ -622,21 +730,27 @@ function ResultsScreen({
 
         {/* Findings */}
         {topFindings.length > 0 && (
-          <div className="px-7 py-5 border-b border-border">
-            <div className="text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-3">
+          <div className="px-7 py-5 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+            <div className="text-[0.6875rem] font-bold tracking-[0.08em] uppercase mb-3" style={{ color: "rgba(100,116,139,0.7)" }}>
               {lang === "de" ? "Wichtigste Erkenntnisse" : "Key Findings"}
             </div>
             <div className="space-y-2.5">
               {topFindings.map(([qIdx]) => {
                 const q = questions[Number(qIdx)];
                 if (!q) return null;
-                const col = findingColors[q.severity];
+                const da = DOMAIN_ACCENTS[q.domain] ?? DOMAIN_ACCENTS["governance"];
+                const fc = findingColors[q.severity];
                 return (
-                  <div key={qIdx} className={`flex items-start gap-3 p-3.5 rounded-xl border ${col.bg}`}>
-                    <div className="w-2 h-2 rounded-full flex-shrink-0 mt-1.5" style={{ background: col.dot }} />
+                  <div
+                    key={qIdx}
+                    className="flex items-start gap-3 p-3.5 rounded-xl"
+                    style={{ background: fc.bg, border: `1px solid ${fc.border}` }}
+                  >
+                    {/* Domain color dot */}
+                    <div className="w-2 h-2 rounded-full flex-shrink-0 mt-1.5" style={{ background: da.color, boxShadow: `0 0 6px ${da.color}80` }} />
                     <div>
-                      <div className="text-[0.875rem] font-semibold text-text-1 mb-0.5 leading-snug">{q.text}</div>
-                      <div className="text-[0.8125rem] text-text-2 leading-relaxed">{q.impact}</div>
+                      <div className="text-[0.875rem] font-semibold mb-0.5 leading-snug" style={{ color: "#f1f5f9" }}>{q.text}</div>
+                      <div className="text-[0.8125rem] leading-relaxed" style={{ color: "rgba(148,163,184,0.7)" }}>{q.impact}</div>
                     </div>
                   </div>
                 );
@@ -647,13 +761,20 @@ function ResultsScreen({
 
         {/* CTA */}
         <div className="px-7 py-5">
-          <div className="rounded-2xl bg-accent/[0.04] border border-accent/20 p-5">
-            <div className="font-display font-bold text-[1rem] text-text-1 mb-1.5">
+          <div
+            className="rounded-2xl p-5"
+            style={{
+              background: "linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(34,211,238,0.04) 100%)",
+              border: "1px solid rgba(99,102,241,0.22)",
+              boxShadow: "0 0 24px rgba(99,102,241,0.10)",
+            }}
+          >
+            <div className="font-display font-bold text-[1rem] mb-1.5" style={{ color: "#f1f5f9" }}>
               {lang === "de"
                 ? "Kostenloser 60-Minuten-Strategieplan"
                 : "Free 60-Minute Strategy Session"}
             </div>
-            <p className="text-[0.8125rem] text-text-2 leading-relaxed mb-4">
+            <p className="text-[0.8125rem] leading-relaxed mb-4" style={{ color: "rgba(148,163,184,0.72)" }}>
               {lang === "de"
                 ? "Ich analysiere Ihre Ergebnisse und erstelle gemeinsam mit Ihnen einen konkreten 90-Tage-Aktionsplan — kein Verkaufsgespräch, reine Beratung."
                 : "I will analyse your results and create a concrete 90-day action plan together with you. No sales pitch — pure advisory."}
