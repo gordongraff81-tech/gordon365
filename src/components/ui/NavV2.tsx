@@ -26,6 +26,7 @@ export default function NavV2({ locale }: NavProps) {
   const navSections = useMemo(() => [
     { id: "services", label: t("services") },
     { id: "security-checker", label: t("checker") },
+    { id: "intune-platform", label: t("intune") },
     { id: "results", label: t("results") },
     { id: "about", label: t("about") },
     { id: "contact", label: t("contact") }

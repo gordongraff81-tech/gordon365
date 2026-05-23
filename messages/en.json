@@ -8,6 +8,7 @@
   "nav": {
     "services": "Services",
     "checker": "Security Check",
+    "intune": "Intune Platform",
     "results": "Results",
     "about": "About",
     "contact": "Contact",

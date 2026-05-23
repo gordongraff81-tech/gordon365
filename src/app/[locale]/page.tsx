@@ -3,6 +3,7 @@ import HeroV2 from "@/components/sections/HeroV2";
 import SecurityScrollytelling from "@/components/sections/SecurityScrollytelling";
 import SecurityChecker from "@/components/sections/SecurityChecker";
 import BentoServicesGrid from "@/components/sections/BentoServicesGrid";
+import IntuneSection from "@/components/sections/IntuneSection";
 import AmbientBg from "@/components/ui/AmbientBg";
 import StatsBar from "@/components/sections/StatsBar";
 import Capabilities from "@/components/sections/Capabilities";
@@ -32,6 +33,7 @@ export default async function HomePage({
         <SecurityScrollytelling />
         <SecurityChecker />
         <BentoServicesGrid />
+        <IntuneSection />
         <Capabilities />
         <Results />
         <Insights />
