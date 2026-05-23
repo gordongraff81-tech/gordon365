@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, use } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import NavV2 from "@/components/ui/NavV2";
@@ -680,11 +680,9 @@ function ResultsScreen({
 export default function AssessmentPage({
   params,
 }: {
-  params: { locale: string } | Promise<{ locale: string }>;
+  params: Promise<{ locale: string }>;
 }) {
-  // Supports both sync params (Pages Router) and async params (App Router Next 15)
-  const resolvedParams = params as { locale: string };
-  const locale = (resolvedParams?.locale ?? "en") as Lang;
+  const { locale } = use(params);
   const lang: Lang = locale === "de" ? "de" : "en";
   const questions = QUESTIONS[lang];
 
