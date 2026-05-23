@@ -82,52 +82,72 @@ export default function FAQ() {
         </motion.div>
 
         <div className="max-w-[720px] mx-auto">
-          {items.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: 0.05 * i, ease: [0.4, 0, 0.2, 1] }}
-              className="border-b border-border"
-            >
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between py-5 text-left group"
-                aria-expanded={open === i}
+          {items.map((item, i) => {
+            const isOpen = open === i;
+            // Cycling accent colors per item
+            const accents = ["#6366f1", "#22d3ee", "#a855f7", "#ec4899", "#6366f1", "#22d3ee"];
+            const accent = accents[i % accents.length];
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.55, delay: 0.05 * i, ease: [0.4, 0, 0.2, 1] }}
+                className="border-b"
+                style={{ borderColor: "rgba(255,255,255,0.06)" }}
               >
-                <span className="font-display font-bold text-[1rem] tracking-[-0.01em] text-text-1 group-hover:text-accent-2 transition-colors pr-6">
-                  {item.q}
-                </span>
-                <span
-                  className={[
-                    "w-6 h-6 rounded-full flex items-center justify-center text-lg font-light flex-shrink-0 transition-all duration-300",
-                    open === i
-                      ? "bg-accent text-white rotate-45"
-                      : "bg-card border border-border text-text-3",
-                  ].join(" ")}
+                <button
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  className="w-full flex items-center justify-between py-5 text-left group"
+                  aria-expanded={isOpen}
                 >
-                  +
-                </span>
-              </button>
-
-              <AnimatePresence initial={false}>
-                {open === i && (
-                  <motion.div
-                    key="content"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                    className="overflow-hidden"
+                  <span
+                    className="font-display font-bold text-[1rem] tracking-[-0.01em] pr-6 transition-colors duration-200"
+                    style={{ color: isOpen ? accent : "#f1f5f9" }}
                   >
-                    <p className="pb-5 text-[0.9375rem] leading-relaxed text-text-2">
-                      {item.a}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                    {item.q}
+                  </span>
+                  <span
+                    className="w-6 h-6 rounded-full flex items-center justify-center text-lg font-light flex-shrink-0 transition-all duration-300"
+                    style={
+                      isOpen
+                        ? {
+                            background: `linear-gradient(135deg, ${accent}30 0%, ${accent}15 100%)`,
+                            border: `1px solid ${accent}50`,
+                            color: accent,
+                            transform: "rotate(45deg)",
+                            boxShadow: `0 0 12px ${accent}40`,
+                          }
+                        : {
+                            background: "rgba(12,12,24,0.8)",
+                            border: "1px solid rgba(255,255,255,0.08)",
+                            color: "rgba(148,163,184,0.6)",
+                          }
+                    }
+                  >
+                    +
+                  </span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <p className="pb-5 text-[0.9375rem] leading-relaxed" style={{ color: "rgba(148,163,184,0.72)" }}>
+                        {item.a}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

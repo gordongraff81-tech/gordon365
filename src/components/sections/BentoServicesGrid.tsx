@@ -55,8 +55,8 @@ const SERVICES = [
     period: "Festpreis · 10–250 Benutzer",
     cta: "Anfragen",
     size: "tall",
-    accent: "#2563FF",
-    glow: "rgba(37,99,255,0.2)",
+    accent: "#6366f1",
+    glow: "rgba(99,102,241,0.25)",
     Icon: IconScanDocument,
   },
   {
@@ -72,8 +72,8 @@ const SERVICES = [
     period: "4–8 Wochen",
     cta: "Jetzt buchen",
     size: "featured",
-    accent: "#18D5FF",
-    glow: "rgba(24,213,255,0.2)",
+    accent: "#22d3ee",
+    glow: "rgba(34,211,238,0.22)",
     Icon: IconStageDeploy,
   },
   {
@@ -89,17 +89,17 @@ const SERVICES = [
     period: "Monatlich kündbar",
     cta: "Details ansehen",
     size: "normal",
-    accent: "#C8A96B",
-    glow: "rgba(200,169,107,0.2)",
+    accent: "#a855f7",
+    glow: "rgba(168,85,247,0.2)",
     Icon: IconOrbitClock,
   },
 ];
 
 const STATS = [
-  { value: "120+",   label: "Gesicherte Umgebungen",  accent: "#2563FF" },
-  { value: "€850K+", label: "Lizenz-Einsparungen",    accent: "#10D97C" },
-  { value: "98%",    label: "Kundenbindungsrate",      accent: "#18D5FF" },
-  { value: "12 J.",  label: "M365-Spezialisierung",    accent: "#C8A96B" },
+  { value: "120+",   label: "Gesicherte Umgebungen",  accent: "#6366f1" },
+  { value: "€850K+", label: "Lizenz-Einsparungen",    accent: "#22d3ee" },
+  { value: "98%",    label: "Kundenbindungsrate",      accent: "#a855f7" },
+  { value: "12 J.",  label: "M365-Spezialisierung",    accent: "#ec4899" },
 ];
 
 // ── BentoCard ────────────────────────────────────────────────────────────────
@@ -123,52 +123,80 @@ function BentoCard({
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{ duration: 0.7, delay, ease: [0.4, 0, 0.2, 1] }}
       className={cn(
-        "group relative rounded-[28px] border overflow-hidden transition-all duration-500",
+        "group relative rounded-[28px] overflow-hidden transition-all duration-500",
         "hover:-translate-y-1.5",
         isTall ? "lg:row-span-2" : "",
-        isFeatured
-          ? "bg-gradient-to-br from-accent/12 via-bg-2 to-accent-2/8 border-accent/30"
-          : "bg-card border-border hover:bg-card-hover hover:border-border-strong"
       )}
       style={{
+        background: isFeatured
+          ? `linear-gradient(135deg, rgba(10,10,20,0.97) 0%, rgba(15,10,35,0.97) 50%, rgba(10,15,30,0.97) 100%)`
+          : `linear-gradient(135deg, rgba(8,8,18,0.96) 0%, rgba(12,8,25,0.96) 100%)`,
+        border: `1px solid ${service.accent}28`,
         boxShadow: isFeatured
-          ? `0 0 60px ${service.glow}, 0 24px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07)`
-          : "0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04)",
+          ? `0 0 0 1px ${service.accent}20, 0 0 60px ${service.glow}, 0 24px 48px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)`
+          : `0 0 0 1px ${service.accent}15, 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04)`,
+        backdropFilter: "blur(20px)",
       }}
     >
-      {/* Gradient-Border */}
+      {/* Top gradient border line */}
       <div
         className={cn(
           "absolute top-0 left-0 right-0 h-px transition-opacity duration-500",
           isFeatured ? "opacity-100" : "opacity-0 group-hover:opacity-100"
         )}
-        style={{ background: `linear-gradient(90deg, transparent, ${service.accent}, transparent)` }}
+        style={{ background: `linear-gradient(90deg, transparent 0%, ${service.accent}90 30%, ${service.accent} 50%, ${service.accent}90 70%, transparent 100%)` }}
       />
 
-      {/* Glasmorphismus-Innenreflex */}
+      {/* Radial glow inner light */}
+      <div
+        className="absolute inset-0 rounded-[28px] pointer-events-none"
+        style={{
+          background: `radial-gradient(ellipse 70% 45% at 50% 0%, ${service.accent}12 0%, transparent 65%)`,
+          opacity: isFeatured ? 1 : 0,
+          transition: "opacity 0.5s ease",
+        }}
+      />
       <div
         className="absolute inset-0 rounded-[28px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ background: `radial-gradient(ellipse 60% 40% at 50% 0%, ${service.accent}0A 0%, transparent 70%)` }}
+        style={{ background: `radial-gradient(ellipse 60% 40% at 50% 0%, ${service.accent}0E 0%, transparent 70%)` }}
       />
 
-      <div className={cn("flex flex-col h-full", isTall ? "p-8" : "p-7")}>
+      {/* Corner glow accent */}
+      <div
+        className="absolute -top-12 -right-12 w-32 h-32 rounded-full pointer-events-none"
+        style={{
+          background: `radial-gradient(circle, ${service.accent}18 0%, transparent 70%)`,
+          filter: "blur(16px)",
+        }}
+      />
+
+      <div className={cn("flex flex-col h-full relative z-10", isTall ? "p-8" : "p-7")}>
         {/* Icon + Tag */}
         <div className="flex items-start justify-between mb-6">
           <div
             className="w-12 h-12 rounded-2xl flex items-center justify-center"
-            style={{ background: `${service.accent}15`, border: `1px solid ${service.accent}25` }}
+            style={{
+              background: `linear-gradient(135deg, ${service.accent}18 0%, ${service.accent}08 100%)`,
+              border: `1px solid ${service.accent}30`,
+              boxShadow: `0 0 16px ${service.accent}20, inset 0 1px 0 rgba(255,255,255,0.06)`,
+            }}
           >
             <Icon color={service.accent} />
           </div>
           <span
             className={cn(
               "text-[0.625rem] font-bold tracking-[0.1em] uppercase px-2.5 py-1 rounded",
-              isFeatured ? "border" : "text-text-3"
+              isFeatured ? "border" : ""
             )}
             style={
               isFeatured
-                ? { color: service.accent, background: `${service.accent}15`, borderColor: `${service.accent}35` }
-                : {}
+                ? {
+                    color: service.accent,
+                    background: `${service.accent}12`,
+                    borderColor: `${service.accent}35`,
+                    textShadow: `0 0 8px ${service.accent}60`,
+                  }
+                : { color: "rgba(148,163,184,0.7)" }
             }
           >
             {service.tag}
@@ -178,39 +206,40 @@ function BentoCard({
         {/* Heading */}
         <h3
           className={cn(
-            "font-display font-extrabold text-text-1 tracking-[-0.04em] leading-snug mb-3",
+            "font-display font-extrabold tracking-[-0.04em] leading-snug mb-3",
             isTall || isFeatured ? "text-[1.5rem]" : "text-[1.25rem]"
           )}
+          style={{ color: "#f1f5f9" }}
         >
           {service.name}
         </h3>
-        <p className="text-[0.875rem] text-text-2 leading-relaxed mb-5">{service.desc}</p>
+        <p className="text-[0.875rem] leading-relaxed mb-5" style={{ color: "rgba(148,163,184,0.75)" }}>{service.desc}</p>
 
         {/* Outcomes */}
         <ul className="flex flex-col gap-2 mb-6 flex-1">
           {service.outcomes.map((o) => (
-            <li key={o} className="flex items-start gap-2.5 text-[0.8125rem] text-text-2">
-              <span className="flex-shrink-0 mt-0.5 font-bold text-[0.75rem]" style={{ color: service.accent }}>→</span>
+            <li key={o} className="flex items-start gap-2.5 text-[0.8125rem]" style={{ color: "rgba(148,163,184,0.7)" }}>
+              <span className="flex-shrink-0 mt-0.5 font-bold text-[0.75rem]" style={{ color: service.accent, textShadow: `0 0 8px ${service.accent}80` }}>→</span>
               {o}
             </li>
           ))}
         </ul>
 
         {/* Footer */}
-        <div className="mt-auto pt-5 border-t border-border flex items-end justify-between">
+        <div className="mt-auto pt-5 flex items-end justify-between" style={{ borderTop: `1px solid rgba(255,255,255,0.06)` }}>
           <div>
             <div
               className="font-display font-extrabold text-[1.25rem] tracking-[-0.04em] leading-none mb-1"
-              style={{ color: service.accent }}
+              style={{ color: service.accent, textShadow: `0 0 16px ${service.accent}60` }}
             >
               {service.price}
             </div>
-            <div className="text-[0.75rem] text-text-3">{service.period}</div>
+            <div className="text-[0.75rem]" style={{ color: "rgba(100,116,139,0.8)" }}>{service.period}</div>
           </div>
           <a
             href="#contact"
-            className="inline-flex items-center gap-1.5 text-[0.8125rem] font-bold transition-colors hover:text-text-1"
-            style={{ color: isFeatured ? service.accent : "#94A3B8" }}
+            className="inline-flex items-center gap-1.5 text-[0.8125rem] font-bold transition-colors"
+            style={{ color: isFeatured ? service.accent : "rgba(148,163,184,0.6)" }}
           >
             {service.cta}
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -234,20 +263,31 @@ function StatCard({ stat, delay = 0 }: { stat: (typeof STATS)[0]; delay?: number
       initial={{ opacity: 0, scale: 0.94 }}
       animate={inView ? { opacity: 1, scale: 1 } : {}}
       transition={{ duration: 0.55, delay, ease: [0.4, 0, 0.2, 1] }}
-      className="group relative rounded-[20px] border border-border bg-card hover:bg-card-hover hover:border-border-strong transition-all duration-300 p-6 flex flex-col justify-between overflow-hidden hover:-translate-y-1"
-      style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.2)" }}
+      className="group relative rounded-[20px] transition-all duration-300 p-6 flex flex-col justify-between overflow-hidden hover:-translate-y-1"
+      style={{
+        background: "linear-gradient(135deg, rgba(8,8,18,0.96) 0%, rgba(12,8,25,0.96) 100%)",
+        border: `1px solid ${stat.accent}20`,
+        boxShadow: `0 0 0 1px ${stat.accent}12, 0 4px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04)`,
+        backdropFilter: "blur(16px)",
+      }}
     >
+      {/* Hover glow */}
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[20px]"
-        style={{ background: `radial-gradient(ellipse 70% 50% at 50% 0%, ${stat.accent}0C 0%, transparent 70%)` }}
+        style={{ background: `radial-gradient(ellipse 70% 50% at 50% 0%, ${stat.accent}10 0%, transparent 70%)` }}
+      />
+      {/* Top border glow */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{ background: `linear-gradient(90deg, transparent, ${stat.accent}80, transparent)` }}
       />
       <div
-        className="text-[2.25rem] font-display font-extrabold tracking-[-0.05em] leading-none mb-2"
-        style={{ color: stat.accent }}
+        className="relative z-10 text-[2.25rem] font-display font-extrabold tracking-[-0.05em] leading-none mb-2"
+        style={{ color: stat.accent, textShadow: `0 0 20px ${stat.accent}60` }}
       >
         {stat.value}
       </div>
-      <div className="text-[0.75rem] font-semibold text-text-2 leading-snug uppercase tracking-[0.06em]">
+      <div className="relative z-10 text-[0.75rem] font-semibold uppercase tracking-[0.06em]" style={{ color: "rgba(148,163,184,0.6)" }}>
         {stat.label}
       </div>
     </motion.div>
@@ -263,7 +303,7 @@ export default function BentoServicesGrid() {
     <section id="services" ref={ref} className="relative z-10 bg-bg-1 py-28 px-6">
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(37,99,255,0.05) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(99,102,241,0.05) 0%, transparent 70%)" }}
       />
 
       <div className="max-w-[1100px] mx-auto relative z-10">
