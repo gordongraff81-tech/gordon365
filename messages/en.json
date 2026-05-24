@@ -423,6 +423,13 @@
         "excerpt": "A step-by-step guide to identifying unused licences, over-assigned SKUs, and duplicate tooling costs in your M365 tenant.",
         "readTime": "10 min read",
         "gradient": "from-green/12 to-accent/10"
+      },
+      {
+        "tag": "Intune & Autopilot",
+        "title": "Modern Workplace in under 30 minutes: fully automated Intune deployment with Platform Factory",
+        "excerpt": "How an idempotent PowerShell framework orchestrates 22 configuration steps and enforces daily drift detection via CI/CD — with zero manual intervention.",
+        "readTime": "9 min read",
+        "gradient": "from-violet-500/12 to-cyan-400/10"
       }
     ]
   },
@@ -505,7 +512,8 @@
     "h2": "Ready to find out what you're leaving on the table?",
     "sub": "Most companies discover significant savings, security gaps, or AI readiness blockers within the first 30-minute strategy call. No pitch deck. Just a direct conversation.",
     "btn1": "Run Free Security Check",
-    "btn2": "Book Strategy Call"
+    "btn2": "Book Strategy Call",
+    "btn3": "View Intune Platform"
   },
   "contact": {
     "label": "Book a Strategy Call",

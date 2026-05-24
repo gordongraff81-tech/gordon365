@@ -423,6 +423,13 @@
         "excerpt": "Eine Schritt-für-Schritt-Anleitung zur Identifikation ungenutzter Lizenzen, überdimensionierter SKUs und doppelter Toolkosten in Ihrem M365-Mandanten.",
         "readTime": "10 Min. Lesezeit",
         "gradient": "from-green/12 to-accent/10"
+      },
+      {
+        "tag": "Intune & Autopilot",
+        "title": "Modern Workplace in <30 Minuten: vollautomatisches Intune-Deployment mit Platform Factory",
+        "excerpt": "Wie ein idempotentes PowerShell-Framework 22 Konfigurationsschritte orchestriert und Drift Detection per CI/CD täglich sicherstellt — ohne manuelle Eingriffe.",
+        "readTime": "9 Min. Lesezeit",
+        "gradient": "from-violet-500/12 to-cyan-400/10"
       }
     ]
   },
@@ -505,7 +512,8 @@
     "h2": "Bereit herauszufinden, was Sie auf dem Tisch lassen?",
     "sub": "Die meisten Unternehmen entdecken innerhalb des ersten 30-minütigen Strategiegesprächs signifikante Einsparungen, Sicherheitslücken oder KI-Bereitschaftshindernisse. Kein Pitch Deck. Nur ein direktes Gespräch.",
     "btn1": "Kostenloser Sicherheitscheck",
-    "btn2": "Strategiegespräch buchen"
+    "btn2": "Strategiegespräch buchen",
+    "btn3": "Intune Platform ansehen"
   },
   "contact": {
     "label": "Strategiegespräch buchen",

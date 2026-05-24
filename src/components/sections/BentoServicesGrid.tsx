@@ -29,6 +29,13 @@ const IconStageDeploy = ({ color }: { color: string }) => (
   </svg>
 );
 
+const IconShieldPulse = ({ color }: { color: string }) => (
+  <svg viewBox="0 0 32 32" fill="none" width="26" height="26" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M16 4L6 8v8c0 7 10 12 10 12s10-5 10-12V8z"/>
+    <path d="M10 16h2.5l2-4 2.5 7 2-5L21 16h1"/>
+  </svg>
+);
+
 const IconOrbitClock = ({ color }: { color: string }) => (
   <svg viewBox="0 0 32 32" fill="none" width="26" height="26" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <circle cx="16" cy="16" r="9"/>
@@ -44,6 +51,7 @@ const SERVICES = [
   {
     tag: "Festpreis · 4–6 Wochen",
     name: "M365 Health Check",
+    href: "#contact",
     desc: "Eine forensische Prüfung Ihrer Microsoft 365-Umgebung. Wir identifizieren Verschwendung, kartieren Risiken und liefern eine priorisierte Roadmap.",
     outcomes: [
       "Lizenz-Audit mit Einsparmöglichkeiten",
@@ -75,6 +83,25 @@ const SERVICES = [
     accent: "#22d3ee",
     glow: "rgba(34,211,238,0.22)",
     Icon: IconStageDeploy,
+    href: "#contact",
+  },
+  {
+    tag: "Vollautomatisch · Festpreis",
+    name: "Intune Platform Factory",
+    desc: "22 automatisierte Schritte. Produktionsreifer M365-Tenant in unter 30 Minuten — Security Baselines, Autopilot, App-Deployment und tägliche Drift Detection.",
+    outcomes: [
+      "Autopilot Zero-Touch-Enrollment",
+      "BitLocker, Defender & ASR Baseline",
+      "CI/CD-gestützte Drift Detection",
+    ],
+    price: "Festpreis",
+    period: "<30 Min · Rollback-fähig",
+    cta: "Zur Platform",
+    size: "normal",
+    accent: "#5E5CE6",
+    glow: "rgba(94,92,230,0.2)",
+    Icon: IconShieldPulse,
+    href: "#intune-platform",
   },
   {
     tag: "Laufend · Monatlich",
@@ -92,6 +119,7 @@ const SERVICES = [
     accent: "#a855f7",
     glow: "rgba(168,85,247,0.2)",
     Icon: IconOrbitClock,
+    href: "#contact",
   },
 ];
 
@@ -237,7 +265,7 @@ function BentoCard({
             <div className="text-[0.75rem]" style={{ color: "rgba(100,116,139,0.8)" }}>{service.period}</div>
           </div>
           <a
-            href="#contact"
+            href={service.href ?? "#contact"}
             className="inline-flex items-center gap-1.5 text-[0.8125rem] font-bold transition-colors"
             style={{ color: isFeatured ? service.accent : "rgba(148,163,184,0.6)" }}
           >
@@ -323,7 +351,7 @@ export default function BentoServicesGrid() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 lg:grid-rows-[auto_auto] gap-4 mb-6">
+        <div className="grid lg:grid-cols-4 gap-4 mb-6">
           {SERVICES.map((s, i) => (
             <BentoCard key={s.name} service={s} delay={i * 0.1} />
           ))}

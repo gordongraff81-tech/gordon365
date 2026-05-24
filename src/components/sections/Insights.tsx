@@ -9,8 +9,9 @@ const CARD_ACCENTS = [
   { accent: "#f87171", glow: "rgba(248,113,113,0.22)", thumbGrad: "linear-gradient(135deg, rgba(248,113,113,0.15) 0%, rgba(99,102,241,0.10) 100%)" },
   { accent: "#6366f1", glow: "rgba(99,102,241,0.22)",  thumbGrad: "linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(34,211,238,0.10) 100%)" },
   { accent: "#22d3ee", glow: "rgba(34,211,238,0.22)",  thumbGrad: "linear-gradient(135deg, rgba(34,211,238,0.15) 0%, rgba(99,102,241,0.08) 100%)" },
+  { accent: "#a78bfa", glow: "rgba(167,139,250,0.22)", thumbGrad: "linear-gradient(135deg, rgba(94,92,230,0.15) 0%, rgba(34,211,238,0.10) 100%)" },
 ];
-const THUMB_ICONS = ["🔐", "✦", "💡"];
+const THUMB_ICONS = ["🔐", "✦", "💡", "💻"];
 
 export default function Insights() {
   const t = useTranslations("insights");
@@ -46,7 +47,7 @@ export default function Insights() {
           </a>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
           {items.map((item, i) => {
             const ca = CARD_ACCENTS[i % CARD_ACCENTS.length];
             return (

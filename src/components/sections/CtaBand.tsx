@@ -42,6 +42,23 @@ export default function CtaBand() {
               </svg>
               {t("btn1")}
             </button>
+            <a
+              href="#intune-platform"
+              className="btn-outline"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("intune-platform")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="20" width="18" height="4" rx="1.5"/>
+                <rect x="7" y="12" width="10" height="8" rx="1"/>
+                <rect x="10" y="4" width="4" height="8" rx="1"/>
+              </svg>
+              {t("btn3")}
+            </a>
             <a href="#contact" className="btn-outline">
               {t("btn2")}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
