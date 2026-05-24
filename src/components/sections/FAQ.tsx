@@ -29,6 +29,14 @@ const FAQ_EN = [
     q: "What do you need to start a Health Check?",
     a: "We need Global Reader access to your Microsoft 365 tenant (read-only) and a brief about your business context and pain points. No sensitive business data is accessed — the audit focuses on configuration, licensing assignments, security settings, and governance. An NDA is provided before any access is granted.",
   },
+  {
+    q: "What does the Modern Workplace Platform Factory actually deploy?",
+    a: "The platform runs 22 fully automated steps against a fresh or existing M365 tenant: a Break-Glass account with Global Admin role, six Entra ID security groups (including dynamic device and user groups), Autopilot User-Driven deployment profiles with Pre-Provisioning, BitLocker XTS-AES 256, Defender baselines with ASR rules, Windows LAPS, Windows Hello for Business Cloud Trust, a Firewall baseline, Compliance and Conditional Access policies (Report-only until tested), M365 Apps Enterprise, Teams, Edge and Company Portal via WinGet. Every step is idempotent — the script can be re-run without duplicating objects.",
+  },
+  {
+    q: "What is Drift Detection and why does it matter?",
+    a: "Drift Detection is a daily automated check — running at 06:00 UTC — that compares every Intune policy in the tenant against the templates defined in the platform configuration. If an admin has manually changed a policy in the portal, or an update has altered a setting, the system flags the deviation immediately. This prevents silent security regressions. Clients running the platform on the monthly retainer receive drift reports as part of proactive monitoring. Detected drift is remediated by re-running the bootstrap, which restores the desired state.",
+  },
 ];
 
 const FAQ_DE = [
@@ -55,6 +63,14 @@ const FAQ_DE = [
   {
     q: "Was benötigen Sie für den Start eines Health Checks?",
     a: "Wir benötigen Global Reader-Zugriff auf Ihren Microsoft 365-Mandanten (nur Lesezugriff) und ein kurzes Briefing zu Ihrem Unternehmenskontext und Herausforderungen. Es werden keine sensiblen Geschäftsdaten abgerufen — das Audit konzentriert sich auf Konfiguration, Lizenzzuweisungen, Sicherheitseinstellungen und Governance. Eine NDA wird vor jedem Zugriff bereitgestellt.",
+  },
+  {
+    q: "Was stellt die Modern Workplace Platform Factory konkret bereit?",
+    a: "Die Plattform führt 22 vollautomatische Schritte gegen einen frischen oder bestehenden M365-Mandanten aus: ein Break-Glass-Konto mit Global Admin-Rolle, sechs Entra ID Sicherheitsgruppen (inklusive dynamischer Geräte- und Benutzergruppen), Autopilot User-Driven Deployment Profile mit Pre-Provisioning, BitLocker XTS-AES 256, Defender-Baselines mit ASR-Regeln, Windows LAPS, Windows Hello for Business Cloud Trust, eine Firewall-Baseline, Compliance- und Conditional Access-Richtlinien (Report-only bis zum Test), M365 Apps Enterprise, Teams, Edge und Company Portal via WinGet. Jeder Schritt ist idempotent — das Script kann beliebig oft ausgeführt werden, ohne Objekte zu duplizieren.",
+  },
+  {
+    q: "Was ist Drift Detection und warum ist sie wichtig?",
+    a: "Drift Detection ist ein täglich um 06:00 UTC laufender automatischer Check, der jede Intune-Richtlinie im Mandanten mit den in der Plattformkonfiguration definierten Templates vergleicht. Hat ein Administrator manuell eine Richtlinie im Portal geändert oder hat ein Update eine Einstellung verändert, meldet das System die Abweichung sofort. Das verhindert stille Sicherheitsregressionen. Kunden, die die Plattform im monatlichen Retainer betreiben, erhalten Drift-Berichte als Teil des proaktiven Monitorings. Erkannte Abweichungen werden durch erneutes Ausführen des Bootstraps behoben, was den gewünschten Soll-Zustand wiederherstellt.",
   },
 ];
 
