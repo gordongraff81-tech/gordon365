@@ -224,7 +224,7 @@ function PillarCard({ icon, label, desc, accent, delay }: {
 }
 
 function PhaseStep({ num, title, items, accent, delay }: {
-  num: string; title: string; items: string[]; accent: string; delay: number;
+  num: string; title: string; items: readonly string[]; accent: string; delay: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.1 });
