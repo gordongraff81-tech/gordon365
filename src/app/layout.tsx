@@ -1,30 +1,56 @@
-export const runtime = 'edge';
-
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+export const viewport: Viewport = {
+  themeColor: "#0a0f1e",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
-  title: "gordon365",
-  description: "Microsoft Cloud Consulting & Modern Workplace Engineering",
-  alternates: {
-    canonical: "https://gordon365.com/de",
-    languages: {
-      "de-DE": "https://gordon365.com/de",
-      "en-US": "https://gordon365.com/en",
-    },
+  title: {
+    default: "gordon365 | Microsoft 365 & Cloud Consulting",
+    template: "%s | gordon365",
   },
+  description:
+    "Microsoft 365, Intune, Autopilot, Conditional Access und Zero Trust – Cloud Consulting von Gordon.",
+  metadataBase: new URL("https://gordon365.com"),
   icons: {
-    // SVG-Favicon: moderne Browser, scharf bei jeder Auflösung
     icon: [
-      { url: "/favicon.svg",           type: "image/svg+xml"               },
-      { url: "/icons/favicon-32.png",  sizes: "32x32",   type: "image/png" },
-      { url: "/icons/favicon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icons/favicon-512.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: [
-      { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    other: [
+      {
+        rel: "manifest",
+        url: "/site.webmanifest",
+      },
     ],
-    shortcut: "/favicon.svg",
+  },
+  openGraph: {
+    title: "gordon365 | Microsoft 365 & Cloud Consulting",
+    description:
+      "Microsoft 365, Intune, Autopilot, Conditional Access und Zero Trust – Cloud Consulting von Gordon.",
+    url: "https://gordon365.com",
+    siteName: "gordon365",
+    images: [
+      {
+        url: "/android-chrome-512x512.png",
+        width: 512,
+        height: 512,
+        alt: "gordon365 Logo",
+      },
+    ],
+    locale: "de_DE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "gordon365",
+    description: "Microsoft 365 & Cloud Consulting",
+    images: ["/android-chrome-512x512.png"],
   },
 };
 
@@ -34,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="de">
+    <html lang="de" suppressHydrationWarning>
       <body>{children}</body>
     </html>
   );

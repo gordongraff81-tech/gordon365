@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image"; 
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface NavProps {
@@ -20,7 +20,6 @@ export default function NavV2({ locale }: NavProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
-  // Erkennt ob wir auf der Assessment-Seite sind
   const isAssessmentPage = pathname.includes("/assessment");
 
   const navSections = useMemo(() => [
@@ -32,7 +31,6 @@ export default function NavV2({ locale }: NavProps) {
     { id: "contact", label: t("contact") }
   ], [t]);
 
-
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -40,14 +38,13 @@ export default function NavV2({ locale }: NavProps) {
   }, []);
 
   useEffect(() => {
-    // IntersectionObserver nur auf der Homepage (nicht auf Assessment-Seite)
     if (isAssessmentPage) return;
     const observers = navSections.map((section) => {
       const el = document.getElementById(section.id);
       if (!el) return null;
       const obs = new IntersectionObserver(
-        ([entry]) => { 
-          if (entry.isIntersecting) setActiveSection(section.id); 
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(section.id);
         },
         { rootMargin: "-40% 0px -55% 0px" }
       );
@@ -76,14 +73,38 @@ export default function NavV2({ locale }: NavProps) {
           borderBottom: scrolled ? "1px solid rgba(0,0,0,0.08)" : "none",
         }}
       >
-        <Link href={`/${locale}`} className="flex items-center gap-3 group" aria-label="gordon365 Home">
-          <div className="relative h-9 w-[140px]">
-            <Image src="/logo.png" alt="gordon365 Logo" fill className="object-contain" priority />
-          </div>
+        {/* ── Logo ── */}
+        <Link
+          href={`/${locale}`}
+          className="flex items-center shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
+          aria-label="gordon365 – Zurück zur Startseite"
+        >
+          {/* Desktop: horizontal logo */}
+          <Image
+            src="/logo.png"
+            alt="gordon365 Logo"
+            width={175}
+            height={50}
+            priority
+            quality={95}
+            className="hidden sm:block w-auto"
+            style={{ height: "clamp(36px, 3.5vw, 50px)", width: "auto" }}
+          />
+          {/* Mobile: icon only */}
+          <Image
+            src="/logo-icon.png"
+            alt="gordon365 Logo"
+            width={40}
+            height={36}
+            priority
+            quality={95}
+            className="block sm:hidden w-auto"
+            style={{ height: "36px", width: "auto" }}
+          />
         </Link>
 
+        {/* ── Desktop Nav ── */}
         <div className="hidden lg:flex items-center gap-6">
-          {/* Auf der Homepage: Anchor-Links; auf anderen Seiten: Homepage-Anchor */}
           {navSections.map((section) => (
             <a
               key={section.id}
@@ -98,7 +119,6 @@ export default function NavV2({ locale }: NavProps) {
             </a>
           ))}
 
-          {/* Assessment-Link */}
           <Link
             href={`/${locale}/assessment`}
             className={cn(
@@ -110,13 +130,13 @@ export default function NavV2({ locale }: NavProps) {
           >
             {t("assessment")}
           </Link>
-          
+
           <div className="flex bg-slate-100 rounded-full p-1 border border-slate-200 ml-2">
             {["de", "en"].map((l) => (
               <button
                 key={l}
                 onClick={() => switchLang(l)}
-                aria-label={`Sprache zu ${l === 'de' ? 'Deutsch' : 'Englisch'} wechseln`}
+                aria-label={`Sprache zu ${l === "de" ? "Deutsch" : "Englisch"} wechseln`}
                 className={cn(
                   "px-3 py-1 text-[10px] font-bold uppercase rounded-full transition-all",
                   locale === l ? "bg-white text-blue-600 shadow-sm" : "text-slate-400 hover:text-slate-600"
@@ -128,8 +148,9 @@ export default function NavV2({ locale }: NavProps) {
           </div>
         </div>
 
-        <button 
-          className="lg:hidden p-2 text-slate-900" 
+        {/* ── Hamburger ── */}
+        <button
+          className="lg:hidden p-2 text-slate-900"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Menü öffnen/schließen"
           aria-expanded={mobileOpen}
@@ -140,6 +161,7 @@ export default function NavV2({ locale }: NavProps) {
         </button>
       </motion.nav>
 
+      {/* ── Mobile Drawer ── */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -148,9 +170,22 @@ export default function NavV2({ locale }: NavProps) {
             exit={{ opacity: 0, y: -10 }}
             className="fixed top-16 left-0 right-0 bg-white/95 backdrop-blur-2xl z-40 border-b border-slate-100 flex flex-col p-6 gap-4 lg:hidden shadow-2xl"
           >
+            {/* Mobile Drawer Logo */}
+            <div className="flex items-center pb-4 border-b border-slate-100">
+              <Image
+                src="/logo.png"
+                alt="gordon365 Logo"
+                width={140}
+                height={40}
+                quality={95}
+                className="w-auto"
+                style={{ height: "40px", width: "auto" }}
+              />
+            </div>
+
             {navSections.map((section) => (
-              <a 
-                key={section.id} 
+              <a
+                key={section.id}
                 href={isAssessmentPage ? `/${locale}#${section.id}` : `#${section.id}`}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
@@ -162,7 +197,6 @@ export default function NavV2({ locale }: NavProps) {
               </a>
             ))}
 
-            {/* Assessment-Link Mobile */}
             <Link
               href={`/${locale}/assessment`}
               onClick={() => setMobileOpen(false)}
@@ -176,10 +210,10 @@ export default function NavV2({ locale }: NavProps) {
 
             <div className="flex gap-6 mt-2">
               {["de", "en"].map((l) => (
-                <button 
-                  key={l} 
+                <button
+                  key={l}
                   onClick={() => { switchLang(l); setMobileOpen(false); }}
-                  aria-label={`Sprache zu ${l === 'de' ? 'Deutsch' : 'Englisch'} wechseln`}
+                  aria-label={`Sprache zu ${l === "de" ? "Deutsch" : "Englisch"} wechseln`}
                   className={cn("text-sm font-bold uppercase", locale === l ? "text-blue-600" : "text-slate-400")}
                 >
                   {l === "de" ? "Deutsch" : "English"}
