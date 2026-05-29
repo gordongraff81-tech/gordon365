@@ -5,16 +5,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ["en", "de"];
   const now = new Date();
 
+  // Root Seite als Hauptseite
+  const rootPage = {
+    url: baseUrl,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 1.0,
+    alternates: {
+      languages: {
+        "en-US": `${baseUrl}/en`,
+        "de-DE": `${baseUrl}/de`,
+      },
+    },
+  };
+
   // Hauptseiten pro Locale
-  const homePages = locales.map((locale) => ({
+  const localePages = locales.map((locale) => ({
     url: `${baseUrl}/${locale}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
-    priority: locale === "en" ? 1.0 : 0.9,
+    priority: locale === "en" ? 0.95 : 0.9,
     alternates: {
-      languages: Object.fromEntries(
-        locales.map((l) => [l === "de" ? "de-DE" : "en-US", `${baseUrl}/${l}`])
-      ),
+      languages: {
+        "en-US": `${baseUrl}/en`,
+        "de-DE": `${baseUrl}/de`,
+      },
     },
   }));
 
@@ -26,9 +41,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.85,
       alternates: {
-        languages: Object.fromEntries(
-          locales.map((l) => [l === "de" ? "de-DE" : "en-US", `${baseUrl}/${l}/assessment`])
-        ),
+        languages: {
+          "en-US": `${baseUrl}/en/assessment`,
+          "de-DE": `${baseUrl}/de/assessment`,
+        },
       },
     },
     {
@@ -51,13 +67,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]);
 
-  // Wichtige Anchor-Sektionen als eigenständige URLs (für interne Verlinkung & SEO-Signale)
+  // Anchor Sections (SEO Signale)
   const anchorSections = [
     { id: "intune-platform", priority: 0.8 },
-    { id: "services",        priority: 0.75 },
+    { id: "services", priority: 0.75 },
     { id: "security-checker", priority: 0.7 },
-    { id: "results",         priority: 0.65 },
-    { id: "contact",         priority: 0.6 },
+    { id: "results", priority: 0.65 },
+    { id: "contact", priority: 0.6 },
   ];
 
   const anchorPages = locales.flatMap((locale) =>
@@ -69,5 +85,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...homePages, ...subPages, ...anchorPages];
+  return [rootPage, ...localePages, ...subPages, ...anchorPages];
 }
