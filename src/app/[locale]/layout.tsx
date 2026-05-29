@@ -1,5 +1,5 @@
-export const runtime = 'edge';
-export const dynamic = 'force-dynamic';
+export const runtime = "edge";
+export const dynamic = "force-dynamic";
 
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
@@ -23,14 +23,18 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
+
     metadataBase: new URL(baseUrl),
+
     alternates: {
       canonical: localeUrl,
       languages: {
         en: `${baseUrl}/en`,
         de: `${baseUrl}/de`,
+        "x-default": `${baseUrl}/en`,
       },
     },
+
     openGraph: {
       title: t("ogTitle"),
       description: t("ogDescription"),
@@ -47,29 +51,40 @@ export async function generateMetadata({
         },
       ],
     },
+
     twitter: {
       card: "summary_large_image",
       title: t("ogTitle"),
       description: t("ogDescription"),
     },
+
     robots: {
       index: true,
       follow: true,
-      googleBot: { index: true, follow: true, "max-video-preview": -1 },
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+      },
     },
+
     icons: {
-      // SVG-Favicon: scharf bei jeder Auflösung, Dark-Mode-fähig
       icon: [
-        { url: "/favicon.svg",           type: "image/svg+xml"               },
-        { url: "/icons/favicon-32.png",  sizes: "32x32",   type: "image/png" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
         { url: "/icons/favicon-192.png", sizes: "192x192", type: "image/png" },
         { url: "/icons/favicon-512.png", sizes: "512x512", type: "image/png" },
       ],
       apple: [
-        { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+        {
+          url: "/icons/apple-touch-icon.png",
+          sizes: "180x180",
+          type: "image/png",
+        },
       ],
       shortcut: "/favicon.svg",
     },
+
     other: {
       "application/ld+json": JSON.stringify({
         "@context": "https://schema.org",
@@ -86,7 +101,6 @@ export async function generateMetadata({
           "Modern Workplace Transformation",
           "Microsoft Licensing Optimization",
           "Intune Deployment",
-          "Microsoft Intune Management",
           "Windows Autopilot",
           "Endpoint Compliance Management",
         ],
