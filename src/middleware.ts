@@ -3,15 +3,11 @@ import { routing } from "./i18n/routing";
 
 export default createMiddleware({
   ...routing,
-  localePrefix: "always",
+  localePrefix: "as-needed",
   localeDetection: false,
   defaultLocale: "en",
 });
 
 export const config = {
-  matcher: [
-    "/",
-    "/(de|en)/:path*",
-    "/((?!api|_next|_vercel|.*\\..*).*)",
-  ],
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };
