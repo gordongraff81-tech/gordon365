@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   description:
     "Microsoft 365, Intune, Autopilot, Conditional Access und Zero Trust – Cloud Consulting von Gordon.",
 
-  alternates: {
-    canonical: "https://gordon365.com",
-  },
+  // Canonical is set per-locale in [locale]/layout.tsx.
+  // Setting it here on the root layout would conflict with
+  // the /en canonical and signal two canonicals for the same content.
 
   robots: {
     index: true,

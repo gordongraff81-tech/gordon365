@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# Disallow noindex legal pages from crawl budget waste
+Disallow: /*/impressum
+Disallow: /*/datenschutz
+Disallow: /*/agb
+
 Sitemap: https://gordon365.com/sitemap.xml
