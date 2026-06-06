@@ -6,100 +6,145 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
+const fadeUp = (inView: boolean, delay = 0) => ({
+  initial: { opacity: 0, y: 40 },
+  animate: inView ? { opacity: 1, y: 0 } : {},
+  transition: { duration: 0.8, delay, ease: [0.25, 0, 0, 1] },
+});
+
 // ─────────────────────────────────────────────
 // Scroll 1 — System Definition
+// HINTERGRUND: Weiß
 // ─────────────────────────────────────────────
 function SectionSystemDefinition() {
   const t = useTranslations("system");
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.3 });
-
-  const fadeUp = (delay = 0) => ({
-    initial: { opacity: 0, y: 32 },
-    animate: inView ? { opacity: 1, y: 0 } : {},
-    transition: { duration: 0.7, delay, ease: [0.4, 0, 0.2, 1] },
-  });
+  const inView = useInView(ref, { once: true, amount: 0.25 });
 
   return (
     <section
       ref={ref}
       id="system-definition"
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 py-32 bg-bg-1 overflow-hidden"
+      style={{ background: "#FFFFFF", paddingTop: "140px", paddingBottom: "140px" }}
+      className="px-6"
       aria-labelledby="system-definition-h1"
     >
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 50% at 50% 40%, rgba(0,113,227,0.06) 0%, transparent 70%)",
-        }}
-      />
-      <div
-        className="absolute inset-0 pointer-events-none opacity-40"
-        aria-hidden="true"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-          maskImage:
-            "radial-gradient(ellipse 80% 60% at 50% 40%, black 10%, transparent 80%)",
-        }}
-      />
-
-      <div className="relative z-10 max-w-[800px] mx-auto text-center">
-        <motion.div {...fadeUp(0)}>
-          <span className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 rounded-full px-4 py-1.5 text-[0.7rem] font-bold tracking-[0.1em] uppercase text-accent-2 mb-8">
-            <span
-              className="w-1.5 h-1.5 rounded-full bg-accent-2 animate-pulse-dot"
-              aria-hidden="true"
-            />
-            {t("def.eyebrow")}
-          </span>
-        </motion.div>
+      <div className="max-w-[860px] mx-auto text-center">
+        <motion.p
+          {...fadeUp(inView, 0)}
+          style={{
+            fontSize: "0.75rem",
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "#0071E3",
+            marginBottom: "2rem",
+          }}
+        >
+          {t("def.eyebrow")}
+        </motion.p>
 
         <motion.h1
           id="system-definition-h1"
-          {...fadeUp(0.1)}
-          className="font-display font-extrabold leading-[1.04] tracking-[-0.04em] text-text-1 mb-6"
-          style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)" }}
+          {...fadeUp(inView, 0.08)}
+          style={{
+            fontSize: "clamp(3rem, 7vw, 6rem)",
+            fontWeight: 800,
+            lineHeight: 1.02,
+            letterSpacing: "-0.04em",
+            color: "#1D1D1F",
+            marginBottom: "2rem",
+            fontFamily: "var(--font-plus-jakarta)",
+          }}
         >
           {t("def.h1a")}{" "}
-          <span className="text-gradient">{t("def.h1b")}</span>
+          <span style={{
+            background: "linear-gradient(135deg, #0071E3 0%, #34AADC 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}>
+            {t("def.h1b")}
+          </span>
           <br />
           {t("def.h1c")}
         </motion.h1>
 
         <motion.p
-          {...fadeUp(0.2)}
-          className="text-[1.0625rem] leading-[1.85] text-text-2 max-w-[580px] mx-auto mb-12"
+          {...fadeUp(inView, 0.16)}
+          style={{
+            fontSize: "clamp(1.125rem, 2vw, 1.375rem)",
+            lineHeight: 1.7,
+            color: "#6E6E73",
+            maxWidth: "600px",
+            margin: "0 auto 3rem",
+            fontWeight: 400,
+          }}
         >
           {t("def.sub")}
         </motion.p>
 
-        <motion.div {...fadeUp(0.3)} className="flex flex-wrap justify-center gap-3">
-          <a href="#audit-cta" className="btn-primary">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
+        <motion.div
+          {...fadeUp(inView, 0.24)}
+          style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
+        >
+          <a
+            href="#audit-cta"
+            style={{
+              background: "#0071E3",
+              color: "#fff",
+              padding: "1rem 2rem",
+              borderRadius: "980px",
+              fontWeight: 600,
+              fontSize: "1rem",
+              textDecoration: "none",
+              transition: "background 0.2s",
+              display: "inline-block",
+            }}
+            onMouseOver={e => (e.currentTarget.style.background = "#0077ED")}
+            onMouseOut={e => (e.currentTarget.style.background = "#0071E3")}
+          >
             {t("def.cta")}
           </a>
-          <a href="#problem-reality" className="btn-outline">
+          <a
+            href="#problem-reality"
+            style={{
+              color: "#0071E3",
+              padding: "1rem 2rem",
+              borderRadius: "980px",
+              fontWeight: 600,
+              fontSize: "1rem",
+              textDecoration: "none",
+              border: "1.5px solid #0071E3",
+              display: "inline-block",
+              transition: "background 0.2s",
+            }}
+          >
             {t("def.ctaSecondary")}
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <path d="M12 5v14M5 12l7 7 7-7" />
-            </svg>
           </a>
         </motion.div>
 
         <motion.div
-          {...fadeUp(0.45)}
-          className="flex flex-wrap justify-center items-center gap-3 mt-16 pt-8 border-t border-border"
+          {...fadeUp(inView, 0.36)}
+          style={{
+            display: "flex",
+            gap: "2.5rem",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            marginTop: "5rem",
+            paddingTop: "3rem",
+            borderTop: "1px solid #E5E5EA",
+          }}
         >
           {["Microsoft Partner", "D/A/CH Region", "DSGVO Konform", "10+ Jahre M365"].map((chip) => (
             <span
               key={chip}
-              className="text-[0.7rem] font-semibold text-text-2 bg-card border border-border rounded-full px-3 py-1"
+              style={{
+                fontSize: "0.8125rem",
+                fontWeight: 500,
+                color: "#6E6E73",
+                letterSpacing: "0.01em",
+              }}
             >
               {chip}
             </span>
@@ -112,133 +157,144 @@ function SectionSystemDefinition() {
 
 // ─────────────────────────────────────────────
 // Scroll 2 — Problem Realität
+// HINTERGRUND: Schwarz
 // ─────────────────────────────────────────────
 const PROBLEMS = [
-  {
-    key: "admin",
-    color: "#FF3B30",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" width="22" height="22" aria-hidden="true">
-        <circle cx="12" cy="8" r="4" />
-        <path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" />
-        <path d="M17 13l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    key: "mfa",
-    color: "#FF9F0A",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" width="22" height="22" aria-hidden="true">
-        <rect x="5" y="11" width="14" height="10" rx="2" />
-        <path d="M8 11V7a4 4 0 018 0v4" />
-      </svg>
-    ),
-  },
-  {
-    key: "sharing",
-    color: "#FF9F0A",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" width="22" height="22" aria-hidden="true">
-        <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8" />
-        <polyline points="16 6 12 2 8 6" />
-        <line x1="12" y1="2" x2="12" y2="15" />
-      </svg>
-    ),
-  },
-  {
-    key: "devices",
-    color: "#FF3B30",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" width="22" height="22" aria-hidden="true">
-        <rect x="5" y="2" width="14" height="20" rx="2" />
-        <line x1="12" y1="18" x2="12" y2="18" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-  {
-    key: "visibility",
-    color: "#FF9F0A",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" width="22" height="22" aria-hidden="true">
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-        <circle cx="12" cy="12" r="3" />
-        <line x1="3" y1="3" x2="21" y2="21" strokeLinecap="round" />
-      </svg>
-    ),
-  },
+  { key: "admin",      severity: "KRITISCH" },
+  { key: "mfa",       severity: "KRITISCH" },
+  { key: "sharing",   severity: "HOCH" },
+  { key: "devices",   severity: "HOCH" },
+  { key: "visibility",severity: "KRITISCH" },
 ];
 
 function SectionProblemReality() {
   const t = useTranslations("system");
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.15 });
+  const inView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
     <section
       ref={ref}
       id="problem-reality"
-      className="relative py-32 px-6 bg-bg-1"
+      style={{ background: "#1D1D1F", paddingTop: "140px", paddingBottom: "140px" }}
+      className="px-6"
       aria-labelledby="problem-reality-h2"
     >
-      <div className="max-w-[900px] mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65 }}
-          className="text-center mb-16"
-        >
-          <span className="text-[0.7rem] font-bold tracking-[0.12em] uppercase text-text-3 mb-4 block">
+      <div className="max-w-[960px] mx-auto">
+        <motion.div {...fadeUp(inView, 0)} style={{ marginBottom: "80px" }}>
+          <p style={{
+            fontSize: "0.75rem",
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "#0071E3",
+            marginBottom: "1.5rem",
+          }}>
             {t("problem.label")}
-          </span>
-          <h2 id="problem-reality-h2" className="display-sm text-text-1 mb-4">
+          </p>
+          <h2
+            id="problem-reality-h2"
+            style={{
+              fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+              fontWeight: 800,
+              lineHeight: 1.04,
+              letterSpacing: "-0.04em",
+              color: "#F5F5F7",
+              marginBottom: "1.5rem",
+              fontFamily: "var(--font-plus-jakarta)",
+            }}
+          >
             {t("problem.h2")}
           </h2>
-          <p className="text-[1.0625rem] text-text-2 max-w-[520px] mx-auto leading-relaxed">
+          <p style={{
+            fontSize: "clamp(1.125rem, 2vw, 1.25rem)",
+            color: "#86868B",
+            lineHeight: 1.7,
+            maxWidth: "560px",
+          }}>
             {t("problem.sub")}
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "#2D2D2F", borderRadius: "18px", overflow: "hidden" }}>
           {PROBLEMS.map((p, i) => (
             <motion.div
               key={p.key}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: i * 0.08 }}
-              className="bg-card border border-border rounded-2xl p-6 flex gap-4 items-start"
+              {...fadeUp(inView, i * 0.07)}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr auto",
+                alignItems: "center",
+                gap: "2rem",
+                padding: "2rem 2.5rem",
+                background: "#1D1D1F",
+                borderBottom: i < PROBLEMS.length - 1 ? "1px solid #2D2D2F" : "none",
+              }}
             >
-              <div
-                className="shrink-0 mt-0.5 w-10 h-10 rounded-xl flex items-center justify-center"
-                style={{ background: `${p.color}14`, color: p.color }}
-              >
-                {p.icon}
-              </div>
               <div>
-                <div className="font-semibold text-text-1 text-[0.9375rem] mb-1">
+                <p style={{
+                  fontSize: "clamp(1.125rem, 2vw, 1.375rem)",
+                  fontWeight: 600,
+                  color: "#F5F5F7",
+                  marginBottom: "0.4rem",
+                  letterSpacing: "-0.02em",
+                }}>
                   {t(`problem.items.${p.key}.title`)}
-                </div>
-                <div className="text-[0.8125rem] text-text-2 leading-relaxed">
+                </p>
+                <p style={{ fontSize: "0.9375rem", color: "#86868B", lineHeight: 1.6 }}>
                   {t(`problem.items.${p.key}.desc`)}
-                </div>
+                </p>
               </div>
+              <span style={{
+                fontSize: "0.625rem",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: p.severity === "KRITISCH" ? "#FF453A" : "#FF9F0A",
+                background: p.severity === "KRITISCH" ? "rgba(255,69,58,0.12)" : "rgba(255,159,10,0.12)",
+                padding: "0.35rem 0.75rem",
+                borderRadius: "4px",
+                whiteSpace: "nowrap",
+              }}>
+                {p.severity}
+              </span>
             </motion.div>
           ))}
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55, delay: 0.45 }}
-            className="md:col-span-2 lg:col-span-1 bg-accent/10 border border-accent/25 rounded-2xl p-6 flex flex-col justify-between"
-          >
-            <p className="text-[0.9375rem] font-semibold text-text-1 mb-4">
-              {t("problem.ctaCard.text")}
-            </p>
-            <a href="#audit-cta" className="btn-primary self-start text-sm">
-              {t("problem.ctaCard.btn")}
-            </a>
-          </motion.div>
         </div>
+
+        <motion.div
+          {...fadeUp(inView, 0.5)}
+          style={{
+            marginTop: "3rem",
+            padding: "2.5rem",
+            background: "#0071E3",
+            borderRadius: "18px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "2rem",
+            flexWrap: "wrap",
+          }}
+        >
+          <p style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)", fontWeight: 600, color: "#fff", maxWidth: "480px", lineHeight: 1.5 }}>
+            {t("problem.ctaCard.text")}
+          </p>
+          <a
+            href="#audit-cta"
+            style={{
+              background: "#fff",
+              color: "#0071E3",
+              padding: "0.875rem 1.75rem",
+              borderRadius: "980px",
+              fontWeight: 700,
+              fontSize: "0.9375rem",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {t("problem.ctaCard.btn")}
+          </a>
+        </motion.div>
       </div>
     </section>
   );
@@ -246,123 +302,115 @@ function SectionProblemReality() {
 
 // ─────────────────────────────────────────────
 // Scroll 3 — System Model
+// HINTERGRUND: Weiß
 // ─────────────────────────────────────────────
 const LAYERS = [
-  {
-    key: "identity",
-    color: "#0071E3",
-    number: "01",
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.75" width="28" height="28" aria-hidden="true">
-        <circle cx="16" cy="12" r="6" />
-        <path d="M4 28c0-6.627 5.373-10 12-10s12 3.373 12 10" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-  {
-    key: "device",
-    color: "#5E5CE6",
-    number: "02",
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.75" width="28" height="28" aria-hidden="true">
-        <rect x="7" y="4" width="18" height="24" rx="3" />
-        <circle cx="16" cy="24" r="1.25" fill="currentColor" stroke="none" />
-      </svg>
-    ),
-  },
-  {
-    key: "collaboration",
-    color: "#34C759",
-    number: "03",
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.75" width="28" height="28" aria-hidden="true">
-        <path d="M4 22V12l12-8 12 8v10H4z" />
-        <rect x="11" y="18" width="10" height="8" />
-      </svg>
-    ),
-  },
-  {
-    key: "security",
-    color: "#FF3B30",
-    number: "04",
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.75" width="28" height="28" aria-hidden="true">
-        <path d="M16 4L4 8v10c0 8 6.667 13.333 12 14 5.333-.667 12-6 12-14V8L16 4z" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
+  { key: "identity",      number: "01", color: "#0071E3", bg: "#F0F7FF" },
+  { key: "device",        number: "02", color: "#5E5CE6", bg: "#F2F2FF" },
+  { key: "collaboration", number: "03", color: "#1D1D1F", bg: "#F5F5F7" },
+  { key: "security",      number: "04", color: "#FF3B30", bg: "#FFF2F1" },
 ];
 
 function SectionSystemModel() {
   const t = useTranslations("system");
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.15 });
+  const inView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
     <section
       ref={ref}
       id="system-model"
-      className="relative py-32 px-6 overflow-hidden"
-      style={{ background: "var(--color-bg-2, #F5F5F7)" }}
+      style={{ background: "#FFFFFF", paddingTop: "140px", paddingBottom: "140px" }}
+      className="px-6"
       aria-labelledby="system-model-h2"
     >
       <div className="max-w-[960px] mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65 }}
-          className="text-center mb-16"
-        >
-          <span className="text-[0.7rem] font-bold tracking-[0.12em] uppercase text-text-3 mb-4 block">
+        <motion.div {...fadeUp(inView, 0)} style={{ marginBottom: "80px", textAlign: "center" }}>
+          <p style={{
+            fontSize: "0.75rem",
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "#0071E3",
+            marginBottom: "1.5rem",
+          }}>
             {t("model.label")}
-          </span>
-          <h2 id="system-model-h2" className="display-sm text-text-1 mb-4">
+          </p>
+          <h2
+            id="system-model-h2"
+            style={{
+              fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+              fontWeight: 800,
+              lineHeight: 1.04,
+              letterSpacing: "-0.04em",
+              color: "#1D1D1F",
+              marginBottom: "1.5rem",
+              fontFamily: "var(--font-plus-jakarta)",
+            }}
+          >
             {t("model.h2")}
           </h2>
-          <p className="text-[1.0625rem] text-text-2 max-w-[500px] mx-auto leading-relaxed">
+          <p style={{
+            fontSize: "clamp(1.125rem, 2vw, 1.25rem)",
+            color: "#6E6E73",
+            lineHeight: 1.7,
+            maxWidth: "520px",
+            margin: "0 auto",
+          }}>
             {t("model.sub")}
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
+          gap: "1.25rem",
+        }}>
           {LAYERS.map((layer, i) => (
             <motion.div
               key={layer.key}
-              initial={{ opacity: 0, y: 28, scale: 0.96 }}
-              animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.4, 0, 0.2, 1] }}
-              className="bg-card border border-border rounded-2xl p-6 flex flex-col gap-4"
+              {...fadeUp(inView, i * 0.1)}
+              style={{
+                background: layer.bg,
+                borderRadius: "20px",
+                padding: "2.5rem 2rem",
+                display: "flex",
+                flexDirection: "column",
+                gap: "1.5rem",
+              }}
             >
-              <div className="flex items-start justify-between">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center"
-                  style={{ background: `${layer.color}14`, color: layer.color }}
-                >
-                  {layer.icon}
-                </div>
-                <span
-                  className="text-[0.65rem] font-bold tracking-[0.15em] opacity-40"
-                  style={{ color: layer.color }}
-                >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                <span style={{
+                  fontSize: "2.25rem",
+                  fontWeight: 800,
+                  letterSpacing: "-0.04em",
+                  color: layer.color,
+                  lineHeight: 1,
+                  fontFamily: "var(--font-plus-jakarta)",
+                }}>
                   {layer.number}
                 </span>
               </div>
+
               <div>
-                <div className="font-bold text-text-1 text-[1.0625rem] mb-1 tracking-[-0.02em]">
+                <p style={{
+                  fontSize: "1.25rem",
+                  fontWeight: 700,
+                  color: "#1D1D1F",
+                  letterSpacing: "-0.02em",
+                  marginBottom: "0.5rem",
+                  lineHeight: 1.2,
+                }}>
                   {t(`model.layers.${layer.key}.title`)}
-                </div>
-                <div className="text-[0.8125rem] text-text-2 leading-relaxed">
+                </p>
+                <p style={{ fontSize: "0.875rem", color: "#6E6E73", lineHeight: 1.6 }}>
                   {t(`model.layers.${layer.key}.sub`)}
-                </div>
+                </p>
               </div>
-              <ul className="flex flex-col gap-1.5 mt-auto" role="list">
+
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 {(t.raw(`model.layers.${layer.key}.features`) as string[]).map((f: string) => (
-                  <li key={f} className="text-[0.75rem] text-text-2 flex items-center gap-1.5">
-                    <span
-                      className="w-1 h-1 rounded-full shrink-0"
-                      style={{ background: layer.color }}
-                      aria-hidden="true"
-                    />
+                  <li key={f} style={{ fontSize: "0.8125rem", color: "#1D1D1F", fontWeight: 500 }}>
                     {f}
                   </li>
                 ))}
@@ -377,51 +425,13 @@ function SectionSystemModel() {
 
 // ─────────────────────────────────────────────
 // Scroll 4 — Module Intro
+// HINTERGRUND: Schwarz
 // ─────────────────────────────────────────────
 const MODULES = [
-  {
-    key: "audit",
-    slug: "security-audit-microsoft-365",
-    color: "#0071E3",
-    icon: (
-      <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.75" width="24" height="24" aria-hidden="true">
-        <path d="M14 3L3 7v8c0 6.5 5 10.5 11 11 6-.5 11-4.5 11-11V7L14 3z" strokeLinejoin="round" />
-        <path d="M9 14l3 3 6-6" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    key: "entra",
-    slug: "entra-id",
-    color: "#5E5CE6",
-    icon: (
-      <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.75" width="24" height="24" aria-hidden="true">
-        <circle cx="14" cy="10" r="5" />
-        <path d="M3 25c0-5.523 4.925-9 11-9s11 3.477 11 9" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-  {
-    key: "intune",
-    slug: "intune",
-    color: "#34C759",
-    icon: (
-      <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.75" width="24" height="24" aria-hidden="true">
-        <rect x="7" y="3" width="14" height="22" rx="2.5" />
-        <circle cx="14" cy="22" r="1.25" fill="currentColor" stroke="none" />
-      </svg>
-    ),
-  },
-  {
-    key: "copilot",
-    slug: "copilot",
-    color: "#FF9F0A",
-    icon: (
-      <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.75" width="24" height="24" aria-hidden="true">
-        <path d="M14 3l2.5 7.5H24l-6.5 4.5 2.5 7.5L14 18l-6 4.5 2.5-7.5L4 10.5h7.5L14 3z" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
+  { key: "audit",   slug: "security-audit-microsoft-365", color: "#0071E3", label: "01" },
+  { key: "entra",   slug: "entra-id",                     color: "#34AADC", label: "02" },
+  { key: "intune",  slug: "intune",                       color: "#5E5CE6", label: "03" },
+  { key: "copilot", slug: "copilot",                      color: "#30B0C7", label: "04" },
 ];
 
 function SectionModuleIntro() {
@@ -429,78 +439,114 @@ function SectionModuleIntro() {
   const params = useParams();
   const locale = (params?.locale as string) || "de";
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.15 });
+  const inView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
     <section
       ref={ref}
       id="modules"
-      className="relative py-32 px-6 bg-bg-1"
+      style={{ background: "#1D1D1F", paddingTop: "140px", paddingBottom: "140px" }}
+      className="px-6"
       aria-labelledby="modules-h2"
     >
       <div className="max-w-[960px] mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65 }}
-          className="text-center mb-16"
-        >
-          <span className="text-[0.7rem] font-bold tracking-[0.12em] uppercase text-text-3 mb-4 block">
+        <motion.div {...fadeUp(inView, 0)} style={{ marginBottom: "80px" }}>
+          <p style={{
+            fontSize: "0.75rem",
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "#0071E3",
+            marginBottom: "1.5rem",
+          }}>
             {t("modules.label")}
-          </span>
-          <h2 id="modules-h2" className="display-sm text-text-1 mb-4">
+          </p>
+          <h2
+            id="modules-h2"
+            style={{
+              fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+              fontWeight: 800,
+              lineHeight: 1.04,
+              letterSpacing: "-0.04em",
+              color: "#F5F5F7",
+              marginBottom: "1.5rem",
+              fontFamily: "var(--font-plus-jakarta)",
+            }}
+          >
             {t("modules.h2")}
           </h2>
-          <p className="text-[1.0625rem] text-text-2 max-w-[520px] mx-auto leading-relaxed">
+          <p style={{
+            fontSize: "clamp(1.125rem, 2vw, 1.25rem)",
+            color: "#86868B",
+            lineHeight: 1.7,
+            maxWidth: "520px",
+          }}>
             {t("modules.sub")}
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-5">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(440px, 1fr))", gap: "1px", background: "#2D2D2F", borderRadius: "20px", overflow: "hidden" }}>
           {MODULES.map((mod, i) => (
-            <motion.div
-              key={mod.key}
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.4, 0, 0.2, 1] }}
-            >
+            <motion.div key={mod.key} {...fadeUp(inView, i * 0.09)}>
               <Link
                 href={`/${locale}/${mod.slug}`}
-                className="group block bg-card border border-border rounded-2xl p-7 hover:border-accent/40 transition-all duration-300 hover:shadow-lg"
+                style={{
+                  display: "block",
+                  padding: "2.5rem",
+                  background: "#1D1D1F",
+                  textDecoration: "none",
+                  transition: "background 0.2s",
+                  height: "100%",
+                }}
+                onMouseOver={e => (e.currentTarget.style.background = "#222222")}
+                onMouseOut={e => (e.currentTarget.style.background = "#1D1D1F")}
               >
-                <div className="flex items-start gap-5 mb-5">
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110 duration-300"
-                    style={{ background: `${mod.color}14`, color: mod.color }}
-                  >
-                    {mod.icon}
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-bold text-text-1 text-[1.0625rem] mb-1 tracking-[-0.02em]">
-                      {t(`modules.items.${mod.key}.title`)}
-                    </div>
-                    <div className="text-[0.8125rem] text-text-2 leading-relaxed">
-                      {t(`modules.items.${mod.key}.sub`)}
-                    </div>
-                  </div>
-                  <svg
-                    className="text-text-3 group-hover:text-accent group-hover:translate-x-1 transition-all duration-300 shrink-0 mt-1"
-                    width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.5rem" }}>
+                  <span style={{
+                    fontSize: "2rem",
+                    fontWeight: 800,
+                    letterSpacing: "-0.04em",
+                    color: mod.color,
+                    lineHeight: 1,
+                    fontFamily: "var(--font-plus-jakarta)",
+                  }}>
+                    {mod.label}
+                  </span>
+                  <span style={{ fontSize: "1.25rem", color: "#3D3D3F" }}>↗</span>
                 </div>
-                <ul className="flex flex-wrap gap-2" role="list">
+
+                <p style={{
+                  fontSize: "clamp(1.125rem, 2vw, 1.375rem)",
+                  fontWeight: 700,
+                  color: "#F5F5F7",
+                  letterSpacing: "-0.02em",
+                  marginBottom: "0.75rem",
+                  lineHeight: 1.25,
+                }}>
+                  {t(`modules.items.${mod.key}.title`)}
+                </p>
+                <p style={{ fontSize: "0.9375rem", color: "#86868B", lineHeight: 1.65, marginBottom: "1.5rem" }}>
+                  {t(`modules.items.${mod.key}.sub`)}
+                </p>
+
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
                   {(t.raw(`modules.items.${mod.key}.tags`) as string[]).map((tag: string) => (
-                    <li
+                    <span
                       key={tag}
-                      className="text-[0.7rem] font-semibold px-2.5 py-1 rounded-full"
-                      style={{ background: `${mod.color}12`, color: mod.color }}
+                      style={{
+                        fontSize: "0.75rem",
+                        fontWeight: 600,
+                        color: mod.color,
+                        background: `${mod.color}18`,
+                        padding: "0.3rem 0.75rem",
+                        borderRadius: "4px",
+                        letterSpacing: "0.01em",
+                      }}
                     >
                       {tag}
-                    </li>
+                    </span>
                   ))}
-                </ul>
+                </div>
               </Link>
             </motion.div>
           ))}
@@ -512,6 +558,7 @@ function SectionModuleIntro() {
 
 // ─────────────────────────────────────────────
 // Scroll 5 — Final Entry CTA
+// HINTERGRUND: Weiß
 // ─────────────────────────────────────────────
 function SectionEntryCTA() {
   const t = useTranslations("system");
@@ -522,54 +569,88 @@ function SectionEntryCTA() {
     <section
       ref={ref}
       id="audit-cta"
-      className="relative py-32 px-6 overflow-hidden"
-      style={{ background: "var(--color-bg-2, #F5F5F7)" }}
+      style={{ background: "#FFFFFF", paddingTop: "140px", paddingBottom: "160px" }}
+      className="px-6"
       aria-labelledby="audit-cta-h2"
     >
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] pointer-events-none"
-        aria-hidden="true"
-        style={{ background: "radial-gradient(ellipse, rgba(0,113,227,0.12), transparent)" }}
-      />
-      <div className="relative z-10 max-w-[680px] mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-        >
-          <span className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 rounded-full px-4 py-1.5 text-[0.7rem] font-bold tracking-[0.1em] uppercase text-accent-2 mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-500" aria-hidden="true" />
+      <div className="max-w-[780px] mx-auto text-center">
+        <motion.div {...fadeUp(inView, 0)}>
+          <p style={{
+            fontSize: "0.75rem",
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "#0071E3",
+            marginBottom: "1.5rem",
+          }}>
             {t("cta.eyebrow")}
-          </span>
+          </p>
+
           <h2
             id="audit-cta-h2"
-            className="display-md text-text-1 mb-5 tracking-[-0.04em]"
+            style={{
+              fontSize: "clamp(2.5rem, 6vw, 5rem)",
+              fontWeight: 800,
+              lineHeight: 1.04,
+              letterSpacing: "-0.04em",
+              color: "#1D1D1F",
+              marginBottom: "1.5rem",
+              fontFamily: "var(--font-plus-jakarta)",
+            }}
           >
             {t("cta.h2")}
           </h2>
-          <p className="text-[1.0625rem] text-text-2 leading-relaxed mb-10 max-w-[520px] mx-auto">
+
+          <p style={{
+            fontSize: "clamp(1.125rem, 2vw, 1.375rem)",
+            color: "#6E6E73",
+            lineHeight: 1.7,
+            maxWidth: "560px",
+            margin: "0 auto 3rem",
+          }}>
             {t("cta.sub")}
           </p>
 
-          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-10" role="list">
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "2rem", marginBottom: "3rem" }}>
             {(t.raw("cta.props") as string[]).map((prop: string) => (
-              <li key={prop} className="flex items-center gap-2 text-[0.8125rem] text-text-2">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34C759" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M20 6L9 17l-5-5" />
-                </svg>
+              <span key={prop} style={{ fontSize: "0.9375rem", color: "#1D1D1F", fontWeight: 500 }}>
                 {prop}
-              </li>
+              </span>
             ))}
-          </ul>
+          </div>
 
-          <div className="flex flex-wrap justify-center gap-3">
-            <a href="#contact" className="btn-primary">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
+          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <a
+              href="#contact"
+              style={{
+                background: "#0071E3",
+                color: "#fff",
+                padding: "1rem 2.25rem",
+                borderRadius: "980px",
+                fontWeight: 600,
+                fontSize: "1rem",
+                textDecoration: "none",
+                display: "inline-block",
+                transition: "background 0.2s",
+              }}
+              onMouseOver={e => (e.currentTarget.style.background = "#0077ED")}
+              onMouseOut={e => (e.currentTarget.style.background = "#0071E3")}
+            >
               {t("cta.btnPrimary")}
             </a>
-            <a href="#modules" className="btn-outline">
+            <a
+              href="#modules"
+              style={{
+                color: "#0071E3",
+                padding: "1rem 2.25rem",
+                borderRadius: "980px",
+                fontWeight: 600,
+                fontSize: "1rem",
+                textDecoration: "none",
+                border: "1.5px solid #0071E3",
+                display: "inline-block",
+              }}
+            >
               {t("cta.btnSecondary")}
             </a>
           </div>
