@@ -23,11 +23,10 @@ export default function NavV2({ locale }: NavProps) {
   const isAssessmentPage = pathname.includes("/assessment");
 
   const navSections = useMemo(() => [
-    { id: "services", label: t("services") },
-    { id: "security-checker", label: t("checker") },
-    { id: "intune-platform", label: t("intune") },
-    { id: "results", label: t("results") },
-    { id: "about", label: t("about") },
+    { id: "problem-reality", label: t("problem") },
+    { id: "system-model", label: t("model") },
+    { id: "modules", label: t("modules") },
+    { id: "audit-cta", label: t("audit") },
     { id: "contact", label: t("contact") }
   ], [t]);
 

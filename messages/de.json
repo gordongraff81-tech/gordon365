@@ -135,15 +135,19 @@
     }
   },
   "nav": {
+    "problem": "Problemlage",
+    "model": "System",
+    "modules": "Module",
+    "audit": "Audit starten",
+    "contact": "Kontakt",
+    "assessment": "Assessment",
+    "langLabel": "Sprache",
     "services": "Leistungen",
     "checker": "Sicherheitscheck",
     "intune": "Intune Platform",
     "results": "Referenzen",
     "about": "Über uns",
-    "contact": "Kontakt",
-    "assessment": "Assessment",
-    "cta": "Strategiegespräch buchen",
-    "langLabel": "Sprache"
+    "cta": "Strategiegespräch buchen"
   },
   "hero": {
     "eyebrow": "Microsoft 365 Sicherheits- & Optimierungsplattform",
@@ -692,6 +696,7 @@
   },
   "footer": {
     "desc": "Microsoft 365 Sicherheit, Optimierung und Copilot-Bereitschafts-Beratung für europäische KMU und mittelständische Unternehmen.",
+    "description": "Microsoft 365 Sicherheit, Optimierung und Copilot-Bereitschafts-Beratung für europäische KMU und mittelständische Unternehmen.",
     "services": "Leistungen",
     "serviceLinks": [
       "M365 Health Check",

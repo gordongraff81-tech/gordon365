@@ -6,15 +6,148 @@
     "ogDescription": "Identify security gaps, governance risks and Copilot readiness issues before they impact your business."
   },
   "nav": {
+    "problem": "Problem",
+    "model": "System",
+    "modules": "Modules",
+    "audit": "Start Audit",
+    "contact": "Contact",
+    "assessment": "Assessment",
+    "cta": "Book Strategy Call",
+    "langLabel": "Language",
     "services": "Services",
     "checker": "Security Check",
     "intune": "Intune Platform",
     "results": "Results",
-    "about": "About",
-    "contact": "Contact",
-    "assessment": "Assessment",
-    "cta": "Book Strategy Call",
-    "langLabel": "Language"
+    "about": "About"
+  },
+  "system": {
+    "def": {
+      "eyebrow": "Microsoft 365 Security System",
+      "h1a": "Your Microsoft 365 environment.",
+      "h1b": "Fully under control.",
+      "h1c": "Step by step.",
+      "sub": "Organisations grow into Microsoft 365 fast — identities, devices, data and permissions sprawling out of control. Gordon365 analyses, structures and secures your environment with a systematic approach.",
+      "cta": "Start Security Audit",
+      "ctaSecondary": "Explore the system"
+    },
+    "problem": {
+      "label": "Problem Reality",
+      "h2": "Microsoft 365 environments grow out of control.",
+      "sub": "Most organisations have these problems — and don't know it. Until it's too late.",
+      "items": {
+        "admin": {
+          "title": "Over-privileged admin accounts",
+          "desc": "Too many global admins, no clear role separation, no Privileged Identity Management in place."
+        },
+        "mfa": {
+          "title": "MFA not enforced",
+          "desc": "Multi-factor authentication is enabled but not enforced for all users and accounts."
+        },
+        "sharing": {
+          "title": "Uncontrolled external sharing",
+          "desc": "SharePoint and OneDrive allow public links. Data is accessible outside the organisation."
+        },
+        "devices": {
+          "title": "Inconsistent device management",
+          "desc": "Personal and unmanaged devices access corporate data — without compliance checks."
+        },
+        "visibility": {
+          "title": "No visibility",
+          "desc": "No central logging, no monitoring, no overview of activity across the tenant."
+        }
+      },
+      "ctaCard": {
+        "text": "Do you know where your biggest risks are? A security audit delivers clarity in 2 to 4 weeks.",
+        "btn": "Request audit"
+      }
+    },
+    "model": {
+      "label": "System Model",
+      "h2": "Four layers. One complete system.",
+      "sub": "Microsoft 365 security is not a single tool. It is the interplay of four controlled layers.",
+      "layers": {
+        "identity": {
+          "title": "Identity Layer",
+          "sub": "Entra ID — identities and access control",
+          "features": [
+            "Conditional Access Policies",
+            "MFA enforcement",
+            "Privileged Identity Management",
+            "Identity Protection"
+          ]
+        },
+        "device": {
+          "title": "Device Layer",
+          "sub": "Intune — devices and compliance",
+          "features": [
+            "Compliance Policies",
+            "App Protection",
+            "Windows Autopilot",
+            "Endpoint Security"
+          ]
+        },
+        "collaboration": {
+          "title": "Collaboration Layer",
+          "sub": "Teams, SharePoint, OneDrive",
+          "features": [
+            "Control external sharing",
+            "Teams Governance",
+            "Sensitivity Labels",
+            "DLP Policies"
+          ]
+        },
+        "security": {
+          "title": "Security Layer",
+          "sub": "Microsoft Defender",
+          "features": [
+            "Defender for Endpoint",
+            "Defender for Identity",
+            "Secure Score optimisation",
+            "Incident Response"
+          ]
+        }
+      }
+    },
+    "modules": {
+      "label": "Modules",
+      "h2": "Your entry point into the security system.",
+      "sub": "Every module follows the same logic: analyse, structure, deliver. Choose the right entry point.",
+      "items": {
+        "audit": {
+          "title": "Security Audit",
+          "sub": "Full analysis of your Microsoft 365 security posture. Risks identified. Actions prioritised.",
+          "tags": ["Entra ID", "Intune", "Defender", "SharePoint"]
+        },
+        "entra": {
+          "title": "Entra ID Review",
+          "sub": "Bring identities and access rights under control. Clean up MFA, Conditional Access and roles.",
+          "tags": ["Conditional Access", "MFA", "PIM", "Identity Protection"]
+        },
+        "intune": {
+          "title": "Intune Management",
+          "sub": "Manage devices in a compliant way. Configure policies, app protection and Autopilot.",
+          "tags": ["Device Compliance", "App Management", "Autopilot", "Endpoint Security"]
+        },
+        "copilot": {
+          "title": "Copilot Readiness",
+          "sub": "Build the data foundation for Microsoft Copilot. Clean up governance, labels and permissions.",
+          "tags": ["Sensitivity Labels", "DLP", "Data Governance", "Permissions"]
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Audit available",
+      "h2": "Start your Microsoft 365 Security Audit.",
+      "sub": "Within 2 to 4 weeks you receive a complete overview of risks, gaps and prioritised actions for your Microsoft 365 environment.",
+      "props": [
+        "Fixed price from €1,500",
+        "Results in 2 to 4 weeks",
+        "No ongoing engagement required",
+        "GDPR-compliant processing"
+      ],
+      "btnPrimary": "Request Security Audit",
+      "btnSecondary": "View modules"
+    }
   },
   "hero": {
     "eyebrow": "Microsoft 365 Security & Optimization Platform",
@@ -563,6 +696,7 @@
   },
   "footer": {
     "desc": "Microsoft 365 security, optimization and Copilot readiness consulting for European SMEs and mid-market businesses.",
+    "description": "Microsoft 365 security, optimization and Copilot readiness consulting for European SMEs and mid-market businesses.",
     "services": "Services",
     "serviceLinks": [
       "M365 Health Check",
