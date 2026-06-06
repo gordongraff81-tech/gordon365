@@ -1,9 +1,138 @@
 {
   "meta": {
-    "title": "Gordon365 — Microsoft 365 sichern & optimieren für das KI-Zeitalter",
-    "description": "Strategische Microsoft 365 Beratung für europäische KMU. Sicherheitshärtung, Copilot-Bereitschaft, Lizenzoptimierung und Modern Workplace Transformation.",
-    "ogTitle": "Gordon365 — Microsoft 365 Sicherheit & Copilot-Bereitschaft",
-    "ogDescription": "Identifizieren Sie Sicherheitslücken, Governance-Risiken und Copilot-Bereitschaftsprobleme, bevor sie Ihr Unternehmen beeinträchtigen."
+    "title": "Microsoft 365 Security System — gordon365.com",
+    "description": "Systematische Microsoft 365 Sicherheitsanalyse für Unternehmen. Security Audit, Entra ID Review, Intune Management und Copilot Readiness — Festpreis, D/A/CH.",
+    "ogTitle": "Microsoft 365 Security System — gordon365.com",
+    "ogDescription": "Ihre Microsoft 365 Umgebung vollständig unter Kontrolle. Identitäten, Geräte, Zusammenarbeit und Sicherheit — systematisch analysiert und gesichert."
+  },
+  "system": {
+    "def": {
+      "eyebrow": "Microsoft 365 Security System",
+      "h1a": "Ihre Microsoft 365 Umgebung.",
+      "h1b": "Vollständig unter Kontrolle.",
+      "h1c": "Schritt für Schritt.",
+      "sub": "Unternehmen wachsen schnell in Microsoft 365 hinein — Identitäten, Geräte, Daten und Berechtigungen unkontrolliert. Gordon365 analysiert, strukturiert und sichert Ihre Umgebung mit einem systematischen Ansatz.",
+      "cta": "Security Audit starten",
+      "ctaSecondary": "System kennenlernen"
+    },
+    "problem": {
+      "label": "Problem Realität",
+      "h2": "Microsoft 365 Umgebungen wachsen unkontrolliert.",
+      "sub": "Die meisten Unternehmen haben diese Probleme — und wissen es nicht. Bis es zu spät ist.",
+      "items": {
+        "admin": {
+          "title": "Überprivilegierte Admin Accounts",
+          "desc": "Zu viele globale Admins, keine klare Rollentrennung, kein Privileged Identity Management."
+        },
+        "mfa": {
+          "title": "Fehlende MFA Durchsetzung",
+          "desc": "Multi-Faktor-Authentifizierung ist aktiviert, aber nicht für alle Benutzer und Konten erzwungen."
+        },
+        "sharing": {
+          "title": "Unkontrollierte externe Freigaben",
+          "desc": "SharePoint und OneDrive erlauben öffentliche Links. Daten sind außerhalb des Unternehmens zugänglich."
+        },
+        "devices": {
+          "title": "Inkonsistente Geräteverwaltung",
+          "desc": "Private und unverwaltete Geräte greifen auf Unternehmensdaten zu — ohne Compliance-Prüfung."
+        },
+        "visibility": {
+          "title": "Fehlende Transparenz",
+          "desc": "Kein zentrales Logging, kein Monitoring, kein Überblick über Aktivitäten im Mandanten."
+        }
+      },
+      "ctaCard": {
+        "text": "Wissen Sie, wo Ihre größten Risiken liegen? Ein Security Audit schafft Klarheit in 2 bis 4 Wochen.",
+        "btn": "Audit anfragen"
+      }
+    },
+    "model": {
+      "label": "System Modell",
+      "h2": "Vier Layer. Ein vollständiges System.",
+      "sub": "Microsoft 365 Sicherheit ist kein einzelnes Tool. Es ist ein Zusammenspiel aus vier kontrollierten Ebenen.",
+      "layers": {
+        "identity": {
+          "title": "Identity Layer",
+          "sub": "Entra ID — Identitäten und Zugriffssteuerung",
+          "features": [
+            "Conditional Access Policies",
+            "MFA Durchsetzung",
+            "Privileged Identity Management",
+            "Identity Protection"
+          ]
+        },
+        "device": {
+          "title": "Device Layer",
+          "sub": "Intune — Geräte und Compliance",
+          "features": [
+            "Compliance Policies",
+            "App Protection",
+            "Windows Autopilot",
+            "Endpoint Security"
+          ]
+        },
+        "collaboration": {
+          "title": "Collaboration Layer",
+          "sub": "Teams, SharePoint, OneDrive",
+          "features": [
+            "Externe Freigabe kontrollieren",
+            "Teams Governance",
+            "Sensitivity Labels",
+            "DLP Richtlinien"
+          ]
+        },
+        "security": {
+          "title": "Security Layer",
+          "sub": "Microsoft Defender",
+          "features": [
+            "Defender for Endpoint",
+            "Defender for Identity",
+            "Secure Score Optimierung",
+            "Incident Response"
+          ]
+        }
+      }
+    },
+    "modules": {
+      "label": "Module",
+      "h2": "Der Einstieg in Ihr Sicherheitssystem.",
+      "sub": "Jedes Modul folgt der gleichen Logik: Analyse, Struktur, Ergebnis. Wählen Sie den passenden Einstieg.",
+      "items": {
+        "audit": {
+          "title": "Security Audit",
+          "sub": "Vollständige Analyse Ihrer Microsoft 365 Sicherheitslage. Risiken identifiziert. Maßnahmen priorisiert.",
+          "tags": ["Entra ID", "Intune", "Defender", "SharePoint"]
+        },
+        "entra": {
+          "title": "Entra ID Review",
+          "sub": "Identitäten und Zugriffsrechte unter Kontrolle bringen. MFA, Conditional Access, Rollen bereinigen.",
+          "tags": ["Conditional Access", "MFA", "PIM", "Identity Protection"]
+        },
+        "intune": {
+          "title": "Intune Management",
+          "sub": "Geräte compliance-konform verwalten. Policies, App-Schutz und Autopilot konfigurieren.",
+          "tags": ["Device Compliance", "App Management", "Autopilot", "Endpoint Security"]
+        },
+        "copilot": {
+          "title": "Copilot Readiness",
+          "sub": "Datengrundlage für Microsoft Copilot schaffen. Governance, Labels und Berechtigungen bereinigen.",
+          "tags": ["Sensitivity Labels", "DLP", "Data Governance", "Permissions"]
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Audit verfügbar",
+      "h2": "Microsoft 365 Security Audit starten.",
+      "sub": "In 2 bis 4 Wochen erhalten Sie einen vollständigen Überblick über Risiken, Lücken und priorisierte Maßnahmen für Ihre Microsoft 365 Umgebung.",
+      "props": [
+        "Festpreis ab €1.500",
+        "Ergebnis in 2 bis 4 Wochen",
+        "Kein laufendes Engagement erforderlich",
+        "DSGVO-konforme Verarbeitung"
+      ],
+      "btnPrimary": "Security Audit anfragen",
+      "btnSecondary": "Module ansehen"
+    }
   },
   "nav": {
     "services": "Leistungen",
