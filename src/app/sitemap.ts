@@ -75,11 +75,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // -------------------------------------------------------
+  // Administrator on Demand page (indexable, bilingual)
+  // -------------------------------------------------------
+  const aodPages: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE_URL}/en/administrator-on-demand`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+      alternates: {
+        languages: {
+          en: `${BASE_URL}/en/administrator-on-demand`,
+          de: `${BASE_URL}/de/administrator-on-demand`,
+          "x-default": `${BASE_URL}/en/administrator-on-demand`,
+        },
+      },
+    },
+    {
+      url: `${BASE_URL}/de/administrator-on-demand`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+      alternates: {
+        languages: {
+          en: `${BASE_URL}/en/administrator-on-demand`,
+          de: `${BASE_URL}/de/administrator-on-demand`,
+          "x-default": `${BASE_URL}/en/administrator-on-demand`,
+        },
+      },
+    },
+  ];
+
+  // -------------------------------------------------------
   // Legal pages: robots noindex = excluded from sitemap.
   // Google's own guidelines: noindex pages must not appear
   // in the sitemap. Keeping them here contradicts the
   // robots directive and confuses Googlebot.
   // -------------------------------------------------------
 
-  return [...mainPages, ...assessmentPages];
+  return [...mainPages, ...assessmentPages, ...aodPages];
 }

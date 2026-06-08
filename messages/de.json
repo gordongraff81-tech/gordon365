@@ -117,6 +117,11 @@
           "title": "Copilot Readiness",
           "sub": "Datengrundlage für Microsoft Copilot schaffen. Governance, Labels und Berechtigungen bereinigen.",
           "tags": ["Sensitivity Labels", "DLP", "Data Governance", "Permissions"]
+        },
+        "aod": {
+          "title": "Administrator on Demand",
+          "sub": "Flexible Microsoft 365 Administration, Sicherheit und Support ohne Vollzeiteinstellung. Monatliche Pakete ab Tag eins.",
+          "tags": ["Benutzerverwaltung", "Entra ID", "Intune", "Exchange Online", "Sicherheit"]
         }
       }
     },
@@ -692,6 +697,268 @@
       "success": "Anfrage gesendet — Gordon meldet sich innerhalb eines Werktages.",
       "error": "Etwas ist schiefgelaufen. Bitte schreiben Sie direkt an info@gordon365.com.",
       "sendAnother": "← Weitere Anfrage senden"
+    }
+  },
+  "adminOnDemand": {
+    "meta": {
+      "title": "Microsoft 365 Administrator on Demand — Gordon365",
+      "description": "Flexible Microsoft 365 Administration, Sicherheit, Troubleshooting und Optimierung durch einen erfahrenen M365-Spezialisten. Ohne Vollzeitstelle."
+    },
+    "hero": {
+      "eyebrow": "Microsoft 365 Managed Administration",
+      "h1a": "Microsoft 365",
+      "h1b": "Administrator",
+      "h1c": "on Demand.",
+      "sub": "Viele Unternehmen benötigen keinen Vollzeit-Microsoft-365-Administrator, benötigen aber dennoch Zugang zu Expertenwissen, wenn Herausforderungen entstehen. Flexible Administration, Sicherheitsmanagement, Governance und kontinuierliche Optimierung — ohne den Aufwand einer dauerhaften Einstellung.",
+      "cta": "Kostenloses Erstgespräch vereinbaren",
+      "ctaSecondary": "Leistungsumfang ansehen",
+      "trust": [
+        "Microsoft 365 Experte",
+        "10+ Jahre M365-Erfahrung",
+        "D/A/CH Region",
+        "DSGVO-konform"
+      ]
+    },
+    "problem": {
+      "label": "Die Herausforderung",
+      "h2": "Die meisten Unternehmen überwachsen ihr M365-Setup ohne es zu merken.",
+      "sub": "Microsoft 365 Umgebungen akkumulieren technische Schulden schnell. Ohne dedizierte Administration wachsen Risiken still.",
+      "severity": {
+        "critical": "Kritisch",
+        "high": "Hoch"
+      },
+      "items": {
+        "noAdmin": {
+          "title": "Kein dedizierter Microsoft 365 Administrator",
+          "desc": "IT-Generalisten oder Abteilungsleiter verwalten M365 als Nebenaufgabe. Kritische Konfigurationslücken bleiben monatelang unbemerkt."
+        },
+        "reactive": {
+          "title": "Reaktiver Support statt proaktiver Verwaltung",
+          "desc": "Probleme werden erst behandelt, wenn sie den Betrieb stören. Security Drift, Lizenzverschwendung und Compliance-Lücken häufen sich im Hintergrund an."
+        },
+        "compliance": {
+          "title": "Compliance- und Governance-Anforderungen nicht erfüllt",
+          "desc": "DSGVO-Pflichten, Dateiaufbewahrungsrichtlinien und Zugriffs-Governance erfordern kontinuierliche Aufmerksamkeit, die Ad-hoc-IT nicht leisten kann."
+        },
+        "incidents": {
+          "title": "Sicherheitsvorfälle ohne strukturierte Reaktion",
+          "desc": "Ohne Monitoring und definierte Reaktionsverfahren bleiben Vorfälle unentdeckt oder werden inkonsistent behandelt."
+        },
+        "growth": {
+          "title": "Mandantenkomplexität wächst mit dem Unternehmen",
+          "desc": "Neue Teams, Fusionen, Tool-Ergänzungen und Remote Work schaffen Konfigurationskomplexität, die strukturiertes Fachwissen erfordert."
+        }
+      },
+      "ctaCard": {
+        "text": "Ein monatlicher Retainer ermöglicht strukturierte Microsoft 365 Administration ohne dauerhaftes Gehaltsengagement.",
+        "btn": "Pakete ansehen"
+      }
+    },
+    "services": {
+      "label": "Leistungsumfang",
+      "h2": "Jeder kritische Bereich Ihrer Microsoft 365 Umgebung.",
+      "sub": "Umfassende Abdeckung über Identität, Geräte, Zusammenarbeit, Sicherheit und Compliance — betreut von einem erfahrenen M365-Spezialisten.",
+      "items": {
+        "identity": {
+          "title": "Benutzer- & Identitätsverwaltung",
+          "features": [
+            "Benutzer-Lifecycle-Management",
+            "Gruppen- und Teamverwaltung",
+            "Rollenzuweisungen und Reviews",
+            "Gastkonto-Governance",
+            "Zugriffslebenszyklusverwaltung"
+          ]
+        },
+        "entra": {
+          "title": "Microsoft Entra ID",
+          "features": [
+            "Conditional Access Richtlinien",
+            "Multi-Faktor-Authentifizierung",
+            "Identity Protection Konfiguration",
+            "Rollenbasierte Zugriffskontrolle",
+            "Regelmäßige Sicherheitsreviews"
+          ]
+        },
+        "exchange": {
+          "title": "Exchange Online",
+          "features": [
+            "Postfach- und freigegebene Postfachverwaltung",
+            "Mail-Flow-Troubleshooting",
+            "Transportregeln und Connectors",
+            "Anti-Spam und Anti-Phishing Richtlinien",
+            "Verteilerlisten-Administration"
+          ]
+        },
+        "teams": {
+          "title": "Microsoft Teams",
+          "features": [
+            "Teams Governance und Lifecycle",
+            "Besprechungs- und Messaging-Richtlinien",
+            "Gastzugriffskontrollen",
+            "Kanal- und App-Verwaltung",
+            "Teams Richtlinienzuweisungen"
+          ]
+        },
+        "sharepoint": {
+          "title": "SharePoint & OneDrive",
+          "features": [
+            "Berechtigungs- und Freigabeverwaltung",
+            "Externe Freigabekontrollen",
+            "Informationsarchitektur",
+            "Dokumentbibliotheks-Administration",
+            "Websitesammlungsverwaltung"
+          ]
+        },
+        "intune": {
+          "title": "Microsoft Intune",
+          "features": [
+            "Geräteregistrierung und Compliance",
+            "Konfigurations- und Compliance-Richtlinien",
+            "Anwendungsbereitstellung",
+            "Endpunkt-Sicherheitsbaselines",
+            "Windows Autopilot Verwaltung"
+          ]
+        },
+        "security": {
+          "title": "Sicherheit & Compliance",
+          "features": [
+            "Secure Score Optimierung",
+            "MFA-Strategie und Durchsetzung",
+            "Conditional Access Reviews",
+            "Sicherheitsbewertungsberichte",
+            "Best-Practice-Implementierung"
+          ]
+        },
+        "troubleshooting": {
+          "title": "Troubleshooting & Incident Response",
+          "features": [
+            "Exchange und Mail-Flow-Probleme",
+            "Teams und Anrufprobleme",
+            "SharePoint und OneDrive Probleme",
+            "Intune-Registrierungsfehler",
+            "Authentifizierungs- und Anmeldeprobleme"
+          ]
+        }
+      }
+    },
+    "projects": {
+      "label": "Projektunterstützung",
+      "h2": "Microsoft 365 Projektunterstützung inklusive.",
+      "sub": "Neben der laufenden Administration: strukturierte Projektunterstützung für Migrationen, Rollouts und größere Konfigurationsinitiativen.",
+      "items": {
+        "migrations": {
+          "title": "Mandanten-Migrationen",
+          "desc": "Cross-Tenant-Migrationen, Domänenkonsolidierungen und Post-Merger M365-Integrationen."
+        },
+        "exchange": {
+          "title": "Exchange-Migrationen",
+          "desc": "On-Premises-Exchange zu Exchange Online Migrationen mit Postfach-Cutover und Hybrid-Konfiguration."
+        },
+        "teams": {
+          "title": "Teams-Rollouts",
+          "desc": "Strukturiertes Teams-Deployment mit Governance-Framework, Richtlinienkonfiguration und Adoptionsunterstützung."
+        },
+        "sharepoint": {
+          "title": "SharePoint-Implementierungen",
+          "desc": "Modernes SharePoint Online Architekturdesign, Migration von Dateifreigaben und Intranet-Aufbau."
+        },
+        "intune": {
+          "title": "Intune-Deployments",
+          "desc": "End-to-End Intune-Einrichtung inklusive Autopilot, Compliance-Richtlinien, App-Bereitstellung und Sicherheitsbaselines."
+        },
+        "copilot": {
+          "title": "Copilot Readiness Projekte",
+          "desc": "Data-Governance-Bereinigung, Vertraulichkeitsbezeichnungen-Deployment und Copilot-Pilotprogramm-Management."
+        },
+        "governance": {
+          "title": "Governance-Initiativen",
+          "desc": "M365-Governance-Framework-Design für Teams, SharePoint, Namenskonventionen und Lifecycle-Richtlinien."
+        },
+        "security": {
+          "title": "Sicherheitshärtungsprojekte",
+          "desc": "Gezielte Sicherheitshärtung entsprechend CIS, CISA und Microsoft Secure Score Benchmarks."
+        },
+        "powerAutomate": {
+          "title": "Power Automate Lösungen",
+          "desc": "Workflow-Automatisierungsdesign und Implementierung zur Verbesserung der betrieblichen Effizienz über M365-Dienste."
+        }
+      }
+    },
+    "trust": {
+      "label": "Enterprise-Erfahrung",
+      "h2": "Enterprise-Erfahrung für Ihre Microsoft Cloud.",
+      "body": "Gordon bringt Microsoft 365-Expertise auf Enterprise-Niveau mit, die in anspruchsvollen Umgebungen — großskaligem Identitätsmanagement, End User Computing, virtueller Desktop-Infrastruktur und Security Operations — erworben wurde. Jedes Engagement profitiert von dieser Tiefe — unabhängig von Ihrer Unternehmensgröße.",
+      "points": [
+        "Direktes Engagement — keine Account Manager oder Junior-Übergaben",
+        "Enterprise-Methodik angewendet auf KMU-Umgebungen",
+        "Jede Empfehlung durch reale Auditdaten belegt",
+        "Dokumentation und Runbooks bei jedem Engagement inklusive",
+        "Strukturierter, proaktiver Ansatz — kein reaktives Break-Fix"
+      ],
+      "stats": [
+        "Jahre M365-Spezialisierung",
+        "Verwaltete Umgebungen",
+        "Primäre Region",
+        "Microsoft Zertifiziert"
+      ]
+    },
+    "packages": {
+      "label": "Service-Pakete",
+      "h2": "Wählen Sie das passende Unterstützungsniveau.",
+      "sub": "Drei monatliche Pakete, die auf Ihre Administrationsbedarf abgestimmt sind. Alle Pakete beinhalten direkten Zugang zu Gordon.",
+      "popular": "Am beliebtesten",
+      "cta": "Jetzt starten",
+      "note": "Alle Pakete sind monatlich und können bei veränderten Anforderungen angepasst werden. Individuelle Umfangsgestaltung auf Anfrage.",
+      "items": {
+        "starter": {
+          "name": "Starter",
+          "desc": "Grundlegende M365-Administrationsunterstützung für kleinere Umgebungen mit geringem Administrationsvolumen.",
+          "hours": "Bis zu 5 Stunden monatlich",
+          "features": [
+            "Flexible Administrationsunterstützung",
+            "Ticketbasierte Anfragenbearbeitung",
+            "Benutzer- und Lizenzverwaltung",
+            "Grundlegendes Sicherheitsmonitoring"
+          ]
+        },
+        "business": {
+          "name": "Business",
+          "desc": "Umfassende laufende Administration für wachsende Unternehmen mit regelmäßigem Bedarf und proaktiver Überwachung.",
+          "hours": "Bis zu 10 Stunden monatlich",
+          "features": [
+            "Priorisierte Reaktionszeit",
+            "Monatliches Umgebungs-Health-Review",
+            "Sicherheitschecks und Secure Score Review",
+            "Lizenzoptimierungsmonitoring",
+            "Inkl. einer Projektunterstützungssession"
+          ]
+        },
+        "premium": {
+          "name": "Premium",
+          "desc": "Strategische Administration und Beratung für Unternehmen mit hohem Expertenbedarf und Architekturbegleitung.",
+          "hours": "Bis zu 20 Stunden monatlich",
+          "features": [
+            "Strategische Beratung inklusive",
+            "Architektur- und Roadmap-Begleitung",
+            "Proaktive Optimierung und Governance",
+            "Priorisierte Incident-Response",
+            "Vierteiljährliches Executive-Briefing"
+          ]
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Jetzt starten",
+      "h2": "Benötigen Sie einen Microsoft 365 Administrator ohne Vollzeiteinstellung?",
+      "sub": "Flexibler Zugang zu professioneller Microsoft 365 Administration, Sicherheit, Troubleshooting und kontinuierlicher Verbesserung — ohne die Kosten und Komplexität einer dauerhaften Einstellung.",
+      "props": [
+        "Kostenloses 30-Minüten-Erstgespräch",
+        "Keine Langzeitbindung erforderlich",
+        "Senior-Expertise ab Tag eins",
+        "DSGVO-konform"
+      ],
+      "btnPrimary": "Kostenloses Erstgespräch vereinbaren",
+      "btnSecondary": "Pakete ansehen"
     }
   },
   "footer": {

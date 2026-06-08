@@ -132,6 +132,11 @@
           "title": "Copilot Readiness",
           "sub": "Build the data foundation for Microsoft Copilot. Clean up governance, labels and permissions.",
           "tags": ["Sensitivity Labels", "DLP", "Data Governance", "Permissions"]
+        },
+        "aod": {
+          "title": "Administrator on Demand",
+          "sub": "Flexible Microsoft 365 administration, security and support without a full-time hire. Monthly packages from day one.",
+          "tags": ["User Management", "Entra ID", "Intune", "Exchange Online", "Security"]
         }
       }
     },
@@ -692,6 +697,268 @@
       "success": "Request sent — Gordon will be in touch within one business day.",
       "error": "Something went wrong. Please email info@gordon365.com directly.",
       "sendAnother": "← Send another request"
+    }
+  },
+  "adminOnDemand": {
+    "meta": {
+      "title": "Microsoft 365 Administrator on Demand — Gordon365",
+      "description": "Flexible Microsoft 365 administration, security, troubleshooting and optimization from an experienced M365 specialist. No full-time hire required."
+    },
+    "hero": {
+      "eyebrow": "Microsoft 365 Managed Administration",
+      "h1a": "Microsoft 365",
+      "h1b": "Administrator",
+      "h1c": "on Demand.",
+      "sub": "Many organisations do not require a full-time Microsoft 365 administrator but still need access to expert-level knowledge when challenges arise. Flexible, senior-level administration, security management, governance and continuous optimisation — without the overhead of a permanent hire.",
+      "cta": "Schedule a Free Consultation",
+      "ctaSecondary": "View service scope",
+      "trust": [
+        "Microsoft 365 Expert",
+        "10+ Years M365 Experience",
+        "D/A/CH Region",
+        "GDPR Compliant"
+      ]
+    },
+    "problem": {
+      "label": "The Challenge",
+      "h2": "Most organisations outgrow their M365 setup without noticing.",
+      "sub": "Microsoft 365 environments accumulate technical debt quickly. Without dedicated administration, risk compounds silently.",
+      "severity": {
+        "critical": "Critical",
+        "high": "High"
+      },
+      "items": {
+        "noAdmin": {
+          "title": "No dedicated Microsoft 365 administrator",
+          "desc": "IT generalists or department heads manage M365 as a side task. Critical configuration gaps go unnoticed for months."
+        },
+        "reactive": {
+          "title": "Reactive support instead of proactive management",
+          "desc": "Issues are addressed only when they disrupt operations. Security drift, licence waste and compliance gaps accumulate in the background."
+        },
+        "compliance": {
+          "title": "Compliance and governance requirements unmet",
+          "desc": "GDPR obligations, data retention policies and access governance require ongoing attention that ad-hoc IT cannot provide."
+        },
+        "incidents": {
+          "title": "Security incidents without structured response",
+          "desc": "Without monitoring and defined response procedures, incidents go undetected or are handled inconsistently."
+        },
+        "growth": {
+          "title": "Tenant complexity grows with the business",
+          "desc": "New teams, mergers, tool additions and remote work create configuration complexity that requires structured expertise to manage."
+        }
+      },
+      "ctaCard": {
+        "text": "A single monthly retainer gives you structured Microsoft 365 administration without a full-time salary commitment.",
+        "btn": "View packages"
+      }
+    },
+    "services": {
+      "label": "Administration Scope",
+      "h2": "Every critical area of your Microsoft 365 environment.",
+      "sub": "Comprehensive coverage across identity, devices, collaboration, security and compliance — handled by a senior M365 specialist.",
+      "items": {
+        "identity": {
+          "title": "User & Identity Management",
+          "features": [
+            "User lifecycle management",
+            "Group and team administration",
+            "Role assignments and reviews",
+            "Guest account governance",
+            "Access lifecycle management"
+          ]
+        },
+        "entra": {
+          "title": "Microsoft Entra ID",
+          "features": [
+            "Conditional Access policies",
+            "Multi-Factor Authentication",
+            "Identity Protection configuration",
+            "Role-Based Access Control",
+            "Periodic security reviews"
+          ]
+        },
+        "exchange": {
+          "title": "Exchange Online",
+          "features": [
+            "Mailbox and shared mailbox management",
+            "Mail flow troubleshooting",
+            "Transport rules and connectors",
+            "Anti-spam and anti-phishing policies",
+            "Distribution list administration"
+          ]
+        },
+        "teams": {
+          "title": "Microsoft Teams",
+          "features": [
+            "Teams governance and lifecycle",
+            "Meeting and messaging policies",
+            "Guest access controls",
+            "Channel and app management",
+            "Teams policy assignments"
+          ]
+        },
+        "sharepoint": {
+          "title": "SharePoint & OneDrive",
+          "features": [
+            "Permission and sharing management",
+            "External sharing controls",
+            "Information architecture",
+            "Document library administration",
+            "Site collection management"
+          ]
+        },
+        "intune": {
+          "title": "Microsoft Intune",
+          "features": [
+            "Device enrolment and compliance",
+            "Configuration and compliance policies",
+            "Application deployment",
+            "Endpoint security baselines",
+            "Windows Autopilot management"
+          ]
+        },
+        "security": {
+          "title": "Security & Compliance",
+          "features": [
+            "Secure Score optimisation",
+            "MFA strategy and enforcement",
+            "Conditional Access reviews",
+            "Security assessment reports",
+            "Best practice implementation"
+          ]
+        },
+        "troubleshooting": {
+          "title": "Troubleshooting & Incident Response",
+          "features": [
+            "Exchange and mail flow issues",
+            "Teams and calling problems",
+            "SharePoint and OneDrive issues",
+            "Intune enrolment failures",
+            "Authentication and sign-in issues"
+          ]
+        }
+      }
+    },
+    "projects": {
+      "label": "Project Support",
+      "h2": "Microsoft 365 project support included.",
+      "sub": "Beyond ongoing administration, structured project support for migrations, rollouts and major configuration initiatives.",
+      "items": {
+        "migrations": {
+          "title": "Tenant Migrations",
+          "desc": "Cross-tenant migrations, domain consolidations and post-merger M365 integrations."
+        },
+        "exchange": {
+          "title": "Exchange Migrations",
+          "desc": "On-premises Exchange to Exchange Online migrations with mailbox cutover and hybrid configuration."
+        },
+        "teams": {
+          "title": "Teams Rollouts",
+          "desc": "Structured Teams deployment with governance framework, policy configuration and adoption support."
+        },
+        "sharepoint": {
+          "title": "SharePoint Implementations",
+          "desc": "Modern SharePoint Online architecture design, migration from file shares and intranet builds."
+        },
+        "intune": {
+          "title": "Intune Deployments",
+          "desc": "End-to-end Intune setup including Autopilot, compliance policies, app deployment and security baselines."
+        },
+        "copilot": {
+          "title": "Copilot Readiness Projects",
+          "desc": "Data governance remediation, sensitivity label deployment and Copilot pilot programme management."
+        },
+        "governance": {
+          "title": "Governance Initiatives",
+          "desc": "M365 governance framework design covering Teams, SharePoint, naming conventions and lifecycle policies."
+        },
+        "security": {
+          "title": "Security Hardening Projects",
+          "desc": "Targeted security hardening aligned to CIS, CISA and Microsoft Secure Score benchmarks."
+        },
+        "powerAutomate": {
+          "title": "Power Automate Solutions",
+          "desc": "Workflow automation design and implementation to improve operational efficiency across M365 services."
+        }
+      }
+    },
+    "trust": {
+      "label": "Enterprise Experience",
+      "h2": "Enterprise experience for your Microsoft cloud.",
+      "body": "Gordon brings enterprise-level Microsoft 365 expertise gained across demanding environments including large-scale identity management, end user computing, virtual desktop infrastructure and security operations. Every engagement benefits from that depth — regardless of your company size.",
+      "points": [
+        "Direct engagement — no account managers or junior hand-offs",
+        "Enterprise-grade methodology applied to SME environments",
+        "Every recommendation backed by real audit data",
+        "Documentation and runbooks delivered with every engagement",
+        "Structured, proactive approach — not reactive break-fix"
+      ],
+      "stats": [
+        "Years M365 Specialisation",
+        "Environments Managed",
+        "Primary Region",
+        "Microsoft Certified"
+      ]
+    },
+    "packages": {
+      "label": "Service Packages",
+      "h2": "Choose the right level of support.",
+      "sub": "Three monthly packages designed to match your administration needs. All packages include direct access to Gordon — no tiered support teams.",
+      "popular": "Most Popular",
+      "cta": "Get started",
+      "note": "All packages are monthly and can be adjusted as your needs evolve. Custom scopes available on request.",
+      "items": {
+        "starter": {
+          "name": "Starter",
+          "desc": "Essential M365 administration support for smaller environments with low administration volume.",
+          "hours": "Up to 5 hours monthly",
+          "features": [
+            "Flexible administration support",
+            "Ticket-based request handling",
+            "User and licence management",
+            "Basic security monitoring"
+          ]
+        },
+        "business": {
+          "name": "Business",
+          "desc": "Comprehensive ongoing administration for growing organisations requiring regular attention and proactive oversight.",
+          "hours": "Up to 10 hours monthly",
+          "features": [
+            "Priority response",
+            "Monthly environment health review",
+            "Security checks and Secure Score review",
+            "Licence optimisation monitoring",
+            "Includes one project support session"
+          ]
+        },
+        "premium": {
+          "name": "Premium",
+          "desc": "Strategic administration and advisory for organisations requiring deep expertise and architectural guidance.",
+          "hours": "Up to 20 hours monthly",
+          "features": [
+            "Strategic consulting included",
+            "Architecture and roadmap guidance",
+            "Proactive optimisation and governance",
+            "Priority incident response",
+            "Quarterly executive briefing"
+          ]
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Get started",
+      "h2": "Need a Microsoft 365 administrator without hiring one full time?",
+      "sub": "Gain flexible access to professional Microsoft 365 administration, security, troubleshooting and continuous improvement — without the cost and complexity of a permanent hire.",
+      "props": [
+        "Free 30-minute consultation",
+        "No long-term commitment required",
+        "Senior expertise from day one",
+        "GDPR compliant"
+      ],
+      "btnPrimary": "Schedule a Free Consultation",
+      "btnSecondary": "View packages"
     }
   },
   "footer": {
