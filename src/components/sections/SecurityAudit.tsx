@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 
@@ -711,7 +712,7 @@ function SectionFinalCTA() {
             >
               {t("finalcta.btn")}
             </a>
-            <a
+            <Link
               href="/de"
               style={{
                 color: "#0071E3",
@@ -725,7 +726,7 @@ function SectionFinalCTA() {
               }}
             >
               {t("finalcta.btnBack")}
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>
