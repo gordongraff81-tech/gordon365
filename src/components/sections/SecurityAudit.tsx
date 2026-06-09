@@ -4,12 +4,35 @@ import React, { useRef } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 
 const fadeUp = (inView: boolean, delay = 0) => ({
   initial: { opacity: 0, y: 40 },
   animate: inView ? { opacity: 1, y: 0 } : {},
   transition: { duration: 0.8, delay, ease: [0.25, 0, 0, 1] },
 });
+
+function BackLink({ t }: { t: ReturnType<typeof useTranslations> }) {
+  const params = useParams();
+  const locale = (params?.locale as string) || "de";
+  return (
+    <Link
+      href={`/${locale}`}
+      style={{
+        color: "#0071E3",
+        padding: "1rem 2.25rem",
+        borderRadius: "980px",
+        fontWeight: 600,
+        fontSize: "1rem",
+        textDecoration: "none",
+        border: "1.5px solid #0071E3",
+        display: "inline-block",
+      }}
+    >
+      {t("finalcta.btnBack")}
+    </Link>
+  );
+}
 
 // ─────────────────────────────────────────────
 // Scroll 1 — System Positioning
@@ -572,7 +595,7 @@ function SectionTargetGroup() {
       className="px-6"
       aria-labelledby="audit-target-h2"
     >
-      <div className="max-w-[960px] mx-auto" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "center" }}>
+      <div className="max-w-[960px] mx-auto" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "4rem", alignItems: "center" }}>
         <motion.div {...fadeUp(inView, 0)}>
           <p style={{
             fontSize: "0.75rem",
@@ -712,21 +735,7 @@ function SectionFinalCTA() {
             >
               {t("finalcta.btn")}
             </a>
-            <Link
-              href="/de"
-              style={{
-                color: "#0071E3",
-                padding: "1rem 2.25rem",
-                borderRadius: "980px",
-                fontWeight: 600,
-                fontSize: "1rem",
-                textDecoration: "none",
-                border: "1.5px solid #0071E3",
-                display: "inline-block",
-              }}
-            >
-              {t("finalcta.btnBack")}
-            </Link>
+            <BackLink t={t} />
           </div>
         </motion.div>
       </div>

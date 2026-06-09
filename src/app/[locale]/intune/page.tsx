@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-export default async function CopilotPage({
+export default async function IntunePage({
   params,
 }: {
   params: Promise<{ locale: string }>;

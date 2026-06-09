@@ -21,6 +21,8 @@ export default function NavV2({ locale }: NavProps) {
   const [activeSection, setActiveSection] = useState("");
 
   const isAssessmentPage = pathname.includes("/assessment");
+  const isSubPage = /\/(security-audit-microsoft-365|administrator-on-demand|entra-id|intune|copilot|impressum|datenschutz|agb)/.test(pathname);
+  const isHomePage = !isAssessmentPage && !isSubPage;
 
   const navSections = useMemo(() => [
     { id: "problem-reality", label: t("problem") },
@@ -37,7 +39,7 @@ export default function NavV2({ locale }: NavProps) {
   }, []);
 
   useEffect(() => {
-    if (isAssessmentPage) return;
+    if (!isHomePage) return;
     const observers = navSections.map((section) => {
       const el = document.getElementById(section.id);
       if (!el) return null;
@@ -51,7 +53,7 @@ export default function NavV2({ locale }: NavProps) {
       return obs;
     });
     return () => observers.forEach((o) => o?.disconnect());
-  }, [navSections, isAssessmentPage]);
+  }, [navSections, isHomePage]);
 
   const switchLang = (newLocale: string) => {
     const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
@@ -107,7 +109,7 @@ export default function NavV2({ locale }: NavProps) {
           {navSections.map((section) => (
             <a
               key={section.id}
-              href={isAssessmentPage ? `/${locale}#${section.id}` : `#${section.id}`}
+              href={isHomePage ? `#${section.id}` : `/${locale}#${section.id}`}
               aria-current={activeSection === section.id ? "page" : undefined}
               className={cn(
                 "text-[13px] font-medium transition-colors hover:text-blue-600",
@@ -129,6 +131,15 @@ export default function NavV2({ locale }: NavProps) {
           >
             {t("assessment")}
           </Link>
+
+          {isSubPage && (
+            <Link
+              href={`/${locale}`}
+              className="text-[13px] font-medium text-slate-500 hover:text-slate-900 transition-colors"
+            >
+              ← {locale === "de" ? "Übersicht" : "Overview"}
+            </Link>
+          )}
 
           <div className="flex bg-slate-100 rounded-full p-1 border border-slate-200 ml-2">
             {["de", "en"].map((l) => (
@@ -185,7 +196,7 @@ export default function NavV2({ locale }: NavProps) {
             {navSections.map((section) => (
               <a
                 key={section.id}
-                href={isAssessmentPage ? `/${locale}#${section.id}` : `#${section.id}`}
+                href={isHomePage ? `#${section.id}` : `/${locale}#${section.id}`}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
                   "text-lg font-semibold border-b border-slate-50 pb-2 transition-colors",
