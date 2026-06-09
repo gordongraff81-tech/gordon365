@@ -21,7 +21,7 @@ export default function NavV2({ locale }: NavProps) {
   const [activeSection, setActiveSection] = useState("");
 
   const isAssessmentPage = pathname.includes("/assessment");
-  const isSubPage = /\/(security-audit-microsoft-365|administrator-on-demand|entra-id|intune|copilot|impressum|datenschutz|agb)/.test(pathname);
+  const isSubPage = /\/(security-audit-microsoft-365|administrator-on-demand|entra-id|intune|copilot|managed-services|impressum|datenschutz|agb)/.test(pathname);
   const isHomePage = !isAssessmentPage && !isSubPage;
 
   const navSections = useMemo(() => [
