@@ -1310,6 +1310,77 @@
     }
   },
 
+  "audit": {
+    "meta": {
+      "title": "Microsoft 365 Security Audit — Gordon365",
+      "description": "Full Microsoft 365 security audit for SMBs. Identify risks in Entra ID, Intune, Defender and SharePoint — with a prioritised remediation roadmap."
+    },
+    "positioning": {
+      "eyebrow": "Microsoft 365 Security Audit",
+      "h1a": "Your Microsoft 365 environment.",
+      "h1b": "Fully analysed.",
+      "sub": "Most Microsoft 365 environments have critical security gaps that go undetected for months. A structured audit identifies every risk, prioritises every action, and delivers a clear remediation roadmap.",
+      "cta": "Request Security Audit",
+      "ctaSecondary": "View risk areas"
+    },
+    "reality": {
+      "label": "Reality Check",
+      "h2": "Undetected risks in your Microsoft 365 environment.",
+      "sub": "These are the most common critical findings in Microsoft 365 environments — and most organisations discover them only after an incident.",
+      "items": {
+        "admin": { "title": "Over-privileged admin accounts", "desc": "Too many permanent global admins, no role separation, no PIM — the most common critical misconfiguration." },
+        "mfa": { "title": "MFA not enforced for all users", "desc": "MFA exists but is not consistently enforced — service accounts and legacy apps bypass it entirely." },
+        "sharing": { "title": "Uncontrolled external sharing", "desc": "SharePoint and OneDrive allow public links — data is accessible outside the organisation without authentication." },
+        "devices": { "title": "Unmanaged devices accessing corporate data", "desc": "Personal devices access Exchange, Teams and SharePoint without Intune compliance checks." },
+        "visibility": { "title": "No visibility across the tenant", "desc": "No central logging, no monitoring, no audit trail — incidents go undetected for weeks or months." }
+      }
+    },
+    "analysis": {
+      "label": "Audit Scope",
+      "h2": "Every critical layer of your Microsoft 365 environment.",
+      "sub": "A structured analysis across identity, device management, collaboration and threat protection.",
+      "areas": {
+        "entra": { "title": "Microsoft Entra ID", "sub": "Identity and access control — the foundation of every M365 security architecture.", "checks": ["Admin role review", "MFA coverage analysis", "Conditional Access audit", "Legacy auth detection", "PIM readiness assessment"] },
+        "intune": { "title": "Microsoft Intune", "sub": "Device management, compliance policies and endpoint security.", "checks": ["Device enrolment status", "Compliance policy review", "App protection policies", "Autopilot readiness", "Endpoint security baseline"] },
+        "collaboration": { "title": "Collaboration Layer", "sub": "Teams, SharePoint and OneDrive governance and data exposure.", "checks": ["External sharing configuration", "Teams governance review", "Sensitivity label status", "DLP policy coverage", "Guest access controls"] },
+        "defender": { "title": "Microsoft Defender", "sub": "Threat protection, Secure Score and incident detection.", "checks": ["Secure Score analysis", "Defender for Endpoint status", "Defender for Identity", "Alert policy review", "Incident response readiness"] }
+      }
+    },
+    "process": {
+      "label": "Audit Process",
+      "h2": "Structured. Documented. Actionable.",
+      "sub": "Three phases. A fixed timeline. Concrete deliverables at every step.",
+      "steps": {
+        "discovery": { "title": "Discovery & Scoping", "desc": "Tenant access, admin review and baseline documentation. All configuration areas scoped against the audit framework.", "duration": "Week 1" },
+        "analysis": { "title": "Deep Analysis", "desc": "Systematic review of Entra ID, Intune, Defender, SharePoint and Teams against CIS, CISA and Microsoft best practice benchmarks.", "duration": "Week 2–3" },
+        "report": { "title": "Report & Briefing", "desc": "Prioritised findings report with risk ratings, remediation steps and effort estimates. Executive briefing session included.", "duration": "Week 4" }
+      }
+    },
+    "outcome": {
+      "label": "Deliverables",
+      "h2": "What you receive.",
+      "sub": "Three concrete outputs that give your organisation full clarity on risk, priorities and next steps.",
+      "items": {
+        "clarity": { "title": "Complete risk inventory", "desc": "Every finding documented with severity rating, business impact and technical detail — nothing left vague." },
+        "actions": { "title": "Prioritised remediation roadmap", "desc": "Actions ranked by risk level and implementation effort — so your team knows exactly what to fix first." },
+        "decision": { "title": "Executive briefing", "desc": "A structured session presenting findings, recommendations and options to IT leadership and decision makers." }
+      }
+    },
+    "target": {
+      "label": "Who This Is For",
+      "h2": "The audit is the right entry point if…",
+      "sub": "You don't need to know where your risks are. The audit finds them.",
+      "criteria": ["You have 20 to 500 Microsoft 365 users", "You've never had a structured M365 security review", "Your Secure Score is below 60 — or unknown", "You're preparing for Copilot deployment or cyber insurance renewal"]
+    },
+    "finalcta": {
+      "eyebrow": "Get started",
+      "h2": "Request your Microsoft 365 Security Audit.",
+      "sub": "Fixed price from €1,500. Results within 2 to 4 weeks. A complete picture of your risks, priorities and next steps.",
+      "props": ["Fixed price from €1,500", "Results in 2 to 4 weeks", "Executive briefing included", "GDPR compliant"],
+      "btn": "Request Security Audit",
+      "btnBack": "← Back to Overview"
+    }
+  },
   "security": {
     "meta": {
       "title": "Microsoft 365 Security Consultant — Security Audit & Hardening — Gordon365",

@@ -1310,6 +1310,77 @@
     }
   },
 
+  "audit": {
+    "meta": {
+      "title": "Microsoft 365 Security Audit — Gordon365",
+      "description": "Vollständiger Microsoft 365 Security Audit für KMU. Risiken in Entra ID, Intune, Defender und SharePoint identifizieren — mit priorisiertem Remediation-Fahrplan."
+    },
+    "positioning": {
+      "eyebrow": "Microsoft 365 Security Audit",
+      "h1a": "Ihre Microsoft 365 Umgebung.",
+      "h1b": "Vollständig analysiert.",
+      "sub": "Die meisten Microsoft 365 Umgebungen haben kritische Sicherheitslücken, die monatelang unentdeckt bleiben. Ein strukturierter Audit identifiziert jedes Risiko, priorisiert jede Maßnahme und liefert einen klaren Remediation-Fahrplan.",
+      "cta": "Security Audit anfragen",
+      "ctaSecondary": "Risikobereiche ansehen"
+    },
+    "reality": {
+      "label": "Reality Check",
+      "h2": "Unentdeckte Risiken in Ihrer Microsoft 365 Umgebung.",
+      "sub": "Dies sind die häufigsten kritischen Befunde in Microsoft 365 Umgebungen — und die meisten Unternehmen entdecken sie erst nach einem Vorfall.",
+      "items": {
+        "admin": { "title": "Zu viele privilegierte Admin-Konten", "desc": "Zu viele permanente Global Admins, keine Rollentrennung, kein PIM — die häufigste kritische Fehlkonfiguration." },
+        "mfa": { "title": "MFA nicht für alle Benutzer durchgesetzt", "desc": "MFA ist vorhanden, wird aber nicht konsequent durchgesetzt — Service-Konten und Legacy-Apps umgehen sie vollständig." },
+        "sharing": { "title": "Unkontrolliertes externes Teilen", "desc": "SharePoint und OneDrive erlauben öffentliche Links — Daten sind ohne Authentifizierung außerhalb der Organisation zugänglich." },
+        "devices": { "title": "Ungemanagte Geräte mit Zugriff auf Unternehmensdaten", "desc": "Persönliche Geräte greifen ohne Intune-Compliance-Prüfungen auf Exchange, Teams und SharePoint zu." },
+        "visibility": { "title": "Keine Transparenz im Mandanten", "desc": "Kein zentrales Logging, kein Monitoring, kein Audit-Trail — Vorfälle bleiben wochenlang oder monatelang unentdeckt." }
+      }
+    },
+    "analysis": {
+      "label": "Audit-Umfang",
+      "h2": "Jede kritische Ebene Ihrer Microsoft 365 Umgebung.",
+      "sub": "Eine strukturierte Analyse über Identität, Geräteverwaltung, Zusammenarbeit und Bedrohungsschutz.",
+      "areas": {
+        "entra": { "title": "Microsoft Entra ID", "sub": "Identität und Zugriffskontrolle — das Fundament jeder M365-Sicherheitsarchitektur.", "checks": ["Admin-Rollen-Review", "MFA-Abdeckungsanalyse", "Conditional Access Audit", "Legacy-Auth-Erkennung", "PIM-Bereitschaftsanalyse"] },
+        "intune": { "title": "Microsoft Intune", "sub": "Geräteverwaltung, Compliance-Richtlinien und Endpunktsicherheit.", "checks": ["Geräteregistrierungsstatus", "Compliance-Richtlinien-Review", "App-Schutzrichtlinien", "Autopilot-Bereitschaft", "Endpunkt-Sicherheits-Baseline"] },
+        "collaboration": { "title": "Collaboration Layer", "sub": "Teams, SharePoint und OneDrive Governance und Datenexposition.", "checks": ["Externe Freigabekonfiguration", "Teams Governance Review", "Sensitivity Label Status", "DLP-Richtlinienabdeckung", "Gastzugriffskontrollen"] },
+        "defender": { "title": "Microsoft Defender", "sub": "Bedrohungsschutz, Secure Score und Vorfallserkennung.", "checks": ["Secure Score Analyse", "Defender for Endpoint Status", "Defender for Identity", "Alert-Richtlinien-Review", "Incident Response Bereitschaft"] }
+      }
+    },
+    "process": {
+      "label": "Audit-Prozess",
+      "h2": "Strukturiert. Dokumentiert. Umsetzbar.",
+      "sub": "Drei Phasen. Ein fester Zeitplan. Konkrete Ergebnisse bei jedem Schritt.",
+      "steps": {
+        "discovery": { "title": "Discovery & Scoping", "desc": "Mandantenzugang, Admin-Review und Basisdokumentation. Alle Konfigurationsbereiche werden gegen das Audit-Framework gescopert.", "duration": "Woche 1" },
+        "analysis": { "title": "Tiefenanalyse", "desc": "Systematische Prüfung von Entra ID, Intune, Defender, SharePoint und Teams gegen CIS-, CISA- und Microsoft Best Practice-Benchmarks.", "duration": "Woche 2–3" },
+        "report": { "title": "Report & Briefing", "desc": "Priorisierter Befundbericht mit Risikobewertungen, Remediation-Schritten und Aufwandsschätzungen. Executive Briefing inklusive.", "duration": "Woche 4" }
+      }
+    },
+    "outcome": {
+      "label": "Ergebnisse",
+      "h2": "Was Sie erhalten.",
+      "sub": "Drei konkrete Outputs, die Ihrer Organisation vollständige Klarheit über Risiken, Prioritäten und nächste Schritte geben.",
+      "items": {
+        "clarity": { "title": "Vollständige Risikoinventur", "desc": "Jeder Befund dokumentiert mit Schweregradeinstufung, Geschäftsauswirkung und technischem Detail — nichts bleibt vage." },
+        "actions": { "title": "Priorisierter Remediation-Fahrplan", "desc": "Maßnahmen nach Risikograd und Umsetzungsaufwand bewertet — damit Ihr Team genau weiß, was zuerst behoben werden muss." },
+        "decision": { "title": "Executive Briefing", "desc": "Eine strukturierte Session, die Befunde, Empfehlungen und Optionen an IT-Leitung und Entscheidungsträger präsentiert." }
+      }
+    },
+    "target": {
+      "label": "Für wen ist das geeignet",
+      "h2": "Der Audit ist der richtige Einstiegspunkt, wenn…",
+      "sub": "Sie müssen nicht wissen, wo Ihre Risiken sind. Der Audit findet sie.",
+      "criteria": ["Sie haben 20 bis 500 Microsoft 365 Benutzer", "Sie hatten noch nie einen strukturierten M365-Sicherheitsreview", "Ihr Secure Score liegt unter 60 — oder ist unbekannt", "Sie bereiten sich auf Copilot-Deployment oder Cyber-Versicherungsverlängerung vor"]
+    },
+    "finalcta": {
+      "eyebrow": "Jetzt starten",
+      "h2": "Microsoft 365 Security Audit anfragen.",
+      "sub": "Festpreis ab 1.500 €. Ergebnisse in 2 bis 4 Wochen. Ein vollständiges Bild Ihrer Risiken, Prioritäten und nächsten Schritte.",
+      "props": ["Festpreis ab 1.500 €", "Ergebnisse in 2–4 Wochen", "Executive Briefing inklusive", "DSGVO-konform"],
+      "btn": "Security Audit anfragen",
+      "btnBack": "← Zur Übersicht"
+    }
+  },
   "security": {
     "meta": {
       "title": "Microsoft 365 Security Consultant — Security Audit & Härtung — Gordon365",
