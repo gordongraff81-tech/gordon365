@@ -23,8 +23,18 @@ export default function Footer({ locale }: FooterProps) {
   const companyLinks = t.raw("companyLinks") as string[];
   const legalLabels = t.raw("legal") as string[];
 
-  const serviceHrefs = ["#services", "#services", "#services", "#security-checker"];
-  const companyHrefs = ["#about", "#results", "#", "mailto:info@gordon365.com"];
+  const serviceHrefs = [
+    `/${locale}/security-audit-microsoft-365`,
+    `/${locale}/copilot`,
+    `/${locale}/managed-services`,
+    `/${locale}#security-checker`,
+  ];
+  const companyHrefs = [
+    `/${locale}#modules`,
+    `/${locale}#modules`,
+    `#`,
+    `mailto:gordon@gordon365.com`,
+  ];
   const legalPaths = ["impressum", "datenschutz", "agb"];
 
   return (
@@ -47,7 +57,7 @@ export default function Footer({ locale }: FooterProps) {
             <div className="text-[0.6875rem] font-bold tracking-[0.1em] uppercase text-text-3 mb-6">{t("servicesTitle")}</div>
             <ul className="space-y-4">
               {serviceLinks.map((link, i) => (
-                <li key={i}><a href={serviceHrefs[i]} className="text-[0.875rem] text-text-2 hover:text-text-1 transition-colors">{link}</a></li>
+                <li key={i}><Link href={serviceHrefs[i]} className="text-[0.875rem] text-text-2 hover:text-text-1 transition-colors">{link}</Link></li>
               ))}
             </ul>
           </div>
@@ -55,7 +65,15 @@ export default function Footer({ locale }: FooterProps) {
             <div className="text-[0.6875rem] font-bold tracking-[0.1em] uppercase text-text-3 mb-6">{t("companyTitle")}</div>
             <ul className="space-y-4">
               {companyLinks.map((link, i) => (
-                <li key={i}><a href={companyHrefs[i]} className="text-[0.875rem] text-text-2 hover:text-text-1 transition-colors">{link}</a></li>
+                <li key={i}>
+                  {companyHrefs[i].startsWith("mailto:") ? (
+                    <a href={companyHrefs[i]} className="text-[0.875rem] text-text-2 hover:text-text-1 transition-colors">{link}</a>
+                  ) : companyHrefs[i] === "#" ? (
+                    <span className="text-[0.875rem] text-text-2 opacity-40 cursor-default">{link}</span>
+                  ) : (
+                    <Link href={companyHrefs[i]} className="text-[0.875rem] text-text-2 hover:text-text-1 transition-colors">{link}</Link>
+                  )}
+                </li>
               ))}
             </ul>
           </div>
