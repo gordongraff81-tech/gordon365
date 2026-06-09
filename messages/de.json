@@ -989,4 +989,410 @@
       "AGB"
     ]
   }
+,
+"intune": {
+    "meta": {
+      "title": "Microsoft Intune Consultant — Gerätemanagement & Endpoint Security — Gordon365",
+      "description": "Microsoft Intune Beratung für KMU. Device Compliance, App Protection, Windows Autopilot und Endpoint Security — professionell konfiguriert und verwaltet."
+    },
+    "positioning": {
+      "eyebrow": "Microsoft Intune Beratung",
+      "h1a": "Ihre Geräte.",
+      "h1b": "Vollständig verwaltet.",
+      "sub": "Unverwaltete Geräte sind das größte blinde Risiko in Microsoft 365 Umgebungen. Gordon365 konfiguriert, sichert und verwaltet Ihre Endpunkte mit Microsoft Intune — strukturiert, skalierbar und compliance-konform.",
+      "cta": "Intune Beratung anfragen",
+      "ctaSecondary": "Leistungen ansehen"
+    },
+    "risks": {
+      "label": "Problem Realität",
+      "h2": "Unverwaltete Geräte sind eine offene Sicherheitslücke.",
+      "sub": "Die meisten Unternehmen unterschätzen das Risiko unkontrollierter Endpunkte — bis es zu einem Vorfall kommt.",
+      "items": {
+        "unmanaged": {
+          "title": "Private Geräte greifen auf Unternehmensdaten zu",
+          "desc": "BYOD ohne Intune-Enrollment bedeutet: keine Compliance-Prüfung, kein App-Schutz, keine Kontrolle über Datenspeicherung."
+        },
+        "nopolicy": {
+          "title": "Keine einheitlichen Gerätekonfigurationen",
+          "desc": "Ohne Konfigurationsprofile variieren Sicherheitseinstellungen je nach Gerät. Kein standardisierter Schutz."
+        },
+        "autopilot": {
+          "title": "Manuelle Geräteeinrichtung kostet Zeit",
+          "desc": "Ohne Windows Autopilot wird jedes neue Gerät manuell konfiguriert — fehleranfällig, zeitaufwendig, nicht skalierbar."
+        },
+        "apps": {
+          "title": "Unkontrollierte App-Installation",
+          "desc": "Ohne App-Protection-Policies können Benutzer Unternehmensdaten in private Apps kopieren oder unsichere Anwendungen installieren."
+        },
+        "visibility": {
+          "title": "Kein Überblick über Gerätekomplianz",
+          "desc": "Ohne Intune-Reporting ist nicht erkennbar, welche Geräte compliant sind und welche ein Risiko darstellen."
+        }
+      }
+    },
+    "services": {
+      "label": "Leistungsumfang",
+      "h2": "Vollständiges Intune Management.",
+      "sub": "Von der initialen Konfiguration bis zur laufenden Verwaltung — alle kritischen Bereiche Ihrer Endpunkt-Infrastruktur.",
+      "areas": {
+        "enrollment": {
+          "title": "Geräteregistrierung",
+          "sub": "Strukturiertes Enrollment für Windows, iOS und Android.",
+          "checks": ["Windows Autopilot Setup", "iOS & Android Enrollment", "Hybrid Join Konfiguration", "Enrollment Restrictions"]
+        },
+        "compliance": {
+          "title": "Compliance Policies",
+          "sub": "Einheitliche Compliance-Anforderungen für alle Endpunkte.",
+          "checks": ["Compliance Policy Design", "Conditional Access Integration", "Non-Compliance Actions", "Gerätestatus-Reporting"]
+        },
+        "configuration": {
+          "title": "Konfigurationsprofile",
+          "sub": "Standardisierte Sicherheits- und Konfigurationsbaselines.",
+          "checks": ["Security Baselines", "Windows Konfigurationsprofile", "BitLocker Enforcement", "Endpoint Security Policies"]
+        },
+        "apps": {
+          "title": "App Management",
+          "sub": "Kontrollierte Bereitstellung und Schutz von Unternehmens-Apps.",
+          "checks": ["App Deployment", "App Protection Policies", "Microsoft 365 Apps Management", "Store App Konfiguration"]
+        }
+      }
+    },
+    "process": {
+      "label": "Vorgehen",
+      "h2": "Strukturiert. Von Analyse bis Betrieb.",
+      "sub": "Jedes Intune-Engagement folgt einem klaren Prozess — von der Bestandsaufnahme bis zur produktionsreifen Konfiguration.",
+      "steps": {
+        "assessment": {
+          "title": "Bestandsaufnahme & Anforderungsanalyse",
+          "desc": "Erfassung aller vorhandenen Geräte, Betriebssysteme und Nutzungsszenarien. Definition der Compliance- und Sicherheitsanforderungen.",
+          "duration": "Woche 1"
+        },
+        "design": {
+          "title": "Policy Design & Architektur",
+          "desc": "Konzeption der Compliance Policies, Konfigurationsprofile, App Protection Policies und Autopilot-Prozesse.",
+          "duration": "Woche 2"
+        },
+        "implementation": {
+          "title": "Implementierung & Testing",
+          "desc": "Konfiguration in Intune, Test mit Pilotgruppe, Validierung aller Policies und Enrollment-Flows.",
+          "duration": "Woche 3–4"
+        },
+        "rollout": {
+          "title": "Rollout & Dokumentation",
+          "desc": "Schrittweiser Rollout auf alle Geräte, Schulung des IT-Teams, vollständige Dokumentation aller Konfigurationen.",
+          "duration": "Woche 4–5"
+        }
+      }
+    },
+    "outcomes": {
+      "label": "Ergebnisse",
+      "h2": "Was Sie erhalten.",
+      "sub": "Ein vollständig verwaltetes Endpunkt-Ökosystem — sicher, skalierbar und auditierbar.",
+      "items": {
+        "control": {
+          "title": "Vollständige Gerätekontrolle",
+          "desc": "Jedes Gerät ist registriert, compliant und konfiguriert. Keine unkontrollierten Endpunkte mehr."
+        },
+        "automation": {
+          "title": "Automatisiertes Onboarding",
+          "desc": "Neue Geräte werden per Autopilot automatisch eingerichtet — ohne manuelle IT-Eingriffe."
+        },
+        "compliance": {
+          "title": "Nachweisbare Compliance",
+          "desc": "Vollständiges Reporting über Gerätestatus, Compliance-Rate und Sicherheitsbaselines — jederzeit auditierbar."
+        }
+      }
+    },
+    "finalcta": {
+      "eyebrow": "Jetzt starten",
+      "h2": "Microsoft Intune professionell aufsetzen.",
+      "sub": "Strukturiertes Intune-Deployment mit klaren Ergebnissen — von der Analyse bis zum produktionsreifen Betrieb.",
+      "props": ["Festpreis", "Ergebnis in 4–6 Wochen", "Vollständige Dokumentation", "DSGVO-konform"],
+      "btn": "Beratung anfragen"
+    }
+  },
+
+  "copilot": {
+    "meta": {
+      "title": "Microsoft Copilot Berater — Copilot Readiness & Governance — Gordon365",
+      "description": "Microsoft Copilot Beratung für KMU. Datenvorbereitung, Governance, Sensitivity Labels und Copilot Readiness Sprint — damit Ihre KI-Investition sich rentiert."
+    },
+    "positioning": {
+      "eyebrow": "Microsoft Copilot Beratung",
+      "h1a": "Microsoft Copilot.",
+      "h1b": "Richtig eingeführt.",
+      "sub": "Die meisten Unternehmen kaufen Copilot-Lizenzen bevor ihre Datenbasis dafür bereit ist. Gordon365 bereitet Ihre Microsoft 365 Umgebung strukturiert vor — Governance, Datenklassifizierung und sichere Einführung.",
+      "cta": "Copilot Readiness anfragen",
+      "ctaSecondary": "Risiken ansehen"
+    },
+    "risks": {
+      "label": "Problem Realität",
+      "h2": "Copilot ohne Vorbereitung ist ein Sicherheitsrisiko.",
+      "sub": "Copilot greift auf alle Daten zu, auf die ein Benutzer Zugriff hat — unkontrollierte Berechtigungen werden sofort sichtbar.",
+      "items": {
+        "permissions": {
+          "title": "Überprivilegierte Dateiberechtigungen",
+          "desc": "SharePoint und OneDrive enthalten tausende Dateien mit zu weitreichenden Zugriffsrechten. Copilot macht diese zugänglich."
+        },
+        "labels": {
+          "title": "Keine Sensitivity Labels",
+          "desc": "Ohne Datenklassifizierung kann Copilot vertrauliche Inhalte ohne Einschränkung verarbeiten und weitergeben."
+        },
+        "governance": {
+          "title": "Fehlende Data Governance",
+          "desc": "Ohne klare Governance-Struktur wächst die Datenmenge unkontrolliert — Copilot verstärkt dieses Problem erheblich."
+        },
+        "dlp": {
+          "title": "Keine DLP-Richtlinien",
+          "desc": "Data Loss Prevention ist Voraussetzung für ein sicheres Copilot-Deployment — fehlt in den meisten KMU-Umgebungen."
+        },
+        "identity": {
+          "title": "Unklare Identitäts- und Zugriffsstruktur",
+          "desc": "Gastzugänge, ehemalige Mitarbeiter und überprivilegierte Konten gefährden die Datensicherheit beim KI-Einsatz."
+        }
+      }
+    },
+    "sprint": {
+      "label": "Copilot Readiness Sprint",
+      "h2": "Vier Bereiche. Eine sichere Grundlage.",
+      "sub": "Der Copilot Readiness Sprint bereitet Ihre Microsoft 365 Umgebung systematisch auf den KI-Einsatz vor.",
+      "areas": {
+        "data": {
+          "title": "Daten & Berechtigungen",
+          "sub": "Bereinigung überprivilegierter Zugriffsrechte in SharePoint und OneDrive.",
+          "checks": ["Berechtigungsanalyse", "Site-Bereinigung", "Gastzugang-Review", "External Sharing Einschränkung"]
+        },
+        "labels": {
+          "title": "Sensitivity Labels",
+          "sub": "Einführung von Microsoft Purview Vertraulichkeitsbezeichnungen.",
+          "checks": ["Label-Taxonomie Design", "Purview Konfiguration", "Auto-Labeling Policies", "DLP-Integration"]
+        },
+        "governance": {
+          "title": "Governance Framework",
+          "sub": "Strukturierte Richtlinien für Teams, SharePoint und Copilot-Nutzung.",
+          "checks": ["Teams Lifecycle Policies", "SharePoint Governance", "Copilot Usage Policies", "Retention Labels"]
+        },
+        "adoption": {
+          "title": "Adoption & Pilotprogramm",
+          "sub": "Strukturierter Pilot mit definierten Use Cases und Erfolgsmessung.",
+          "checks": ["Use Case Mapping", "Pilot User Selection", "Training & Onboarding", "ROI Messung"]
+        }
+      }
+    },
+    "process": {
+      "label": "Vorgehen",
+      "h2": "Von der Analyse zum produktiven Copilot.",
+      "sub": "Ein strukturierter Sprint-Ansatz — von der Readiness-Bewertung bis zum erfolgreichen Piloten.",
+      "steps": {
+        "assess": {
+          "title": "Readiness Assessment",
+          "desc": "Analyse der aktuellen Datenlage, Berechtigungsstruktur, Identity-Konfiguration und bestehenden Governance-Richtlinien.",
+          "duration": "Woche 1"
+        },
+        "clean": {
+          "title": "Datenbereinigung & Berechtigungen",
+          "desc": "Systematische Bereinigung überprivilegierter Zugriffsrechte, Gastzugänge und externer Freigaben.",
+          "duration": "Woche 2–3"
+        },
+        "configure": {
+          "title": "Governance & Labels konfigurieren",
+          "desc": "Einrichtung von Sensitivity Labels, DLP-Policies, Retention Policies und Copilot-Governance-Framework.",
+          "duration": "Woche 3–5"
+        },
+        "pilot": {
+          "title": "Pilotprogramm & Adoption",
+          "desc": "Strukturierter Copilot-Pilot mit definierten Nutzergruppen, Use Cases, Training und Erfolgsmessung.",
+          "duration": "Woche 6–8"
+        }
+      }
+    },
+    "outcomes": {
+      "label": "Ergebnisse",
+      "h2": "Was Sie erhalten.",
+      "sub": "Eine sichere, governance-konforme Grundlage für produktiven Microsoft Copilot-Einsatz.",
+      "items": {
+        "foundation": {
+          "title": "Sichere Datenbasis",
+          "desc": "Bereinigte Berechtigungen, klassifizierte Daten und klare Governance — Copilot arbeitet nur mit dem, was er darf."
+        },
+        "compliance": {
+          "title": "DSGVO-konformer KI-Einsatz",
+          "desc": "Sensitivity Labels, DLP-Policies und Audit-Logs stellen sicher, dass Copilot datenschutzkonform betrieben wird."
+        },
+        "roi": {
+          "title": "Messbarer ROI",
+          "desc": "Definierte Use Cases, strukturierter Pilot und Erfolgsmessung — damit Ihre Copilot-Investition nachweisbar rentiert."
+        }
+      }
+    },
+    "finalcta": {
+      "eyebrow": "Jetzt starten",
+      "h2": "Microsoft Copilot sicher einführen.",
+      "sub": "Copilot Readiness Sprint — strukturierte Vorbereitung in 6 bis 8 Wochen, damit Ihre KI-Investition sich rentiert.",
+      "props": ["Festpreis ab €3.000", "Ergebnis in 6–8 Wochen", "DSGVO-konform", "Pilot inklusive"],
+      "btn": "Readiness Sprint anfragen"
+    }
+  },
+
+  "entraId": {
+    "meta": {
+      "title": "Microsoft Entra ID Consultant — Identity & Conditional Access — Gordon365",
+      "description": "Microsoft Entra ID Beratung für KMU. Conditional Access, MFA Durchsetzung, Privileged Identity Management und Identity Protection — professionell konfiguriert."
+    },
+    "positioning": {
+      "eyebrow": "Microsoft Entra ID Beratung",
+      "h1a": "Identitäten.",
+      "h1b": "Unter Kontrolle.",
+      "sub": "Identitäten sind das primäre Angriffsziel in Microsoft 365. Gordon365 konfiguriert, härtet und verwaltet Ihre Entra ID Umgebung — Conditional Access, MFA, PIM und Identity Protection.",
+      "cta": "Entra ID Review anfragen",
+      "ctaSecondary": "Risiken ansehen"
+    },
+    "risks": {
+      "label": "Problem Realität",
+      "h2": "Identitätsschwachstellen sind das Einfallstor Nr. 1.",
+      "sub": "Über 90% aller Microsoft 365 Kompromittierungen beginnen mit einer schwachen oder fehlenden Identitätskontrolle.",
+      "items": {
+        "admin": {
+          "title": "Zu viele globale Administratoren",
+          "desc": "Mehrere permanente globale Admins ohne PIM sind das kritischste Konfigurationsrisiko in jeder M365 Umgebung."
+        },
+        "mfa": {
+          "title": "MFA nicht für alle Benutzer erzwungen",
+          "desc": "Multi-Faktor-Authentifizierung ist aktiviert, aber nicht konsequent für alle Konten — inklusive Dienstkonten — durchgesetzt."
+        },
+        "legacy": {
+          "title": "Legacy-Authentifizierung aktiv",
+          "desc": "IMAP, POP3 und Basic Auth umgehen MFA vollständig und werden aktiv für Credential-Stuffing-Angriffe genutzt."
+        },
+        "roles": {
+          "title": "Unstrukturierte Rollenzuweisungen",
+          "desc": "Benutzer haben zu weitreichende Berechtigungen ohne regelmäßige Reviews — das Prinzip der minimalen Rechte wird nicht durchgesetzt."
+        },
+        "guests": {
+          "title": "Unkontrollierte Gastkonten",
+          "desc": "Gastkonten ohne Lifecycle-Management akkumulieren sich über Zeit — ehemalige Partner und Lieferanten behalten Zugriff."
+        }
+      }
+    },
+    "services": {
+      "label": "Leistungsumfang",
+      "h2": "Vollständige Entra ID Härtung.",
+      "sub": "Systematische Absicherung aller Identitäts- und Zugriffsebenen in Microsoft Entra ID.",
+      "areas": {
+        "conditionalAccess": {
+          "title": "Conditional Access",
+          "sub": "Granulare Zugriffssteuerung basierend auf Benutzer, Gerät, Standort und Risiko.",
+          "checks": ["Policy Design & Implementierung", "Named Locations konfigurieren", "Device Compliance Integration", "Report-Only Mode Testing"]
+        },
+        "mfa": {
+          "title": "MFA & Authentifizierung",
+          "sub": "Durchsetzung starker Authentifizierung für alle Benutzer und Konten.",
+          "checks": ["MFA Rollout Planung", "Authenticator App Deployment", "SSPR Konfiguration", "Legacy Auth Blockierung"]
+        },
+        "pim": {
+          "title": "Privileged Identity Management",
+          "sub": "Just-in-Time Administratorzugriff statt permanenter Privilegien.",
+          "checks": ["PIM Aktivierung", "Eligible Role Assignments", "Approval Workflows", "Access Reviews"]
+        },
+        "identity": {
+          "title": "Identity Protection",
+          "sub": "Automatische Erkennung und Reaktion auf Identitätsrisiken.",
+          "checks": ["Risk Policies konfigurieren", "Sign-in Risk Policy", "User Risk Policy", "Risky Users Review"]
+        }
+      }
+    },
+    "finalcta": {
+      "eyebrow": "Jetzt starten",
+      "h2": "Entra ID sicher konfigurieren.",
+      "sub": "Strukturierter Entra ID Review und Härtung — von der Bestandsaufnahme bis zur produktionsreifen Konfiguration.",
+      "props": ["Festpreis", "Ergebnis in 2–4 Wochen", "Vollständige Dokumentation", "DSGVO-konform"],
+      "btn": "Entra ID Review anfragen"
+    }
+  },
+
+  "security": {
+    "meta": {
+      "title": "Microsoft 365 Security Consultant — Security Audit & Härtung — Gordon365",
+      "description": "Microsoft 365 Security Beratung für KMU. Security Audit, Secure Score Optimierung, Conditional Access und Microsoft Defender — professionell konfiguriert."
+    }
+  },
+
+  "managedServices": {
+    "meta": {
+      "title": "Microsoft 365 Managed Services — Administrator on Demand — Gordon365",
+      "description": "Laufende Microsoft 365 Administration, Sicherheit und Governance als Managed Service. Flexible Monatspakete ohne Vollzeiteinstellung — Senior-Expertise ab Tag eins."
+    },
+    "positioning": {
+      "eyebrow": "Microsoft 365 Managed Services",
+      "h1a": "Microsoft 365 Expertise.",
+      "h1b": "Auf Abruf.",
+      "sub": "Professionelle Microsoft 365 Administration, Sicherheit und Governance ohne Vollzeiteinstellung. Flexible Monatspakete mit direktem Zugang zu Senior-Expertise — ab Tag eins.",
+      "cta": "Pakete ansehen",
+      "ctaSecondary": "Leistungen ansehen"
+    },
+    "services": {
+      "label": "Leistungsumfang",
+      "h2": "Alle kritischen Bereiche. Ein Ansprechpartner.",
+      "sub": "Vollständige Abdeckung aller Microsoft 365 Administrationsbereiche — proaktiv, strukturiert und dokumentiert.",
+      "areas": {
+        "identity": {
+          "title": "Identität & Zugriff",
+          "sub": "Benutzer, Gruppen, Rollen und Entra ID Konfiguration.",
+          "checks": ["Benutzer-Lifecycle-Management", "Entra ID Administration", "MFA & Conditional Access", "Gastkonto-Governance"]
+        },
+        "security": {
+          "title": "Sicherheit & Compliance",
+          "sub": "Proaktives Sicherheitsmonitoring und Secure Score Optimierung.",
+          "checks": ["Secure Score Reviews", "Sicherheitskonfiguration", "Incident Response", "Compliance Monitoring"]
+        },
+        "devices": {
+          "title": "Geräte & Endpunkte",
+          "sub": "Intune-basiertes Gerätemanagement und Endpoint Security.",
+          "checks": ["Intune Administration", "Compliance Policy Management", "App Deployment", "Endpoint Security"]
+        },
+        "governance": {
+          "title": "Governance & Optimierung",
+          "sub": "Laufende Optimierung von Lizenzen, Teams und SharePoint.",
+          "checks": ["Lizenzoptimierung", "Teams Governance", "SharePoint Administration", "Monatliche Health Reviews"]
+        }
+      }
+    },
+    "packages": {
+      "label": "Service-Pakete",
+      "h2": "Das passende Paket für Ihren Bedarf.",
+      "sub": "Drei flexible Monatspakete. Alle Pakete beinhalten direkten Zugang zu Gordon — kein Account Manager, keine Junior-Übergaben.",
+      "popular": "Beliebtestes Paket",
+      "cta": "Paket anfragen",
+      "items": {
+        "starter": {
+          "name": "Starter",
+          "price": "auf Anfrage",
+          "period": "Bis zu 5 Stunden / Monat",
+          "desc": "Grundlegende Administration für kleinere Umgebungen mit geringem Administrationsvolumen.",
+          "features": ["Benutzer- & Lizenzverwaltung", "Ticketbasierte Anfragen", "Grundlegendes Sicherheitsmonitoring", "E-Mail Support"]
+        },
+        "business": {
+          "name": "Business",
+          "price": "auf Anfrage",
+          "period": "Bis zu 10 Stunden / Monat",
+          "desc": "Umfassende Administration für wachsende Unternehmen mit regelmäßigem Bedarf und proaktiver Überwachung.",
+          "features": ["Alle Starter-Leistungen", "Monatliches Health Review", "Secure Score Optimierung", "Lizenzoptimierung", "Eine Projektunterstützungssession"]
+        },
+        "premium": {
+          "name": "Premium",
+          "price": "auf Anfrage",
+          "period": "Bis zu 20 Stunden / Monat",
+          "desc": "Strategische Administration und Beratung für Unternehmen mit hohem Bedarf und Architekturbegleitung.",
+          "features": ["Alle Business-Leistungen", "Strategische Beratung", "Architektur- & Roadmap-Begleitung", "Priorisierte Incident Response", "Quartalsweises Executive Briefing"]
+        }
+      }
+    },
+    "finalcta": {
+      "eyebrow": "Jetzt starten",
+      "h2": "Microsoft 365 Administration ohne Vollzeiteinstellung.",
+      "sub": "Senior-Expertise auf Abruf — flexibel, strukturiert und direkt. Kostenloses Erstgespräch ohne Verpflichtung.",
+      "props": ["Kostenloses Erstgespräch", "Keine Mindestlaufzeit", "Senior-Expertise ab Tag eins", "DSGVO-konform"],
+      "btn": "Kostenloses Erstgespräch vereinbaren"
+    }
+  }
 }
