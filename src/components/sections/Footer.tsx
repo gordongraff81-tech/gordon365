@@ -33,7 +33,7 @@ export default function Footer({ locale }: FooterProps) {
     `/${locale}#modules`,
     `/${locale}#modules`,
     `#`,
-    `mailto:gordon@gordon365.com`,
+    `mailto:info@gordon365.com`,
   ];
   const legalPaths = ["impressum", "datenschutz", "agb"];
 
