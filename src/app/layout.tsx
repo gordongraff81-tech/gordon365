@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google"; // <-- Neu hinzugefügt
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -50,7 +51,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de" suppressHydrationWarning>
-      <body>{children}</body>
+      <body>
+        {children}
+        <GoogleAnalytics gaId="G-6F24DD5C88" /> {/* <-- Neu hinzugefügt */}
+      </body>
     </html>
   );
 }
