@@ -176,7 +176,7 @@ function SectionProblemReality() {
     <section
       ref={ref}
       id="problem-reality"
-      style={{ background: "#1D1D1F", paddingTop: "140px", paddingBottom: "140px" }}
+      style={{ background: "#000000", paddingTop: "140px", paddingBottom: "140px" }}
       className="px-6"
       aria-labelledby="problem-reality-h2"
     >
@@ -199,7 +199,7 @@ function SectionProblemReality() {
               fontWeight: 800,
               lineHeight: 1.04,
               letterSpacing: "-0.04em",
-              color: "#F5F5F7",
+              color: "#FFFFFF",
               marginBottom: "1.5rem",
               fontFamily: "var(--font-plus-jakarta)",
             }}
@@ -208,7 +208,7 @@ function SectionProblemReality() {
           </h2>
           <p style={{
             fontSize: "clamp(1.125rem, 2vw, 1.25rem)",
-            color: "#86868B",
+            color: "rgba(255,255,255,0.55)",
             lineHeight: 1.7,
             maxWidth: "560px",
           }}>
@@ -216,7 +216,7 @@ function SectionProblemReality() {
           </p>
         </motion.div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "#2D2D2F", borderRadius: "18px", overflow: "hidden" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(255,255,255,0.06)", borderRadius: "18px", overflow: "hidden" }}>
           {PROBLEMS.map((p, i) => (
             <motion.div
               key={p.key}
@@ -227,21 +227,21 @@ function SectionProblemReality() {
                 alignItems: "center",
                 gap: "2rem",
                 padding: "2rem 2.5rem",
-                background: "#1D1D1F",
-                borderBottom: i < PROBLEMS.length - 1 ? "1px solid #2D2D2F" : "none",
+                background: "#000000",
+                borderBottom: i < PROBLEMS.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
               }}
             >
               <div>
                 <p style={{
                   fontSize: "clamp(1.125rem, 2vw, 1.375rem)",
                   fontWeight: 600,
-                  color: "#F5F5F7",
+                  color: "#FFFFFF",
                   marginBottom: "0.4rem",
                   letterSpacing: "-0.02em",
                 }}>
                   {t(`problem.items.${p.key}.title`)}
                 </p>
-                <p style={{ fontSize: "0.9375rem", color: "#86868B", lineHeight: 1.6 }}>
+                <p style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.6 }}>
                   {t(`problem.items.${p.key}.desc`)}
                 </p>
               </div>
@@ -446,7 +446,7 @@ function SectionModuleIntro() {
     <section
       ref={ref}
       id="modules"
-      style={{ background: "#1D1D1F", paddingTop: "140px", paddingBottom: "140px" }}
+      style={{ background: "#000000", paddingTop: "140px", paddingBottom: "140px" }}
       className="px-6"
       aria-labelledby="modules-h2"
     >
@@ -469,7 +469,7 @@ function SectionModuleIntro() {
               fontWeight: 800,
               lineHeight: 1.04,
               letterSpacing: "-0.04em",
-              color: "#F5F5F7",
+              color: "#FFFFFF",
               marginBottom: "1.5rem",
               fontFamily: "var(--font-plus-jakarta)",
             }}
@@ -478,7 +478,7 @@ function SectionModuleIntro() {
           </h2>
           <p style={{
             fontSize: "clamp(1.125rem, 2vw, 1.25rem)",
-            color: "#86868B",
+            color: "rgba(255,255,255,0.55)",
             lineHeight: 1.7,
             maxWidth: "520px",
           }}>
@@ -486,7 +486,7 @@ function SectionModuleIntro() {
           </p>
         </motion.div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(440px, 1fr))", gap: "1px", background: "#2D2D2F", borderRadius: "20px", overflow: "hidden" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(440px, 1fr))", gap: "1px", background: "rgba(255,255,255,0.06)", borderRadius: "20px", overflow: "hidden" }}>
           {MODULES.map((mod, i) => (
             <motion.div key={mod.key} {...fadeUp(inView, i * 0.09)}>
               <Link
@@ -494,13 +494,13 @@ function SectionModuleIntro() {
                 style={{
                   display: "block",
                   padding: "2.5rem",
-                  background: "#1D1D1F",
+                  background: "#000000",
                   textDecoration: "none",
                   transition: "background 0.2s",
                   height: "100%",
                 }}
-                onMouseOver={e => (e.currentTarget.style.background = "#222222")}
-                onMouseOut={e => (e.currentTarget.style.background = "#1D1D1F")}
+                onMouseOver={e => (e.currentTarget.style.background = "#0a0a0a")}
+                onMouseOut={e => (e.currentTarget.style.background = "#000000")}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.5rem" }}>
                   <span style={{
@@ -513,20 +513,20 @@ function SectionModuleIntro() {
                   }}>
                     {mod.label}
                   </span>
-                  <span style={{ fontSize: "1.25rem", color: "#3D3D3F" }}>↗</span>
+                  <span style={{ fontSize: "1.25rem", color: "rgba(255,255,255,0.15)" }}>↗</span>
                 </div>
 
                 <p style={{
                   fontSize: "clamp(1.125rem, 2vw, 1.375rem)",
                   fontWeight: 700,
-                  color: "#F5F5F7",
+                  color: "#FFFFFF",
                   letterSpacing: "-0.02em",
                   marginBottom: "0.75rem",
                   lineHeight: 1.25,
                 }}>
                   {t(`modules.items.${mod.key}.title`)}
                 </p>
-                <p style={{ fontSize: "0.9375rem", color: "#86868B", lineHeight: 1.65, marginBottom: "1.5rem" }}>
+                <p style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, marginBottom: "1.5rem" }}>
                   {t(`modules.items.${mod.key}.sub`)}
                 </p>
 

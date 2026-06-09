@@ -78,9 +78,10 @@ export default function NavV2({ locale }: NavProps) {
         <Link
           href={`/${locale}`}
           className="flex items-center shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
+          style={{ lineHeight: 0 }}
           aria-label="gordon365 – Zurück zur Startseite"
         >
-          {/* Desktop: horizontal logo */}
+          {/* Desktop: full horizontal logo */}
           <Image
             src="/logo.png"
             alt="gordon365 Logo"
@@ -88,19 +89,19 @@ export default function NavV2({ locale }: NavProps) {
             height={50}
             priority
             quality={95}
-            className="hidden sm:block w-auto"
-            style={{ height: "clamp(36px, 3.5vw, 50px)", width: "auto" }}
+            className="hidden sm:block"
+            style={{ height: "clamp(34px, 3.5vw, 48px)", width: "auto", display: "block" }}
           />
-          {/* Mobile: icon only */}
+          {/* Mobile: icon-only — cube mark, no text fragment */}
           <Image
             src="/logo-icon.png"
             alt="gordon365 Logo"
-            width={40}
+            width={36}
             height={36}
             priority
             quality={95}
-            className="block sm:hidden w-auto"
-            style={{ height: "36px", width: "auto" }}
+            className="block sm:hidden"
+            style={{ height: "36px", width: "36px", display: "block", flexShrink: 0 }}
           />
         </Link>
 
