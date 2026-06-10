@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
+import "./cookie-consent.css";
 
 export const viewport: Viewport = {
   themeColor: "#0a0f1e",
