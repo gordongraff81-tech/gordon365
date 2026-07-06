@@ -1,0 +1,341 @@
+{
+  "product": "Intune Device Compliance Starter",
+  "version": "1.0.0",
+  "vendor": "Gordon365",
+  "category": "intune",
+  "tier": "professional",
+  "priceEUR": 199,
+  "msGraphApiVersion": "v1.0",
+  "description": "Windows 11 device compliance policies for Microsoft Intune — BitLocker, Defender Antivirus, Defender Firewall, OS version baseline, and direct mapping to Conditional Access compliant-device policies.",
+  "compatibleLicenses": ["Microsoft 365 Business Premium", "Intune Plan 1", "Microsoft 365 E3", "Microsoft 365 E5"],
+
+  "compliancePolicies": [
+    {
+      "id": "icp001",
+      "displayName": "ICP001 - Windows 11 OS Version Baseline",
+      "platform": "windows10AndLater",
+      "graphResource": "deviceManagement/deviceCompliancePolicies",
+      "graphODataType": "#microsoft.graph.windows10CompliancePolicy",
+      "settings": {
+        "osMinimumVersion": "10.0.22621.0",
+        "osMaximumVersion": null,
+        "earlyLaunchAntiMalwareDriverEnabled": false
+      },
+      "rationale": "Devices running outdated Windows builds miss security patches and are excluded from newer Defender capabilities. Setting a minimum build (Windows 11 22H2 / build 22621) ensures the patch baseline is enforceable, not just recommended.",
+      "rolloutNote": "Set scheduledActionsForRule to mark non-compliant after a 7-day grace period (gracePeriodHours: 168), giving users time to update via Windows Update before being blocked by Conditional Access.",
+      "noncomplianceActions": [
+        { "actionType": "notification", "gracePeriodHours": 0, "notificationTemplateId": "compliance-warning" },
+        { "actionType": "block", "gracePeriodHours": 168 }
+      ]
+    },
+    {
+      "id": "icp002",
+      "displayName": "ICP002 - BitLocker Encryption Required",
+      "platform": "windows10AndLater",
+      "graphResource": "deviceManagement/deviceCompliancePolicies",
+      "graphODataType": "#microsoft.graph.windows10CompliancePolicy",
+      "settings": {
+        "bitLockerEnabled": true,
+        "storageRequireEncryption": true
+      },
+      "rationale": "An unencrypted device that is lost or stolen exposes all locally cached data — including cached M365 credentials and offline OneDrive files — with no additional barrier. BitLocker is built into Windows 11 Pro/Enterprise and has effectively zero performance cost on modern hardware.",
+      "rolloutNote": "Pair with the BitLocker configuration profile (icc002, see configurationProfiles) which actually triggers encryption — this compliance policy only checks the resulting state. Without the configuration profile, devices will be marked non-compliant with no path to remediate automatically.",
+      "noncomplianceActions": [
+        { "actionType": "notification", "gracePeriodHours": 0, "notificationTemplateId": "compliance-warning" },
+        { "actionType": "block", "gracePeriodHours": 72 }
+      ]
+    },
+    {
+      "id": "icp003",
+      "displayName": "ICP003 - Defender Antivirus Active and Up to Date",
+      "platform": "windows10AndLater",
+      "graphResource": "deviceManagement/deviceCompliancePolicies",
+      "graphODataType": "#microsoft.graph.windows10CompliancePolicy",
+      "settings": {
+        "defenderEnabled": true,
+        "rtpEnabled": true,
+        "antivirusRequired": true,
+        "signatureOutOfDate": false
+      },
+      "rationale": "Verifies that Microsoft Defender Antivirus is running, real-time protection is active, and virus definitions are current. Catches devices where Defender has been disabled (by user, malware, or misconfiguration) before they become a compliance gap.",
+      "rolloutNote": "This compliance check verifies STATE only. The actual Defender configuration (what gets scanned, exclusions, cloud protection level) is set via the Defender Antivirus configuration profile (icc003).",
+      "noncomplianceActions": [
+        { "actionType": "notification", "gracePeriodHours": 0, "notificationTemplateId": "compliance-warning" },
+        { "actionType": "block", "gracePeriodHours": 24 }
+      ]
+    },
+    {
+      "id": "icp004",
+      "displayName": "ICP004 - Defender Firewall Enabled (All Profiles)",
+      "platform": "windows10AndLater",
+      "graphResource": "deviceManagement/deviceCompliancePolicies",
+      "graphODataType": "#microsoft.graph.windows10CompliancePolicy",
+      "settings": {
+        "activeFirewallRequired": true
+      },
+      "rationale": "Windows Firewall disabled on any profile (Domain, Private, Public) is a common but easily-overlooked gap — particularly on Public profile for laptops used on untrusted networks (coffee shops, airports, client sites).",
+      "rolloutNote": "Compliance check covers all three firewall profiles. The configuration profile (icc004) enforces specific profile settings; this policy verifies the firewall service itself is not disabled.",
+      "noncomplianceActions": [
+        { "actionType": "notification", "gracePeriodHours": 0, "notificationTemplateId": "compliance-warning" },
+        { "actionType": "block", "gracePeriodHours": 72 }
+      ]
+    },
+    {
+      "id": "icp005",
+      "displayName": "ICP005 - Password / PIN Required",
+      "platform": "windows10AndLater",
+      "graphResource": "deviceManagement/deviceCompliancePolicies",
+      "graphODataType": "#microsoft.graph.windows10CompliancePolicy",
+      "settings": {
+        "passwordRequired": true,
+        "passwordMinimumLength": 8,
+        "passwordRequiredType": "alphanumeric",
+        "passwordMinutesOfInactivityBeforeLock": 15
+      },
+      "rationale": "A device meeting all other compliance criteria but with no lock screen password provides no protection if physically accessed while unattended. This is the baseline 'someone walks away from their desk' control.",
+      "rolloutNote": "15-minute inactivity lock balances security with usability. For higher-security environments, reduce to 5 minutes — but communicate the change, as this is one of the more noticeable settings for end users.",
+      "noncomplianceActions": [
+        { "actionType": "notification", "gracePeriodHours": 0, "notificationTemplateId": "compliance-warning" },
+        { "actionType": "block", "gracePeriodHours": 24 }
+      ]
+    }
+  ],
+
+  "configurationProfiles": [
+    {
+      "id": "icc002",
+      "displayName": "ICC002 - BitLocker Configuration (Endpoint Protection)",
+      "platform": "windows10AndLater",
+      "graphResource": "deviceManagement/configurationPolicies",
+      "templateFamily": "endpointSecurityEndpointProtection",
+      "settings": {
+        "bitLockerSystemDrivePolicy": {
+          "encryptionMethod": "xtsAes256",
+          "startupAuthenticationRequired": true,
+          "recoveryOptions": {
+            "recoveryKeyUsage": "allowed",
+            "recoveryInformationToStore": "passwordAndKey",
+            "storeRecoveryInformationToAAD": true
+          }
+        },
+        "bitLockerFixedDrivePolicy": {
+          "encryptionMethod": "xtsAes256",
+          "requireEncryptionForWriteAccess": true
+        }
+      },
+      "rationale": "Triggers actual BitLocker encryption with recovery keys automatically backed up to Entra ID — critical, since a lost recovery key on an encrypted drive means permanently lost data.",
+      "rolloutNote": "storeRecoveryInformationToAAD: true is the single most important setting here. Without it, recovery keys exist only on the device or with the end user, defeating the purpose of centralized recovery."
+    },
+    {
+      "id": "icc003",
+      "displayName": "ICC003 - Defender Antivirus Configuration",
+      "platform": "windows10AndLater",
+      "graphResource": "deviceManagement/configurationPolicies",
+      "templateFamily": "endpointSecurityAntivirus",
+      "settings": {
+        "cloudProtectionLevel": "high",
+        "submitSamplesConsent": "sendSafeSamplesAutomatically",
+        "realTimeProtectionEnabled": true,
+        "scanScheduleDay": "everyday",
+        "potentiallyUnwantedAppAction": "block"
+      },
+      "rationale": "Cloud-delivered protection at 'high' enables more aggressive blocking of newly-emerging threats before traditional signatures are available. PUA blocking catches adware/bundled software that, while not strictly malware, degrades security posture and user experience.",
+      "rolloutNote": "submitSamplesConsent affects whether potentially sensitive files are sent to Microsoft for analysis. 'sendSafeSamplesAutomatically' is a reasonable default; organizations with strict data residency requirements should review this setting against their data processing agreements."
+    },
+    {
+      "id": "icc004",
+      "displayName": "ICC004 - Defender Firewall Configuration",
+      "platform": "windows10AndLater",
+      "graphResource": "deviceManagement/configurationPolicies",
+      "templateFamily": "endpointSecurityFirewall",
+      "settings": {
+        "domainProfile": { "firewallEnabled": true, "inboundConnectionsBlocked": true, "outboundConnectionsRequired": true },
+        "privateProfile": { "firewallEnabled": true, "inboundConnectionsBlocked": true, "outboundConnectionsRequired": true },
+        "publicProfile": { "firewallEnabled": true, "inboundConnectionsBlocked": true, "outboundConnectionsRequired": true, "stealthModeRequired": true }
+      },
+      "rationale": "Explicit per-profile configuration rather than relying on Windows defaults. Stealth mode on the Public profile prevents the device from responding to network discovery probes on untrusted networks.",
+      "rolloutNote": "Blocking all inbound connections by default may break specific line-of-business tools that require inbound access (e.g. remote support software, some printing setups). Test with the pilot group before broad enforcement, and create scoped inbound allow rules as named exceptions rather than disabling the policy."
+    },
+    {
+      "id": "icc005",
+      "displayName": "ICC005 - Windows Update Ring (Compliance Alignment)",
+      "platform": "windows10AndLater",
+      "graphResource": "deviceManagement/windowsUpdateForBusinessConfigurations",
+      "settings": {
+        "qualityUpdatesDeferralPeriodInDays": 7,
+        "featureUpdatesDeferralPeriodInDays": 14,
+        "automaticUpdateMode": "autoInstallAtMaintenanceTime"
+      },
+      "rationale": "ICP001 (OS Version Baseline) is meaningless without a mechanism that actually keeps devices updated. This update ring keeps devices within the supported version window with a short, manageable deferral for stability.",
+      "rolloutNote": "A 7-day quality update deferral catches the rare 'bad patch' scenarios reported in the first few days without falling significantly behind the compliance baseline."
+    }
+  ],
+
+  "osVersionBaseline": {
+    "windows": {
+      "minimumBuild": "10.0.22621.0",
+      "minimumBuildName": "Windows 11 22H2",
+      "rationale": "22H2 is the earliest Windows 11 feature update still within Microsoft's support lifecycle as of this pack's release. Earlier builds (21H2 and Windows 10) should be treated as a migration project, not a compliance exception.",
+      "windows10Eol": "2025-10-14",
+      "windows10Note": "Windows 10 reaches end of support on 2025-10-14. Devices still on Windows 10 should be flagged for hardware replacement or Windows 11 upgrade as a project predating this compliance rollout — do not attempt to make Windows 10 'compliant' as a long-term state."
+    },
+    "macos": {
+      "minimumVersion": "14.0",
+      "minimumVersionName": "macOS Sonoma",
+      "rationale": "Aligns with the two most recent macOS major versions, consistent with Apple's typical security update support window.",
+      "note": "Full macOS compliance policy definitions are not included in this pack's v1.0.0 — Windows 11 is the primary scope. macOS support is planned as a v1.1.0 addition (see versions in product.json)."
+    }
+  },
+
+  "complianceToConditionalAccessMapping": {
+    "description": "This is the critical link between Intune compliance and Conditional Access enforcement. A device must be marked 'Compliant' in Intune for any Conditional Access policy using the 'compliantDevice' grant control to succeed.",
+    "mappings": [
+      {
+        "conditionalAccessPolicy": "CA004 - Require Compliant or Hybrid Joined Device for Admins",
+        "sourcePack": "ca-hardening-pack",
+        "dependsOnCompliancePolicies": ["icp001", "icp002", "icp003", "icp004", "icp005"],
+        "explanation": "CA004 (from the Conditional Access Hardening Pack) uses the 'compliantDevice' grant control for admin role holders. Without the compliance policies defined in THIS pack deployed and evaluated first, every admin sign-in attempt will fail CA004 — because no device will ever be marked compliant. CA004 has a hard dependency on this pack."
+      }
+    ],
+    "deploymentSequencingWarning": "Deploy and validate compliance policies (this pack) BEFORE enabling CA004 in enforced mode. If CA004 is already enforced and this pack is deployed afterward, admin accounts may experience a temporary lockout window while devices transition from 'not evaluated' to 'compliant'. Recommended: deploy this pack first, allow 24-48 hours for device check-ins and compliance evaluation, THEN switch CA004 from report-only to enforced."
+  },
+
+  "rolloutOrder": [
+    {
+      "step": 1,
+      "ids": ["icc005"],
+      "description": "Deploy Windows Update Ring first - establishes the patching cadence that ICP001 will measure against. No compliance impact yet."
+    },
+    {
+      "step": 2,
+      "ids": ["icc003", "icc004"],
+      "description": "Deploy Defender Antivirus and Firewall configuration profiles. These configure settings but compliance policies (icp003, icp004) are not yet active - safe to deploy broadly."
+    },
+    {
+      "step": 3,
+      "ids": ["icc002"],
+      "description": "Deploy BitLocker configuration profile. Devices begin encrypting in the background. This can take hours depending on disk size - do not enable icp002 (compliance check) until encryption has had time to complete on the pilot group."
+    },
+    {
+      "step": 4,
+      "ids": ["icp003", "icp004", "icp005"],
+      "description": "Enable Defender AV, Firewall, and Password compliance policies for the pilot group. These three have the lowest false-positive risk - most devices already meet them via default Windows settings."
+    },
+    {
+      "step": 5,
+      "ids": ["icp002"],
+      "description": "Enable BitLocker compliance policy for the pilot group, only after confirming via Intune device details that pilot devices show 'Encrypted' status."
+    },
+    {
+      "step": 6,
+      "ids": ["icp001"],
+      "description": "Enable OS Version Baseline compliance policy last. This is the policy most likely to flag existing devices as non-compliant (anything on an older Windows 11 build or Windows 10) - deploy only once a remediation plan exists for flagged devices."
+    },
+    {
+      "step": 7,
+      "ids": ["all-policies"],
+      "description": "Expand all policies from pilot group to full tenant in 1-2 waves, following the same wave structure as the MFA Rollout Kit (mfa-rollout-kit) if installed.",
+      "crossReference": "mfa-rollout-kit"
+    },
+    {
+      "step": 8,
+      "ids": ["ca004-enforcement"],
+      "description": "Only after step 7 is complete and stable for 48 hours: switch CA004 (Require Compliant or Hybrid Joined Device for Admins) from report-only to enforced. This is the policy from ca-hardening-pack that depends on this entire pack.",
+      "crossReference": "ca-hardening-pack"
+    }
+  ],
+
+  "exceptionProcess": {
+    "principle": "Device compliance exceptions follow the same governance model as the MFA exception process (mfa-rollout-kit): rare, time-boxed, documented. An exception is a statement that a specific device is accepted as a risk, not that the policy is wrong.",
+    "validReasons": [
+      "Legacy line-of-business hardware that cannot run Windows 11 (e.g. specialized manufacturing/lab equipment) - must have a hardware refresh plan with a target date",
+      "Devices in active BitLocker encryption (in-progress, not yet complete) - temporary exception with automatic expiry once encryption completes, not a manual exception",
+      "Newly enrolled devices within the first 24 hours - compliance evaluation has a natural delay; do not treat 'not yet evaluated' as 'non-compliant' for alerting purposes"
+    ],
+    "invalidReasons": [
+      "\"This user is senior management and the policy is inconvenient\" - same standard applies to all devices; senior roles are higher-value targets, not lower-risk ones",
+      "\"The device passed compliance before and we don't want to re-check\" - compliance is evaluated continuously by design; a one-time exemption defeats the purpose",
+      "\"BitLocker slows down the device\" - on any hardware from the last 6+ years, the performance impact is negligible; this is a perception issue to address via communication, not a technical exception"
+    ],
+    "process": [
+      "1. Exception request submitted identifying the specific device (Intune Device ID) and business justification",
+      "2. IT Admin reviews against valid/invalid reason lists",
+      "3. If approved: device added to a dedicated 'Intune-Compliance-Exception' Entra ID group with documented expiry date",
+      "4. Exception group is excluded only from the specific compliance policy needed - never from all policies",
+      "5. CA004 (compliant device requirement) is NOT relaxed for exception devices - if a device cannot be compliant, the admin using it should use a different, compliant device for privileged access. Exceptions apply to general M365 access compliance reporting, not to admin-tier access controls."
+    ],
+    "crossReference": "Follows the same governance pattern as mfa-rollout-kit's exception process - both feed into the same 'security exception register' if the customer maintains one."
+  },
+
+  "reportingAndKpis": [
+    {
+      "metric": "Overall Device Compliance Rate",
+      "definition": "Percentage of managed devices marked 'Compliant' across all 5 compliance policies",
+      "target": "95%+ within 60 days of full rollout",
+      "graphSource": "GET /deviceManagement/managedDevices?$filter=complianceState eq 'compliant'",
+      "trackingFrequency": "weekly"
+    },
+    {
+      "metric": "BitLocker Encryption Coverage",
+      "definition": "Percentage of Windows devices with BitLocker status 'Encrypted'",
+      "target": "100% of corporate-owned Windows devices",
+      "graphSource": "GET /deviceManagement/managedDevices - check encryptionState property per device",
+      "trackingFrequency": "weekly during rollout, monthly after"
+    },
+    {
+      "metric": "Defender Signature Currency",
+      "definition": "Percentage of devices with Defender signatures updated within 48 hours",
+      "target": "98%+",
+      "graphSource": "GET /deviceManagement/managedDevices - check windowsProtectionState/signatureUpdateDateTime",
+      "trackingFrequency": "weekly"
+    },
+    {
+      "metric": "CA004 Sign-In Success Rate (Admin Roles)",
+      "definition": "Percentage of admin sign-ins satisfying the compliant-device Conditional Access requirement without failure",
+      "target": "99%+ after step 8 enforcement",
+      "graphSource": "Entra sign-in logs filtered by Conditional Access policy = CA004, result = success",
+      "trackingFrequency": "daily for first week after enforcement, weekly after",
+      "crossReference": "ca-hardening-pack"
+    },
+    {
+      "metric": "Windows Build Currency",
+      "definition": "Percentage of Windows devices on a supported build meeting ICP001 minimum",
+      "target": "95%+ within 90 days, 100% before Windows 10 EOL (2025-10-14)",
+      "graphSource": "GET /deviceManagement/managedDevices - osVersion property, compare against osVersionBaseline",
+      "trackingFrequency": "monthly"
+    },
+    {
+      "metric": "Active Compliance Exceptions",
+      "definition": "Number of devices in 'Intune-Compliance-Exception' group",
+      "target": "< 3% of total managed devices, trending to 0",
+      "graphSource": "GET /groups/{exception-group-id}/members",
+      "trackingFrequency": "monthly"
+    }
+  ],
+
+  "ms365dscMapping": {
+    "ready": true,
+    "resourceType": "IntuneDeviceCompliancePolicyWindows10 / IntuneDeviceConfigurationPolicyWindows10 / IntuneWindowsUpdateForBusiness",
+    "moduleVersion": "Microsoft365DSC >= 1.24",
+    "note": "Each compliance policy (icp001-005) maps to IntuneDeviceCompliancePolicyWindows10. Configuration profiles (icc002-005) map to IntuneDeviceConfigurationPolicyWindows10 (endpoint security templates) and IntuneWindowsUpdateForBusiness respectively. Phase 2 export will provide a combined .ps1 configuration covering this pack alongside ca-hardening-pack (shared CA004 dependency) and mfa-rollout-kit (shared rollout wave structure).",
+    "crossProductDependencies": ["ca-hardening-pack", "mfa-rollout-kit"]
+  },
+
+  "crossSell": {
+    "relatedProducts": ["ca-hardening-pack", "mfa-rollout-kit"],
+    "bundleEligible": true,
+    "dependencies": [
+      {
+        "product": "ca-hardening-pack",
+        "relationship": "hard-dependency-for-ca004",
+        "description": "CA004 (Require Compliant or Hybrid Joined Device for Admins) in ca-hardening-pack cannot function without the compliance policies defined in this pack. Customers who own CA Hardening Pack but not this pack will see CA004 fail for all admin sign-ins once enforced."
+      },
+      {
+        "product": "mfa-rollout-kit",
+        "relationship": "shared-rollout-pattern",
+        "description": "Step 7 (rollout to full tenant) reuses the same pilot-group and wave-based rollout structure as mfa-rollout-kit. Customers running both rollouts can align them to the same pilot group and wave schedule to reduce total change-communication overhead."
+      }
+    ],
+    "upsellTrigger": "Customers who purchase ca-hardening-pack and have CA004 in report-only mode for 14+ days without this pack should be prompted: 'CA004 is ready to enforce but requires device compliance policies - get the Intune Device Compliance Starter to complete this policy.'"
+  }
+}

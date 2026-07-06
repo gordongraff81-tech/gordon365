@@ -1,0 +1,210 @@
+{
+  "product": "Conditional Access Hardening Pack",
+  "version": "1.0.0",
+  "vendor": "Gordon365",
+  "category": "security",
+  "tier": "professional",
+  "priceEUR": 149,
+  "msGraphApiVersion": "v1.0",
+  "description": "10 production-ready Conditional Access policies for Microsoft Entra ID. Import via Entra Admin Center or Microsoft Graph API.",
+  "compatibleLicenses": ["Microsoft 365 Business Premium", "Entra ID P1", "Entra ID P2", "Microsoft 365 E3", "Microsoft 365 E5"],
+  "policies": [
+    {
+      "id": "ca001",
+      "displayName": "CA001 - Block Legacy Authentication",
+      "state": "enabledForReportingButNotEnforced",
+      "priority": 1,
+      "conditions": {
+        "users": { "includeUsers": ["All"], "excludeUsers": ["BreakGlassAccounts"] },
+        "applications": { "includeApplications": ["All"] },
+        "clientAppTypes": ["exchangeActiveSync", "other"]
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["block"]
+      },
+      "rationale": "Legacy authentication protocols (IMAP, POP3, SMTP AUTH, older Office clients) do not support modern authentication and cannot enforce MFA. They are the most common vector for password-spray attacks.",
+      "rolloutNote": "Start in report-only mode for 7 days. Review sign-in logs filtered by 'Client App = Legacy Authentication Clients' before enforcing."
+    },
+    {
+      "id": "ca002",
+      "displayName": "CA002 - Require MFA for Admins",
+      "state": "enabledForReportingButNotEnforced",
+      "priority": 2,
+      "conditions": {
+        "users": {
+          "includeRoles": [
+            "Global Administrator",
+            "Security Administrator",
+            "Exchange Administrator",
+            "SharePoint Administrator",
+            "User Administrator",
+            "Conditional Access Administrator"
+          ],
+          "excludeUsers": ["BreakGlassAccounts"]
+        },
+        "applications": { "includeApplications": ["All"] }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["mfa"]
+      },
+      "rationale": "Privileged accounts are the highest-value target. A compromised Global Admin account without MFA is a full tenant takeover.",
+      "rolloutNote": "No staged rollout needed for admin accounts - enable directly, but ensure break-glass accounts are excluded and tested first."
+    },
+    {
+      "id": "ca003",
+      "displayName": "CA003 - Require MFA for All Users",
+      "state": "enabledForReportingButNotEnforced",
+      "priority": 3,
+      "conditions": {
+        "users": { "includeUsers": ["All"], "excludeUsers": ["BreakGlassAccounts"] },
+        "applications": { "includeApplications": ["All"] }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["mfa"]
+      },
+      "rationale": "Microsoft reports MFA blocks over 99.9% of account compromise attacks. This is the single highest-impact security control available.",
+      "rolloutNote": "Pair with the MFA Rollout Kit template for a phased 3-week communication plan. Do not enable before users have registered authentication methods."
+    },
+    {
+      "id": "ca004",
+      "displayName": "CA004 - Require Compliant or Hybrid Joined Device for Admins",
+      "state": "enabledForReportingButNotEnforced",
+      "priority": 4,
+      "conditions": {
+        "users": {
+          "includeRoles": ["Global Administrator", "Security Administrator", "Exchange Administrator"],
+          "excludeUsers": ["BreakGlassAccounts"]
+        },
+        "applications": { "includeApplications": ["All"] }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["compliantDevice", "domainJoinedDevice"]
+      },
+      "rationale": "Restricts admin access to managed devices, preventing privileged sign-ins from unmanaged personal machines.",
+      "rolloutNote": "Requires Intune enrollment or hybrid Azure AD join to be functional first. Combine with the Intune Device Compliance Starter template.",
+      "msIntuneDependency": true
+    },
+    {
+      "id": "ca005",
+      "displayName": "CA005 - Block High-Risk Sign-Ins",
+      "state": "enabledForReportingButNotEnforced",
+      "priority": 5,
+      "conditions": {
+        "users": { "includeUsers": ["All"], "excludeUsers": ["BreakGlassAccounts"] },
+        "applications": { "includeApplications": ["All"] },
+        "signInRiskLevels": ["high"]
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["block"]
+      },
+      "rationale": "Identity Protection assigns a real-time risk score to sign-ins based on anomalous location, impossible travel, leaked credentials, and known malicious IP ranges. High-risk sign-ins should never be allowed through.",
+      "rolloutNote": "Requires Entra ID P2 (Identity Protection). If only P1 is available, skip this policy or substitute with sign-in frequency restrictions.",
+      "licenseRequirement": "Entra ID P2"
+    },
+    {
+      "id": "ca006",
+      "displayName": "CA006 - Require Password Change for Medium-Risk Users",
+      "state": "enabledForReportingButNotEnforced",
+      "priority": 6,
+      "conditions": {
+        "users": { "includeUsers": ["All"], "excludeUsers": ["BreakGlassAccounts"] },
+        "applications": { "includeApplications": ["All"] },
+        "userRiskLevels": ["medium", "high"]
+      },
+      "grantControls": {
+        "operator": "AND",
+        "builtInControls": ["mfa", "passwordChange"]
+      },
+      "rationale": "Users flagged with elevated risk (e.g. credentials found in a breach dump) should be forced to re-authenticate with MFA and change their password before continuing.",
+      "rolloutNote": "Requires Entra ID P2. Test with a single pilot user account before broad enablement.",
+      "licenseRequirement": "Entra ID P2"
+    },
+    {
+      "id": "ca007",
+      "displayName": "CA007 - Geo-Block High-Risk Countries",
+      "state": "enabledForReportingButNotEnforced",
+      "priority": 7,
+      "conditions": {
+        "users": { "includeUsers": ["All"], "excludeUsers": ["BreakGlassAccounts"] },
+        "applications": { "includeApplications": ["All"] },
+        "locations": { "includeLocations": ["NamedLocation:HighRiskCountries"] }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["block"]
+      },
+      "rationale": "If the organization has no legitimate business presence in certain geographic regions, sign-ins originating from those locations are almost certainly malicious or VPN-obscured attacks.",
+      "rolloutNote": "Customer must define the 'HighRiskCountries' Named Location first based on their actual business footprint - this is a placeholder that must be customized per tenant. Never block countries where traveling employees may legitimately be.",
+      "requiresCustomization": true
+    },
+    {
+      "id": "ca008",
+      "displayName": "CA008 - Require Approved Client App for Mobile",
+      "state": "enabledForReportingButNotEnforced",
+      "priority": 8,
+      "conditions": {
+        "users": { "includeUsers": ["All"], "excludeUsers": ["BreakGlassAccounts"] },
+        "applications": { "includeApplications": ["Office365"] },
+        "platforms": { "includePlatforms": ["iOS", "android"] }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["approvedApplication", "compliantApplication"]
+      },
+      "rationale": "Prevents corporate data from being accessed through unmanaged third-party mail/file apps on personal mobile devices, forcing use of Microsoft's managed app ecosystem (Outlook, Teams, OneDrive mobile apps with App Protection Policies).",
+      "rolloutNote": "Pairs well with Intune App Protection Policies (MAM) for BYOD scenarios where full device enrollment is not desired."
+    },
+    {
+      "id": "ca009",
+      "displayName": "CA009 - Session Sign-In Frequency for Unmanaged Devices",
+      "state": "enabledForReportingButNotEnforced",
+      "priority": 9,
+      "conditions": {
+        "users": { "includeUsers": ["All"], "excludeUsers": ["BreakGlassAccounts"] },
+        "applications": { "includeApplications": ["All"] },
+        "devices": { "deviceFilter": { "mode": "exclude", "rule": "device.trustType -eq \"AzureAD\"" } }
+      },
+      "sessionControls": {
+        "signInFrequency": { "value": 4, "type": "hours", "isEnabled": true },
+        "persistentBrowser": { "mode": "never", "isEnabled": true }
+      },
+      "rationale": "On unmanaged devices, sessions should expire faster and browsers should not persist sign-in state, reducing the window of opportunity if a device is shared or compromised.",
+      "rolloutNote": "Communicate to users in advance - this will require more frequent re-authentication on personal devices."
+    },
+    {
+      "id": "ca010",
+      "displayName": "CA010 - Terms of Use Acceptance for Guests",
+      "state": "enabledForReportingButNotEnforced",
+      "priority": 10,
+      "conditions": {
+        "users": { "includeUsers": ["GuestsOrExternalUsers"] },
+        "applications": { "includeApplications": ["All"] }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["mfa", "termsOfUse"]
+      },
+      "rationale": "External guest accounts (common in Teams and SharePoint sharing) represent an often-overlooked attack surface. Requiring MFA and explicit Terms of Use acceptance creates an audit trail and raises the bar for guest account abuse.",
+      "rolloutNote": "Requires a Terms of Use document to be configured in Entra ID under Identity Governance first. A generic template ToU is included as ca010-terms-of-use-template.docx in this package.",
+      "requiresCustomization": true
+    }
+  ],
+  "breakGlassAccountGuidance": {
+    "required": true,
+    "recommendation": "Create at least 2 cloud-only emergency access accounts excluded from ALL Conditional Access policies. Use 16+ character random passwords stored offline (physical safe). Monitor sign-ins to these accounts with high-priority alerts. Microsoft Learn reference: 'Manage emergency access accounts in Microsoft Entra ID'."
+  },
+  "deploymentOrder": [
+    "ca001", "ca002", "ca004", "ca008", "ca009", "ca010", "ca003", "ca007", "ca005", "ca006"
+  ],
+  "ms365dscMapping": {
+    "ready": true,
+    "resourceType": "AADConditionalAccessPolicy",
+    "moduleVersion": "Microsoft365DSC >= 1.24",
+    "note": "Each policy object above maps directly to an AADConditionalAccessPolicy resource block. Phase 2 export will generate a complete .ps1 DSC configuration file from this JSON. Not included in Phase 1 - manual import via Entra Admin Center or Microsoft Graph API required."
+  }
+}

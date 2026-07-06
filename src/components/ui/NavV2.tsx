@@ -81,7 +81,7 @@ export default function NavV2({ locale }: NavProps) {
           style={{ lineHeight: 0 }}
           aria-label="gordon365 – Zurück zur Startseite"
         >
-          {/* Desktop: full horizontal logo — no inline display override, Tailwind hidden/block owns visibility */}
+          {/* Full horizontal logo on all breakpoints — scales down on mobile via clamp() */}
           <Image
             src="/logo.png"
             alt="gordon365 Logo"
@@ -89,19 +89,7 @@ export default function NavV2({ locale }: NavProps) {
             height={50}
             priority
             quality={95}
-            className="hidden sm:block"
-            style={{ height: "clamp(34px, 3.5vw, 48px)", width: "auto" }}
-          />
-          {/* Mobile: icon-only — cube mark, no text fragment */}
-          <Image
-            src="/logo-icon.png"
-            alt="gordon365 Logo"
-            width={36}
-            height={36}
-            priority
-            quality={95}
-            className="block sm:hidden"
-            style={{ height: "36px", width: "36px", flexShrink: 0 }}
+            style={{ height: "clamp(28px, 8vw, 48px)", width: "auto" }}
           />
         </Link>
 

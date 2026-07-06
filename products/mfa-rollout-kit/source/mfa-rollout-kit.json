@@ -1,0 +1,288 @@
+{
+  "product": "MFA Rollout Kit",
+  "version": "1.0.0",
+  "vendor": "Gordon365",
+  "category": "security",
+  "tier": "basic",
+  "priceEUR": 79,
+  "msGraphApiVersion": "v1.0",
+  "description": "Complete 3-week phased MFA rollout plan for Microsoft Entra ID — communication templates, helpdesk FAQ, pilot group strategy, exception handling, and KPI tracking.",
+  "compatibleLicenses": ["Microsoft 365 Business Basic", "Microsoft 365 Business Premium", "Entra ID P1", "Entra ID P2", "Microsoft 365 E3", "Microsoft 365 E5"],
+
+  "rolloutPlan": {
+    "totalDurationWeeks": 3,
+    "phases": [
+      {
+        "phase": 0,
+        "name": "Preparation",
+        "durationDays": 5,
+        "description": "Configure registration campaign, identify pilot group, prepare communications, set up break-glass accounts.",
+        "tasks": [
+          {
+            "id": "prep001",
+            "task": "Create break-glass emergency access accounts",
+            "graphAction": "Create 2 cloud-only accounts with Global Administrator role, exclude from all CA/registration policies",
+            "owner": "IT Admin",
+            "durationHours": 1
+          },
+          {
+            "id": "prep002",
+            "task": "Enable Authentication Methods Registration Campaign in report-only mode",
+            "graphAction": "PATCH /policies/authenticationMethodsPolicy — registrationEnforcement.authenticationMethodsRegistrationCampaign.state = 'enabled' (excludeTargets contains pilot exclusion initially)",
+            "owner": "IT Admin",
+            "durationHours": 0.5
+          },
+          {
+            "id": "prep003",
+            "task": "Identify pilot group (5-10% of users)",
+            "graphAction": "Create Entra ID security group 'MFA-Pilot-Group', add members per pilot group concept (see pilotGroupConcept)",
+            "owner": "IT Admin",
+            "durationHours": 1
+          },
+          {
+            "id": "prep004",
+            "task": "Send pre-announcement communication",
+            "graphAction": "Send 'Announcement' email template to all users (T-5 days)",
+            "owner": "IT Admin / HR",
+            "durationHours": 0.5
+          },
+          {
+            "id": "prep005",
+            "task": "Brief helpdesk team with FAQ",
+            "graphAction": "Distribute helpdeskFaq section to support staff, walk through top 5 expected ticket types",
+            "owner": "IT Admin",
+            "durationHours": 1
+          }
+        ]
+      },
+      {
+        "phase": 1,
+        "name": "Pilot Rollout",
+        "durationDays": 5,
+        "description": "Enforce MFA registration for pilot group only. Monitor registration rate and helpdesk ticket volume daily.",
+        "tasks": [
+          {
+            "id": "pilot001",
+            "task": "Apply registration campaign enforcement to pilot group",
+            "graphAction": "Update authenticationMethodsRegistrationCampaign includeTargets to 'MFA-Pilot-Group', snoozeDurationInDays = 1",
+            "owner": "IT Admin",
+            "durationHours": 0.5
+          },
+          {
+            "id": "pilot002",
+            "task": "Send pilot-specific 'Action Required' email",
+            "graphAction": "Send 'PilotActionRequired' email template to pilot group only",
+            "owner": "IT Admin",
+            "durationHours": 0.25
+          },
+          {
+            "id": "pilot003",
+            "task": "Daily registration rate check",
+            "graphAction": "GET /reports/authenticationMethods/userRegistrationDetails filtered by pilot group — target 90%+ registration by day 4",
+            "owner": "IT Admin",
+            "durationHours": 0.25,
+            "recurring": "daily"
+          },
+          {
+            "id": "pilot004",
+            "task": "Collect pilot feedback",
+            "graphAction": "Short survey or direct follow-up with pilot group on registration experience and clarity of communications",
+            "owner": "IT Admin",
+            "durationHours": 1
+          }
+        ],
+        "goNoGoCriteria": [
+          "Pilot group registration rate >= 90%",
+          "No critical break-glass account lockouts",
+          "Helpdesk ticket volume from pilot group manageable (< 1 ticket per 5 users)",
+          "No legacy line-of-business application broken by MFA requirement"
+        ]
+      },
+      {
+        "phase": 2,
+        "name": "Phased Full Rollout",
+        "durationDays": 8,
+        "description": "Roll out to remaining users in 2-3 waves. Recommended split: Wave A (next 40%), Wave B (remaining 60% including any flagged exceptions).",
+        "tasks": [
+          {
+            "id": "wave001",
+            "task": "Wave A — apply registration campaign to next 40% of users",
+            "graphAction": "Update authenticationMethodsRegistrationCampaign includeTargets to add 'MFA-Wave-A' group",
+            "owner": "IT Admin",
+            "durationHours": 0.5
+          },
+          {
+            "id": "wave002",
+            "task": "Send Wave A 'Action Required' email (T-1 day notice)",
+            "graphAction": "Send 'ActionRequired' email template to Wave A group",
+            "owner": "IT Admin",
+            "durationHours": 0.25
+          },
+          {
+            "id": "wave003",
+            "task": "Monitor Wave A for 3 days, address exceptions",
+            "graphAction": "Track registration via reports API, apply exception process (see exceptionProcess) for flagged accounts",
+            "owner": "IT Admin",
+            "durationHours": 0.5,
+            "recurring": "daily"
+          },
+          {
+            "id": "wave004",
+            "task": "Wave B — apply registration campaign to remaining users",
+            "graphAction": "Update authenticationMethodsRegistrationCampaign includeTargets = 'All' (minus break-glass and approved exceptions)",
+            "owner": "IT Admin",
+            "durationHours": 0.5
+          },
+          {
+            "id": "wave005",
+            "task": "Send Wave B 'Action Required' email (T-1 day notice)",
+            "graphAction": "Send 'ActionRequired' email template to remaining users",
+            "owner": "IT Admin",
+            "durationHours": 0.25
+          },
+          {
+            "id": "wave006",
+            "task": "Final registration sweep and reminder",
+            "graphAction": "Send 'FinalReminder' email to any users below registration threshold, snoozeDurationInDays = 0",
+            "owner": "IT Admin",
+            "durationHours": 0.25
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "name": "Enforcement & Stabilization",
+        "durationDays": 3,
+        "description": "Switch from registration enforcement to full MFA requirement via Conditional Access. Monitor for one week post-enforcement.",
+        "tasks": [
+          {
+            "id": "enf001",
+            "task": "Verify tenant-wide registration rate >= 98% (excluding approved exceptions)",
+            "graphAction": "GET /reports/authenticationMethods/userRegistrationDetails — confirm coverage before enabling CA003",
+            "owner": "IT Admin",
+            "durationHours": 0.5
+          },
+          {
+            "id": "enf002",
+            "task": "Enable CA003 (Require MFA for All Users) — switch from report-only to On",
+            "graphAction": "PATCH /identity/conditionalAccess/policies/{ca003-id} — state = 'enabled'. Cross-reference: CA Hardening Pack policy CA003.",
+            "owner": "IT Admin",
+            "durationHours": 0.25,
+            "crossReference": "ca-hardening-pack"
+          },
+          {
+            "id": "enf003",
+            "task": "Send 'RolloutComplete' communication",
+            "graphAction": "Send completion email to all users with summary and ongoing support info",
+            "owner": "IT Admin / HR",
+            "durationHours": 0.25
+          },
+          {
+            "id": "enf004",
+            "task": "One-week post-enforcement monitoring",
+            "graphAction": "Daily check of sign-in logs for MFA-related failures, monitor helpdesk ticket trends",
+            "owner": "IT Admin",
+            "durationHours": 0.5,
+            "recurring": "daily"
+          }
+        ]
+      }
+    ]
+  },
+
+  "pilotGroupConcept": {
+    "sizeRecommendation": "5-10% of total user count, minimum 5 users, maximum 25 for tenants up to 300 users",
+    "selectionCriteria": [
+      "Include at least 2 IT/helpdesk staff (early feedback, technical fluency)",
+      "Include 1-2 executives or department heads (visible champions, smooths broader rollout)",
+      "Include a mix of device types (Windows, Mac, mobile-only users)",
+      "Include at least 1 user known to be less tech-comfortable (surfaces UX issues for everyone else)",
+      "Avoid including anyone on critical deadline work during the pilot week (e.g. finance during month-end close)"
+    ],
+    "groupSetup": {
+      "graphAction": "Create a dedicated Entra ID security group (e.g. 'MFA-Pilot-Group') via /groups endpoint, add selected members via /groups/{id}/members/$ref",
+      "rationale": "A dedicated group allows the registration campaign and any interim Conditional Access policies to be scoped precisely, and makes rollback trivial if the pilot surfaces blocking issues."
+    }
+  },
+
+  "exceptionProcess": {
+    "principle": "Exceptions should be rare, time-boxed, and documented. An exception is never permanent without a documented compensating control.",
+    "validReasons": [
+      "Service accounts that cannot perform interactive MFA (must use Conditional Access app/service principal exclusions, not user exclusions)",
+      "Shared/kiosk devices with a single shared account (recommend migrating to dedicated accounts + Temporary Access Pass instead of exclusion)",
+      "Temporary technical limitation (e.g. legacy line-of-business app integration pending vendor update) — must have a remediation deadline"
+    ],
+    "invalidReasons": [
+      "\"User doesn't want to install an app on their personal phone\" — offer hardware token or phone call/SMS as alternative, do not exempt",
+      "\"It's inconvenient\" — not a valid exception under any circumstance",
+      "Executive requesting blanket exemption — escalate to documented risk acceptance signed by leadership, time-boxed to 30 days max"
+    ],
+    "process": [
+      "1. Exception request submitted with business justification and proposed expiry date",
+      "2. IT Admin reviews against validReasons list",
+      "3. If approved: user/account added to a dedicated 'MFA-Exception-Approved' group with documented expiry date in audit log",
+      "4. Exception group is excluded only from the specific policy needed (never from all security policies)",
+      "5. Exception reviewed at expiry — renewed only with updated justification, or remediated"
+    ],
+    "breakGlassNote": "Break-glass emergency access accounts (see CA Hardening Pack, Section 6) are NOT the same as MFA exceptions. Break-glass accounts are for emergency admin access only, never used for daily work, and excluded from ALL conditional access and registration policies permanently."
+  },
+
+  "kpis": [
+    {
+      "metric": "MFA Registration Rate",
+      "definition": "Percentage of active users with at least one strong authentication method registered",
+      "target": "98%+ before enforcement (Phase 3)",
+      "graphSource": "GET /reports/authenticationMethods/userRegistrationDetails",
+      "trackingFrequency": "daily during rollout, weekly after"
+    },
+    {
+      "metric": "Helpdesk Ticket Volume (MFA-related)",
+      "definition": "Number of support tickets tagged with MFA/authentication issues",
+      "target": "< 1 ticket per 5 users during pilot, < 1 per 10 users during full rollout",
+      "graphSource": "External — helpdesk ticketing system, tag-based filter",
+      "trackingFrequency": "daily during rollout"
+    },
+    {
+      "metric": "Authentication Method Diversity",
+      "definition": "Percentage of users with 2+ methods registered (redundancy against lockout)",
+      "target": "70%+ within 60 days post-enforcement",
+      "graphSource": "GET /reports/authenticationMethods/userRegistrationDetails — methodsRegistered field count",
+      "trackingFrequency": "monthly post-rollout"
+    },
+    {
+      "metric": "MFA Sign-In Success Rate",
+      "definition": "Percentage of MFA challenges that succeed (vs. timeout/failure)",
+      "target": "95%+",
+      "graphSource": "Entra Sign-in logs filtered by 'Authentication requirement = Multifactor authentication'",
+      "trackingFrequency": "weekly"
+    },
+    {
+      "metric": "Active Exceptions Count",
+      "definition": "Number of accounts in MFA-Exception-Approved group",
+      "target": "< 2% of total users, trending toward 0",
+      "graphSource": "GET /groups/{exception-group-id}/members",
+      "trackingFrequency": "monthly"
+    },
+    {
+      "metric": "Time to Enforcement",
+      "definition": "Calendar days from rollout start (Phase 0) to CA003 enforcement (Phase 3)",
+      "target": "21 days (3 weeks) per this plan; longer for tenants >300 users",
+      "graphSource": "Internal tracking — no Graph API source",
+      "trackingFrequency": "once per rollout"
+    }
+  ],
+
+  "ms365dscMapping": {
+    "ready": true,
+    "resourceType": "AADAuthenticationMethodPolicyAuthenticator / AADConditionalAccessPolicy",
+    "moduleVersion": "Microsoft365DSC >= 1.24",
+    "note": "The registration campaign configuration (authenticationMethodsRegistrationCampaign) maps to AADAuthenticationMethodPolicyAuthenticator. The final enforcement step (enf002) maps directly to the CA003 policy already defined in the CA Hardening Pack's AADConditionalAccessPolicy resource block. Phase 2 export will provide combined .ps1 configuration covering both this kit and the CA Hardening Pack.",
+    "crossProductDependency": "ca-hardening-pack"
+  },
+
+  "crossSell": {
+    "relatedProducts": ["ca-hardening-pack"],
+    "bundleEligible": true,
+    "rationale": "This kit prepares the user population for CA003 (Require MFA for All Users), which is delivered as part of the CA Hardening Pack. Customers who purchase this kit alone will reach Phase 3 with a policy reference (enf002) that requires the CA Hardening Pack to execute — cross-sell prompt recommended at Phase 2 completion."
+  }
+}

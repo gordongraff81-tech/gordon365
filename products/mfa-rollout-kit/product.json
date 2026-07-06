@@ -1,0 +1,34 @@
+{
+  "id": "mfa-rollout-kit",
+  "title": "MFA Rollout Kit",
+  "category": "security",
+  "tier": "basic",
+  "priceCents": 7900,
+  "stripePriceId": "price_1TiqLVArgFXIA4pOcICP8oxU",
+  "description": "./description.md",
+  "currentVersion": "1.0.0",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "releasedAt": "2025-06-13",
+      "changelog": "Initial release - 4-phase rollout plan, communication templates, helpdesk FAQ, exception process, KPIs",
+      "files": {
+        "rolloutPlan": "mfa-rollout-kit/1.0.0/mfa-rollout-kit.json",
+        "communicationTemplates": "mfa-rollout-kit/1.0.0/communication-templates.md",
+        "helpdeskFaq": "mfa-rollout-kit/1.0.0/helpdesk-faq.md",
+        "guide": "mfa-rollout-kit/1.0.0/mfa-rollout-kit-guide.docx"
+      }
+    }
+  ],
+  "previewFile": "mfa-rollout-kit/1.0.0/preview/teaser.json",
+  "ms365dscReady": true,
+  "crossSell": {
+    "relatedProducts": [
+      "ca-hardening-pack",
+      "intune-compliance-starter"
+    ],
+    "bundleEligible": true,
+    "dependencyNote": "Phase 3 enforcement step (enf002) requires CA003 policy definition from ca-hardening-pack",
+    "sharedRolloutPattern": "intune-compliance-starter reuses this kit's pilot-group and wave-based rollout structure (rolloutOrder step 7) - customers owning both can align pilot groups and schedules"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "ca-hardening-pack",
+  "title": "Conditional Access Hardening Pack",
+  "category": "security",
+  "tier": "professional",
+  "priceCents": 14900,
+  "stripePriceId": "price_1TiqEbArgFXIA4pO0f8B2Y1J",
+  "description": "./description.md",
+  "currentVersion": "1.0.0",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "releasedAt": "2025-06-12",
+      "changelog": "Initial release - 10 Conditional Access policies, rollout order, risk analysis, break-glass guidance.",
+      "files": {
+        "policy": "ca-hardening-pack/1.0.0/ca-hardening-pack.json",
+        "guide": "ca-hardening-pack/1.0.0/ca-hardening-pack-guide.docx"
+      }
+    }
+  ],
+  "previewFile": "ca-hardening-pack/1.0.0/preview/teaser.json",
+  "ms365dscReady": true,
+  "crossSell": {
+    "relatedProducts": [
+      "mfa-rollout-kit",
+      "intune-compliance-starter"
+    ],
+    "bundleEligible": true,
+    "dependencies": [
+      {
+        "product": "intune-compliance-starter",
+        "relationship": "ca004-requires-compliance-policies",
+        "description": "CA004 (Require Compliant or Hybrid Joined Device for Admins) uses the 'compliantDevice' grant control, which has no signal to evaluate without the compliance policies defined in intune-compliance-starter. If CA004 is in report-only mode for 14+ days and intune-compliance-starter has not been purchased, show the upsell trigger defined in that product's source/gtm-content.md."
+      },
+      {
+        "product": "mfa-rollout-kit",
+        "relationship": "ca003-enforcement-step",
+        "description": "CA003 (Require MFA for All Users) ships in report-only mode. mfa-rollout-kit's Phase 3 (enf002) is the recommended path to safely switch CA003 to enforced after a 3-week registration rollout."
+      }
+    ]
+  }
+}

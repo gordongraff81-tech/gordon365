@@ -116,27 +116,63 @@
         "audit": {
           "title": "Security Audit",
           "sub": "Full analysis of your Microsoft 365 security posture. Risks identified. Actions prioritised.",
-          "tags": ["Entra ID", "Intune", "Defender", "SharePoint"]
+          "tags": [
+            "Entra ID",
+            "Intune",
+            "Defender",
+            "SharePoint"
+          ]
         },
         "entra": {
           "title": "Entra ID Review",
           "sub": "Bring identities and access rights under control. Clean up MFA, Conditional Access and roles.",
-          "tags": ["Conditional Access", "MFA", "PIM", "Identity Protection"]
+          "tags": [
+            "Conditional Access",
+            "MFA",
+            "PIM",
+            "Identity Protection"
+          ]
         },
         "intune": {
           "title": "Intune Management",
           "sub": "Manage devices in a compliant way. Configure policies, app protection and Autopilot.",
-          "tags": ["Device Compliance", "App Management", "Autopilot", "Endpoint Security"]
+          "tags": [
+            "Device Compliance",
+            "App Management",
+            "Autopilot",
+            "Endpoint Security"
+          ]
         },
         "copilot": {
           "title": "Copilot Readiness",
           "sub": "Build the data foundation for Microsoft Copilot. Clean up governance, labels and permissions.",
-          "tags": ["Sensitivity Labels", "DLP", "Data Governance", "Permissions"]
+          "tags": [
+            "Sensitivity Labels",
+            "DLP",
+            "Data Governance",
+            "Permissions"
+          ]
         },
         "aod": {
           "title": "Administrator on Demand",
           "sub": "Flexible Microsoft 365 administration, security and support without a full-time hire. Monthly packages from day one.",
-          "tags": ["User Management", "Entra ID", "Intune", "Exchange Online", "Security"]
+          "tags": [
+            "User Management",
+            "Entra ID",
+            "Intune",
+            "Exchange Online",
+            "Security"
+          ]
+        },
+        "templates": {
+          "title": "Self-Serve Security Packs",
+          "sub": "Production-ready Conditional Access, Intune, and MFA configurations. Instant download. No consulting required.",
+          "tags": [
+            "Conditional Access",
+            "Intune Baseline",
+            "MFA Rollout",
+            "From €149"
+          ]
         }
       }
     },
@@ -987,10 +1023,11 @@
       "Legal Notice",
       "Privacy Policy",
       "Terms"
-    ]
-  }
-,
-"intune": {
+    ],
+    "servicesTitle": "Services",
+    "companyTitle": "Company"
+  },
+  "intune": {
     "meta": {
       "title": "Microsoft Intune Consultant — Device Management & Endpoint Security — Gordon365",
       "description": "Microsoft Intune consulting for SMBs. Device compliance, app protection, Windows Autopilot and endpoint security — professionally configured and managed."
@@ -1038,22 +1075,42 @@
         "enrollment": {
           "title": "Device Enrollment",
           "sub": "Structured enrollment for Windows, iOS and Android.",
-          "checks": ["Windows Autopilot setup", "iOS & Android enrollment", "Hybrid join configuration", "Enrollment restrictions"]
+          "checks": [
+            "Windows Autopilot setup",
+            "iOS & Android enrollment",
+            "Hybrid join configuration",
+            "Enrollment restrictions"
+          ]
         },
         "compliance": {
           "title": "Compliance Policies",
           "sub": "Consistent compliance requirements across all endpoints.",
-          "checks": ["Compliance policy design", "Conditional access integration", "Non-compliance actions", "Device status reporting"]
+          "checks": [
+            "Compliance policy design",
+            "Conditional access integration",
+            "Non-compliance actions",
+            "Device status reporting"
+          ]
         },
         "configuration": {
           "title": "Configuration Profiles",
           "sub": "Standardised security and configuration baselines.",
-          "checks": ["Security baselines", "Windows configuration profiles", "BitLocker enforcement", "Endpoint security policies"]
+          "checks": [
+            "Security baselines",
+            "Windows configuration profiles",
+            "BitLocker enforcement",
+            "Endpoint security policies"
+          ]
         },
         "apps": {
           "title": "App Management",
           "sub": "Controlled deployment and protection of corporate apps.",
-          "checks": ["App deployment", "App protection policies", "Microsoft 365 Apps management", "Store app configuration"]
+          "checks": [
+            "App deployment",
+            "App protection policies",
+            "Microsoft 365 Apps management",
+            "Store app configuration"
+          ]
         }
       }
     },
@@ -1107,11 +1164,15 @@
       "eyebrow": "Get started",
       "h2": "Set up Microsoft Intune professionally.",
       "sub": "Structured Intune deployment with clear outcomes — from analysis to production-ready operation.",
-      "props": ["Fixed price", "Results in 4–6 weeks", "Full documentation", "GDPR compliant"],
+      "props": [
+        "Fixed price",
+        "Results in 4–6 weeks",
+        "Full documentation",
+        "GDPR compliant"
+      ],
       "btn": "Request consulting"
     }
   },
-
   "copilot": {
     "meta": {
       "title": "Microsoft Copilot Consultant — Copilot Readiness & Governance — Gordon365",
@@ -1160,22 +1221,42 @@
         "data": {
           "title": "Data & Permissions",
           "sub": "Remediation of over-permissioned access rights in SharePoint and OneDrive.",
-          "checks": ["Permissions analysis", "Site remediation", "Guest access review", "External sharing restrictions"]
+          "checks": [
+            "Permissions analysis",
+            "Site remediation",
+            "Guest access review",
+            "External sharing restrictions"
+          ]
         },
         "labels": {
           "title": "Sensitivity Labels",
           "sub": "Deployment of Microsoft Purview sensitivity labels.",
-          "checks": ["Label taxonomy design", "Purview configuration", "Auto-labeling policies", "DLP integration"]
+          "checks": [
+            "Label taxonomy design",
+            "Purview configuration",
+            "Auto-labeling policies",
+            "DLP integration"
+          ]
         },
         "governance": {
           "title": "Governance Framework",
           "sub": "Structured policies for Teams, SharePoint and Copilot usage.",
-          "checks": ["Teams lifecycle policies", "SharePoint governance", "Copilot usage policies", "Retention labels"]
+          "checks": [
+            "Teams lifecycle policies",
+            "SharePoint governance",
+            "Copilot usage policies",
+            "Retention labels"
+          ]
         },
         "adoption": {
           "title": "Adoption & Pilot",
           "sub": "Structured pilot with defined use cases and success measurement.",
-          "checks": ["Use case mapping", "Pilot user selection", "Training & onboarding", "ROI measurement"]
+          "checks": [
+            "Use case mapping",
+            "Pilot user selection",
+            "Training & onboarding",
+            "ROI measurement"
+          ]
         }
       }
     },
@@ -1229,11 +1310,15 @@
       "eyebrow": "Get started",
       "h2": "Deploy Microsoft Copilot securely.",
       "sub": "Copilot Readiness Sprint — structured preparation in 6 to 8 weeks, so your AI investment delivers real returns.",
-      "props": ["Fixed price from €3,000", "Results in 6–8 weeks", "GDPR compliant", "Pilot included"],
+      "props": [
+        "Fixed price from €3,000",
+        "Results in 6–8 weeks",
+        "GDPR compliant",
+        "Pilot included"
+      ],
       "btn": "Request Readiness Sprint"
     }
   },
-
   "entraId": {
     "meta": {
       "title": "Microsoft Entra ID Consultant — Identity & Conditional Access — Gordon365",
@@ -1282,22 +1367,42 @@
         "conditionalAccess": {
           "title": "Conditional Access",
           "sub": "Granular access control based on user, device, location and risk.",
-          "checks": ["Policy design & implementation", "Named locations configuration", "Device compliance integration", "Report-only mode testing"]
+          "checks": [
+            "Policy design & implementation",
+            "Named locations configuration",
+            "Device compliance integration",
+            "Report-only mode testing"
+          ]
         },
         "mfa": {
           "title": "MFA & Authentication",
           "sub": "Enforcement of strong authentication for all users and accounts.",
-          "checks": ["MFA rollout planning", "Authenticator app deployment", "SSPR configuration", "Legacy auth blocking"]
+          "checks": [
+            "MFA rollout planning",
+            "Authenticator app deployment",
+            "SSPR configuration",
+            "Legacy auth blocking"
+          ]
         },
         "pim": {
           "title": "Privileged Identity Management",
           "sub": "Just-in-time administrator access instead of permanent privileges.",
-          "checks": ["PIM activation", "Eligible role assignments", "Approval workflows", "Access reviews"]
+          "checks": [
+            "PIM activation",
+            "Eligible role assignments",
+            "Approval workflows",
+            "Access reviews"
+          ]
         },
         "identity": {
           "title": "Identity Protection",
           "sub": "Automated detection and response to identity risks.",
-          "checks": ["Risk policy configuration", "Sign-in risk policy", "User risk policy", "Risky users review"]
+          "checks": [
+            "Risk policy configuration",
+            "Sign-in risk policy",
+            "User risk policy",
+            "Risky users review"
+          ]
         }
       }
     },
@@ -1305,11 +1410,15 @@
       "eyebrow": "Get started",
       "h2": "Configure Entra ID securely.",
       "sub": "Structured Entra ID review and hardening — from assessment to production-ready configuration.",
-      "props": ["Fixed price", "Results in 2–4 weeks", "Full documentation", "GDPR compliant"],
+      "props": [
+        "Fixed price",
+        "Results in 2–4 weeks",
+        "Full documentation",
+        "GDPR compliant"
+      ],
       "btn": "Request Entra ID review"
     }
   },
-
   "audit": {
     "meta": {
       "title": "Microsoft 365 Security Audit — Gordon365",
@@ -1328,11 +1437,26 @@
       "h2": "Undetected risks in your Microsoft 365 environment.",
       "sub": "These are the most common critical findings in Microsoft 365 environments — and most organisations discover them only after an incident.",
       "items": {
-        "admin": { "title": "Over-privileged admin accounts", "desc": "Too many permanent global admins, no role separation, no PIM — the most common critical misconfiguration." },
-        "mfa": { "title": "MFA not enforced for all users", "desc": "MFA exists but is not consistently enforced — service accounts and legacy apps bypass it entirely." },
-        "sharing": { "title": "Uncontrolled external sharing", "desc": "SharePoint and OneDrive allow public links — data is accessible outside the organisation without authentication." },
-        "devices": { "title": "Unmanaged devices accessing corporate data", "desc": "Personal devices access Exchange, Teams and SharePoint without Intune compliance checks." },
-        "visibility": { "title": "No visibility across the tenant", "desc": "No central logging, no monitoring, no audit trail — incidents go undetected for weeks or months." }
+        "admin": {
+          "title": "Over-privileged admin accounts",
+          "desc": "Too many permanent global admins, no role separation, no PIM — the most common critical misconfiguration."
+        },
+        "mfa": {
+          "title": "MFA not enforced for all users",
+          "desc": "MFA exists but is not consistently enforced — service accounts and legacy apps bypass it entirely."
+        },
+        "sharing": {
+          "title": "Uncontrolled external sharing",
+          "desc": "SharePoint and OneDrive allow public links — data is accessible outside the organisation without authentication."
+        },
+        "devices": {
+          "title": "Unmanaged devices accessing corporate data",
+          "desc": "Personal devices access Exchange, Teams and SharePoint without Intune compliance checks."
+        },
+        "visibility": {
+          "title": "No visibility across the tenant",
+          "desc": "No central logging, no monitoring, no audit trail — incidents go undetected for weeks or months."
+        }
       }
     },
     "analysis": {
@@ -1340,10 +1464,50 @@
       "h2": "Every critical layer of your Microsoft 365 environment.",
       "sub": "A structured analysis across identity, device management, collaboration and threat protection.",
       "areas": {
-        "entra": { "title": "Microsoft Entra ID", "sub": "Identity and access control — the foundation of every M365 security architecture.", "checks": ["Admin role review", "MFA coverage analysis", "Conditional Access audit", "Legacy auth detection", "PIM readiness assessment"] },
-        "intune": { "title": "Microsoft Intune", "sub": "Device management, compliance policies and endpoint security.", "checks": ["Device enrolment status", "Compliance policy review", "App protection policies", "Autopilot readiness", "Endpoint security baseline"] },
-        "collaboration": { "title": "Collaboration Layer", "sub": "Teams, SharePoint and OneDrive governance and data exposure.", "checks": ["External sharing configuration", "Teams governance review", "Sensitivity label status", "DLP policy coverage", "Guest access controls"] },
-        "defender": { "title": "Microsoft Defender", "sub": "Threat protection, Secure Score and incident detection.", "checks": ["Secure Score analysis", "Defender for Endpoint status", "Defender for Identity", "Alert policy review", "Incident response readiness"] }
+        "entra": {
+          "title": "Microsoft Entra ID",
+          "sub": "Identity and access control — the foundation of every M365 security architecture.",
+          "checks": [
+            "Admin role review",
+            "MFA coverage analysis",
+            "Conditional Access audit",
+            "Legacy auth detection",
+            "PIM readiness assessment"
+          ]
+        },
+        "intune": {
+          "title": "Microsoft Intune",
+          "sub": "Device management, compliance policies and endpoint security.",
+          "checks": [
+            "Device enrolment status",
+            "Compliance policy review",
+            "App protection policies",
+            "Autopilot readiness",
+            "Endpoint security baseline"
+          ]
+        },
+        "collaboration": {
+          "title": "Collaboration Layer",
+          "sub": "Teams, SharePoint and OneDrive governance and data exposure.",
+          "checks": [
+            "External sharing configuration",
+            "Teams governance review",
+            "Sensitivity label status",
+            "DLP policy coverage",
+            "Guest access controls"
+          ]
+        },
+        "defender": {
+          "title": "Microsoft Defender",
+          "sub": "Threat protection, Secure Score and incident detection.",
+          "checks": [
+            "Secure Score analysis",
+            "Defender for Endpoint status",
+            "Defender for Identity",
+            "Alert policy review",
+            "Incident response readiness"
+          ]
+        }
       }
     },
     "process": {
@@ -1351,9 +1515,21 @@
       "h2": "Structured. Documented. Actionable.",
       "sub": "Three phases. A fixed timeline. Concrete deliverables at every step.",
       "steps": {
-        "discovery": { "title": "Discovery & Scoping", "desc": "Tenant access, admin review and baseline documentation. All configuration areas scoped against the audit framework.", "duration": "Week 1" },
-        "analysis": { "title": "Deep Analysis", "desc": "Systematic review of Entra ID, Intune, Defender, SharePoint and Teams against CIS, CISA and Microsoft best practice benchmarks.", "duration": "Week 2–3" },
-        "report": { "title": "Report & Briefing", "desc": "Prioritised findings report with risk ratings, remediation steps and effort estimates. Executive briefing session included.", "duration": "Week 4" }
+        "discovery": {
+          "title": "Discovery & Scoping",
+          "desc": "Tenant access, admin review and baseline documentation. All configuration areas scoped against the audit framework.",
+          "duration": "Week 1"
+        },
+        "analysis": {
+          "title": "Deep Analysis",
+          "desc": "Systematic review of Entra ID, Intune, Defender, SharePoint and Teams against CIS, CISA and Microsoft best practice benchmarks.",
+          "duration": "Week 2–3"
+        },
+        "report": {
+          "title": "Report & Briefing",
+          "desc": "Prioritised findings report with risk ratings, remediation steps and effort estimates. Executive briefing session included.",
+          "duration": "Week 4"
+        }
       }
     },
     "outcome": {
@@ -1361,22 +1537,41 @@
       "h2": "What you receive.",
       "sub": "Three concrete outputs that give your organisation full clarity on risk, priorities and next steps.",
       "items": {
-        "clarity": { "title": "Complete risk inventory", "desc": "Every finding documented with severity rating, business impact and technical detail — nothing left vague." },
-        "actions": { "title": "Prioritised remediation roadmap", "desc": "Actions ranked by risk level and implementation effort — so your team knows exactly what to fix first." },
-        "decision": { "title": "Executive briefing", "desc": "A structured session presenting findings, recommendations and options to IT leadership and decision makers." }
+        "clarity": {
+          "title": "Complete risk inventory",
+          "desc": "Every finding documented with severity rating, business impact and technical detail — nothing left vague."
+        },
+        "actions": {
+          "title": "Prioritised remediation roadmap",
+          "desc": "Actions ranked by risk level and implementation effort — so your team knows exactly what to fix first."
+        },
+        "decision": {
+          "title": "Executive briefing",
+          "desc": "A structured session presenting findings, recommendations and options to IT leadership and decision makers."
+        }
       }
     },
     "target": {
       "label": "Who This Is For",
       "h2": "The audit is the right entry point if…",
       "sub": "You don't need to know where your risks are. The audit finds them.",
-      "criteria": ["You have 20 to 500 Microsoft 365 users", "You've never had a structured M365 security review", "Your Secure Score is below 60 — or unknown", "You're preparing for Copilot deployment or cyber insurance renewal"]
+      "criteria": [
+        "You have 20 to 500 Microsoft 365 users",
+        "You've never had a structured M365 security review",
+        "Your Secure Score is below 60 — or unknown",
+        "You're preparing for Copilot deployment or cyber insurance renewal"
+      ]
     },
     "finalcta": {
       "eyebrow": "Get started",
       "h2": "Request your Microsoft 365 Security Audit.",
       "sub": "Fixed price from €1,500. Results within 2 to 4 weeks. A complete picture of your risks, priorities and next steps.",
-      "props": ["Fixed price from €1,500", "Results in 2 to 4 weeks", "Executive briefing included", "GDPR compliant"],
+      "props": [
+        "Fixed price from €1,500",
+        "Results in 2 to 4 weeks",
+        "Executive briefing included",
+        "GDPR compliant"
+      ],
       "btn": "Request Security Audit",
       "btnBack": "← Back to Overview"
     }
@@ -1387,7 +1582,6 @@
       "description": "Microsoft 365 security consulting for SMBs. Security audit, Secure Score optimisation, conditional access and Microsoft Defender — professionally configured."
     }
   },
-
   "managedServices": {
     "meta": {
       "title": "Microsoft 365 Managed Services — Administrator on Demand — Gordon365",
@@ -1409,22 +1603,42 @@
         "identity": {
           "title": "Identity & Access",
           "sub": "Users, groups, roles and Entra ID configuration.",
-          "checks": ["User lifecycle management", "Entra ID administration", "MFA & Conditional Access", "Guest account governance"]
+          "checks": [
+            "User lifecycle management",
+            "Entra ID administration",
+            "MFA & Conditional Access",
+            "Guest account governance"
+          ]
         },
         "security": {
           "title": "Security & Compliance",
           "sub": "Proactive security monitoring and Secure Score optimisation.",
-          "checks": ["Secure Score reviews", "Security configuration", "Incident response", "Compliance monitoring"]
+          "checks": [
+            "Secure Score reviews",
+            "Security configuration",
+            "Incident response",
+            "Compliance monitoring"
+          ]
         },
         "devices": {
           "title": "Devices & Endpoints",
           "sub": "Intune-based device management and endpoint security.",
-          "checks": ["Intune administration", "Compliance policy management", "App deployment", "Endpoint security"]
+          "checks": [
+            "Intune administration",
+            "Compliance policy management",
+            "App deployment",
+            "Endpoint security"
+          ]
         },
         "governance": {
           "title": "Governance & Optimisation",
           "sub": "Ongoing optimisation of licences, Teams and SharePoint.",
-          "checks": ["Licence optimisation", "Teams governance", "SharePoint administration", "Monthly health reviews"]
+          "checks": [
+            "Licence optimisation",
+            "Teams governance",
+            "SharePoint administration",
+            "Monthly health reviews"
+          ]
         }
       }
     },
@@ -1440,21 +1654,38 @@
           "price": "on request",
           "period": "Up to 5 hours / month",
           "desc": "Basic administration for smaller environments with low administration volume.",
-          "features": ["User & licence management", "Ticket-based requests", "Basic security monitoring", "Email support"]
+          "features": [
+            "User & licence management",
+            "Ticket-based requests",
+            "Basic security monitoring",
+            "Email support"
+          ]
         },
         "business": {
           "name": "Business",
           "price": "on request",
           "period": "Up to 10 hours / month",
           "desc": "Comprehensive administration for growing organisations with regular needs and proactive monitoring.",
-          "features": ["All Starter services", "Monthly health review", "Secure Score optimisation", "Licence optimisation", "One project support session"]
+          "features": [
+            "All Starter services",
+            "Monthly health review",
+            "Secure Score optimisation",
+            "Licence optimisation",
+            "One project support session"
+          ]
         },
         "premium": {
           "name": "Premium",
           "price": "on request",
           "period": "Up to 20 hours / month",
           "desc": "Strategic administration and consulting for organisations with high demand and architecture guidance.",
-          "features": ["All Business services", "Strategic consulting", "Architecture & roadmap guidance", "Priority incident response", "Quarterly executive briefing"]
+          "features": [
+            "All Business services",
+            "Strategic consulting",
+            "Architecture & roadmap guidance",
+            "Priority incident response",
+            "Quarterly executive briefing"
+          ]
         }
       }
     },
@@ -1462,8 +1693,55 @@
       "eyebrow": "Get started",
       "h2": "Microsoft 365 administration without a full-time hire.",
       "sub": "Senior expertise on demand — flexible, structured and direct. Free initial consultation with no obligation.",
-      "props": ["Free initial consultation", "No minimum term", "Senior expertise from day one", "GDPR compliant"],
+      "props": [
+        "Free initial consultation",
+        "No minimum term",
+        "Senior expertise from day one",
+        "GDPR compliant"
+      ],
       "btn": "Book free consultation"
+    }
+  },
+  "templates": {
+    "success": {
+      "back": "Back to templates",
+      "title": "Purchase successful",
+      "sub": "You will receive an email with your download link shortly."
+    },
+    "overview": {
+      "tier_basic": "Basic",
+      "filter_security": "Security",
+      "title": "All Templates",
+      "tier_msp": "MSP Bundle",
+      "filter_all": "All",
+      "preview": "Preview",
+      "filter_intune": "Intune",
+      "buy": "Buy now",
+      "filter_copilot": "Copilot",
+      "tier_enterprise": "Enterprise",
+      "tier_professional": "Professional",
+      "filter_reporting": "Reporting"
+    },
+    "nav": "Templates",
+    "detail": {
+      "lifetime": "Lifetime updates included",
+      "guarantee": "14-day money-back guarantee",
+      "ms365dsc": "Microsoft365DSC-ready",
+      "requirements": "Requirements",
+      "crosssell_sub": "These templates complement each other",
+      "download_hint": "Instant download link sent by email after purchase",
+      "version": "Version",
+      "buy": "Buy now for",
+      "back": "Back to all templates",
+      "crosssell_title": "Goes well with",
+      "includes": "Includes"
+    },
+    "hero": {
+      "cta": "Browse all templates",
+      "h1": "Ready-made configurations.",
+      "eyebrow": "Microsoft 365 Templates",
+      "sub": "Tested templates for Conditional Access, Intune, Copilot Readiness and Security Reporting. Ready to deploy — no consulting required.",
+      "h1b": "Deploy immediately."
     }
   }
 }

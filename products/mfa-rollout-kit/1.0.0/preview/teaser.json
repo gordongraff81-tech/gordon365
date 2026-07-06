@@ -1,0 +1,98 @@
+{
+  "product": "MFA Rollout Kit — Free Preview",
+  "fullProduct": "mfa-rollout-kit",
+  "fullProductPriceEUR": 79,
+  "vendor": "Gordon365",
+  "note": "This is a free preview containing Phase 0 (Preparation) and the Pilot Group Concept from the MFA Rollout Kit. Get the full 3-week rollout plan with all communication templates, helpdesk FAQ, exception process, and KPI tracking at gordon365.com/templates/mfa-rollout-kit",
+
+  "rolloutPlanPreview": {
+    "totalDurationWeeks": 3,
+    "phaseIncluded": {
+      "phase": 0,
+      "name": "Preparation",
+      "durationDays": 5,
+      "description": "Configure registration campaign, identify pilot group, prepare communications, set up break-glass accounts.",
+      "tasks": [
+        {
+          "id": "prep001",
+          "task": "Create break-glass emergency access accounts",
+          "graphAction": "Create 2 cloud-only accounts with Global Administrator role, exclude from all CA/registration policies",
+          "owner": "IT Admin",
+          "durationHours": 1
+        },
+        {
+          "id": "prep002",
+          "task": "Enable Authentication Methods Registration Campaign in report-only mode",
+          "graphAction": "PATCH /policies/authenticationMethodsPolicy — registrationEnforcement.authenticationMethodsRegistrationCampaign.state = 'enabled' (excludeTargets contains pilot exclusion initially)",
+          "owner": "IT Admin",
+          "durationHours": 0.5
+        },
+        {
+          "id": "prep003",
+          "task": "Identify pilot group (5-10% of users)",
+          "graphAction": "Create Entra ID security group 'MFA-Pilot-Group', add members per pilot group concept",
+          "owner": "IT Admin",
+          "durationHours": 1
+        },
+        {
+          "id": "prep004",
+          "task": "Send pre-announcement communication",
+          "graphAction": "Send 'Announcement' email template to all users (T-5 days)",
+          "owner": "IT Admin / HR",
+          "durationHours": 0.5
+        },
+        {
+          "id": "prep005",
+          "task": "Brief helpdesk team with FAQ",
+          "graphAction": "Distribute helpdesk FAQ to support staff, walk through top 5 expected ticket types",
+          "owner": "IT Admin",
+          "durationHours": 1
+        }
+      ]
+    },
+    "phasesNotIncluded": [
+      "Phase 1 — Pilot Rollout (5 days) — pilot enforcement, go/no-go criteria, feedback collection",
+      "Phase 2 — Phased Full Rollout (8 days) — Wave A / Wave B sequencing, exception handling in flight",
+      "Phase 3 — Enforcement & Stabilization (3 days) — CA003 enforcement, post-rollout monitoring"
+    ]
+  },
+
+  "pilotGroupConceptIncluded": {
+    "sizeRecommendation": "5-10% of total user count, minimum 5 users, maximum 25 for tenants up to 300 users",
+    "selectionCriteria": [
+      "Include at least 2 IT/helpdesk staff (early feedback, technical fluency)",
+      "Include 1-2 executives or department heads (visible champions, smooths broader rollout)",
+      "Include a mix of device types (Windows, Mac, mobile-only users)",
+      "Include at least 1 user known to be less tech-comfortable (surfaces UX issues for everyone else)",
+      "Avoid including anyone on critical deadline work during the pilot week (e.g. finance during month-end close)"
+    ]
+  },
+
+  "sampleCommunicationTemplate": {
+    "name": "Announcement (T-5 days, to all employees)",
+    "subjectDE": "Wichtige Sicherheitsmaßnahme: Multi-Faktor-Authentifizierung kommt für alle Konten",
+    "subjectEN": "Important security update: Multi-factor authentication is coming to your account",
+    "note": "Full bilingual templates for all 5 rollout stages (Announcement, Pilot Action Required, Action Required, Final Reminder, Rollout Complete) are included in the full kit."
+  },
+
+  "whatsInTheFullKit": [
+    "Complete 3-week phase-by-phase rollout plan with Graph API actions for every task",
+    "5 bilingual (DE/EN) email communication templates, white-label ready for MSPs",
+    "Full helpdesk FAQ covering the 6 most common MFA tickets with escalation matrix",
+    "Pilot group selection criteria and setup instructions",
+    "Documented exception process — valid vs. invalid reasons, approval workflow",
+    "Break-glass vs. exception distinction (critical misconfiguration to avoid)",
+    "6 KPI definitions with Graph API sources and target thresholds",
+    "Microsoft365DSC mapping (Phase 2 ready)",
+    "Cross-reference to Conditional Access Hardening Pack for CA003 enforcement step"
+  ],
+
+  "cta": {
+    "text": "Get the full 3-week rollout kit for €79",
+    "url": "https://gordon365.com/templates/mfa-rollout-kit"
+  },
+  "bundleCta": {
+    "text": "Or get this + the CA Hardening Pack in the Security & Compliance Starter Bundle for €549",
+    "url": "https://gordon365.com/templates/bundle"
+  }
+}

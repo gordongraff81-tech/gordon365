@@ -1,0 +1,90 @@
+{
+  "product": "Intune Device Compliance Starter — Free Preview",
+  "fullProduct": "intune-compliance-starter",
+  "fullProductPriceEUR": 199,
+  "vendor": "Gordon365",
+  "note": "This is a free preview containing 2 of 5 compliance policies, the full OS version baseline, and the Compliance-to-Conditional-Access mapping that explains why 'compliant device' Conditional Access policies fail without this pack. Get the full pack with all 5 compliance policies, 4 configuration profiles, rollout order, and exception process at gordon365.com/templates/intune-compliance-starter",
+
+  "policiesIncluded": 2,
+  "policiesInFullPack": 5,
+  "configProfilesInFullPack": 4,
+
+  "compliancePolicies": [
+    {
+      "id": "icp002",
+      "displayName": "ICP002 - BitLocker Encryption Required",
+      "platform": "windows10AndLater",
+      "graphResource": "deviceManagement/deviceCompliancePolicies",
+      "graphODataType": "#microsoft.graph.windows10CompliancePolicy",
+      "settings": {
+        "bitLockerEnabled": true,
+        "storageRequireEncryption": true
+      },
+      "rationale": "An unencrypted device that is lost or stolen exposes all locally cached data — including cached M365 credentials and offline OneDrive files — with no additional barrier. BitLocker is built into Windows 11 Pro/Enterprise and has effectively zero performance cost on modern hardware.",
+      "rolloutNote": "Pair with the BitLocker configuration profile (icc002, full pack only) which actually triggers encryption — this compliance policy only checks the resulting state.",
+      "noncomplianceActions": [
+        { "actionType": "notification", "gracePeriodHours": 0, "notificationTemplateId": "compliance-warning" },
+        { "actionType": "block", "gracePeriodHours": 72 }
+      ]
+    },
+    {
+      "id": "icp005",
+      "displayName": "ICP005 - Password / PIN Required",
+      "platform": "windows10AndLater",
+      "graphResource": "deviceManagement/deviceCompliancePolicies",
+      "graphODataType": "#microsoft.graph.windows10CompliancePolicy",
+      "settings": {
+        "passwordRequired": true,
+        "passwordMinimumLength": 8,
+        "passwordRequiredType": "alphanumeric",
+        "passwordMinutesOfInactivityBeforeLock": 15
+      },
+      "rationale": "A device meeting all other compliance criteria but with no lock screen password provides no protection if physically accessed while unattended. This is the baseline 'someone walks away from their desk' control.",
+      "rolloutNote": "15-minute inactivity lock balances security with usability. For higher-security environments, reduce to 5 minutes — but communicate the change.",
+      "noncomplianceActions": [
+        { "actionType": "notification", "gracePeriodHours": 0, "notificationTemplateId": "compliance-warning" },
+        { "actionType": "block", "gracePeriodHours": 24 }
+      ]
+    }
+  ],
+
+  "osVersionBaselineIncluded": {
+    "windows": {
+      "minimumBuild": "10.0.22621.0",
+      "minimumBuildName": "Windows 11 22H2",
+      "windows10Eol": "2025-10-14",
+      "windows10Note": "Windows 10 reaches end of support on 2025-10-14. Devices still on Windows 10 should be flagged for hardware replacement or Windows 11 upgrade as a project predating this compliance rollout."
+    },
+    "macos": {
+      "minimumVersion": "14.0",
+      "minimumVersionName": "macOS Sonoma",
+      "note": "Full macOS compliance policy definitions are planned for v1.1.0."
+    }
+  },
+
+  "complianceToConditionalAccessMappingIncluded": {
+    "description": "This is the critical link between Intune compliance and Conditional Access enforcement. A device must be marked 'Compliant' in Intune for any Conditional Access policy using the 'compliantDevice' grant control to succeed.",
+    "commonFailureMode": "An admin enables CA004 (Require Compliant or Hybrid Joined Device for Admins, from the CA Hardening Pack) in enforced mode without ever deploying compliance policies. Every admin sign-in now fails the compliant-device check, because no device has ever been evaluated. All admin accounts — including the person who just enabled the policy — are locked out simultaneously.",
+    "fix": "Deploy and validate compliance policies (this pack) BEFORE enabling CA004 in enforced mode. If CA004 is already enforced, deploy this pack's configuration profiles first, allow 24-48 hours for evaluation, then enable compliance policies."
+  },
+
+  "whatsNotIncluded": [
+    "ICP001 - Windows 11 OS Version Baseline (compliance policy)",
+    "ICP003 - Defender Antivirus Active and Up to Date (compliance policy)",
+    "ICP004 - Defender Firewall Enabled, All Profiles (compliance policy)",
+    "ICC002-ICC005 - All 4 configuration profiles (BitLocker, Defender AV, Defender Firewall, Update Ring) - these are what actually CONFIGURE devices, not just check them",
+    "8-step rollout order with sequencing rationale",
+    "Full exception process",
+    "6 KPI definitions with Graph API sources",
+    "Microsoft365DSC mapping (Phase 2 ready)"
+  ],
+
+  "cta": {
+    "text": "Get all 5 compliance policies + 4 configuration profiles + rollout guide for €199",
+    "url": "https://gordon365.com/templates/intune-compliance-starter"
+  },
+  "bundleCta": {
+    "text": "Or get this + CA Hardening Pack + MFA Rollout Kit in the Security & Compliance Starter Bundle for €549",
+    "url": "https://gordon365.com/templates/bundle"
+  }
+}

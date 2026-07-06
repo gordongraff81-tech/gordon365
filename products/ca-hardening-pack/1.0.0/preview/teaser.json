@@ -1,0 +1,86 @@
+{
+  "product": "Conditional Access Hardening Pack — Free Preview",
+  "fullProduct": "ca-hardening-pack",
+  "fullProductPriceEUR": 149,
+  "vendor": "Gordon365",
+  "note": "This is a free preview containing 3 of 10 policies from the Conditional Access Hardening Pack. Get the full pack with all 10 policies, rollout plan, risk analysis, and the implementation guide at gordon365.com/templates/ca-hardening-pack",
+  "policiesIncluded": 3,
+  "policiesInFullPack": 10,
+  "policies": [
+    {
+      "id": "ca001",
+      "displayName": "CA001 - Block Legacy Authentication",
+      "state": "enabledForReportingButNotEnforced",
+      "priority": 1,
+      "conditions": {
+        "users": { "includeUsers": ["All"], "excludeUsers": ["BreakGlassAccounts"] },
+        "applications": { "includeApplications": ["All"] },
+        "clientAppTypes": ["exchangeActiveSync", "other"]
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["block"]
+      },
+      "rationale": "Legacy authentication protocols (IMAP, POP3, SMTP AUTH, older Office clients) do not support modern authentication and cannot enforce MFA. They are the most common vector for password-spray attacks.",
+      "rolloutNote": "Start in report-only mode for 7 days. Review sign-in logs filtered by 'Client App = Legacy Authentication Clients' before enforcing."
+    },
+    {
+      "id": "ca002",
+      "displayName": "CA002 - Require MFA for Admins",
+      "state": "enabledForReportingButNotEnforced",
+      "priority": 2,
+      "conditions": {
+        "users": {
+          "includeRoles": [
+            "Global Administrator",
+            "Security Administrator",
+            "Exchange Administrator",
+            "SharePoint Administrator",
+            "User Administrator",
+            "Conditional Access Administrator"
+          ],
+          "excludeUsers": ["BreakGlassAccounts"]
+        },
+        "applications": { "includeApplications": ["All"] }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["mfa"]
+      },
+      "rationale": "Privileged accounts are the highest-value target. A compromised Global Admin account without MFA is a full tenant takeover.",
+      "rolloutNote": "No staged rollout needed for admin accounts - enable directly, but ensure break-glass accounts are excluded and tested first."
+    },
+    {
+      "id": "ca003",
+      "displayName": "CA003 - Require MFA for All Users",
+      "state": "enabledForReportingButNotEnforced",
+      "priority": 3,
+      "conditions": {
+        "users": { "includeUsers": ["All"], "excludeUsers": ["BreakGlassAccounts"] },
+        "applications": { "includeApplications": ["All"] }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": ["mfa"]
+      },
+      "rationale": "Microsoft reports MFA blocks over 99.9% of account compromise attacks. This is the single highest-impact security control available.",
+      "rolloutNote": "Pair with the MFA Rollout Kit template for a phased 3-week communication plan. Do not enable before users have registered authentication methods."
+    }
+  ],
+  "whatsInTheFullPack": [
+    "CA004 - Require Compliant or Hybrid Joined Device for Admins",
+    "CA005 - Block High-Risk Sign-Ins (Entra ID P2)",
+    "CA006 - Require Password Change for Medium-Risk Users (Entra ID P2)",
+    "CA007 - Geo-Block High-Risk Countries (customizable Named Location)",
+    "CA008 - Require Approved Client App for Mobile (iOS/Android MAM)",
+    "CA009 - Session Sign-In Frequency for Unmanaged Devices (4h re-auth)",
+    "CA010 - Terms of Use Acceptance for Guests",
+    "Full implementation guide (DOCX): rollout order, validation steps, risk analysis, business impact",
+    "Break-glass account setup guide",
+    "Microsoft365DSC mapping (Phase 2 ready)"
+  ],
+  "cta": {
+    "text": "Get all 10 policies + implementation guide for €149",
+    "url": "https://gordon365.com/templates/ca-hardening-pack"
+  }
+}

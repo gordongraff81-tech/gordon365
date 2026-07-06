@@ -1,0 +1,43 @@
+{
+  "id": "intune-compliance-starter",
+  "title": "Intune Device Compliance Starter",
+  "category": "intune",
+  "tier": "professional",
+  "priceCents": 19900,
+  "stripePriceId": "price_1TiqQcArgFXIA4pOORtbu4r0",
+  "description": "./description.md",
+  "currentVersion": "1.0.0",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "releasedAt": "2025-06-13",
+      "changelog": "Initial release - 5 Windows 11 compliance policies, 4 configuration profiles, compliance-to-CA mapping, 8-step rollout order, exception process, KPIs. macOS compliance planned for v1.1.0.",
+      "files": {
+        "policy": "intune-compliance-starter/1.0.0/intune-compliance-starter.json",
+        "guide": "intune-compliance-starter/1.0.0/intune-compliance-starter-guide.docx"
+      }
+    }
+  ],
+  "previewFile": "intune-compliance-starter/1.0.0/preview/teaser.json",
+  "ms365dscReady": true,
+  "crossSell": {
+    "relatedProducts": [
+      "ca-hardening-pack",
+      "mfa-rollout-kit"
+    ],
+    "bundleEligible": true,
+    "dependencies": [
+      {
+        "product": "ca-hardening-pack",
+        "relationship": "hard-dependency-for-ca004",
+        "description": "CA004 (Require Compliant or Hybrid Joined Device for Admins) cannot evaluate any device as compliant without the policies in this pack. Customers owning ca-hardening-pack with CA004 in report-only for 14+ days and without this pack should receive the upsell trigger defined in source/gtm-content.md."
+      },
+      {
+        "product": "mfa-rollout-kit",
+        "relationship": "shared-rollout-pattern",
+        "description": "Step 7 of rolloutOrder reuses the same pilot-group and wave-based rollout structure as mfa-rollout-kit. Customers owning both can align pilot groups and wave schedules."
+      }
+    ],
+    "upsellTrigger": "Customers who purchased ca-hardening-pack and have CA004 in report-only mode for 14+ days without this pack should be prompted with the CA004-readiness message defined in source/gtm-content.md."
+  }
+}

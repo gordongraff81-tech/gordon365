@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLocale } from "next-intl";
 import { cn } from "@/lib/utils";
 
-// ── i18n strings (inline, kein useTranslations-Overhead für statische Section) ──
+// ── i18n strings ──────────────────────────────────────────────────────────────
 
 const COPY = {
   de: {
@@ -37,19 +37,19 @@ const COPY = {
     archBody3: "Substitution zur Laufzeit.",
     pipelineLabel: "Deployment-Pipeline · 22 Steps",
     phases: [
-      { num: "01", title: "Tenant Foundation",    items: ["Break-Glass-Konto + Global Admin Rolle", "6 Entra ID Gruppen (dynamisch + assigned)", "MDM-Scope Validation"] },
-      { num: "02", title: "Security Stack",        items: ["BitLocker XTS-AES 256, Defender Baseline, ASR Rules", "Firewall-Baseline (alle Profile), Credential Guard", "LAPS — lokale Admin-Passwort-Rotation"] },
-      { num: "03", title: "Autopilot & Enrollment",items: ["User-Driven Deployment Profile (AP-%RAND:6%)", "Pre-Provisioning (White Glove) aktiviert", "Enrollment Status Page — 90 Min Timeout"] },
-      { num: "04", title: "App Deployment",        items: ["M365 Apps Enterprise — 64-bit, Monthly Channel", "Teams + Edge via WinGet (kein Store for Business)", "Company Portal — Self-Service Katalog"] },
-      { num: "05", title: "Identity & Access",     items: ["3 Conditional Access Policies (Report-only bis Test OK)", "Windows Hello for Business Cloud Trust", "Compliance Policy — Block bei Verstoss"] },
-      { num: "06", title: "CI/CD & Drift Detection",items: ["GitHub Actions + Azure DevOps Pipelines enthalten", "Täglicher Drift-Check um 06:00 UTC", "Alle Ausgaben als Artefakte archiviert (90 Tage)"] },
+      { num: "01", title: "Tenant Foundation",      items: ["Break-Glass-Konto + Global Admin Rolle", "6 Entra ID Gruppen (dynamisch + assigned)", "MDM-Scope Validation"] },
+      { num: "02", title: "Security Stack",          items: ["BitLocker XTS-AES 256, Defender Baseline, ASR Rules", "Firewall-Baseline (alle Profile), Credential Guard", "LAPS — lokale Admin-Passwort-Rotation"] },
+      { num: "03", title: "Autopilot & Enrollment",  items: ["User-Driven Deployment Profile (AP-%RAND:6%)", "Pre-Provisioning (White Glove) aktiviert", "Enrollment Status Page — 90 Min Timeout"] },
+      { num: "04", title: "App Deployment",          items: ["M365 Apps Enterprise — 64-bit, Monthly Channel", "Teams + Edge via WinGet (kein Store for Business)", "Company Portal — Self-Service Katalog"] },
+      { num: "05", title: "Identity & Access",       items: ["3 Conditional Access Policies (Report-only bis Test OK)", "Windows Hello for Business Cloud Trust", "Compliance Policy — Block bei Verstoss"] },
+      { num: "06", title: "CI/CD & Drift Detection", items: ["GitHub Actions + Azure DevOps Pipelines enthalten", "Täglicher Drift-Check um 06:00 UTC", "Alle Ausgaben als Artefakte archiviert (90 Tage)"] },
     ],
-    cta:      "Deployment anfragen",
-    ctaSub:   "Festpreis · Vollautomatisch · Rollback-fähig",
-    refLabel: "Referenzprojekt",
+    cta:         "Deployment anfragen",
+    ctaSub:      "Festpreis · Vollautomatisch · Rollback-fähig",
+    refLabel:    "Referenzprojekt",
     refHeadline: "320 Geräte. 5 Standorte. Einheitlich verwaltet.",
-    refDesc:  "Logistikunternehmen mit unkontrolliertem Teams-Wildwuchs und unverwalteten Geräten — Modern Workplace Transformation via Intune standardisierte das Gerätemanagement und migrierte 28 Dateifreigaben.",
-    refLink:  "Zur Fallstudie",
+    refDesc:     "Logistikunternehmen mit unkontrolliertem Teams-Wildwuchs und unverwalteten Geräten — Modern Workplace Transformation via Intune standardisierte das Gerätemanagement und migrierte 28 Dateifreigaben.",
+    refLink:     "Zur Fallstudie",
   },
   en: {
     sectionLabel:  "Modern Workplace Platform",
@@ -60,10 +60,10 @@ const COPY = {
     badge2:        "Drift detection daily at 06:00 UTC",
     badge3:        "GitHub Actions + Azure DevOps ready",
     kpis: [
-      { value: "22",   label: "Automated Steps"  },
-      { value: "100%", label: "Idempotent"        },
-      { value: "6",    label: "Modules"           },
-      { value: "<30m", label: "Full Deploy"       },
+      { value: "22",   label: "Automated Steps" },
+      { value: "100%", label: "Idempotent"       },
+      { value: "6",    label: "Modules"          },
+      { value: "<30m", label: "Full Deploy"      },
     ],
     pillarsLabel: "Platform Capabilities",
     pillars: [
@@ -80,19 +80,19 @@ const COPY = {
     archBody3: "substitution at runtime.",
     pipelineLabel: "Deployment Pipeline · 22 Steps",
     phases: [
-      { num: "01", title: "Tenant Foundation",    items: ["Break-glass account + Global Admin role", "6 Entra ID groups (dynamic + assigned)", "MDM scope validation"] },
-      { num: "02", title: "Security Stack",        items: ["BitLocker XTS-AES 256, Defender baseline, ASR rules", "Firewall baseline (all profiles), Credential Guard", "LAPS — local admin password rotation"] },
-      { num: "03", title: "Autopilot & Enrolment", items: ["User-driven deployment profile (AP-%RAND:6%)", "Pre-provisioning (White Glove) enabled", "Enrolment Status Page — 90 min timeout"] },
-      { num: "04", title: "App Deployment",        items: ["M365 Apps Enterprise — 64-bit, Monthly Channel", "Teams + Edge via WinGet (no Store for Business)", "Company Portal — self-service catalogue"] },
-      { num: "05", title: "Identity & Access",     items: ["3 Conditional Access policies (report-only until test OK)", "Windows Hello for Business Cloud Trust", "Compliance policy — block on violation"] },
-      { num: "06", title: "CI/CD & Drift Detection",items: ["GitHub Actions + Azure DevOps pipelines included", "Daily drift check at 06:00 UTC", "All outputs archived as artefacts (90 days)"] },
+      { num: "01", title: "Tenant Foundation",      items: ["Break-glass account + Global Admin role", "6 Entra ID groups (dynamic + assigned)", "MDM scope validation"] },
+      { num: "02", title: "Security Stack",          items: ["BitLocker XTS-AES 256, Defender baseline, ASR rules", "Firewall baseline (all profiles), Credential Guard", "LAPS — local admin password rotation"] },
+      { num: "03", title: "Autopilot & Enrolment",  items: ["User-driven deployment profile (AP-%RAND:6%)", "Pre-provisioning (White Glove) enabled", "Enrolment Status Page — 90 min timeout"] },
+      { num: "04", title: "App Deployment",          items: ["M365 Apps Enterprise — 64-bit, Monthly Channel", "Teams + Edge via WinGet (no Store for Business)", "Company Portal — self-service catalogue"] },
+      { num: "05", title: "Identity & Access",       items: ["3 Conditional Access policies (report-only until test OK)", "Windows Hello for Business Cloud Trust", "Compliance policy — block on violation"] },
+      { num: "06", title: "CI/CD & Drift Detection", items: ["GitHub Actions + Azure DevOps pipelines included", "Daily drift check at 06:00 UTC", "All outputs archived as artefacts (90 days)"] },
     ],
-    cta:      "Request Deployment",
-    ctaSub:   "Fixed price · Fully automated · Rollback-capable",
-    refLabel: "Reference Project",
+    cta:         "Request Deployment",
+    ctaSub:      "Fixed price · Fully automated · Rollback-capable",
+    refLabel:    "Reference Project",
     refHeadline: "320 devices. 5 sites. Unified management.",
-    refDesc:  "Logistics company with uncontrolled Teams sprawl and unmanaged endpoints — Modern Workplace transformation via Intune standardised device management and migrated 28 file shares.",
-    refLink:  "View case study",
+    refDesc:     "Logistics company with uncontrolled Teams sprawl and unmanaged endpoints — Modern Workplace transformation via Intune standardised device management and migrated 28 file shares.",
+    refLink:     "View case study",
   },
 } as const;
 
@@ -263,6 +263,74 @@ function PhaseStep({ num, title, items, accent, delay }: {
   );
 }
 
+// ── Checkout Button ───────────────────────────────────────────────────────────
+
+function CheckoutButton({
+  accent1, accent2, label, subLabel,
+}: {
+  accent1: string; accent2: string; label: string; subLabel: string;
+}) {
+  const [loading, setLoading] = useState(false);
+
+  async function handleCheckout() {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ service: "intune" }),
+      });
+      const { url, error } = await res.json();
+      if (error) throw new Error(error);
+      window.location.href = url;
+    } catch (err) {
+      console.error("Checkout error:", err);
+      setLoading(false);
+    }
+  }
+
+  return (
+    <>
+      <button
+        onClick={handleCheckout}
+        disabled={loading}
+        className={cn(
+          "w-full flex items-center justify-center gap-2 py-3.5 rounded-xl",
+          "font-bold text-[0.9375rem] font-body tracking-[-0.01em]",
+          "transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5",
+          "disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0",
+        )}
+        style={{
+          background: `linear-gradient(135deg, ${accent1} 0%, ${accent2} 100%)`,
+          color: "#fff",
+          boxShadow: `0 0 24px rgba(94,92,230,0.4), 0 0 48px rgba(34,211,238,0.1)`,
+        }}
+      >
+        {loading ? (
+          <>
+            <svg className="animate-spin" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/>
+            </svg>
+            Weiterleitung…
+          </>
+        ) : (
+          <>
+            {label}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </>
+        )}
+      </button>
+      <p className="text-[0.6875rem] text-center mt-3" style={{ color: "rgba(100,116,139,0.55)" }}>
+        {subLabel}
+      </p>
+    </>
+  );
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 export default function IntuneSection() {
@@ -295,7 +363,6 @@ export default function IntuneSection() {
           className="grid lg:grid-cols-[1fr_auto] gap-8 items-end mb-14"
         >
           <div>
-            {/* section-label uses the ::before pseudo via CSS class — no manual span needed */}
             <div className="section-label mb-4" style={{ "--tw-text-opacity": "1", color: A1 } as React.CSSProperties}>
               {t.sectionLabel}
             </div>
@@ -391,7 +458,7 @@ export default function IntuneSection() {
               </div>
             </motion.div>
 
-            {/* Cross-link to Results case study (Logistik) */}
+            {/* Cross-link to Results case study */}
             <motion.a
               href="#results"
               initial={{ opacity: 0 }}
@@ -455,27 +522,7 @@ export default function IntuneSection() {
             ))}
 
             <div className="mt-2 pt-6" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-              <a
-                href="#contact"
-                className={cn(
-                  "w-full flex items-center justify-center gap-2 py-3.5 rounded-xl",
-                  "font-bold text-[0.9375rem] font-body tracking-[-0.01em]",
-                  "transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5",
-                )}
-                style={{
-                  background: `linear-gradient(135deg, ${A1} 0%, ${A2} 100%)`,
-                  color: "#fff",
-                  boxShadow: `0 0 24px rgba(94,92,230,0.4), 0 0 48px rgba(34,211,238,0.1)`,
-                }}
-              >
-                {t.cta}
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-              <p className="text-[0.6875rem] text-center mt-3" style={{ color: "rgba(100,116,139,0.55)" }}>
-                {t.ctaSub}
-              </p>
+              <CheckoutButton accent1={A1} accent2={A2} label={t.cta} subLabel={t.ctaSub} />
             </div>
           </div>
         </div>
