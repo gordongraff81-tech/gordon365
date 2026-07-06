@@ -31,7 +31,7 @@ function getStripeClient(): Stripe {
   }
 
   _stripe = new Stripe(apiKey, {
-    apiVersion: "2024-12-18.acacia",
+    apiVersion: "2026-05-27.dahlia",
     typescript: true,
   });
   return _stripe;
