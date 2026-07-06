@@ -21,10 +21,10 @@ export async function GET() {
     stripeSessionId: "cs_test_devpreview",
   });
 
-  return new NextResponse(pdf, {
-    headers: {
-      "Content-Type": "application/pdf",
-      "Content-Disposition": `inline; filename="${invoiceNumber}.pdf"`,
-    },
-  });
+  return new NextResponse(new Uint8Array(pdf), {
+  headers: {
+    "Content-Type": "application/pdf",
+    "Content-Disposition": `inline; filename="${invoiceNumber}.pdf"`,
+  },
+});
 }
