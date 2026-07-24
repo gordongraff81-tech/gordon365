@@ -29,8 +29,8 @@ const ContactSchema = z.object({
 // ─── POST /api/contact ───────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  // 0. CSRF validation (optional - only if client provides token)
-  const csrfValid = await validateCsrfToken(req, false);
+  // 0. CSRF validation (required)
+  const csrfValid = await validateCsrfToken(req);
   if (!csrfValid) {
     return NextResponse.json(
       { error: "Invalid CSRF token" },

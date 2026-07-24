@@ -14,8 +14,8 @@ const PRICE_MAP: Record<string, string> = {
 };
 
 export async function POST(req: NextRequest) {
-  // CSRF validation (optional - only if client provides token)
-  const csrfValid = await validateCsrfToken(req, false);
+  // CSRF validation (required)
+  const csrfValid = await validateCsrfToken(req);
   if (!csrfValid) {
     return NextResponse.json(
       { error: 'Invalid CSRF token' },

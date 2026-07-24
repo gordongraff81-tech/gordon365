@@ -59,18 +59,12 @@ export async function getCsrfToken(): Promise<string> {
  * Validate CSRF token from request headers
  * 
  * @param request - NextRequest to validate
- * @param require - If true, token must be present and valid. If false, only validate if provided.
- * @returns true if token is valid (or not required and not provided), false otherwise
+ * @returns true if token is valid, false otherwise
  */
-export async function validateCsrfToken(request: Request, require: boolean = false): Promise<boolean> {
+export async function validateCsrfToken(request: Request): Promise<boolean> {
   const cookieStore = await cookies();
   const cookieToken = cookieStore.get(CSRF_COOKIE_NAME)?.value;
   const headerToken = request.headers.get(CSRF_HEADER_NAME);
-  
-  // If not required and no header provided, skip validation
-  if (!require && !headerToken) {
-    return true;
-  }
   
   // Both tokens must be present and match
   if (!cookieToken || !headerToken) {
