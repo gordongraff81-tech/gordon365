@@ -11,6 +11,8 @@ import {
   sendInternalLeadNotification,
 } from "@/lib/mail/mailService";
 import type { StrategyRequestPayload } from "@/lib/mail/types";
+import { rateLimit, withRateLimitHeaders } from "@/lib/rateLimit";
+import { validateCsrfToken } from "@/lib/csrf";
 
 // ─── Zod Schema ───────────────────────────────────────────────────────────────
 
@@ -27,6 +29,36 @@ const ContactSchema = z.object({
 // ─── POST /api/contact ───────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
+  // 0. CSRF validation (optional - only if client provides token)
+  const csrfValid = await validateCsrfToken(req, false);
+  if (!csrfValid) {
+    return NextResponse.json(
+      { error: "Invalid CSRF token" },
+      { status: 403 }
+    );
+  }
+
+  // 1. Rate limiting (IP-based)
+  const ip = req.headers.get('x-forwarded-for') || 
+             req.headers.get('x-real-ip') || 
+             'unknown';
+  
+  const rateLimitResult = await rateLimit({
+    identifier: `contact:${ip}`,
+    limit: 10, // 10 requests per minute
+    window: 60, // 60 seconds
+  });
+
+  if (!rateLimitResult.success) {
+    return withRateLimitHeaders(
+      rateLimitResult,
+      NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429 }
+      )
+    );
+  }
+
   // 1. Body parsen
   let body: unknown;
   try {
@@ -64,7 +96,10 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   }
 
   // 5. Mindestens eine Mail erfolgreich → 200
-  return NextResponse.json({ success: true }, { status: 200 });
+  return withRateLimitHeaders(
+    rateLimitResult,
+    NextResponse.json({ success: true }, { status: 200 })
+  );
 }
 
 // ─── GET /api/contact ────────────────────────────────────────────────────────

@@ -5,6 +5,7 @@ import { getProductById, getCurrentVersion } from '@/lib/products';
 import { isNewStripeEvent } from '@/lib/webhookIdempotency';
 import { generateInvoicePdf } from '@/lib/InvoiceDocument';
 import { nextInvoiceNumber } from '@/lib/InvoiceNumber';
+import { rateLimit, withRateLimitHeaders } from '@/lib/rateLimit';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-05-27.dahlia',
@@ -22,6 +23,27 @@ function formatCustomerAddress(address?: Stripe.Address | null): string | undefi
 }
 
 export async function POST(req: NextRequest) {
+  // Rate limiting (IP-based with higher limit for webhooks)
+  const ip = req.headers.get('x-forwarded-for') || 
+             req.headers.get('x-real-ip') || 
+             'unknown';
+  
+  const rateLimitResult = await rateLimit({
+    identifier: `webhook:${ip}`,
+    limit: 100, // 100 requests per minute (Stripe webhooks have built-in rate limiting)
+    window: 60, // 60 seconds
+  });
+
+  if (!rateLimitResult.success) {
+    return withRateLimitHeaders(
+      rateLimitResult,
+      NextResponse.json(
+        { error: 'Too many requests' },
+        { status: 429 }
+      )
+    );
+  }
+
   const body = await req.text();
   const sig  = req.headers.get('stripe-signature')!;
 
@@ -134,5 +156,8 @@ export async function POST(req: NextRequest) {
       console.log('ℹ️  Unhandled event:', event.type);
   }
 
-  return NextResponse.json({ received: true });
+  return withRateLimitHeaders(
+    rateLimitResult,
+    NextResponse.json({ received: true })
+  );
 }

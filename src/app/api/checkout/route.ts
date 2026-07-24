@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { rateLimit, withRateLimitHeaders } from '@/lib/rateLimit';
+import { validateCsrfToken } from '@/lib/csrf';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-05-27.dahlia',
@@ -12,6 +14,36 @@ const PRICE_MAP: Record<string, string> = {
 };
 
 export async function POST(req: NextRequest) {
+  // CSRF validation (optional - only if client provides token)
+  const csrfValid = await validateCsrfToken(req, false);
+  if (!csrfValid) {
+    return NextResponse.json(
+      { error: 'Invalid CSRF token' },
+      { status: 403 }
+    );
+  }
+
+  // Rate limiting (IP-based)
+  const ip = req.headers.get('x-forwarded-for') || 
+             req.headers.get('x-real-ip') || 
+             'unknown';
+  
+  const rateLimitResult = await rateLimit({
+    identifier: `checkout:${ip}`,
+    limit: 5, // 5 requests per minute
+    window: 60, // 60 seconds
+  });
+
+  if (!rateLimitResult.success) {
+    return withRateLimitHeaders(
+      rateLimitResult,
+      NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      )
+    );
+  }
+
   const { service } = await req.json();
 
   const priceId = PRICE_MAP[service];
@@ -30,5 +62,8 @@ export async function POST(req: NextRequest) {
     customer_creation: 'always',
   });
 
-  return NextResponse.json({ url: session.url });
+  return withRateLimitHeaders(
+    rateLimitResult,
+    NextResponse.json({ url: session.url })
+  );
 }
