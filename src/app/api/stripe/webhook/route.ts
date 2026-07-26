@@ -7,10 +7,6 @@ import { generateInvoicePdf } from '@/lib/InvoiceDocument';
 import { nextInvoiceNumber } from '@/lib/InvoiceNumber';
 import { rateLimit, withRateLimitHeaders } from '@/lib/rateLimit';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-05-27.dahlia',
-});
-
 function formatCustomerAddress(address?: Stripe.Address | null): string | undefined {
   if (!address) return undefined;
   const parts = [
@@ -23,6 +19,10 @@ function formatCustomerAddress(address?: Stripe.Address | null): string | undefi
 }
 
 export async function POST(req: NextRequest) {
+  // Initialize Stripe at runtime (not during build)
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2026-05-27.dahlia',
+  });
   // Rate limiting (IP-based with higher limit for webhooks)
   const ip = req.headers.get('x-forwarded-for') || 
              req.headers.get('x-real-ip') || 

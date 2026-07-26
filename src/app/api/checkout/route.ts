@@ -3,17 +3,17 @@ import Stripe from 'stripe';
 import { rateLimit, withRateLimitHeaders } from '@/lib/rateLimit';
 import { validateCsrfToken } from '@/lib/csrf';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-05-27.dahlia',
-});
-
-const PRICE_MAP: Record<string, string> = {
-  hardening: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_HARDENING!,
-  mfa:       process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_MFA!,
-  intune:    process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_INTUNE!,
-};
-
 export async function POST(req: NextRequest) {
+  // Initialize Stripe at runtime (not during build)
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2026-05-27.dahlia',
+  });
+
+  const PRICE_MAP: Record<string, string> = {
+    hardening: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_HARDENING!,
+    mfa:       process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_MFA!,
+    intune:    process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_INTUNE!,
+  };
   // CSRF validation (required)
   const csrfValid = await validateCsrfToken(req);
   if (!csrfValid) {

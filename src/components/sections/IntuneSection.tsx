@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLocale } from "next-intl";
 import { cn } from "@/lib/utils";
@@ -271,18 +271,51 @@ function CheckoutButton({
   accent1: string; accent2: string; label: string; subLabel: string;
 }) {
   const [loading, setLoading] = useState(false);
+  const [csrfToken, setCsrfToken] = useState<string | null>(null);
+
+  // Fetch CSRF token on component mount
+  useEffect(() => {
+    async function fetchCsrfToken() {
+      try {
+        const res = await fetch("/api/csrf");
+        const data = await res.json();
+        setCsrfToken(data.token);
+      } catch (error) {
+        console.error("Failed to fetch CSRF token:", error);
+      }
+    }
+    fetchCsrfToken();
+  }, []);
 
   async function handleCheckout() {
     setLoading(true);
     try {
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      };
+
+      // Add CSRF token if available
+      if (csrfToken) {
+        headers["X-CSRF-Token"] = csrfToken;
+      }
+
       const res = await fetch("/api/checkout", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({ service: "intune" }),
       });
-      const { url, error } = await res.json();
-      if (error) throw new Error(error);
-      window.location.href = url;
+      
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.error || "Checkout failed");
+      }
+      
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error("No checkout URL returned");
+      }
     } catch (err) {
       console.error("Checkout error:", err);
       setLoading(false);

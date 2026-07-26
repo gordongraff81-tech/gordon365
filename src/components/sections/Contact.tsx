@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -17,6 +17,21 @@ export default function Contact({ locale }: ContactProps) {
 
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [csrfToken, setCsrfToken] = useState<string | null>(null);
+
+  // Fetch CSRF token on component mount
+  useEffect(() => {
+    async function fetchCsrfToken() {
+      try {
+        const res = await fetch("/api/csrf");
+        const data = await res.json();
+        setCsrfToken(data.token);
+      } catch (error) {
+        console.error("Failed to fetch CSRF token:", error);
+      }
+    }
+    fetchCsrfToken();
+  }, []);
 
   const features = t.raw("features") as string[];
   const sizeOptions = tf.raw("sizeOptions") as string[];
@@ -30,9 +45,18 @@ export default function Contact({ locale }: ContactProps) {
     const data = Object.fromEntries(formData.entries());
 
     try {
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      };
+
+      // Add CSRF token if available
+      if (csrfToken) {
+        headers["X-CSRF-Token"] = csrfToken;
+      }
+
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({ ...data, locale }),
       });
 
@@ -40,7 +64,8 @@ export default function Contact({ locale }: ContactProps) {
         setSubmitted(true);
         toast.success(tf("success"), { duration: 6000 });
       } else {
-        toast.error(tf("error"));
+        const errorData = await res.json().catch(() => ({}));
+        toast.error(errorData.error || tf("error"));
       }
     } catch {
       toast.error(tf("error"));
