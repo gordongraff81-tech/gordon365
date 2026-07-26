@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
 import "./cookie-consent.css";
+import { plusJakartaSans, dmSans, exo2 } from "./fonts";
 
 export const viewport: Viewport = {
   themeColor: "#0a0f1e",
@@ -51,7 +52,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="de" suppressHydrationWarning>
+    <html lang="de" suppressHydrationWarning className={`${plusJakartaSans.variable} ${dmSans.variable} ${exo2.variable}`}>
+      <head>
+        {/* Preconnect to font domains for faster font loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* DNS prefetch for external domains */}
+        <link rel="dns-prefetch" href="https://js.stripe.com" />
+        <link rel="dns-prefetch" href="https://plausible.io" />
+      </head>
       <body>
         {children}
 
