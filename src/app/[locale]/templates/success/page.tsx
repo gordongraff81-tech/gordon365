@@ -9,10 +9,6 @@ import AmbientBg from "@/components/ui/AmbientBg";
 import Link from "next/link";
 import { getProductById, getCurrentVersion, formatPrice } from "@/lib/products";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-05-27.dahlia",
-});
-
 const COPY = {
   de: {
     badge:    "Zahlung erfolgreich",
@@ -50,6 +46,11 @@ async function SuccessContent({
   locale: string;
 }) {
   const t = COPY[locale === "de" ? "de" : "en"];
+
+  // Initialize Stripe at runtime (not during build)
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2026-05-27.dahlia',
+  });
 
   let session: Stripe.Checkout.Session | null = null;
   try {

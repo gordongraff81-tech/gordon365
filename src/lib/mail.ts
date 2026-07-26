@@ -23,6 +23,7 @@ function getTransporter() {
     );
   }
 
+  // Initialize transporter at runtime (not during build)
   return nodemailer.createTransport({
     host,
     port,

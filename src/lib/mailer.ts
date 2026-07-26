@@ -1,16 +1,19 @@
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-  host:   process.env.SMTP_HOST,
-  port:   Number(process.env.SMTP_PORT ?? 587),
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
-
 const BASE_URL = process.env.NEXT_PUBLIC_URL ?? "https://gordon365.com";
+
+// Initialize transporter at runtime (not during build)
+function getTransporter() {
+  return nodemailer.createTransport({
+    host:   process.env.SMTP_HOST,
+    port:   Number(process.env.SMTP_PORT ?? 587),
+    secure: false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+}
 
 // Colors sampled directly from the brand logo, kept consistent with the
 // invoice PDF instead of the previous arbitrary indigo and green accents.
@@ -191,6 +194,7 @@ export async function sendOrderConfirmation(data: OrderMailData) {
     </table>
   `;
 
+  const transporter = getTransporter();
   await transporter.sendMail({
     from:    process.env.SMTP_FROM,
     to:      customerEmail,
@@ -322,6 +326,7 @@ export async function sendTemplateOrderConfirmation(data: TemplateOrderMailData)
     </p>
   `;
 
+  const transporter = getTransporter();
   await transporter.sendMail({
     from:    process.env.SMTP_FROM,
     to:      customerEmail,
