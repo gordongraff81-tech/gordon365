@@ -1,9 +1,12 @@
 import { cookies } from "next/headers";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { validateEnv } from "@/lib/env";
 import "./globals.css";
 import "./cookie-consent.css";
 import { plusJakartaSans, dmSans, exo2 } from "./fonts";
+
+validateEnv();
 
 export const viewport: Viewport = {
   themeColor: "#0a0f1e",

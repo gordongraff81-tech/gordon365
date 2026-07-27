@@ -52,26 +52,62 @@ export type Env = z.infer<typeof envSchema>;
  */
 let _env: Env | null = null;
 
+function buildValidationError(errors: string[]): Error {
+  const message = [
+    "Environment validation failed.",
+    "Please check your .env.local file (local) or Vercel Project Settings (production).",
+    "",
+    ...errors,
+  ].join("\n");
+
+  return new Error(message);
+}
+
 export function validateEnv(): Env {
   if (_env) return _env;
 
   try {
-    _env = envSchema.parse(process.env);
+    const parsed = envSchema.parse(process.env);
+    const errors: string[] = [];
+    const isBuildPhase = process.env.NEXT_PHASE === "phase-production-build";
+    const enforceStrictServices = (process.env.NODE_ENV === "production" || process.env.VERCEL_ENV === "production") && !isBuildPhase;
+
+    if (enforceStrictServices && !parsed.STRIPE_SECRET_KEY) {
+      errors.push("- STRIPE_SECRET_KEY: Stripe is required for checkout and webhook flows.");
+    }
+
+    if (enforceStrictServices && !parsed.ZOHO_TOKEN) {
+      errors.push("- ZOHO_TOKEN: Zoho mail transport requires a token.");
+    }
+
+    if (enforceStrictServices && !parsed.NOTIFY_EMAIL) {
+      errors.push("- NOTIFY_EMAIL: A notify email address is required for mail delivery.");
+    }
+
+    if (enforceStrictServices && ((parsed.UPSTASH_REDIS_REST_URL && !parsed.UPSTASH_REDIS_REST_TOKEN) || (!parsed.UPSTASH_REDIS_REST_URL && parsed.UPSTASH_REDIS_REST_TOKEN))) {
+      errors.push("- UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN: both values are required together for rate limiting.");
+    }
+
+    if (errors.length > 0) {
+      throw buildValidationError(errors);
+    }
+
+    _env = parsed;
     return _env;
   } catch (error) {
     if (error instanceof z.ZodError) {
-      const missingVars = error.errors
-        .filter(e => e.code === "invalid_type")
-        .map(e => e.path.join("."))
-        .join(", ");
-      
-      throw new Error(
-        `Environment validation failed. Missing or invalid variables: ${missingVars}\n` +
-        `Please check your .env.local file (local) or Vercel Project Settings (production).\n\n` +
-        `Errors:\n${error.errors.map(e => `- ${e.path.join(".")}: ${e.message}`).join("\n")}`
-      );
+      const details = error.errors
+        .map(e => `- ${e.path.join(".")}: ${e.message}`)
+        .join("\n");
+
+      throw buildValidationError([details]);
     }
-    throw error;
+
+    if (error instanceof Error) {
+      throw error;
+    }
+
+    throw new Error("Environment validation failed.");
   }
 }
 
