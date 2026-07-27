@@ -15,7 +15,7 @@ function buildCsp(nonce: string): string {
     "object-src 'none'",
     "frame-ancestors 'none'",
     `script-src 'self' 'nonce-${nonce}' https://js.stripe.com https://www.googletagmanager.com https://www.google-analytics.com`,
-    `style-src 'self' 'nonce-${nonce}'`,
+    `style-src 'self' 'unsafe-inline' 'nonce-${nonce}'`,
     "img-src 'self' data: https:",
     "font-src 'self' data:",
     "connect-src 'self' https://api.stripe.com https://plausible.io https://*.zoho.eu https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com",
