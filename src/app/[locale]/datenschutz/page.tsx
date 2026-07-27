@@ -1,13 +1,26 @@
 export const runtime = 'edge';
 
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
-export const metadata = {
-  title: "Datenschutzerklärung – Gordon365",
-  description: "Informationen zum Datenschutz gemäß DSGVO",
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const canonical = `https://gordon365.com/${locale}/datenschutz`;
+
+  return {
+    title: "Datenschutzerklärung – Gordon365",
+    description: "Informationen zum Datenschutz gemäß DSGVO",
+    alternates: {
+      canonical,
+    },
+    robots: { index: false, follow: true },
+  };
+}
 
 export default async function DatenschutzPage({
   params,

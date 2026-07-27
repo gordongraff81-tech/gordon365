@@ -1,13 +1,26 @@
 export const runtime = 'edge';
 
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
-export const metadata = {
-  title: "AGB – Gordon365",
-  description: "Allgemeine Geschäftsbedingungen für IT-Beratungsleistungen",
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const canonical = `https://gordon365.com/${locale}/agb`;
+
+  return {
+    title: "AGB – Gordon365",
+    description: "Allgemeine Geschäftsbedingungen für IT-Beratungsleistungen",
+    alternates: {
+      canonical,
+    },
+    robots: { index: false, follow: true },
+  };
+}
 
 export default async function AGBPage({
   params,
