@@ -18,7 +18,14 @@
     "checker": "Security Check",
     "intune": "Intune Platform",
     "results": "Results",
-    "about": "About"
+    "about": "About",
+    "servicesMenu": {
+      "managedServices": "Managed Services",
+      "adminOnDemand": "Microsoft 365 Administrator on Demand",
+      "securityAudit": "Security Audit",
+      "copilot": "Copilot Readiness"
+    },
+    "backToOverview": "Overview"
   },
   "system": {
     "def": {
@@ -113,6 +120,16 @@
       "h2": "Your entry point into the security system.",
       "sub": "Every module follows the same logic: analyse, structure, deliver. Choose the right entry point.",
       "items": {
+        "managedServices": {
+          "title": "Managed Services",
+          "sub": "Ongoing Microsoft 365 administration, security and governance as a managed service. Senior expertise on demand — without a full-time hire.",
+          "tags": [
+            "Administration",
+            "Governance",
+            "SLA",
+            "Monthly Plan"
+          ]
+        },
         "audit": {
           "title": "Security Audit",
           "sub": "Full analysis of your Microsoft 365 security posture. Risks identified. Actions prioritised.",
@@ -1002,10 +1019,11 @@
     "description": "Microsoft 365 security, optimization and Copilot readiness consulting for European SMEs and mid-market businesses.",
     "services": "Services",
     "serviceLinks": [
-      "M365 Health Check",
+      "Managed Services",
+      "Microsoft 365 Administrator on Demand",
+      "Security Audit",
       "Copilot Readiness",
-      "Strategic Retainer",
-      "Free Security Check"
+      "M365 Health Check"
     ],
     "company": "Company",
     "companyLinks": [

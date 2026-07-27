@@ -18,19 +18,33 @@ export default function NavV2({ locale }: NavProps) {
   const pathname = usePathname();
   const [scrollY, setScrollY] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [leistungenOpen, setLeistungenOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
   const isAssessmentPage = pathname.includes("/assessment");
   const isSubPage = /\/(security-audit-microsoft-365|administrator-on-demand|entra-id|intune|copilot|managed-services|impressum|datenschutz|agb)/.test(pathname);
   const isHomePage = !isAssessmentPage && !isSubPage;
+  const isLeistungenPage = /\/(managed-services|administrator-on-demand|security-audit-microsoft-365|copilot)/.test(pathname);
 
+  // "Leistungen" — die vier zentralen Managed-Services-Angebote
+  const leistungenItems = useMemo(() => [
+    { slug: "managed-services", label: t("servicesMenu.managedServices") },
+    { slug: "administrator-on-demand", label: t("servicesMenu.adminOnDemand") },
+    { slug: "security-audit-microsoft-365", label: t("servicesMenu.securityAudit") },
+    { slug: "copilot", label: t("servicesMenu.copilot") },
+  ], [t]);
+
+  // Anker-Navigation innerhalb der Startseite ("System", "Module")
   const navSections = useMemo(() => [
-    { id: "problem-reality", label: t("problem") },
     { id: "system-model", label: t("model") },
     { id: "modules", label: t("modules") },
-    { id: "audit-cta", label: t("audit") },
-    { id: "contact", label: t("contact") }
   ], [t]);
+
+  // Dropdown & mobiles Menü bei Routenwechsel schließen
+  useEffect(() => {
+    setLeistungenOpen(false);
+    setMobileOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -95,6 +109,64 @@ export default function NavV2({ locale }: NavProps) {
 
         {/* ── Desktop Nav ── */}
         <div className="hidden lg:flex items-center gap-6">
+          {/* Leistungen — Dropdown mit den vier Kernangeboten */}
+          <div
+            className="relative"
+            onMouseEnter={() => setLeistungenOpen(true)}
+            onMouseLeave={() => setLeistungenOpen(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setLeistungenOpen((open) => !open)}
+              aria-haspopup="menu"
+              aria-expanded={leistungenOpen}
+              className={cn(
+                "flex items-center gap-1 text-[13px] font-medium transition-colors hover:text-blue-600",
+                isLeistungenPage || leistungenOpen ? "text-blue-600" : "text-slate-600"
+              )}
+            >
+              {t("services")}
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                aria-hidden="true"
+                className={cn("transition-transform duration-200", leistungenOpen && "rotate-180")}
+              >
+                <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
+            <AnimatePresence>
+              {leistungenOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.15 }}
+                  role="menu"
+                  className="absolute top-full left-0 mt-2 w-72 bg-white/95 backdrop-blur-2xl border border-slate-100 rounded-2xl shadow-2xl p-2"
+                >
+                  {leistungenItems.map((item) => (
+                    <Link
+                      key={item.slug}
+                      href={`/${locale}/${item.slug}`}
+                      role="menuitem"
+                      onClick={() => setLeistungenOpen(false)}
+                      className={cn(
+                        "block px-4 py-2.5 rounded-xl text-[13px] font-medium transition-colors hover:bg-blue-50 hover:text-blue-600",
+                        pathname.includes(`/${item.slug}`) ? "text-blue-600 bg-blue-50" : "text-slate-700"
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           {navSections.map((section) => (
             <a
               key={section.id}
@@ -121,12 +193,19 @@ export default function NavV2({ locale }: NavProps) {
             {t("assessment")}
           </Link>
 
+          <a
+            href={isHomePage ? "#contact" : `/${locale}#contact`}
+            className="text-[13px] font-medium text-slate-600 transition-colors hover:text-blue-600"
+          >
+            {t("contact")}
+          </a>
+
           {isSubPage && (
             <Link
               href={`/${locale}`}
               className="text-[13px] font-medium text-slate-500 hover:text-slate-900 transition-colors"
             >
-              ← {locale === "de" ? "Übersicht" : "Overview"}
+              ← {t("backToOverview")}
             </Link>
           )}
 
@@ -182,6 +261,28 @@ export default function NavV2({ locale }: NavProps) {
               />
             </div>
 
+            {/* Leistungen — Kernangebote direkt sichtbar, kein Extra-Toggle */}
+            <div className="pb-2 border-b border-slate-50">
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+                {t("services")}
+              </p>
+              <div className="flex flex-col gap-3">
+                {leistungenItems.map((item) => (
+                  <Link
+                    key={item.slug}
+                    href={`/${locale}/${item.slug}`}
+                    onClick={() => setMobileOpen(false)}
+                    className={cn(
+                      "text-base font-semibold transition-colors",
+                      pathname.includes(`/${item.slug}`) ? "text-blue-600" : "text-slate-900"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             {navSections.map((section) => (
               <a
                 key={section.id}
@@ -206,6 +307,14 @@ export default function NavV2({ locale }: NavProps) {
             >
               {t("assessment")}
             </Link>
+
+            <a
+              href={isHomePage ? "#contact" : `/${locale}#contact`}
+              onClick={() => setMobileOpen(false)}
+              className="text-lg font-semibold border-b border-slate-50 pb-2 text-slate-900 transition-colors"
+            >
+              {t("contact")}
+            </a>
 
             <div className="flex gap-6 mt-2">
               {["de", "en"].map((l) => (

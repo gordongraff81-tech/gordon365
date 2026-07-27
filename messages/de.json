@@ -98,6 +98,16 @@
       "h2": "Der Einstieg in Ihr Sicherheitssystem.",
       "sub": "Jedes Modul folgt der gleichen Logik: Analyse, Struktur, Ergebnis. Wählen Sie den passenden Einstieg.",
       "items": {
+        "managedServices": {
+          "title": "Managed Services",
+          "sub": "Laufende Microsoft 365 Administration, Sicherheit und Governance als Managed Service. Senior-Expertise auf Abruf — ohne Vollzeiteinstellung.",
+          "tags": [
+            "Administration",
+            "Governance",
+            "SLA",
+            "Monatspaket"
+          ]
+        },
         "audit": {
           "title": "Security Audit",
           "sub": "Vollständige Analyse Ihrer Microsoft 365 Sicherheitslage. Risiken identifiziert. Maßnahmen priorisiert.",
@@ -188,7 +198,14 @@
     "intune": "Intune Platform",
     "results": "Referenzen",
     "about": "Über uns",
-    "cta": "Strategiegespräch buchen"
+    "cta": "Strategiegespräch buchen",
+    "servicesMenu": {
+      "managedServices": "Managed Services",
+      "adminOnDemand": "Microsoft 365 Administrator auf Abruf",
+      "securityAudit": "Security Audit",
+      "copilot": "Copilot Readiness"
+    },
+    "backToOverview": "Übersicht"
   },
   "hero": {
     "eyebrow": "Microsoft 365 Sicherheits- & Optimierungsplattform",
@@ -1002,10 +1019,11 @@
     "description": "Microsoft 365 Sicherheit, Optimierung und Copilot-Bereitschafts-Beratung für europäische KMU und mittelständische Unternehmen.",
     "services": "Leistungen",
     "serviceLinks": [
-      "M365 Health Check",
+      "Managed Services",
+      "Microsoft 365 Administrator auf Abruf",
+      "Security Audit",
       "Copilot Readiness",
-      "Strategisches Retainer",
-      "Kostenloser Sicherheitscheck"
+      "M365 Health Check"
     ],
     "company": "Unternehmen",
     "companyLinks": [
