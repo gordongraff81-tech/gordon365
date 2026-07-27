@@ -14,7 +14,7 @@ function buildCsp(nonce: string): string {
     "base-uri 'self'",
     "object-src 'none'",
     "frame-ancestors 'none'",
-    `script-src 'self' 'nonce-${nonce}' https://js.stripe.com https://www.googletagmanager.com https://www.google-analytics.com`,
+    `script-src 'self' 'unsafe-inline' 'unsafe-inline' 'nonce-${nonce}' https://js.stripe.com https://www.googletagmanager.com https://www.google-analytics.com`,
     `style-src 'self' 'unsafe-inline' 'nonce-${nonce}'`,
     "img-src 'self' data: https:",
     "font-src 'self' data:",
