@@ -8,14 +8,14 @@ const intlMiddleware = createMiddleware({
   localePrefix: "always",
 });
 
-function buildCsp(nonce: string): string {
+function buildCsp(): string {
   return [
     "default-src 'self'",
     "base-uri 'self'",
     "object-src 'none'",
     "frame-ancestors 'none'",
-    `script-src 'self' 'unsafe-inline' 'unsafe-inline' 'nonce-${nonce}' https://js.stripe.com https://www.googletagmanager.com https://www.google-analytics.com`,
-    `style-src 'self' 'unsafe-inline' 'nonce-${nonce}'`,
+    "script-src 'self' 'unsafe-inline' https://js.stripe.com https://www.googletagmanager.com https://www.google-analytics.com",
+    "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
     "font-src 'self' data:",
     "connect-src 'self' https://api.stripe.com https://plausible.io https://*.zoho.eu https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com",
@@ -28,16 +28,12 @@ function buildCsp(nonce: string): string {
 
 export default function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  const nonce = crypto.randomUUID().replace(/-/g, "");
 
-  // Root language resolver
   if (pathname === "/") {
     const acceptLanguage =
       req.headers.get("accept-language")?.toLowerCase() || "";
 
-    const locale = acceptLanguage.startsWith("en")
-      ? "en"
-      : "de";
+    const locale = acceptLanguage.startsWith("en") ? "en" : "de";
 
     return NextResponse.redirect(
       new URL(`/${locale}`, req.url),
@@ -62,20 +58,14 @@ export default function middleware(req: NextRequest) {
     "Permissions-Policy",
     "camera=(), microphone=(), geolocation=()"
   );
-  response.headers.set("Content-Security-Policy", buildCsp(nonce));
-  response.cookies.set("csp-nonce", nonce, {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/",
-    maxAge: 60 * 60 * 24,
-  });
+  response.headers.set(
+    "Content-Security-Policy",
+    buildCsp()
+  );
 
   return response;
 }
 
 export const config = {
-  matcher: [
-    "/((?!api|_next|_vercel|.*\\..*).*)",
-  ],
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };
