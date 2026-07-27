@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
@@ -46,11 +47,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = await cookies();
+  const cspNonce = cookieStore.get("csp-nonce")?.value ?? "";
+
   return (
     <html lang="de" suppressHydrationWarning className={`${plusJakartaSans.variable} ${dmSans.variable} ${exo2.variable}`}>
       <head>
@@ -156,7 +160,7 @@ export default function RootLayout({
         {/* Ende Cookie Consent Banner */}
 
         {/* Cookie Consent Script */}
-        <Script src="/cookie-consent.js" strategy="afterInteractive" />
+        <Script src="/cookie-consent.js" strategy="afterInteractive" nonce={cspNonce} />
 
         {/* ─── Google Analytics – blockiert bis Cookie-Consent erteilt ─── */}
         {/* Das type="text/plain" verhindert die Ausführung durch den Browser. */}
@@ -167,12 +171,14 @@ export default function RootLayout({
           data-consent="analytics"
           data-src="https://www.googletagmanager.com/gtag/js?id=G-6F24DD5C88"
           strategy="afterInteractive"
+          nonce={cspNonce}
         />
         <Script
           id="ga-init"
           type="text/plain"
           data-consent="analytics"
           strategy="afterInteractive"
+          nonce={cspNonce}
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
