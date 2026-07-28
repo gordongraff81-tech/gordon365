@@ -23,16 +23,16 @@ export async function generateMetadata({
       ? "Conditional Access, MFA, Identity Protection und Privileged Identity Management für Ihr Microsoft 365 Environment."
       : "Conditional Access, MFA, Identity Protection and Privileged Identity Management for your Microsoft 365 environment.",
     alternates: {
-      canonical: `${baseUrl}/${locale}/${slug}`,
+      canonical: `${baseUrl}${isDE ? "" : "/en"}/${slug}`,
       languages: {
-        en: `${baseUrl}/en/${slug}`,
-        de: `${baseUrl}/de/${slug}`,
-        "x-default": `${baseUrl}/en/${slug}`,
+        "de-DE": `${baseUrl}/${slug}`,
+        "en-US": `${baseUrl}/en/${slug}`,
+        "x-default": `${baseUrl}/${slug}`,
       },
     },
     openGraph: {
       title: "Microsoft Entra ID Consultant — Gordon365",
-      url: `${baseUrl}/${locale}/${slug}`,
+      url: `${baseUrl}${isDE ? "" : "/en"}/${slug}`,
       siteName: "Gordon365",
       locale: isDE ? "de_DE" : "en_US",
       type: "website",

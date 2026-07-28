@@ -7,6 +7,7 @@ import NavV2 from "@/components/ui/NavV2";
 import Footer from "@/components/sections/Footer";
 import AmbientBg from "@/components/ui/AmbientBg";
 import Link from "next/link";
+import { localeHref } from "@/lib/localePath";
 import { getProductById, getCurrentVersion, formatPrice } from "@/lib/products";
 
 const COPY = {
@@ -56,11 +57,11 @@ async function SuccessContent({
   try {
     session = await stripe.checkout.sessions.retrieve(sessionId);
   } catch {
-    redirect(`/${locale}/templates`);
+    redirect(localeHref(locale, "templates"));
   }
 
   if (!session || session.payment_status !== "paid") {
-    redirect(`/${locale}/templates`);
+    redirect(localeHref(locale, "templates"));
   }
 
   const resolvedProductId = productId ?? session.metadata?.productId;
@@ -201,7 +202,7 @@ async function SuccessContent({
           </p>
 
           <Link
-            href={`/${locale}/templates`}
+            href={localeHref(locale, "templates")}
             className="inline-flex items-center gap-2 text-[0.875rem] font-medium text-text-2 hover:text-text-1 transition-colors"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
@@ -227,7 +228,7 @@ export default async function TemplateSuccessPage({
   const { session_id, product } = await searchParams;
 
   if (!session_id) {
-    redirect(`/${locale}/templates`);
+    redirect(localeHref(locale, "templates"));
   }
 
   return (

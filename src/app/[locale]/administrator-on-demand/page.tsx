@@ -21,17 +21,17 @@ export async function generateMetadata({
     title: t("meta.title"),
     description: t("meta.description"),
     alternates: {
-      canonical: `${baseUrl}/${locale}/${slug}`,
+      canonical: `${baseUrl}${locale === "de" ? "" : "/en"}/${slug}`,
       languages: {
-        en: `${baseUrl}/en/${slug}`,
-        de: `${baseUrl}/de/${slug}`,
-        "x-default": `${baseUrl}/en/${slug}`,
+        "de-DE": `${baseUrl}/${slug}`,
+        "en-US": `${baseUrl}/en/${slug}`,
+        "x-default": `${baseUrl}/${slug}`,
       },
     },
     openGraph: {
       title: t("meta.title"),
       description: t("meta.description"),
-      url: `${baseUrl}/${locale}/${slug}`,
+      url: `${baseUrl}${locale === "de" ? "" : "/en"}/${slug}`,
       siteName: "Gordon365",
       locale: locale === "de" ? "de_DE" : "en_US",
       type: "website",

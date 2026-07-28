@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { localeHref, switchLocalePath } from "@/lib/localePath";
 
 interface NavProps {
   locale: string;
@@ -70,7 +71,7 @@ export default function NavV2({ locale }: NavProps) {
   }, [navSections, isHomePage]);
 
   const switchLang = (newLocale: string) => {
-    const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
+    const newPath = switchLocalePath(pathname, newLocale);
     router.push(newPath);
   };
 
@@ -90,7 +91,7 @@ export default function NavV2({ locale }: NavProps) {
       >
         {/* ── Logo ── */}
         <Link
-          href={`/${locale}`}
+          href={localeHref(locale)}
           className="flex items-center shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
           style={{ lineHeight: 0 }}
           aria-label="gordon365 – Zurück zur Startseite"
@@ -170,7 +171,7 @@ export default function NavV2({ locale }: NavProps) {
           {navSections.map((section) => (
             <a
               key={section.id}
-              href={isHomePage ? `#${section.id}` : `/${locale}#${section.id}`}
+              href={isHomePage ? `#${section.id}` : `${localeHref(locale)}#${section.id}`}
               aria-current={activeSection === section.id ? "page" : undefined}
               className={cn(
                 "text-[13px] font-medium transition-colors hover:text-blue-600",
@@ -182,7 +183,7 @@ export default function NavV2({ locale }: NavProps) {
           ))}
 
           <Link
-            href={`/${locale}/assessment`}
+            href={localeHref(locale, "assessment")}
             className={cn(
               "text-[13px] font-bold px-3.5 py-1.5 rounded-full transition-all duration-200",
               isAssessmentPage
@@ -202,7 +203,7 @@ export default function NavV2({ locale }: NavProps) {
 
           {isSubPage && (
             <Link
-              href={`/${locale}`}
+              href={localeHref(locale)}
               className="text-[13px] font-medium text-slate-500 hover:text-slate-900 transition-colors"
             >
               ← {t("backToOverview")}
@@ -286,7 +287,7 @@ export default function NavV2({ locale }: NavProps) {
             {navSections.map((section) => (
               <a
                 key={section.id}
-                href={isHomePage ? `#${section.id}` : `/${locale}#${section.id}`}
+                href={isHomePage ? `#${section.id}` : `${localeHref(locale)}#${section.id}`}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
                   "text-lg font-semibold border-b border-slate-50 pb-2 transition-colors",
@@ -298,7 +299,7 @@ export default function NavV2({ locale }: NavProps) {
             ))}
 
             <Link
-              href={`/${locale}/assessment`}
+              href={localeHref(locale, "assessment")}
               onClick={() => setMobileOpen(false)}
               className={cn(
                 "text-lg font-bold pb-2 border-b border-slate-50 transition-colors",

@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { localeHref } from "@/lib/localePath";
 
 const fadeUp = (inView: boolean, delay = 0) => ({
   initial: { opacity: 0, y: 40 },
@@ -492,7 +493,7 @@ function SectionModuleIntro() {
           {MODULES.map((mod, i) => (
             <motion.div key={mod.key} {...fadeUp(inView, i * 0.09)}>
               <Link
-                href={`/${locale}/${mod.slug}`}
+                href={localeHref(locale, mod.slug)}
                 style={{
                   display: "block",
                   padding: "2.5rem",

@@ -2,6 +2,7 @@ export const runtime = 'edge';
 
 import type { Metadata } from "next";
 import Link from "next/link";
+import { localeHref } from "@/lib/localePath";
 import Image from "next/image";
 
 export async function generateMetadata({
@@ -10,7 +11,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const canonical = `https://gordon365.com/${locale}/datenschutz`;
+  const canonical = `https://gordon365.com${locale === "de" ? "" : "/en"}/datenschutz`;
 
   return {
     title: "Datenschutzerklärung – Gordon365",
@@ -35,7 +36,7 @@ export default async function DatenschutzPage({
       {/* Nav */}
       <header className="sticky top-0 z-50 border-b border-white/8 bg-bg-0/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <Link href={`/${locale}`} className="flex items-center">
+          <Link href={localeHref(locale)} className="flex items-center">
             <Image
               src="/logo-nav.png"
               alt="Gordon365"
@@ -46,7 +47,7 @@ export default async function DatenschutzPage({
             />
           </Link>
           <Link
-            href={`/${locale}`}
+            href={localeHref(locale)}
             className="text-sm text-text-2 hover:text-text-1 transition-colors"
           >
             ← Zurück zur Startseite
@@ -294,13 +295,13 @@ export default async function DatenschutzPage({
       {/* Footer */}
       <footer className="border-t border-white/8 py-8 text-center text-sm text-text-3">
         <div className="mx-auto max-w-7xl px-6 flex flex-wrap justify-center gap-6">
-          <Link href={`/${locale}/impressum`} className="hover:text-text-1 transition-colors">
+          <Link href={localeHref(locale, "impressum")} className="hover:text-text-1 transition-colors">
             Impressum
           </Link>
-          <Link href={`/${locale}/datenschutz`} className="hover:text-text-1 transition-colors">
+          <Link href={localeHref(locale, "datenschutz")} className="hover:text-text-1 transition-colors">
             Datenschutz
           </Link>
-          <Link href={`/${locale}/agb`} className="hover:text-text-1 transition-colors">
+          <Link href={localeHref(locale, "agb")} className="hover:text-text-1 transition-colors">
             AGB
           </Link>
         </div>

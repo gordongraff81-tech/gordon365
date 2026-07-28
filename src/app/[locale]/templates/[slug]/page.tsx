@@ -13,6 +13,7 @@ import NavV2 from "@/components/ui/NavV2";
 import Footer from "@/components/sections/Footer";
 import AmbientBg from "@/components/ui/AmbientBg";
 import Link from "next/link";
+import { localeHref } from "@/lib/localePath";
 import { createCheckout } from "./actions";
 import type { Metadata } from "next";
 
@@ -28,11 +29,11 @@ export async function generateMetadata({
   return {
     title: `${product.title} — Gordon365`,
     alternates: {
-      canonical: `${baseUrl}/${locale}/templates/${slug}`,
+      canonical: `${baseUrl}${locale === "de" ? "" : "/en"}/templates/${slug}`,
       languages: {
-        en: `${baseUrl}/en/templates/${slug}`,
-        de: `${baseUrl}/de/templates/${slug}`,
-        "x-default": `${baseUrl}/en/templates/${slug}`,
+        "de-DE": `${baseUrl}/templates/${slug}`,
+        "en-US": `${baseUrl}/en/templates/${slug}`,
+        "x-default": `${baseUrl}/templates/${slug}`,
       },
     },
   };
@@ -72,7 +73,7 @@ export default async function TemplateDetailPage({
       <main className="min-h-screen pt-32 pb-section px-4 bg-bg-0">
         <div className="max-w-4xl mx-auto">
           <Link
-            href={`/${locale}/templates`}
+            href={localeHref(locale, "templates")}
             className="inline-flex items-center gap-2 text-sm text-text-2 hover:text-text-1 transition-colors mb-10"
           >
             ← {t("detail.back")}
@@ -185,7 +186,7 @@ export default async function TemplateDetailPage({
                 {related.map((rel) => (
                   <Link
                     key={rel.id}
-                    href={`/${locale}/templates/${rel.id}`}
+                    href={localeHref(locale, `templates/${rel.id}`)}
                     className="flex items-center justify-between rounded-2xl border border-border bg-card hover:border-accent/30 hover:shadow-card transition-all p-4"
                   >
                     <div>

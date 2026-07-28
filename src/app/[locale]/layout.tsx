@@ -18,7 +18,9 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "meta" });
 
   const baseUrl = "https://gordon365.com";
-  const localeUrl = `${baseUrl}/${locale}`;
+  // Fallback-Canonical für Seiten ohne eigene generateMetadata (z.B. Startseite):
+  // Deutsch (Standard) unpräfixiert, Englisch mit /en.
+  const localeUrl = locale === "de" ? baseUrl : `${baseUrl}/en`;
 
   return {
     title: t("title"),
@@ -29,9 +31,9 @@ export async function generateMetadata({
     alternates: {
       canonical: localeUrl,
       languages: {
-        en: `${baseUrl}/en`,
-        de: `${baseUrl}/de`,
-        "x-default": `${baseUrl}/en`,
+        "de-DE": baseUrl,
+        "en-US": `${baseUrl}/en`,
+        "x-default": baseUrl,
       },
     },
 

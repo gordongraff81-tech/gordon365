@@ -13,9 +13,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "audit" });
+  const baseUrl = "https://gordon365.com";
+  const slug = "security-audit-microsoft-365";
   return {
     title: t("meta.title"),
     description: t("meta.description"),
+    alternates: {
+      canonical: `${baseUrl}${locale === "de" ? "" : "/en"}/${slug}`,
+      languages: {
+        "de-DE": `${baseUrl}/${slug}`,
+        "en-US": `${baseUrl}/en/${slug}`,
+        "x-default": `${baseUrl}/${slug}`,
+      },
+    },
   };
 }
 

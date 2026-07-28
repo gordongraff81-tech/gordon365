@@ -1,11 +1,15 @@
 import createMiddleware from "next-intl/middleware";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { routing } from "@/i18n/routing";
 
+// Single Source of Truth für Locales/Prefix-Strategie (siehe src/i18n/routing.ts).
+// localeDetection: false verhindert jede automatische Umleitung anhand von
+// Accept-Language oder NEXT_LOCALE-Cookie — die Root-Domain zeigt immer
+// Deutsch, Nutzer wechseln die Sprache ausschließlich aktiv über den Switcher.
 const intlMiddleware = createMiddleware({
-  locales: ["de", "en"],
-  defaultLocale: "de",
-  localePrefix: "always",
+  ...routing,
+  localeDetection: false,
 });
 
 function buildCsp(): string {
@@ -27,20 +31,6 @@ function buildCsp(): string {
 }
 
 export default function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
-
-  if (pathname === "/") {
-    const acceptLanguage =
-      req.headers.get("accept-language")?.toLowerCase() || "";
-
-    const locale = acceptLanguage.startsWith("en") ? "en" : "de";
-
-    return NextResponse.redirect(
-      new URL(`/${locale}`, req.url),
-      302
-    );
-  }
-
   const response = intlMiddleware(req) || NextResponse.next();
 
   response.headers.set("X-DNS-Prefetch-Control", "on");

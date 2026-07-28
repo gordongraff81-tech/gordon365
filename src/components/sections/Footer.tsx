@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { localeHref } from "@/lib/localePath";
 
 interface FooterProps {
   locale: string;
@@ -24,15 +25,15 @@ export default function Footer({ locale }: FooterProps) {
   const legalLabels = t.raw("legal") as string[];
 
   const serviceHrefs = [
-    `/${locale}/managed-services`,
-    `/${locale}/administrator-on-demand`,
-    `/${locale}/security-audit-microsoft-365`,
-    `/${locale}/copilot`,
-    `/${locale}/assessment`,
+    localeHref(locale, "managed-services"),
+    localeHref(locale, "administrator-on-demand"),
+    localeHref(locale, "security-audit-microsoft-365"),
+    localeHref(locale, "copilot"),
+    localeHref(locale, "assessment"),
   ];
   const companyHrefs = [
-    `/${locale}#modules`,
-    `/${locale}#modules`,
+    `${localeHref(locale)}#modules`,
+    `${localeHref(locale)}#modules`,
     `#`,
     `mailto:info@gordon365.com`,
   ];
@@ -91,7 +92,7 @@ export default function Footer({ locale }: FooterProps) {
           <span className="text-[0.8125rem] text-text-3">{t("copyright")}</span>
           <div className="flex gap-5">
             {legalLabels.map((label, i) => (
-              <Link key={i} href={`/${locale}/${legalPaths[i] || ""}`} className="text-[0.8125rem] text-text-3 hover:text-text-2 transition-colors">
+              <Link key={i} href={localeHref(locale, legalPaths[i] || "")} className="text-[0.8125rem] text-text-3 hover:text-text-2 transition-colors">
                 {label}
               </Link>
             ))}

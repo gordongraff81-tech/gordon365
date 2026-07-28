@@ -6,6 +6,7 @@ import NavV2 from "@/components/ui/NavV2";
 import Footer from "@/components/sections/Footer";
 import AmbientBg from "@/components/ui/AmbientBg";
 import Link from "next/link";
+import { localeHref } from "@/lib/localePath";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -24,11 +25,11 @@ export async function generateMetadata({
       ? "Geprüfte Templates für Conditional Access, Intune, Copilot Readiness und Security Reporting. Direkt einsatzbereit."
       : "Tested templates for Conditional Access, Intune, Copilot Readiness and Security Reporting. Ready to deploy.",
     alternates: {
-      canonical: `${baseUrl}/${locale}/templates`,
+      canonical: `${baseUrl}${isDE ? "" : "/en"}/templates`,
       languages: {
-        en: `${baseUrl}/en/templates`,
-        de: `${baseUrl}/de/templates`,
-        "x-default": `${baseUrl}/en/templates`,
+        "de-DE": `${baseUrl}/templates`,
+        "en-US": `${baseUrl}/en/templates`,
+        "x-default": `${baseUrl}/templates`,
       },
     },
   };
@@ -106,7 +107,7 @@ export default async function TemplatesPage({
               return (
                 <Link
                   key={product.id}
-                  href={`/${locale}/templates/${product.id}`}
+                  href={localeHref(locale, `templates/${product.id}`)}
                   className="group flex flex-col rounded-4xl border border-border bg-card shadow-card hover:shadow-card-hover hover:border-accent/30 transition-all duration-300 overflow-hidden"
                 >
                   <div className="flex flex-col flex-1 p-6 gap-4">

@@ -2,6 +2,7 @@ import NavV2 from "@/components/ui/NavV2";
 import Footer from "@/components/sections/Footer";
 import AmbientBg from "@/components/ui/AmbientBg";
 import Link from "next/link";
+import { localeHref } from "@/lib/localePath";
 
 const COPY = {
   de: {
@@ -95,7 +96,7 @@ export default async function CancelPage({
 
           {/* CTA */}
           <Link
-            href={`/${locale}/intune`}
+            href={localeHref(locale, "intune")}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-[0.9375rem] transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
             style={{
               background: `linear-gradient(135deg, ${A1} 0%, ${A2} 100%)`,

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
+import { localeHref } from "@/lib/localePath";
 
 const fadeUp = (inView: boolean, delay = 0) => ({
   initial: { opacity: 0, y: 40 },
@@ -17,7 +18,7 @@ function BackLink({ t }: { t: ReturnType<typeof useTranslations> }) {
   const locale = (params?.locale as string) || "de";
   return (
     <Link
-      href={`/${locale}`}
+      href={localeHref(locale)}
       style={{
         color: "#0071E3",
         padding: "1rem 2.25rem",
