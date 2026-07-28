@@ -428,12 +428,13 @@ function SectionSystemModel() {
 // HINTERGRUND: Schwarz
 // ─────────────────────────────────────────────
 const MODULES = [
-  { key: "audit",   slug: "security-audit-microsoft-365", color: "#0071E3", label: "01" },
-  { key: "entra",   slug: "entra-id",                     color: "#34AADC", label: "02" },
-  { key: "intune",  slug: "intune",                       color: "#5E5CE6", label: "03" },
-  { key: "copilot", slug: "copilot",                      color: "#30B0C7", label: "04" },
-  { key: "aod",       slug: "administrator-on-demand",      color: "#0071E3", label: "05" },
-  { key: "templates", slug: "templates",                      color: "#FF9F0A", label: "06" },
+  { key: "managedServices", slug: "managed-services",            color: "#0071E3", label: "01" },
+  { key: "aod",              slug: "administrator-on-demand",     color: "#0071E3", label: "02" },
+  { key: "audit",            slug: "security-audit-microsoft-365",color: "#0071E3", label: "03" },
+  { key: "copilot",          slug: "copilot",                     color: "#30B0C7", label: "04" },
+  { key: "entra",            slug: "entra-id",                    color: "#34AADC", label: "05" },
+  { key: "intune",           slug: "intune",                      color: "#5E5CE6", label: "06" },
+  { key: "templates",        slug: "templates",                   color: "#FF9F0A", label: "07" },
 ];
 
 function SectionModuleIntro() {

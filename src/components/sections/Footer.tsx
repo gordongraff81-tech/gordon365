@@ -24,10 +24,11 @@ export default function Footer({ locale }: FooterProps) {
   const legalLabels = t.raw("legal") as string[];
 
   const serviceHrefs = [
+    `/${locale}/managed-services`,
+    `/${locale}/administrator-on-demand`,
     `/${locale}/security-audit-microsoft-365`,
     `/${locale}/copilot`,
-    `/${locale}/managed-services`,
-    `/${locale}#security-checker`,
+    `/${locale}/assessment`,
   ];
   const companyHrefs = [
     `/${locale}#modules`,
