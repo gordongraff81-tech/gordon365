@@ -13,12 +13,22 @@
       "h1c": "Schritt für Schritt.",
       "sub": "Unternehmen wachsen schnell in Microsoft 365 hinein — Identitäten, Geräte, Daten und Berechtigungen unkontrolliert. Gordon365 analysiert, strukturiert und sichert Ihre Umgebung mit einem systematischen Ansatz.",
       "cta": "Security Audit starten",
-      "ctaSecondary": "System kennenlernen"
+      "ctaSecondary": "System kennenlernen",
+      "trustChips": [
+        "Microsoft Partner",
+        "D/A/CH Region",
+        "DSGVO Konform",
+        "10+ Jahre M365"
+      ]
     },
     "problem": {
       "label": "Problem Realität",
       "h2": "Microsoft 365 Umgebungen wachsen unkontrolliert.",
       "sub": "Die meisten Unternehmen haben diese Probleme — und wissen es nicht. Bis es zu spät ist.",
+      "severity": {
+        "critical": "KRITISCH",
+        "high": "HOCH"
+      },
       "items": {
         "admin": {
           "title": "Überprivilegierte Admin Accounts",
@@ -1439,8 +1449,15 @@
   },
   "audit": {
     "meta": {
-      "title": "Microsoft 365 Security Audit — Gordon365",
-      "description": "Vollständiger Microsoft 365 Security Audit für KMU. Risiken in Entra ID, Intune, Defender und SharePoint identifizieren — mit priorisiertem Remediation-Fahrplan."
+      "title": "Microsoft 365 Security Audit für Unternehmen | Gordon365",
+      "description": "Professionelles Microsoft 365 Security Audit für Unternehmen. Analyse von Entra ID, Intune, Defender, Conditional Access und Microsoft 365 Sicherheitsrisiken mit priorisiertem Maßnahmenplan.",
+      "keywords": [
+        "Microsoft 365 Security Audit",
+        "Microsoft 365 Sicherheitscheck",
+        "Microsoft 365 Absicherung",
+        "Entra ID Security Audit",
+        "Intune Security Assessment"
+      ]
     },
     "positioning": {
       "eyebrow": "Microsoft 365 Security Audit",
@@ -1454,6 +1471,10 @@
       "label": "Reality Check",
       "h2": "Unentdeckte Risiken in Ihrer Microsoft 365 Umgebung.",
       "sub": "Dies sind die häufigsten kritischen Befunde in Microsoft 365 Umgebungen — und die meisten Unternehmen entdecken sie erst nach einem Vorfall.",
+      "severity": {
+        "critical": "KRITISCH",
+        "high": "HOCH"
+      },
       "items": {
         "admin": {
           "title": "Zu viele privilegierte Admin-Konten",

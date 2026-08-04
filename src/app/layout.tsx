@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import type { Metadata, Viewport } from "next";
+import { getLocale } from "next-intl/server";
 import Script from "next/script";
 import { validateEnv } from "@/lib/env";
 import "./globals.css";
@@ -57,9 +58,10 @@ export default async function RootLayout({
 }) {
   const cookieStore = await cookies();
   const cspNonce = cookieStore.get("csp-nonce")?.value ?? "";
+  const locale = await getLocale();
 
   return (
-    <html lang="de" suppressHydrationWarning className={`${plusJakartaSans.variable} ${dmSans.variable} ${exo2.variable}`}>
+    <html lang={locale} suppressHydrationWarning className={`${plusJakartaSans.variable} ${dmSans.variable} ${exo2.variable}`}>
       <head>
         {/* Preconnect to font domains for faster font loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -143,11 +143,11 @@ function SectionPositioning() {
 // HINTERGRUND: Schwarz
 // ─────────────────────────────────────────────
 const REALITY_ITEMS = [
-  { key: "admin",      severity: "KRITISCH" },
-  { key: "mfa",        severity: "KRITISCH" },
-  { key: "sharing",    severity: "HOCH" },
-  { key: "devices",    severity: "HOCH" },
-  { key: "visibility", severity: "KRITISCH" },
+  { key: "admin",      severity: "critical" },
+  { key: "mfa",        severity: "critical" },
+  { key: "sharing",    severity: "high" },
+  { key: "devices",    severity: "high" },
+  { key: "visibility", severity: "critical" },
 ];
 
 function SectionRealityCheck() {
@@ -233,13 +233,13 @@ function SectionRealityCheck() {
                 fontWeight: 700,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
-                color: item.severity === "KRITISCH" ? "#FF453A" : "#FF9F0A",
-                background: item.severity === "KRITISCH" ? "rgba(255,69,58,0.12)" : "rgba(255,159,10,0.12)",
+                color: item.severity === "critical" ? "#FF453A" : "#FF9F0A",
+                background: item.severity === "critical" ? "rgba(255,69,58,0.12)" : "rgba(255,159,10,0.12)",
                 padding: "0.35rem 0.75rem",
                 borderRadius: "4px",
                 whiteSpace: "nowrap",
               }}>
-                {item.severity}
+                {t(`reality.severity.${item.severity}`)}
               </span>
             </motion.div>
           ))}

@@ -86,29 +86,6 @@ export async function generateMetadata({
       ],
       shortcut: "/favicon.svg",
     },
-
-    other: {
-      "application/ld+json": JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        name: "Gordon365",
-        url: baseUrl,
-        description: t("description"),
-        address: { "@type": "PostalAddress", addressCountry: "DE" },
-        areaServed: ["DE", "AT", "CH"],
-        serviceType: [
-          "Microsoft 365 Consulting",
-          "M365 Security Hardening",
-          "Copilot Readiness",
-          "Modern Workplace Transformation",
-          "Microsoft Licensing Optimization",
-          "Intune Deployment",
-          "Windows Autopilot",
-          "Endpoint Compliance Management",
-        ],
-        priceRange: "€€€",
-      }),
-    },
   };
 }
 
@@ -126,9 +103,34 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages();
+  const t = await getTranslations({ locale, namespace: "meta" });
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Gordon365",
+    url: "https://gordon365.com",
+    description: t("description"),
+    address: { "@type": "PostalAddress", addressCountry: "DE" },
+    areaServed: ["DE", "AT", "CH"],
+    serviceType: [
+      "Microsoft 365 Consulting",
+      "M365 Security Hardening",
+      "Copilot Readiness",
+      "Modern Workplace Transformation",
+      "Microsoft Licensing Optimization",
+      "Intune Deployment",
+      "Windows Autopilot",
+      "Endpoint Compliance Management",
+    ],
+    priceRange: "€€€",
+  };
 
   return (
     <NextIntlClientProvider messages={messages}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {children}
       <Toaster
         position="bottom-right"

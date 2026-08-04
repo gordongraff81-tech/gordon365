@@ -35,12 +35,22 @@
       "h1c": "Step by step.",
       "sub": "Organisations grow into Microsoft 365 fast — identities, devices, data and permissions sprawling out of control. Gordon365 analyses, structures and secures your environment with a systematic approach.",
       "cta": "Start Security Audit",
-      "ctaSecondary": "Explore the system"
+      "ctaSecondary": "Explore the system",
+      "trustChips": [
+        "Microsoft Partner",
+        "D/A/CH Region",
+        "GDPR compliant",
+        "10+ years M365"
+      ]
     },
     "problem": {
       "label": "Problem Reality",
       "h2": "Microsoft 365 environments grow out of control.",
       "sub": "Most organisations have these problems — and don't know it. Until it's too late.",
+      "severity": {
+        "critical": "CRITICAL",
+        "high": "HIGH"
+      },
       "items": {
         "admin": {
           "title": "Over-privileged admin accounts",
@@ -1439,8 +1449,15 @@
   },
   "audit": {
     "meta": {
-      "title": "Microsoft 365 Security Audit — Gordon365",
-      "description": "Full Microsoft 365 security audit for SMBs. Identify risks in Entra ID, Intune, Defender and SharePoint — with a prioritised remediation roadmap."
+      "title": "Microsoft 365 Security Audit & Assessment | Gordon365",
+      "description": "Professional Microsoft 365 Security Assessment for organisations. Analyse Entra ID, Intune, Defender and Conditional Access security risks with a prioritised remediation roadmap.",
+      "keywords": [
+        "Microsoft 365 Security Audit",
+        "Microsoft 365 Security Assessment",
+        "Microsoft 365 Hardening",
+        "Entra ID Security Review",
+        "Intune Security Assessment"
+      ]
     },
     "positioning": {
       "eyebrow": "Microsoft 365 Security Audit",
@@ -1454,6 +1471,10 @@
       "label": "Reality Check",
       "h2": "Undetected risks in your Microsoft 365 environment.",
       "sub": "These are the most common critical findings in Microsoft 365 environments — and most organisations discover them only after an incident.",
+      "severity": {
+        "critical": "CRITICAL",
+        "high": "HIGH"
+      },
       "items": {
         "admin": {
           "title": "Over-privileged admin accounts",

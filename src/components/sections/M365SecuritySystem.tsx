@@ -137,7 +137,7 @@ function SectionSystemDefinition() {
             borderTop: "1px solid #E5E5EA",
           }}
         >
-          {["Microsoft Partner", "D/A/CH Region", "DSGVO Konform", "10+ Jahre M365"].map((chip) => (
+          {(t.raw("def.trustChips") as string[]).map((chip) => (
             <span
               key={chip}
               style={{
@@ -161,11 +161,11 @@ function SectionSystemDefinition() {
 // HINTERGRUND: Schwarz
 // ─────────────────────────────────────────────
 const PROBLEMS = [
-  { key: "admin",      severity: "KRITISCH" },
-  { key: "mfa",       severity: "KRITISCH" },
-  { key: "sharing",   severity: "HOCH" },
-  { key: "devices",   severity: "HOCH" },
-  { key: "visibility",severity: "KRITISCH" },
+  { key: "admin",      severity: "critical" },
+  { key: "mfa",       severity: "critical" },
+  { key: "sharing",   severity: "high" },
+  { key: "devices",   severity: "high" },
+  { key: "visibility",severity: "critical" },
 ];
 
 function SectionProblemReality() {
@@ -251,13 +251,13 @@ function SectionProblemReality() {
                 fontWeight: 700,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
-                color: p.severity === "KRITISCH" ? "#FF453A" : "#FF9F0A",
-                background: p.severity === "KRITISCH" ? "rgba(255,69,58,0.12)" : "rgba(255,159,10,0.12)",
+                color: p.severity === "critical" ? "#FF453A" : "#FF9F0A",
+                background: p.severity === "critical" ? "rgba(255,69,58,0.12)" : "rgba(255,159,10,0.12)",
                 padding: "0.35rem 0.75rem",
                 borderRadius: "4px",
                 whiteSpace: "nowrap",
               }}>
-                {p.severity}
+                {t(`problem.severity.${p.severity}`)}
               </span>
             </motion.div>
           ))}

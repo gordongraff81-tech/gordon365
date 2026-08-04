@@ -18,6 +18,7 @@ export async function generateMetadata({
   return {
     title: t("meta.title"),
     description: t("meta.description"),
+    keywords: t.raw("meta.keywords") as string[],
     alternates: {
       canonical: `${baseUrl}${locale === "de" ? "" : "/en"}/${slug}`,
       languages: {

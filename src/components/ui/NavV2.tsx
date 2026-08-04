@@ -152,7 +152,7 @@ export default function NavV2({ locale }: NavProps) {
                   {leistungenItems.map((item) => (
                     <Link
                       key={item.slug}
-                      href={`/${locale}/${item.slug}`}
+                      href={localeHref(locale, item.slug)}
                       role="menuitem"
                       onClick={() => setLeistungenOpen(false)}
                       className={cn(
@@ -195,7 +195,7 @@ export default function NavV2({ locale }: NavProps) {
           </Link>
 
           <a
-            href={isHomePage ? "#contact" : `/${locale}#contact`}
+            href={isHomePage ? "#contact" : `${localeHref(locale)}#contact`}
             className="text-[13px] font-medium text-slate-600 transition-colors hover:text-blue-600"
           >
             {t("contact")}
@@ -271,7 +271,7 @@ export default function NavV2({ locale }: NavProps) {
                 {leistungenItems.map((item) => (
                   <Link
                     key={item.slug}
-                    href={`/${locale}/${item.slug}`}
+                    href={localeHref(locale, item.slug)}
                     onClick={() => setMobileOpen(false)}
                     className={cn(
                       "text-base font-semibold transition-colors",
@@ -310,7 +310,7 @@ export default function NavV2({ locale }: NavProps) {
             </Link>
 
             <a
-              href={isHomePage ? "#contact" : `/${locale}#contact`}
+              href={isHomePage ? "#contact" : `${localeHref(locale)}#contact`}
               onClick={() => setMobileOpen(false)}
               className="text-lg font-semibold border-b border-slate-50 pb-2 text-slate-900 transition-colors"
             >
