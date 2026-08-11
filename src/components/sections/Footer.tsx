@@ -29,6 +29,8 @@ export default function Footer({ locale }: FooterProps) {
     localeHref(locale, "administrator-on-demand"),
     localeHref(locale, "security-audit-microsoft-365"),
     localeHref(locale, "copilot"),
+    localeHref(locale, "entra-id"),
+    localeHref(locale, "intune"),
     localeHref(locale, "assessment"),
   ];
   const companyHrefs = [

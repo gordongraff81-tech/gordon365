@@ -213,7 +213,9 @@
       "managedServices": "Managed Services",
       "adminOnDemand": "Microsoft 365 Administrator auf Abruf",
       "securityAudit": "Security Audit",
-      "copilot": "Copilot Readiness"
+      "copilot": "Copilot Readiness",
+      "entraId": "Entra ID Review",
+      "intune": "Intune Management"
     },
     "backToOverview": "Übersicht"
   },
@@ -1033,6 +1035,8 @@
       "Microsoft 365 Administrator auf Abruf",
       "Security Audit",
       "Copilot Readiness",
+      "Entra ID Review",
+      "Intune Management",
       "M365 Health Check"
     ],
     "company": "Unternehmen",

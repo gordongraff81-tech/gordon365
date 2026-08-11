@@ -11,12 +11,13 @@ const INDEXABLE_ROUTES = [
   { slug: "entra-id",                      priority: 0.8, freq: "monthly" },
   { slug: "copilot",                       priority: 0.8, freq: "monthly" },
   { slug: "assessment",                    priority: 0.8, freq: "monthly" },
-  { slug: "security",                      priority: 0.7, freq: "monthly" },
   { slug: "templates",                     priority: 0.7, freq: "monthly" },
 ] as const;
 
 // Bewusst NICHT indexierbar (noindex korrekt gesetzt):
 // agb, datenschutz, impressum, success, cancel
+// /security ist ein reiner redirect() auf /security-audit-microsoft-365
+// und gehört deshalb nicht in die Sitemap.
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

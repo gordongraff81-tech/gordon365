@@ -399,7 +399,7 @@ export default function IntuneSection() {
             <div className="section-label mb-4" style={{ "--tw-text-opacity": "1", color: A1 } as React.CSSProperties}>
               {t.sectionLabel}
             </div>
-            <h2 className="display-md text-text-1 mb-4">
+            <h1 className="display-md text-text-1 mb-4">
               {t.h2a}<br />
               <span style={{
                 background: `linear-gradient(135deg, ${A1} 0%, ${A2} 100%)`,
@@ -407,7 +407,7 @@ export default function IntuneSection() {
               }}>
                 {t.h2b}
               </span>
-            </h2>
+            </h1>
             <p className="text-[1.0625rem] leading-relaxed text-text-2 max-w-[540px]">{t.sub}</p>
           </div>
           <div className="flex flex-col gap-2 flex-shrink-0">

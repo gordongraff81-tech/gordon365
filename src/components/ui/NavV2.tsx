@@ -25,14 +25,16 @@ export default function NavV2({ locale }: NavProps) {
   const isAssessmentPage = pathname.includes("/assessment");
   const isSubPage = /\/(security-audit-microsoft-365|administrator-on-demand|entra-id|intune|copilot|managed-services|impressum|datenschutz|agb)/.test(pathname);
   const isHomePage = !isAssessmentPage && !isSubPage;
-  const isLeistungenPage = /\/(managed-services|administrator-on-demand|security-audit-microsoft-365|copilot)/.test(pathname);
+  const isLeistungenPage = /\/(managed-services|administrator-on-demand|security-audit-microsoft-365|copilot|entra-id|intune)/.test(pathname);
 
-  // "Leistungen" — die vier zentralen Managed-Services-Angebote
+  // "Leistungen" — die zentralen Managed-Services-Angebote
   const leistungenItems = useMemo(() => [
     { slug: "managed-services", label: t("servicesMenu.managedServices") },
     { slug: "administrator-on-demand", label: t("servicesMenu.adminOnDemand") },
     { slug: "security-audit-microsoft-365", label: t("servicesMenu.securityAudit") },
     { slug: "copilot", label: t("servicesMenu.copilot") },
+    { slug: "entra-id", label: t("servicesMenu.entraId") },
+    { slug: "intune", label: t("servicesMenu.intune") },
   ], [t]);
 
   // Anker-Navigation innerhalb der Startseite ("System", "Module")
