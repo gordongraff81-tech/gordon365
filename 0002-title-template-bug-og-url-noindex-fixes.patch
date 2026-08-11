@@ -1,0 +1,255 @@
+From 5ef5d4282268594965fb231db8062fb01f97df9b Mon Sep 17 00:00:00 2001
+From: Gordon365 Claude Session <noreply@gordon365.com>
+Date: Tue, 11 Aug 2026 10:08:42 +0000
+Subject: [PATCH 2/2] Title Template Bug beheben, OG URL Templates Seiten
+ fixen, fehlenden noindex auf Transaktionsseiten ergaenzen
+
+Live Check auf gordon365.com zeigte, dass mehrere in der Ausgangsanalyse\nbeschriebene Bugs entgegen der vorherigen Session-Zusammenfassung noch\nnicht im Repo Stand vorhanden waren:
+
+- src/app/[locale]/layout.tsx, src/lib/seo/metadata.ts: title wurde als\n  reiner String zurueckgegeben statt als { absolute: ... }. Das Root-Layout\n  Title-Template haengte dadurch weiterhin "| gordon365" an bereits\n  vollstaendige Titel (z.B. Homepage-Title zeigte live doppelten Brand-Suffix)\n- agb, datenschutz, impressum, cancel, success, templates/success: gleicher\n  Title-Bug bei den fest codierten Titeln behoben\n- templates/[slug]/page.tsx, templates/page.tsx: nutzten kein eigenes\n  openGraph, erbten dadurch die Homepage-URL aus dem Layout statt der\n  eigenen Produkt-URL; jetzt ueber buildPageMetadata korrekt gesetzt,\n  inkl. Meta-Description fuer Produktseiten (DE aus description.md,\n  EN als faktischer Platzhalter, da noch keine englische Produktcopy existiert)\n- cancel, success, templates/success: hatten keine eigene generateMetadata\n  und waren dadurch trotz gegenteiliger Annahme indexierbar; jetzt mit\n  noindex und eigenem Canonical versehen
+---
+ src/app/[locale]/agb/page.tsx               |  2 +-
+ src/app/[locale]/cancel/page.tsx            | 15 +++++++++
+ src/app/[locale]/datenschutz/page.tsx       |  2 +-
+ src/app/[locale]/impressum/page.tsx         |  2 +-
+ src/app/[locale]/layout.tsx                 |  2 +-
+ src/app/[locale]/success/page.tsx           | 15 +++++++++
+ src/app/[locale]/templates/[slug]/page.tsx  | 34 ++++++++++++++-------
+ src/app/[locale]/templates/page.tsx         | 19 +++---------
+ src/app/[locale]/templates/success/page.tsx | 15 +++++++++
+ src/lib/seo/metadata.ts                     |  2 +-
+ 10 files changed, 78 insertions(+), 30 deletions(-)
+
+diff --git a/src/app/[locale]/agb/page.tsx b/src/app/[locale]/agb/page.tsx
+index 15b5e0d..0e20d2c 100644
+--- a/src/app/[locale]/agb/page.tsx
++++ b/src/app/[locale]/agb/page.tsx
+@@ -14,7 +14,7 @@ export async function generateMetadata({
+   const canonical = `https://gordon365.com${locale === "de" ? "" : "/en"}/agb`;
+ 
+   return {
+-    title: "AGB – Gordon365",
++    title: { absolute: "AGB – Gordon365" },
+     description: "Allgemeine Geschäftsbedingungen für IT-Beratungsleistungen",
+     alternates: {
+       canonical,
+diff --git a/src/app/[locale]/cancel/page.tsx b/src/app/[locale]/cancel/page.tsx
+index 8cae34f..66ca22d 100644
+--- a/src/app/[locale]/cancel/page.tsx
++++ b/src/app/[locale]/cancel/page.tsx
+@@ -3,6 +3,21 @@ import Footer from "@/components/sections/Footer";
+ import AmbientBg from "@/components/ui/AmbientBg";
+ import Link from "next/link";
+ import { localeHref } from "@/lib/localePath";
++import type { Metadata } from "next";
++
++export async function generateMetadata({
++  params,
++}: {
++  params: Promise<{ locale: string }>;
++}): Promise<Metadata> {
++  const { locale } = await params;
++  const canonical = `https://gordon365.com${locale === "de" ? "" : "/en"}/cancel`;
++  return {
++    title: { absolute: locale === "de" ? "Zahlung abgebrochen – Gordon365" : "Payment cancelled – Gordon365" },
++    alternates: { canonical },
++    robots: { index: false, follow: true },
++  };
++}
+ 
+ const COPY = {
+   de: {
+diff --git a/src/app/[locale]/datenschutz/page.tsx b/src/app/[locale]/datenschutz/page.tsx
+index ca111c1..3efc9de 100644
+--- a/src/app/[locale]/datenschutz/page.tsx
++++ b/src/app/[locale]/datenschutz/page.tsx
+@@ -14,7 +14,7 @@ export async function generateMetadata({
+   const canonical = `https://gordon365.com${locale === "de" ? "" : "/en"}/datenschutz`;
+ 
+   return {
+-    title: "Datenschutzerklärung – Gordon365",
++    title: { absolute: "Datenschutzerklärung – Gordon365" },
+     description: "Informationen zum Datenschutz gemäß DSGVO",
+     alternates: {
+       canonical,
+diff --git a/src/app/[locale]/impressum/page.tsx b/src/app/[locale]/impressum/page.tsx
+index 44bd3d0..dfe37d4 100644
+--- a/src/app/[locale]/impressum/page.tsx
++++ b/src/app/[locale]/impressum/page.tsx
+@@ -14,7 +14,7 @@ export async function generateMetadata({
+   const canonical = `https://gordon365.com${locale === "de" ? "" : "/en"}/impressum`;
+ 
+   return {
+-    title: "Impressum – Gordon365",
++    title: { absolute: "Impressum – Gordon365" },
+     description: "Angaben gemäß § 5 TMG / § 18 Abs. 2 MStV",
+     alternates: {
+       canonical,
+diff --git a/src/app/[locale]/layout.tsx b/src/app/[locale]/layout.tsx
+index 947af41..fa9ac7b 100644
+--- a/src/app/[locale]/layout.tsx
++++ b/src/app/[locale]/layout.tsx
+@@ -28,7 +28,7 @@ export async function generateMetadata({
+   const canonicalUrl = buildUrl(l);
+ 
+   return {
+-    title: t("title"),
++    title: { absolute: t("title") },
+     description: t("description"),
+     metadataBase: new URL("https://gordon365.com"),
+     alternates: buildAlternates(l),
+diff --git a/src/app/[locale]/success/page.tsx b/src/app/[locale]/success/page.tsx
+index e3cf55e..17a0038 100644
+--- a/src/app/[locale]/success/page.tsx
++++ b/src/app/[locale]/success/page.tsx
+@@ -8,6 +8,21 @@ import Footer from "@/components/sections/Footer";
+ import AmbientBg from "@/components/ui/AmbientBg";
+ import Link from "next/link";
+ import { localeHref } from "@/lib/localePath";
++import type { Metadata } from "next";
++
++export async function generateMetadata({
++  params,
++}: {
++  params: Promise<{ locale: string }>;
++}): Promise<Metadata> {
++  const { locale } = await params;
++  const canonical = `https://gordon365.com${locale === "de" ? "" : "/en"}/success`;
++  return {
++    title: { absolute: locale === "de" ? "Zahlung erfolgreich – Gordon365" : "Payment successful – Gordon365" },
++    alternates: { canonical },
++    robots: { index: false, follow: true },
++  };
++}
+ 
+ const COPY = {
+   de: {
+diff --git a/src/app/[locale]/templates/[slug]/page.tsx b/src/app/[locale]/templates/[slug]/page.tsx
+index cb30cef..46197b4 100644
+--- a/src/app/[locale]/templates/[slug]/page.tsx
++++ b/src/app/[locale]/templates/[slug]/page.tsx
+@@ -19,6 +19,15 @@ import type { Metadata } from "next";
+ import { buildPageMetadata } from "@/lib/seo";
+ import type { SiteLocale } from "@/lib/seo";
+ 
++function extractMetaDescription(markdown: string, fallback: string): string {
++  const firstParagraph = markdown
++    .split("\n\n")
++    .map((block) => block.trim())
++    .find((block) => block && !block.startsWith("#"));
++  const text = (firstParagraph ?? fallback).replace(/[#*_`]/g, "").replace(/\s+/g, " ").trim();
++  return text.length > 157 ? `${text.slice(0, 157).trimEnd()}…` : text;
++}
++
+ export async function generateMetadata({
+   params,
+ }: {
+@@ -27,18 +36,21 @@ export async function generateMetadata({
+   const { locale, slug } = await params;
+   const product = getProductById(slug);
+   if (!product) return {};
+-  const baseUrl = "https://gordon365.com";
+-  return {
++
++  const isDE = locale === "de";
++  const fallbackDescription = isDE
++    ? `${product.title} — sofort einsetzbares Security Pack für Microsoft 365. Produktionsreif, Ab ${formatPrice(product.priceCents)}.`
++    : `${product.title} — production-ready Microsoft 365 security pack for immediate deployment. From ${formatPrice(product.priceCents)}.`;
++  const description = isDE
++    ? extractMetaDescription(getProductDescription(product), fallbackDescription)
++    : fallbackDescription;
++
++  return buildPageMetadata({
++    locale: locale as SiteLocale,
++    slug: `templates/${slug}`,
+     title: `${product.title} — Gordon365`,
+-    alternates: {
+-      canonical: `${baseUrl}${locale === "de" ? "" : "/en"}/templates/${slug}`,
+-      languages: {
+-        "de-DE": `${baseUrl}/templates/${slug}`,
+-        "en-US": `${baseUrl}/en/templates/${slug}`,
+-        "x-default": `${baseUrl}/templates/${slug}`,
+-      },
+-    },
+-  };
++    description,
++  });
+ }
+ 
+ const TIER_COLORS: Record<string, string> = {
+diff --git a/src/app/[locale]/templates/page.tsx b/src/app/[locale]/templates/page.tsx
+index d9d110a..2ded1f8 100644
+--- a/src/app/[locale]/templates/page.tsx
++++ b/src/app/[locale]/templates/page.tsx
+@@ -17,24 +17,15 @@ export async function generateMetadata({
+   params: Promise<{ locale: string }>;
+ }): Promise<Metadata> {
+   const { locale } = await params;
+-  const baseUrl = "https://gordon365.com";
+   const isDE = locale === "de";
+-  return {
+-    title: isDE
+-      ? "Microsoft 365 Templates — Gordon365"
+-      : "Microsoft 365 Templates — Gordon365",
++  return buildPageMetadata({
++    locale: locale as SiteLocale,
++    slug: "templates",
++    title: "Microsoft 365 Templates — Gordon365",
+     description: isDE
+       ? "Geprüfte Templates für Conditional Access, Intune, Copilot Readiness und Security Reporting. Direkt einsatzbereit."
+       : "Tested templates for Conditional Access, Intune, Copilot Readiness and Security Reporting. Ready to deploy.",
+-    alternates: {
+-      canonical: `${baseUrl}${isDE ? "" : "/en"}/templates`,
+-      languages: {
+-        "de-DE": `${baseUrl}/templates`,
+-        "en-US": `${baseUrl}/en/templates`,
+-        "x-default": `${baseUrl}/templates`,
+-      },
+-    },
+-  };
++  });
+ }
+ 
+ const TIER_ORDER = ["basic", "professional", "msp", "enterprise"] as const;
+diff --git a/src/app/[locale]/templates/success/page.tsx b/src/app/[locale]/templates/success/page.tsx
+index 5e6317d..f4470d2 100644
+--- a/src/app/[locale]/templates/success/page.tsx
++++ b/src/app/[locale]/templates/success/page.tsx
+@@ -9,6 +9,21 @@ import AmbientBg from "@/components/ui/AmbientBg";
+ import Link from "next/link";
+ import { localeHref } from "@/lib/localePath";
+ import { getProductById, getCurrentVersion, formatPrice } from "@/lib/products";
++import type { Metadata } from "next";
++
++export async function generateMetadata({
++  params,
++}: {
++  params: Promise<{ locale: string }>;
++}): Promise<Metadata> {
++  const { locale } = await params;
++  const canonical = `https://gordon365.com${locale === "de" ? "" : "/en"}/templates/success`;
++  return {
++    title: { absolute: locale === "de" ? "Deine Dateien sind bereit – Gordon365" : "Your files are ready – Gordon365" },
++    alternates: { canonical },
++    robots: { index: false, follow: true },
++  };
++}
+ 
+ const COPY = {
+   de: {
+diff --git a/src/lib/seo/metadata.ts b/src/lib/seo/metadata.ts
+index 0ce6d81..70ccc8f 100644
+--- a/src/lib/seo/metadata.ts
++++ b/src/lib/seo/metadata.ts
+@@ -25,7 +25,7 @@ export function buildPageMetadata({
+   const image = ogImage ?? SEO_CONFIG.ogImage;
+ 
+   return {
+-    title,
++    title: { absolute: title },
+     description,
+     ...(keywords ? { keywords } : {}),
+     alternates: buildAlternates(locale, slug),
+-- 
+2.43.0
+
