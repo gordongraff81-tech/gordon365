@@ -19,6 +19,15 @@ import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
 import type { SiteLocale } from "@/lib/seo";
 
+function extractMetaDescription(markdown: string, fallback: string): string {
+  const firstParagraph = markdown
+    .split("\n\n")
+    .map((block) => block.trim())
+    .find((block) => block && !block.startsWith("#"));
+  const text = (firstParagraph ?? fallback).replace(/[#*_`]/g, "").replace(/\s+/g, " ").trim();
+  return text.length > 157 ? `${text.slice(0, 157).trimEnd()}…` : text;
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -27,18 +36,21 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const product = getProductById(slug);
   if (!product) return {};
-  const baseUrl = "https://gordon365.com";
-  return {
+
+  const isDE = locale === "de";
+  const fallbackDescription = isDE
+    ? `${product.title} — sofort einsetzbares Security Pack für Microsoft 365. Produktionsreif, Ab ${formatPrice(product.priceCents)}.`
+    : `${product.title} — production-ready Microsoft 365 security pack for immediate deployment. From ${formatPrice(product.priceCents)}.`;
+  const description = isDE
+    ? extractMetaDescription(getProductDescription(product), fallbackDescription)
+    : fallbackDescription;
+
+  return buildPageMetadata({
+    locale: locale as SiteLocale,
+    slug: `templates/${slug}`,
     title: `${product.title} — Gordon365`,
-    alternates: {
-      canonical: `${baseUrl}${locale === "de" ? "" : "/en"}/templates/${slug}`,
-      languages: {
-        "de-DE": `${baseUrl}/templates/${slug}`,
-        "en-US": `${baseUrl}/en/templates/${slug}`,
-        "x-default": `${baseUrl}/templates/${slug}`,
-      },
-    },
-  };
+    description,
+  });
 }
 
 const TIER_COLORS: Record<string, string> = {

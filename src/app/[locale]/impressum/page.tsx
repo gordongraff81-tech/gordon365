@@ -14,7 +14,7 @@ export async function generateMetadata({
   const canonical = `https://gordon365.com${locale === "de" ? "" : "/en"}/impressum`;
 
   return {
-    title: "Impressum – Gordon365",
+    title: { absolute: "Impressum – Gordon365" },
     description: "Angaben gemäß § 5 TMG / § 18 Abs. 2 MStV",
     alternates: {
       canonical,

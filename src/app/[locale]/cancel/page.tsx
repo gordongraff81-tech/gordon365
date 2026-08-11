@@ -3,6 +3,21 @@ import Footer from "@/components/sections/Footer";
 import AmbientBg from "@/components/ui/AmbientBg";
 import Link from "next/link";
 import { localeHref } from "@/lib/localePath";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const canonical = `https://gordon365.com${locale === "de" ? "" : "/en"}/cancel`;
+  return {
+    title: { absolute: locale === "de" ? "Zahlung abgebrochen – Gordon365" : "Payment cancelled – Gordon365" },
+    alternates: { canonical },
+    robots: { index: false, follow: true },
+  };
+}
 
 const COPY = {
   de: {

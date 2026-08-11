@@ -25,7 +25,7 @@ export function buildPageMetadata({
   const image = ogImage ?? SEO_CONFIG.ogImage;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     ...(keywords ? { keywords } : {}),
     alternates: buildAlternates(locale, slug),

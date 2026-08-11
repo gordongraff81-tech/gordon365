@@ -17,24 +17,15 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const baseUrl = "https://gordon365.com";
   const isDE = locale === "de";
-  return {
-    title: isDE
-      ? "Microsoft 365 Templates — Gordon365"
-      : "Microsoft 365 Templates — Gordon365",
+  return buildPageMetadata({
+    locale: locale as SiteLocale,
+    slug: "templates",
+    title: "Microsoft 365 Templates — Gordon365",
     description: isDE
       ? "Geprüfte Templates für Conditional Access, Intune, Copilot Readiness und Security Reporting. Direkt einsatzbereit."
       : "Tested templates for Conditional Access, Intune, Copilot Readiness and Security Reporting. Ready to deploy.",
-    alternates: {
-      canonical: `${baseUrl}${isDE ? "" : "/en"}/templates`,
-      languages: {
-        "de-DE": `${baseUrl}/templates`,
-        "en-US": `${baseUrl}/en/templates`,
-        "x-default": `${baseUrl}/templates`,
-      },
-    },
-  };
+  });
 }
 
 const TIER_ORDER = ["basic", "professional", "msp", "enterprise"] as const;

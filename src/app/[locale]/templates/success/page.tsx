@@ -9,6 +9,21 @@ import AmbientBg from "@/components/ui/AmbientBg";
 import Link from "next/link";
 import { localeHref } from "@/lib/localePath";
 import { getProductById, getCurrentVersion, formatPrice } from "@/lib/products";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const canonical = `https://gordon365.com${locale === "de" ? "" : "/en"}/templates/success`;
+  return {
+    title: { absolute: locale === "de" ? "Deine Dateien sind bereit – Gordon365" : "Your files are ready – Gordon365" },
+    alternates: { canonical },
+    robots: { index: false, follow: true },
+  };
+}
 
 const COPY = {
   de: {

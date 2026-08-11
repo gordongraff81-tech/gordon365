@@ -14,7 +14,7 @@ export async function generateMetadata({
   const canonical = `https://gordon365.com${locale === "de" ? "" : "/en"}/datenschutz`;
 
   return {
-    title: "Datenschutzerklärung – Gordon365",
+    title: { absolute: "Datenschutzerklärung – Gordon365" },
     description: "Informationen zum Datenschutz gemäß DSGVO",
     alternates: {
       canonical,

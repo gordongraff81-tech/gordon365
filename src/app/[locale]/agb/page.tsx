@@ -14,7 +14,7 @@ export async function generateMetadata({
   const canonical = `https://gordon365.com${locale === "de" ? "" : "/en"}/agb`;
 
   return {
-    title: "AGB – Gordon365",
+    title: { absolute: "AGB – Gordon365" },
     description: "Allgemeine Geschäftsbedingungen für IT-Beratungsleistungen",
     alternates: {
       canonical,

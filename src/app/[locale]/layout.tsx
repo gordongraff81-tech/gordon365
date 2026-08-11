@@ -28,7 +28,7 @@ export async function generateMetadata({
   const canonicalUrl = buildUrl(l);
 
   return {
-    title: t("title"),
+    title: { absolute: t("title") },
     description: t("description"),
     metadataBase: new URL("https://gordon365.com"),
     alternates: buildAlternates(l),
