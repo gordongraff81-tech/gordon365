@@ -5,6 +5,10 @@ import Footer from "@/components/sections/Footer";
 import AmbientBg from "@/components/ui/AmbientBg";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
+import type { SiteLocale } from "@/lib/seo";
+
+const SLUG = "security-audit-microsoft-365";
 
 export async function generateMetadata({
   params,
@@ -13,21 +17,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "audit" });
-  const baseUrl = "https://gordon365.com";
-  const slug = "security-audit-microsoft-365";
-  return {
+  return buildPageMetadata({
+    locale: locale as SiteLocale,
+    slug: SLUG,
     title: t("meta.title"),
     description: t("meta.description"),
     keywords: t.raw("meta.keywords") as string[],
-    alternates: {
-      canonical: `${baseUrl}${locale === "de" ? "" : "/en"}/${slug}`,
-      languages: {
-        "de-DE": `${baseUrl}/${slug}`,
-        "en-US": `${baseUrl}/en/${slug}`,
-        "x-default": `${baseUrl}/${slug}`,
-      },
-    },
-  };
+  });
 }
 
 export default async function SecurityAuditPage({
@@ -36,7 +32,6 @@ export default async function SecurityAuditPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-
   return (
     <>
       <AmbientBg />

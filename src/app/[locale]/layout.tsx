@@ -8,6 +8,14 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Toaster } from "sonner";
 import "@/app/globals.css";
+import {
+  buildAlternates,
+  buildOgLocale,
+  buildUrl,
+  buildOrganizationSchema,
+  buildWebSiteSchema,
+} from "@/lib/seo";
+import type { SiteLocale } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -16,60 +24,41 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
-
-  const baseUrl = "https://gordon365.com";
-  // Fallback-Canonical für Seiten ohne eigene generateMetadata (z.B. Startseite):
-  // Deutsch (Standard) unpräfixiert, Englisch mit /en.
-  const localeUrl = locale === "de" ? baseUrl : `${baseUrl}/en`;
+  const l = locale as SiteLocale;
+  const canonicalUrl = buildUrl(l);
 
   return {
     title: t("title"),
     description: t("description"),
-
-    metadataBase: new URL(baseUrl),
-
-    alternates: {
-      canonical: localeUrl,
-      languages: {
-        "de-DE": baseUrl,
-        "en-US": `${baseUrl}/en`,
-        "x-default": baseUrl,
-      },
-    },
-
+    metadataBase: new URL("https://gordon365.com"),
+    alternates: buildAlternates(l),
     openGraph: {
       title: t("ogTitle"),
       description: t("ogDescription"),
-      url: localeUrl,
+      url: canonicalUrl,
       siteName: "Gordon365",
-      locale: locale === "de" ? "de_DE" : "en_US",
+      locale: buildOgLocale(l),
       type: "website",
       images: [
         {
-          url: `${baseUrl}/og/og-image.png`,
+          url: "https://gordon365.com/og/og-image.png",
           width: 1200,
           height: 630,
           alt: t("ogTitle"),
         },
       ],
     },
-
     twitter: {
       card: "summary_large_image",
       title: t("ogTitle"),
       description: t("ogDescription"),
+      images: ["https://gordon365.com/og/og-image.png"],
     },
-
     robots: {
       index: true,
       follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-      },
+      googleBot: { index: true, follow: true, "max-video-preview": -1 },
     },
-
     icons: {
       icon: [
         { url: "/favicon.svg", type: "image/svg+xml" },
@@ -103,33 +92,13 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages();
-  const t = await getTranslations({ locale, namespace: "meta" });
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "Gordon365",
-    url: "https://gordon365.com",
-    description: t("description"),
-    address: { "@type": "PostalAddress", addressCountry: "DE" },
-    areaServed: ["DE", "AT", "CH"],
-    serviceType: [
-      "Microsoft 365 Consulting",
-      "M365 Security Hardening",
-      "Copilot Readiness",
-      "Modern Workplace Transformation",
-      "Microsoft Licensing Optimization",
-      "Intune Deployment",
-      "Windows Autopilot",
-      "Endpoint Compliance Management",
-    ],
-    priceRange: "€€€",
-  };
+  const schemas = [buildOrganizationSchema(), buildWebSiteSchema()];
 
   return (
     <NextIntlClientProvider messages={messages}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
       />
       {children}
       <Toaster

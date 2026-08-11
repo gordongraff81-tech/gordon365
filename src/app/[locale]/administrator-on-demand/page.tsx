@@ -5,6 +5,10 @@ import Footer from "@/components/sections/Footer";
 import AmbientBg from "@/components/ui/AmbientBg";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
+import type { SiteLocale } from "@/lib/seo";
+
+const SLUG = "administrator-on-demand";
 
 export async function generateMetadata({
   params,
@@ -13,30 +17,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "adminOnDemand" });
-
-  const baseUrl = "https://gordon365.com";
-  const slug = "administrator-on-demand";
-
-  return {
+  return buildPageMetadata({
+    locale: locale as SiteLocale,
+    slug: SLUG,
     title: t("meta.title"),
     description: t("meta.description"),
-    alternates: {
-      canonical: `${baseUrl}${locale === "de" ? "" : "/en"}/${slug}`,
-      languages: {
-        "de-DE": `${baseUrl}/${slug}`,
-        "en-US": `${baseUrl}/en/${slug}`,
-        "x-default": `${baseUrl}/${slug}`,
-      },
-    },
-    openGraph: {
-      title: t("meta.title"),
-      description: t("meta.description"),
-      url: `${baseUrl}${locale === "de" ? "" : "/en"}/${slug}`,
-      siteName: "Gordon365",
-      locale: locale === "de" ? "de_DE" : "en_US",
-      type: "website",
-    },
-  };
+  });
 }
 
 export default async function AdminOnDemandPage({
@@ -45,7 +31,6 @@ export default async function AdminOnDemandPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-
   return (
     <>
       <AmbientBg />

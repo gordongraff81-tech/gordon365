@@ -1,7 +1,9 @@
+import { buildUrl } from "@/lib/seo";
+import type { SiteLocale } from "@/lib/seo";
+
 /**
- * Baut einen internen Link für ein bestimmtes Gebietsschema.
- * Deutsch ist Standardsprache und bleibt unpräfixiert ("/pfad"),
- * Englisch wird stets mit "/en" präfixiert ("/en/pfad").
+ * Gibt den lokalisierten Pfad fuer interne Navigation zurueck.
+ * Nutzt dieselbe URL-Engine wie die zentrale SEO Architektur.
  *
  * @example
  * localeHref("de", "intune")   // -> "/intune"
@@ -11,19 +13,18 @@
  */
 export function localeHref(locale: string, path: string = ""): string {
   const clean = path.replace(/^\/+/, "").replace(/\/+$/, "");
-  const suffix = clean ? `/${clean}` : "";
-  return locale === "en" ? `/en${suffix}` : suffix || "/";
+  const absUrl = buildUrl(locale as SiteLocale, clean || undefined);
+  return new URL(absUrl).pathname;
 }
 
 /**
- * Wandelt den aktuellen Pfad (mit oder ohne "/en"-Präfix) in den
- * entsprechenden Pfad für targetLocale um. Für den Sprachumschalter.
- *
- * @example
- * switchLocalePath("/intune", "en")     // -> "/en/intune"
- * switchLocalePath("/en/intune", "de")  // -> "/intune"
+ * Wandelt den aktuellen Pfad in den entsprechenden Pfad fuer targetLocale um.
+ * Fuer den Sprachumschalter in NavV2.
  */
-export function switchLocalePath(pathname: string, targetLocale: string): string {
+export function switchLocalePath(
+  pathname: string,
+  targetLocale: string
+): string {
   const withoutEnPrefix = pathname.replace(/^\/en(?=\/|$)/, "") || "/";
   return localeHref(targetLocale, withoutEnPrefix);
 }

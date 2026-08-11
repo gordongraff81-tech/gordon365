@@ -8,6 +8,8 @@ import AmbientBg from "@/components/ui/AmbientBg";
 import Link from "next/link";
 import { localeHref } from "@/lib/localePath";
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
+import type { SiteLocale } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -160,3 +162,5 @@ export default async function TemplatesPage({
     </>
   );
 }
+
+
