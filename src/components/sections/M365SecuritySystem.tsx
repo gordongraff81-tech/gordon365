@@ -79,8 +79,15 @@ function SectionSystemDefinition() {
           {t("def.h1c")}
         </h1>
 
-        <motion.p
-          {...fadeUp(inView, 0.16)}
+        {/*
+          Ebenfalls kein motion.p mehr: Nachdem das H1 sofort rendert,
+          ist dieser Absatz (groß genug für LCP) zum neuen LCP-Element
+          geworden und hing weiterhin an derselben useInView-Verzögerung
+          (Lighthouse maß danach 2,3s Element Render Delay). Gleicher
+          CSS-Fix wie beim H1, mit etwas Verzögerung für den Stagger-Effekt.
+        */}
+        <p
+          className="lcp-fade-in-delayed"
           style={{
             fontSize: "clamp(1.125rem, 2vw, 1.375rem)",
             lineHeight: 1.7,
@@ -91,7 +98,7 @@ function SectionSystemDefinition() {
           }}
         >
           {t("def.sub")}
-        </motion.p>
+        </p>
 
         <motion.div
           {...fadeUp(inView, 0.24)}

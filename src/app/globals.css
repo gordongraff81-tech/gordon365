@@ -234,8 +234,13 @@
   animation: lcp-fade-in 0.7s cubic-bezier(0.25, 0, 0, 1) 0.08s both;
 }
 
+.lcp-fade-in-delayed {
+  animation: lcp-fade-in 0.7s cubic-bezier(0.25, 0, 0, 1) 0.2s both;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .lcp-fade-in {
+  .lcp-fade-in,
+  .lcp-fade-in-delayed {
     animation: none;
   }
 }
