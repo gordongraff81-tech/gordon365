@@ -121,37 +121,37 @@ export default function Contact({ locale }: ContactProps) {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-1.5">{tf("name")}</label>
-                    <input name="name" type="text" required placeholder={tf("namePlaceholder")} className="input-field" />
+                    <label htmlFor="contact-name" className="block text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-1.5">{tf("name")}</label>
+                    <input id="contact-name" name="name" type="text" required placeholder={tf("namePlaceholder")} className="input-field" />
                   </div>
                   <div>
-                    <label className="block text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-1.5">{tf("company")}</label>
-                    <input name="company" type="text" required placeholder={tf("companyPlaceholder")} className="input-field" />
+                    <label htmlFor="contact-company" className="block text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-1.5">{tf("company")}</label>
+                    <input id="contact-company" name="company" type="text" required placeholder={tf("companyPlaceholder")} className="input-field" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-1.5">{tf("email")}</label>
-                  <input name="email" type="email" required placeholder={tf("emailPlaceholder")} className="input-field" />
+                  <label htmlFor="contact-email" className="block text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-1.5">{tf("email")}</label>
+                  <input id="contact-email" name="email" type="email" required placeholder={tf("emailPlaceholder")} className="input-field" />
                 </div>
                 <div className="grid sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-1.5">{tf("size")}</label>
-                    <select name="size" className="input-field">
+                    <label htmlFor="contact-size" className="block text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-1.5">{tf("size")}</label>
+                    <select id="contact-size" name="size" className="input-field" aria-label={tf("size")}>
                       <option value="">{tf("sizePlaceholder")}</option>
                       {sizeOptions.map((o) => (<option key={o} value={o} style={{ background: "#FFFFFF" }}>{o}</option>))}
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-1.5">{tf("budget")}</label>
-                    <select name="budget" className="input-field">
+                    <label htmlFor="contact-budget" className="block text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-1.5">{tf("budget")}</label>
+                    <select id="contact-budget" name="budget" className="input-field" aria-label={tf("budget")}>
                       <option value="">{tf("budgetPlaceholder")}</option>
                       {budgetOptions.map((o) => (<option key={o} value={o} style={{ background: "#FFFFFF" }}>{o}</option>))}
                     </select>
                   </div>
                 </div>
                 <div>
-                  <label className="block text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-1.5">{tf("challenge")}</label>
-                  <textarea name="challenge" rows={3} placeholder={tf("challengePlaceholder")} className="input-field resize-none" />
+                  <label htmlFor="contact-challenge" className="block text-[0.6875rem] font-bold tracking-[0.08em] uppercase text-text-3 mb-1.5">{tf("challenge")}</label>
+                  <textarea id="contact-challenge" name="challenge" rows={3} placeholder={tf("challengePlaceholder")} className="input-field resize-none" />
                 </div>
                 <button type="submit" disabled={submitting} className="w-full bg-accent hover:bg-accent-hover disabled:opacity-60 text-white py-4 rounded-[6px] font-bold text-[1rem] flex items-center justify-center gap-2 transition-all mt-2">
                   {submitting ? tf("submitting") : tf("submit")}

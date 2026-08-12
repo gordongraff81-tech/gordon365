@@ -58,7 +58,7 @@ export default function Footer({ locale }: FooterProps) {
             </div>
           </div>
           <div>
-            <div className="text-[0.6875rem] font-bold tracking-[0.1em] uppercase text-text-3 mb-6">{t("servicesTitle")}</div>
+            <div className="text-[0.6875rem] font-bold tracking-[0.1em] uppercase text-text-2 mb-6">{t("servicesTitle")}</div>
             <ul className="space-y-4">
               {serviceLinks.map((link, i) => (
                 <li key={i}><Link href={serviceHrefs[i]} className="text-[0.875rem] text-text-2 hover:text-text-1 transition-colors">{link}</Link></li>
@@ -66,14 +66,14 @@ export default function Footer({ locale }: FooterProps) {
             </ul>
           </div>
           <div>
-            <div className="text-[0.6875rem] font-bold tracking-[0.1em] uppercase text-text-3 mb-6">{t("companyTitle")}</div>
+            <div className="text-[0.6875rem] font-bold tracking-[0.1em] uppercase text-text-2 mb-6">{t("companyTitle")}</div>
             <ul className="space-y-4">
               {companyLinks.map((link, i) => (
                 <li key={i}>
                   {companyHrefs[i].startsWith("mailto:") ? (
                     <a href={companyHrefs[i]} className="text-[0.875rem] text-text-2 hover:text-text-1 transition-colors">{link}</a>
                   ) : companyHrefs[i] === "#" ? (
-                    <span className="text-[0.875rem] text-text-2 opacity-40 cursor-default">{link}</span>
+                    <span className="text-[0.875rem] text-text-2 cursor-not-allowed">{link}</span>
                   ) : (
                     <Link href={companyHrefs[i]} className="text-[0.875rem] text-text-2 hover:text-text-1 transition-colors">{link}</Link>
                   )}
@@ -82,7 +82,7 @@ export default function Footer({ locale }: FooterProps) {
             </ul>
           </div>
           <div>
-            <div className="text-[0.6875rem] font-bold tracking-[0.1em] uppercase text-text-3 mb-6">{t("newsletter")}</div>
+            <div className="text-[0.6875rem] font-bold tracking-[0.1em] uppercase text-text-2 mb-6">{t("newsletter")}</div>
             <p className="text-[0.8125rem] text-text-2 leading-relaxed mb-4">{t("newsletterDesc")}</p>
             <div className="flex gap-2">
               <input type="email" placeholder={t("newsletterPlaceholder")} className="flex-1 bg-card border border-border rounded-[6px] px-3 py-2 text-[0.875rem] text-text-1 outline-none" />
@@ -91,10 +91,10 @@ export default function Footer({ locale }: FooterProps) {
           </div>
         </div>
         <div className="flex flex-wrap justify-between items-center gap-4 border-t border-border pt-8">
-          <span className="text-[0.8125rem] text-text-3">{t("copyright")}</span>
+          <span className="text-[0.8125rem] text-text-2">{t("copyright")}</span>
           <div className="flex gap-5">
             {legalLabels.map((label, i) => (
-              <Link key={i} href={localeHref(locale, legalPaths[i] || "")} className="text-[0.8125rem] text-text-3 hover:text-text-2 transition-colors">
+              <Link key={i} href={localeHref(locale, legalPaths[i] || "")} className="text-[0.8125rem] text-text-2 hover:text-text-1 transition-colors">
                 {label}
               </Link>
             ))}

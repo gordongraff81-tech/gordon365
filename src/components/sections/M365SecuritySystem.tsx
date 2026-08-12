@@ -45,9 +45,17 @@ function SectionSystemDefinition() {
           {t("def.eyebrow")}
         </motion.p>
 
-        <motion.h1
+        {/*
+          LCP-Element: bewusst KEIN motion.h1 / useInView mehr.
+          Der Text muss beim allerersten Paint sichtbar sein, nicht erst
+          nach Hydration + IntersectionObserver-Callback (Lighthouse maß
+          hier zuvor eine Element Render Delay von 9,3s). Die Eintritts-
+          animation läuft stattdessen als reines CSS-Keyframe (siehe
+          globals.css, .lcp-fade-in), das den Browser nicht blockiert.
+        */}
+        <h1
           id="system-definition-h1"
-          {...fadeUp(inView, 0.08)}
+          className="lcp-fade-in"
           style={{
             fontSize: "clamp(3rem, 7vw, 6rem)",
             fontWeight: 800,
@@ -69,7 +77,7 @@ function SectionSystemDefinition() {
           </span>
           <br />
           {t("def.h1c")}
-        </motion.h1>
+        </h1>
 
         <motion.p
           {...fadeUp(inView, 0.16)}

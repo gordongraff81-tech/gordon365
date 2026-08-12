@@ -216,3 +216,27 @@
   }
 }
 
+/* LCP-Fix: reine CSS-Eintrittsanimation für das Hero-H1.
+   Läuft unabhängig von React-Hydration/IntersectionObserver, damit der
+   Browser den Text sofort beim First Paint rendern kann. */
+@keyframes lcp-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lcp-fade-in {
+  animation: lcp-fade-in 0.7s cubic-bezier(0.25, 0, 0, 1) 0.08s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lcp-fade-in {
+    animation: none;
+  }
+}
+
